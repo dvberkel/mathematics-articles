@@ -58,36 +58,50 @@ for $directory (@directories) {
 	createdirectory($directory);	
 }
 
-# Create the abstract file content
-my $abstractcontent = <<EO_ABSTRACT 
+# This has will hold all the snippets to fill the files with.
+my %snippets;
+
+# Title snippet
+$snippets{'content/title.tex'} = <<EO_TITLE
+\% Fill the specific credential of this article.
+\\title{This is the Title of This Article}
+\\author{The author}
+EO_TITLE
+;
+
+# Abstract snippet
+$snippets{'content/abstract.tex'} = <<EO_ABSTRACT 
 \\begin{abstract}
 	In this article the authors...
 \\end{abstract}
 EO_ABSTRACT
 ;
-createdocument('content/abstract.tex', $abstractcontent);
 
-# Create the commands file content.
-my $libcontent = <<EO_LIB
+
+# Commands snippet
+$snippets{'lib/commands.tex'} = <<EO_LIB
 \% Use this file to define all commands used in the article.
 
 EO_LIB
 ;
-createdocument('lib/commands.tex', $libcontent);
 
-# Create the main file content.
-my $maincontent =<<EO_MAIN
+# Main snippet
+$snippets{"$name.tex"}= <<EO_MAIN
 \\documentclass[12pt,twoside,a4paper]{article}
 
 \\input{lib/commands}
+\\input{content/title}
 
 \\begin{document}
+	\\maketitle
 	\\input{content/abstract}
 \\end{document}
 
 EO_MAIN
 ;
-createdocument("$name.tex", $maincontent);
+
+# Create all the fills with the snippets.
+createfiles(\%snippets);
 
 # Creates a directory named $directory in the current working directory
 # unless one of the following conditions occurs.
@@ -127,4 +141,17 @@ sub createdocument {
 		
 		print "skipping creation of $name, it already exists\n";
 	}	
+}
+
+# Given a hash reference of filenames to content snippets, this method
+# will create all the filenames with the corresponding snippets.
+sub createfiles {
+	
+	my $hashref = shift @_;
+	my %table = %$hashref;
+
+	for my $filename (keys %table) {
+		
+		createdocument($filename, $table{$filename});	
+	}
 }
