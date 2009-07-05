@@ -1,0 +1,21 @@
+
+# /articles/np-complete/
+/articles/np-complete/*.aux
+/articles/np-complete/*.log
+/articles/np-complete/*.dvi
+/articles/np-complete/*.ps
+/articles/np-complete/*.pdf
+
+# /articles/np-complete/content/
+/articles/np-complete/content/*.aux
+/articles/np-complete/content/*.log
+/articles/np-complete/content/*.dvi
+/articles/np-complete/content/*.ps
+/articles/np-complete/content/*.pdf
+
+# /articles/np-complete/lib/
+/articles/np-complete/lib/*.aux
+/articles/np-complete/lib/*.log
+/articles/np-complete/lib/*.dvi
+/articles/np-complete/lib/*.ps
+/articles/np-complete/lib/*.pdf
