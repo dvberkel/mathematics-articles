@@ -33,14 +33,22 @@ if ($help) {
 	die "usage: $0 [--dir=<directory>] [--help]\n";
 }
 
+# Create regex from the clean file.
+my $pattern = '^.*\.(?:' . (join '|', @clean) . ')$';
+my $regex = qr/$pattern/;
+
 cleandirectory($directory);
 
 # Cleans directory recursively of all files in @clean.
 sub cleandirectory {
-
+	
+	local *DIR;
+	
 	my $directory = shift @_;
 	
 	chdir $directory or die "Could not make $directory current directory: $!\n";	
+	
+	print getcwd, "\n";
 	
 	opendir DIR, '.' or die "Could not open $directory: $!\n";
 	for my $file (readdir DIR) {
@@ -52,6 +60,8 @@ sub cleandirectory {
 		
 			# Recurse in the directory.
 			cleandirectory($file);
+			chdir '..';
+			print getcwd, "\n";		
 		} else {
 		
 			print "$file\n";
