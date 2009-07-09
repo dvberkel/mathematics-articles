@@ -5,11 +5,21 @@
 #   <name>
 #     |
 #     <name>.tex
+#     |
 #     +- content
+#     |   |
+#     |   abstract.tex
+#     |   |
+#     |   title.tex
+#     |   
 #     +- lib
+#     |   |
+#     |   commands.tex
+#     |
+#     +- image
 #         |
-#         commands.tex
-#
+#         .keep-generated
+#     
 # Where <name> is an argument on the commandline.
 
 use strict;
@@ -19,7 +29,7 @@ use Getopt::Long;
 use Cwd;
 
 # The directories which will created under the <name> directory.
-my @directories = qw/content lib/;
+my @directories = qw/content lib image/;
 
 my $directory = getcwd;
 my $help;
@@ -83,6 +93,13 @@ $snippets{'lib/commands.tex'} = <<EO_LIB
 \% Use this file to define all commands used in the article.
 
 EO_LIB
+;
+
+# keep generated snippet
+$snippets{'image/.keep-generated'} = <<EO_KEEP
+# This file prohibits the removal of LaTeX generated files by
+# clean-article.pl
+EO_KEEP
 ;
 
 # Main snippet
