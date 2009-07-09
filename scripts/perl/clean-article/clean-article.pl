@@ -33,12 +33,29 @@ if ($help) {
 	die "usage: $0 [--dir=<directory>] [--help]\n";
 }
 
-opendir DIR, $directory;
-for my $file (readdir DIR) {
+cleandirectory($directory);
+
+# Cleans directory recursively of all files in @clean.
+sub cleandirectory {
+
+	my $directory = shift @_;
 	
-	# Skip current and parent directory.
-	next if $file =~ m/^\.\.?$/;
+	chdir $directory or die "Could not make $directory current directory: $!\n";	
 	
-	print "$file\n";
+	opendir DIR, '.' or die "Could not open $directory: $!\n";
+	for my $file (readdir DIR) {
+	
+		# Skip current and parent directory.
+		next if $file =~ m/^\.\.?$/;
+	
+		if (-d $file) {
+		
+			# Recurse in the directory.
+			cleandirectory($file);
+		} else {
+		
+			print "$file\n";
+		}
+	}
+	closedir DIR;
 }
-closedir DIR;
