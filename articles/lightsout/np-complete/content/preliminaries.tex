@@ -1,0 +1,178 @@
+\section{Preliminaries}
+
+In this section we will make all the necessary layouts to facilitate the
+proof of the fact that Lit Generalised Lights Out is NP-complete.
+
+Our layouts will be over $\Z/3\Z$. This is not a restriction. The proof
+(with slight alterations) is valid for any $\Z/q\Z$. See section
+\ref{section:general} for the general case.
+
+We will define layouts of a general type. A \emph{construct} is a layout
+with certain vertices labelled as \emph{inputs} and other vertices
+labelled as \emph{outputs}.
+
+Complex constructs can be build out of simpler constructs by
+identifying an output of a construct with an input of an other
+construct.
+
+The states of inputs and outputs will be interpeted in the following
+way. If an input(/output) is in state $1$ it is said to be $\f$ and if
+an input(/output) is in state $2$ it is said to be $\t$.
+
+We also define a function $\mu : \{\f,\t\} \rightarrow \Z/3\Z$ with
+$\mu(\f) = 1$ and $\mu(\t) = 2$.
+
+\subsection{Kill-switch Layout}
+
+An  $n$-kill-switch is a layout on $n$ vertices in a predetermined
+state. Every vertex is connected to every vertex with multiplicity $2$.
+Every vertex is in state $1$. (For an example of an $2$-kill-switch see
+figure \ref{figure:killswitch}.) 
+\begin{figure}
+	\begin{center}
+		\includegraphics{image/definitions.1}
+	\end{center}
+	\caption{A $2$-kill-switch}\label{figure:killswitch}
+\end{figure}
+
+In an $n$-kill-switch every button can be pressed. Furthermore every
+button has the same effect i.e. after pressing a button every button is
+in the off state.
+ 
+We can use a $n$-kill-switch to distinguish between a choice between
+$n$-options. How this can be used is shown in the following sections.
+
+\subsection{Assigners, Splitters and Terminators.}
+
+In order to simulate a logical formula we must have the ability to
+assign logical values to variables, split them to facilitate the various
+logical operators and transmit these values to these logical operators.
+
+We will now present various constructs which do these tasks. At the
+center of all these layouts is the \emph{$2$-kill-switch}.
+
+\subsubsection{Assigners}
+
+This subsection defines an assigner. Its purpose is to signify the
+assignment of a truth value to a variable.
+
+An assigner is a layout on the set $\{k_{0},k_{1},o\}$. Vertices $k_{0}$
+and $k_{1}$ will form a $2$-kill-switch. Vertex $o$ will serve as
+output. Depending on which of $k_{0}$ and $k_{1}$ is pressed it will
+be in the $\t$ state or the $\f$ state.
+
+Below is the adjacency matrix of an assigner.
+\[
+	\left(
+	\begin{array}{ccc}
+		2 & 2 & 0 \\
+		2 & 2 & 0 \\
+		1 & 2 & 0 \\
+	\end{array}
+	\right)
+\]
+
+for an example of an assigner see figure \ref{figure:constructsA}
+
+\subsubsection{Splitters}
+
+This section defines an $n$-splitter. Its purpose is to split a signal
+into $n$ channels.
+
+An $n$-splitter is a layout on the set
+$\{k_{0},k_{1},i,o_{0},\ldots,o_{n-1}\}$. The vertices
+$k_{0}$ and $k_{1}$ will by used to create a $2$-kill-switch. Vertex $i$
+will by the input and vertex $o_{0}$ through vertex $o_{n-1}$ are the
+outputs.	
+
+The adjacency matrix of a $n$-splitter is given below.
+\[
+	\left(
+	\begin{array}{ccccc}
+		2 & 2 & 0 & \cdots & 0 \\
+		2 & 2 & 0 & \cdots & 0 \\
+		2 & 1 & 0 & \cdots & 0 \\
+		1 & 2 & 0 & \cdots & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		1 & 2 & 0 & \cdots & 0 \\
+	\end{array}
+	\right)
+\]
+
+See figure \ref{figure:constructsA} for an example of a $n$-splitter.
+\begin{figure}
+	\begin{center}
+		\subfigure[assigner]{\includegraphics{image/definitions.2}}
+		\subfigure[$n$-splitter]{\includegraphics{image/definitions.3}}
+	\end{center}
+	\caption{Assigners and splitters}\label{figure:constructsA}
+\end{figure}
+
+Notice that a wire is a $1$-splitter. Furthermore by interchanging the
+multiplicities of the edges to an output the input signal can be
+inverted.
+\begin{figure}
+	\begin{center}
+		\subfigure[wire]{\includegraphics{image/definitions.5}}
+		\subfigure[inverter]{\includegraphics{image/definitions.6}}
+	\end{center}
+	\caption{Wires and inverters}\label{figure:constructsB}
+\end{figure}
+
+\subsubsection{Terminator}
+
+\subsection{Logical Connectives}
+
+A standard way to continue is to show that it is possible to construct
+every logical connective by exhibiting a universal logical connective
+like \emph{nand} or \emph{nor}.
+
+We will take another approach and show an universal construction for any
+logical connective, surpassing the problem of expressing a given
+connective as a product of a universal one.
+
+For that programme let $\oplus$ be any logical connective. In table
+\ref{table:oplus} a general definition is given.
+\begin{table}
+	\begin{center}
+		\begin{tabular}{c|c|c}
+			$A$ & $B$ & $A \oplus B$ \\
+			\hline
+			\f & \f & $r_0$ \\
+			\f & \t & $r_1$ \\
+			\t & \f & $r_2$ \\
+			\t & \t & $r_3$ \\
+		\end{tabular}
+	\end{center}
+	\caption{A general logical connective $\oplus$.}\label{table:oplus} 
+\end{table}
+We will create a construct which acts as the logical connective
+$\oplus$.
+
+The adjacency matrix of a general logical connective. At the heart of
+this construct is a $4$-kill-switch. 
+\[
+	\left(
+	\begin{array}{ccccccc}
+		2 & 2 & 2 & 2 & 0 & 0 & 0 \\
+		2 & 2 & 2 & 2 & 0 & 0 & 0 \\
+		2 & 2 & 2 & 2 & 0 & 0 & 0 \\
+		2 & 2 & 2 & 2 & 0 & 0 & 0 \\
+		1 & 1 & 2 & 2 & 0 & 0 & 0 \\
+		1 & 2 & 1 & 2 & 0 & 0 & 0 \\
+		\mu(r_{0}) & \mu(r_{1}) & \mu(r_{2}) & \mu(r_{3}) & 0 & 0 & 0 \\
+	\end{array}
+	\right)
+\]
+
+For an example of a logical connector see figure
+\ref{figure:connective}. 
+\begin{figure}
+	\begin{center}
+		\includegraphics{image/definitions.4}
+	\end{center}
+	\caption{A layout of a general logical connective.($4$-kill-switch is not shown.)}\label{figure:connective}
+\end{figure}
+
+
+
