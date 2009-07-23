@@ -109,3 +109,93 @@
 /trunk/articles/lightsout/turing-complete/lib/*.dvi
 /trunk/articles/lightsout/turing-complete/lib/*.ps
 /trunk/articles/lightsout/turing-complete/lib/*.pdf
+
+# /trunk/articles/lightsout/definitions/
+/trunk/articles/lightsout/definitions/*.aux
+/trunk/articles/lightsout/definitions/*.log
+/trunk/articles/lightsout/definitions/*.dvi
+/trunk/articles/lightsout/definitions/*.ps
+/trunk/articles/lightsout/definitions/*.pdf
+
+# /trunk/articles/lightsout/definitions/content/
+/trunk/articles/lightsout/definitions/content/*.aux
+/trunk/articles/lightsout/definitions/content/*.log
+/trunk/articles/lightsout/definitions/content/*.dvi
+/trunk/articles/lightsout/definitions/content/*.ps
+/trunk/articles/lightsout/definitions/content/*.pdf
+
+# /trunk/articles/lightsout/definitions/lib/
+/trunk/articles/lightsout/definitions/lib/*.aux
+/trunk/articles/lightsout/definitions/lib/*.log
+/trunk/articles/lightsout/definitions/lib/*.dvi
+/trunk/articles/lightsout/definitions/lib/*.ps
+/trunk/articles/lightsout/definitions/lib/*.pdf
+
+# /trunk/articles/lightsout/np-complete/
+/trunk/articles/lightsout/np-complete/*.aux
+/trunk/articles/lightsout/np-complete/*.log
+/trunk/articles/lightsout/np-complete/*.dvi
+/trunk/articles/lightsout/np-complete/*.ps
+/trunk/articles/lightsout/np-complete/*.pdf
+
+# /trunk/articles/lightsout/np-complete/content/
+/trunk/articles/lightsout/np-complete/content/*.aux
+/trunk/articles/lightsout/np-complete/content/*.log
+/trunk/articles/lightsout/np-complete/content/*.dvi
+/trunk/articles/lightsout/np-complete/content/*.ps
+/trunk/articles/lightsout/np-complete/content/*.pdf
+
+# /trunk/articles/lightsout/np-complete/image/
+/trunk/articles/lightsout/np-complete/image/*.mpx
+/trunk/articles/lightsout/np-complete/image/*.log
+/trunk/articles/lightsout/np-complete/image/*.tex
+/trunk/articles/lightsout/np-complete/image/*.dvi
+
+# /trunk/articles/lightsout/np-complete/lib/
+/trunk/articles/lightsout/np-complete/lib/*.aux
+/trunk/articles/lightsout/np-complete/lib/*.log
+/trunk/articles/lightsout/np-complete/lib/*.dvi
+/trunk/articles/lightsout/np-complete/lib/*.ps
+/trunk/articles/lightsout/np-complete/lib/*.pdf
+
+# /trunk/articles/lightsout/periodicity/
+/trunk/articles/lightsout/periodicity/*.aux
+/trunk/articles/lightsout/periodicity/*.log
+/trunk/articles/lightsout/periodicity/*.dvi
+/trunk/articles/lightsout/periodicity/*.ps
+/trunk/articles/lightsout/periodicity/*.pdf
+
+# /trunk/articles/lightsout/periodicity/content/
+/trunk/articles/lightsout/periodicity/content/*.aux
+/trunk/articles/lightsout/periodicity/content/*.log
+/trunk/articles/lightsout/periodicity/content/*.dvi
+/trunk/articles/lightsout/periodicity/content/*.ps
+/trunk/articles/lightsout/periodicity/content/*.pdf
+
+# /trunk/articles/lightsout/periodicity/lib/
+/trunk/articles/lightsout/periodicity/lib/*.aux
+/trunk/articles/lightsout/periodicity/lib/*.log
+/trunk/articles/lightsout/periodicity/lib/*.dvi
+/trunk/articles/lightsout/periodicity/lib/*.ps
+/trunk/articles/lightsout/periodicity/lib/*.pdf
+
+# /trunk/articles/lightsout/turing-complete/
+/trunk/articles/lightsout/turing-complete/*.aux
+/trunk/articles/lightsout/turing-complete/*.log
+/trunk/articles/lightsout/turing-complete/*.dvi
+/trunk/articles/lightsout/turing-complete/*.ps
+/trunk/articles/lightsout/turing-complete/*.pdf
+
+# /trunk/articles/lightsout/turing-complete/content/
+/trunk/articles/lightsout/turing-complete/content/*.aux
+/trunk/articles/lightsout/turing-complete/content/*.log
+/trunk/articles/lightsout/turing-complete/content/*.dvi
+/trunk/articles/lightsout/turing-complete/content/*.ps
+/trunk/articles/lightsout/turing-complete/content/*.pdf
+
+# /trunk/articles/lightsout/turing-complete/lib/
+/trunk/articles/lightsout/turing-complete/lib/*.aux
+/trunk/articles/lightsout/turing-complete/lib/*.log
+/trunk/articles/lightsout/turing-complete/lib/*.dvi
+/trunk/articles/lightsout/turing-complete/lib/*.ps
+/trunk/articles/lightsout/turing-complete/lib/*.pdf
