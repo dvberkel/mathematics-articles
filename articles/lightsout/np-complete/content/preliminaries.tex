@@ -1,4 +1,4 @@
-\section{Preliminaries}
+\section{Preliminaries}\label{section:preliminaries}
 
 In this section we will make all the necessary layouts to facilitate the
 proof of the fact that Lit Generalised Lights Out is NP-complete.
@@ -39,8 +39,8 @@ In an $n$-kill-switch every button can be pressed. Furthermore every
 button has the same effect i.e. after pressing a button every button is
 in the off state.
  
-We can use a $n$-kill-switch to distinguish between a choice between
-$n$-options. How this can be used is shown in the following sections.
+We can use a $n$-kill-switch to distinguish between a choice of
+$n$-options. How this can be used is shown in the following subsections.
 
 \subsection{Assigners, Splitters and Terminators.}
 
@@ -53,13 +53,13 @@ center of all these layouts is the \emph{$2$-kill-switch}.
 
 \subsubsection{Assigners}
 
-This subsection defines an assigner. Its purpose is to signify the
-assignment of a truth value to a variable.
+We will first define an \emph{assigner}. Its purpose is to assign a (truth) 
+value to a variable.
 
-An assigner is a layout on the set $\{k_{0},k_{1},o\}$. Vertices $k_{0}$
+An assigner is a construct on the set $\{k_{0},k_{1},o\}$. Vertices $k_{0}$
 and $k_{1}$ will form a $2$-kill-switch. Vertex $o$ will serve as
-output. Depending on which of $k_{0}$ and $k_{1}$ is pressed it will
-be in the $\t$ state or the $\f$ state.
+output. There are no inputs. Depending on which of $k_{0}$ and $k_{1}$ is 
+pressed the output  will be in the $\t$ state or the $\f$ state.
 
 Below is the adjacency matrix of an assigner.
 \[
@@ -76,14 +76,14 @@ for an example of an assigner see figure \ref{figure:constructsA}
 
 \subsubsection{Splitters}
 
-This section defines an $n$-splitter. Its purpose is to split a signal
+Next we will define an \emph{$n$-splitter}. Its purpose is to split a signal
 into $n$ channels.
 
-An $n$-splitter is a layout on the set
+An $n$-splitter is a construct on the set 
 $\{k_{0},k_{1},i,o_{0},\ldots,o_{n-1}\}$. The vertices
 $k_{0}$ and $k_{1}$ will by used to create a $2$-kill-switch. Vertex $i$
-will by the input and vertex $o_{0}$ through vertex $o_{n-1}$ are the
-outputs.	
+serves as input and vertex $o_{0}$ through vertex $o_{n-1}$ are the
+outputs.
 
 The adjacency matrix of a $n$-splitter is given below.
 \[
@@ -99,6 +99,11 @@ The adjacency matrix of a $n$-splitter is given below.
 	\right)
 \]
 
+By pressing one of the kill-switch vertices the state of $i$ is transferred to
+all of the outputs. For example, assume $i$ is in the $\t$ (2) state. By
+pressing $k_{1}$, $i$, $k_{0}$ and $k_{2}$ will be in the off state. Furthermore
+all $o_{0}$ through $o_{n}$ wil now be in $\t$ state.
+
 See figure \ref{figure:constructsA} for an example of a $n$-splitter.
 \begin{figure}
 	\begin{center}
@@ -108,9 +113,10 @@ See figure \ref{figure:constructsA} for an example of a $n$-splitter.
 	\caption{Assigners and splitters}\label{figure:constructsA}
 \end{figure}
 
-Notice that a wire is a $1$-splitter. Furthermore by interchanging the
-multiplicities of the edges to an output the input signal can be
-inverted.
+A $1$-splitter will be called a \emph{wire}. It is also possible to 
+interchanging the multiplicities of the edges to an output. This has the effect
+of inverting the input signal. A wire which has inverts the input is called
+\emph{inverter}.
 \begin{figure}
 	\begin{center}
 		\subfigure[wire]{\includegraphics{image/definitions.5}}
@@ -125,7 +131,8 @@ Now we will define a terminator. It plays a keystone role in the argument. Its
 purpose is to determine if a certain truth value is attained.
 
 The construct is very simple. It constist only of an input which is in state 
-$1$.
+$\f$ (1). The only way to switch the input into the off state is by connecting
+is with a output which will produce the $\t$ state.
 
 \subsection{Logical Connectives}
 
@@ -144,19 +151,19 @@ For that programme let $\oplus$ be any logical connective. In table
 		\begin{tabular}{c|c|c}
 			$A$ & $B$ & $A \oplus B$ \\
 			\hline
-			\f & \f & $r_0$ \\
-			\f & \t & $r_1$ \\
-			\t & \f & $r_2$ \\
-			\t & \t & $r_3$ \\
+			\f & \f & $r_{0}$ \\
+			\f & \t & $r_{1}$ \\
+			\t & \f & $r_{2}$ \\
+			\t & \t & $r_{3}$ \\
 		\end{tabular}
 	\end{center}
 	\caption{A general logical connective $\oplus$.}\label{table:oplus} 
 \end{table}
-We will create a construct which acts as the logical connective
-$\oplus$.
 
-The adjacency matrix of a general logical connective. At the heart of
-this construct is a $4$-kill-switch. 
+We will create a construct which acts as the logical connective
+$\oplus$. The construct uses the vertices 
+$\{k_{0}, k_{1}, k_{2}, k_{3}, i_{1}, i_{2}, o \}$. $k_{0}$ through $k_{3}$ will
+form an $4$-kill-switch. Below is the adjacency matrix of the construct. 
 \[
 	\left(
 	\begin{array}{ccccccc}
@@ -171,6 +178,15 @@ this construct is a $4$-kill-switch.
 	\right)
 \]
 
+Notice that every kill-switch vertex is connected to both of the inputs and the
+output. The only difference are the multiplicities of the edges. They are chosen
+to reflect the logical operator.
+
+For example, assume that $i_{0}$ is in the $\t$ (2) state and that $i_{1}$ is in
+the $\f$ (1) state. Pressing $k_{2}$ will switch off both of the inputs and all 
+of the kill-switch vertices. Furthermore the output will be in the $\mu(r_{2})$,
+just as the logical operater dictates. 
+
 For an example of a logical connector see figure
 \ref{figure:connective}. 
 \begin{figure}
@@ -179,6 +195,3 @@ For an example of a logical connector see figure
 	\end{center}
 	\caption{A layout of a general logical connective.($4$-kill-switch is not shown.)}\label{figure:connective}
 \end{figure}
-
-
-
