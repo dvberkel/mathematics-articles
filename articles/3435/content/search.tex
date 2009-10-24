@@ -1,0 +1,50 @@
+\section*{Exhaustive Search}
+
+The proposition in the preceding section tells use that for every base 
+$b \in \N$, Munchausen numbers in that base only occur within the interval 
+$[1,2b^{b}]$. This makes it possible to exhaustively search for Munchausen 
+numbers in each base.
+
+Figure \ref{figure:munchausen} lists all the Munchausen numbers in the bases 2
+through 10. So for example in base $4$, $29$ and $55$ are the only, non-trivial
+Munchausen numbers. Furthermore, the base $4$ representation of $29$ and $55$
+have a striking resemblance. For $29 = [1,3,1]_{4} = 1^{1} + 3^{3} + 1^{1}$ and
+$55 = [3,1,3]_{4} = 3^{3} + 1^{1} + 3^{3}$.
+
+\begin{figure}[bh]
+	\begin{center}
+		\caption{Munchausen numbers in base 2 through 10.}
+		\label{figure:munchausen}
+		\begin{tabular}{|c|l|}
+			\hline
+			Base & Munchausen Numbers \\
+			\hline
+			2  & 1, 2 \\
+			3  & 1, 5, 8 \\
+			4  & 1, 29, 55 \\
+			5  & 1 \\
+			6  & 1, 3164, 3416 \\
+			7  & 1, 3665 \\
+			8  & 1 \\
+			9  & 1, 28, 96446, 923362 \\
+			10 & 1, 3435 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{figure}
+
+The code in listing \ref{code:munchausen} is used to produce the numbers in
+figure \ref{figure:munchausen}. There are two utility functions. These are 
+\lstinline!munchausen! and \lstinline!next!. \lstinline!munchausen! calculates 
+$\P_{b}(n)$ given a base $b$ representation of $n$. \lstinline!next! returns the
+base $b$ representation of $n+1$ given a base $b$ representation of $n$.
+
+I would like to conclude this article with a question my wife asked me while I
+was writing this: ``But what about $20082009$?''
+
+\lstinputlisting[
+	caption={GAP code finding Munchausen numbers},
+	label=code:munchausen,
+	basicstyle=\small
+]{code/OEIS.g}
+

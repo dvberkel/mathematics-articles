@@ -1,0 +1,72 @@
+\section*{Munchausen Number}
+Through out the article we will use the following notation. $b \in \N$ will 
+denotate a base and therefore the inequility $b \ge 2$ will hold througout the
+article. For every natural number $n \in \N$, the \emph{base $b$ representation
+of $n$} will be denoted by $[c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$, 
+so $n = \sum_{i=0}^{m-1} c_{i}b^{i}$.
+Furtheremore, we define a function $\P_{b} : \N \rightarrow \N : n \mapsto 
+\sum_{i=0}^{m-1} c_{i}^{c_{i}}$, where $n = [c_{m-1},c_{m-2},\ldots,c_{0}]_{b}$.
+
+\begin{definition}
+	An integer $n \in \N$ is called a \emph{Munchausen number in base $b$} if 
+	and only if $n = \P_{b}(n)$.
+\end{definition}
+
+So by the equality in the introduction we know that $3435$ is a Munchausen
+number in base $10$. The following two lemmas will be used to proof the main 
+result of this article: for every base $b \in \N$ there are only finitely many 
+Munchausen numbers in base $b$.
+
+\begin{lemma}
+	For all $n \in \N$: $\P_{b}(n) \le (\blog(n) + 1)(b-1)^{b-1}$.
+\end{lemma}
+
+\begin{proof}
+	Notice that the function $x \mapsto x^{x}$ is strictly increasing if 
+	$x \ge 0$. For all $n \in \N$ with 
+	$n = [c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$ we have the ineqalities 
+	$0 \le c_{i} \le b-1$ for all $i$ within $0 \le i < m$.	\\
+	So $\P_{b}(n) = \sum_{i=0}^{m-1} c_{i}^{c_{i}} \le 
+	\sum_{i=0}^{m-1} (b-1)^{b-1} = m \times (b-1)^{b-1}$.
+	
+	Now, the number of digits in the base $b$ represantation of $n$ equals 
+	$\floor{\blog(n) + 1}$. In other words $m := \floor{\blog(n) + 1} 
+	\le \blog(n) + 1$.
+	
+	So $\P_{b}(n) \le (\blog(n) + 1)(b-1)^{b-1}$
+\end{proof}
+
+\begin{lemma}
+	If $n \in \N$ and $n > 2b^{b}$ then $\frac{n}{\blog(n) + 1}	> (b-1)^{b-1}$.
+\end{lemma}
+
+\begin{proof}
+	Let $n \in \N$ such that $n > 2b^{b}$. Notice that 
+	$x \mapsto \frac{x}{\blog(x)}$ is strictly increasing if $x > e$ i.e. if $x$
+	is greater then Eulers number. Furthermore, $\blog(2) + 1 \le 2 \le b = 
+	b\blog(b)$. 
+	
+	Now, because $n > 2b^{b} > e$, from the following chain of ineqalities:
+	\[
+		\frac{n}{\blog(n) + 1} > \frac{2b^{b}}{b\blog(b) + \blog(2) + 1} \ge 
+		\frac{2b^{b}}{2b\blog(b)} = b^{b-1} > (b-1)^{b-1}
+	\]
+	we can deduce that $\frac{n}{\blog(n) + 1} > (b-1)^{b-1}$
+\end{proof}
+
+With both lemma's in place we can present without further ado the main result of
+this article.
+
+\begin{proposition}
+	For every base $b \in \N$ with $b \ge 2$: there are only finitely many 
+	Munchausen numbers in base $b$.
+\end{proposition}
+
+\begin{proof}
+	By the preceding lemma's we have, for all $n \in \N$ with $n > 2b^{b}$: 
+	$n > (\blog(n) + 1)(b-1)^{b-1} \ge P_{b}(n)$.
+	
+	So, in order for $n$ to equal $\P_{b}(n)$, $n$ must be less then or equal to 
+	$2b^{b}$. This proves that there are only finitely many Munchausen numbers
+	in base $b$.
+\end{proof}
