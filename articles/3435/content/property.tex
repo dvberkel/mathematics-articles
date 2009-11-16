@@ -13,7 +13,15 @@ Furtheremore, we define a function $\P_{b} : \N \rightarrow \N : n \mapsto
 \end{definition}
 
 So by the equality in the introduction we know that $3435$ is a Munchausen
-number in base $10$. The following two lemmas will be used to proof the main 
+number in base $10$. 
+
+\begin{remark}
+	A related concept to Munchausen number is that of Narcissistic number. 
+	(See for example \cite{pickover}, \cite{wikipedia:narcissistic_number} and
+	\cite{wolfram:narcissistic_number}.)
+\end{remark}
+
+The following two lemmas will be used to proof the main 
 result of this article: for every base $b \in \N$ there are only finitely many 
 Munchausen numbers in base $b$.
 
@@ -23,7 +31,8 @@ Munchausen numbers in base $b$.
 
 \begin{proof}
 	Notice that the function $x \mapsto x^{x}$ is strictly increasing if 
-	$x \ge 0$. For all $n \in \N$ with 
+	$x \ge 0$. (For a proof of this see any book on analysis, for example 
+	\cite{tao}) For all $n \in \N$ with 
 	$n = [c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$ we have the ineqalities 
 	$0 \le c_{i} \le b-1$ for all $i$ within $0 \le i < m$.	\\
 	So $\P_{b}(n) = \sum_{i=0}^{m-1} c_{i}^{c_{i}} \le 
@@ -43,8 +52,8 @@ Munchausen numbers in base $b$.
 \begin{proof}
 	Let $n \in \N$ such that $n > 2b^{b}$. Notice that 
 	$x \mapsto \frac{x}{\blog(x)}$ is strictly increasing if $x > e$ i.e. if $x$
-	is greater then Eulers number. Furthermore, $\blog(2) + 1 \le 2 \le b = 
-	b\blog(b)$. 
+	is greater then Eulers number. (See \cite{tao} for a proof.) Furthermore, 
+	$\blog(2) + 1 \le 2 \le b = b\blog(b)$. 
 	
 	Now, because $n > 2b^{b} > e$, from the following chain of ineqalities:
 	\[
