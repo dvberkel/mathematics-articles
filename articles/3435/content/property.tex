@@ -3,9 +3,12 @@ Through out the article we will use the following notation. $b \in \N$ will
 denotate a base and therefore the inequility $b \ge 2$ will hold throughout the
 article. For every natural number $n \in \N$, the \emph{base $b$ representation
 of $n$} will be denoted by $[c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$, 
-so $n = \sum_{i=0}^{m-1} c_{i}b^{i}$.
+so $0 \le c_{i} < b$ for all $i \in \{0,1,\ldots,m-1\}$ and 
+$n = \sum_{i=0}^{m-1} c_{i}b^{i}$.
 Furtheremore, we define a function $\P_{b} : \N \rightarrow \N : n \mapsto 
 \sum_{i=0}^{m-1} c_{i}^{c_{i}}$, where $n = [c_{m-1},c_{m-2},\ldots,c_{0}]_{b}$.
+We will further adopt the convention that $0^{0} = 1$, in accordance with 
+$1^{0} = 1$, $2^{0} = 1$ etcetera.
 
 \begin{definition}
 	An integer $n \in \N$ is called a \emph{Munchausen number in base $b$} if 
@@ -19,6 +22,11 @@ number in base $10$.
 	A related concept to Munchausen number is that of Narcissistic number. 
 	(See for example \cite{pickover}, \cite{wikipedia:narcissistic_number} and
 	\cite{wolfram:narcissistic_number}.)
+	
+	The reason for picking the name Munchausen number stems from the visual of
+	raising oneself, a feat demonstrated by the famous Baron von Munchausen 
+	(\cite{wikipedia:munchausen}). Andrew Baxter remarked that the Baron is a 
+	narcissistic man indeed, so I think the name is aptly chosen.
 \end{remark}
 
 The following two lemmas will be used to proof the main 
@@ -31,10 +39,14 @@ Munchausen numbers in base $b$.
 
 \begin{proof}
 	Notice that the function $x \mapsto x^{x}$ is strictly increasing if 
-	$x \ge 0$. (For a proof of this see any book on analysis, for example 
-	\cite{tao}) For all $n \in \N$ with 
-	$n = [c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$ we have the ineqalities 
-	$0 \le c_{i} \le b-1$ for all $i$ within $0 \le i < m$.	\\
+	$x \ge \frac{1}{e}$. This can be seen from the derivative of $x^{x}$ which 
+	is $x^x(\log(x) + 1)$. This last expression is clearly positive for 
+	$x > \frac{1}{e}$.
+	Together with the definition of $0^{0} = 1$, we see that $x^{x}$ is 
+	increasing for all the nonnegative integers.
+	
+	For all $n \in \N$ with $n = [c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$ we have 
+	the ineqalities $0 \le c_{i} \le b-1$ for all $i$ within $0 \le i < m$.	\\
 	So $\P_{b}(n) = \sum_{i=0}^{m-1} c_{i}^{c_{i}} \le 
 	\sum_{i=0}^{m-1} (b-1)^{b-1} = m \times (b-1)^{b-1}$.
 	
@@ -51,9 +63,10 @@ Munchausen numbers in base $b$.
 
 \begin{proof}
 	Let $n \in \N$ such that $n > 2b^{b}$. Notice that 
-	$x \mapsto \frac{x}{\blog(x)}$ is strictly increasing if $x > e$ i.e. if $x$
-	is greater then Eulers number. (See \cite{tao} for a proof.) Furthermore, 
-	$\blog(2) + 1 \le 2 \le b = b\blog(b)$. 
+	$x \mapsto \frac{x}{\blog(x)}$ is strictly increasing if $x > e$. To see
+	this notice that the derivative of $\frac{x}{\blog{x}}$ is 
+	$\log(b)\frac{\log(x) - 1}{\log^2(x)}$ which is positive for $x > e$.
+	Furthermore $\blog(2) + 1 \le 2 \le b = b\blog(b)$. 
 	
 	Now, because $n > 2b^{b} > e$, from the following chain of ineqalities:
 	\[
