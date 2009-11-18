@@ -19,18 +19,28 @@ my $directory = getcwd;
 # Flag to signal the usage of this script
 my $help;
 
+# Flag to signal to keep the bbl file
+my $bbl;
+
 # The options for the script. The --help option shows the usage of this
 # script. The --dir option sets the target directory. This is the
 # directory which will hold the <name> directory.
+# The --bbl options keeps the bbl file.
 GetOptions(
 	'dir=s' => \$directory,
-	'help!' => \$help
+	'help!' => \$help,
+	'bbl!'  => \$bbl
 );
 
 # List the usage of this script if the user provided the --help option.
 if ($help) {
 	
-	die "usage: $0 [--dir=<directory>] [--help]\n";
+	die "usage: $0 [--dir=<directory>] [--help] [--bbl]\n";
+}
+
+# Remove the bbl element from the @clean
+if ($bbl) {
+	pop(@clean);
 }
 
 # Create regex from the clean file.
