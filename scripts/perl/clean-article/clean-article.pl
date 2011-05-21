@@ -10,7 +10,7 @@ use Getopt::Long;
 use Cwd;
 
 # The extensions of the files to clean.
-my @clean = qw/log aux dvi ps pdf blg bbl/;
+my @clean = qw/log aux dvi ps pdf out nav snm toc blg bbl/;
 
 # Starting point of cleansing operation, defaults to the current working
 # directory.
