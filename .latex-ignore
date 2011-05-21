@@ -5,3 +5,7 @@
 *.pdf
 *.bbl
 *.blg
+*.out
+*.nav
+*.snm
+*.toc
