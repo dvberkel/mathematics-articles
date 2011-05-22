@@ -12,7 +12,7 @@
 } def
 
 /box {
-	[/grayscale /on /radius /size /y /x]
+	[/colorData /on /radius /size /y /x]
 	dup length 0 add dict begin {exch def} forall
 		gsave
 			x y translate
@@ -23,8 +23,8 @@
 			0 0 size 0 radius arct
 			closepath
 			gsave
-				on {grayscale} {1} ifelse
-				setgray fill
+				on {colorData aload pop} {1 1 1} ifelse
+				setrgbcolor fill
 			grestore
 			stroke
 		grestore
@@ -32,7 +32,7 @@
 } def
 
 /boxRow {
-	[/data /space /grayscale /radius /size /y /x]
+	[/data /space /colorData /radius /size /y /x]
 	dup length 1 add dict begin {exch def} forall
 		gsave
 			x y translate
@@ -40,7 +40,7 @@
 				/index exch def
 				size space add index mul 0 size radius
 				data index get
-				grayscale
+				colorData
 				box
 			} for
 		grestore
@@ -48,12 +48,12 @@
 } def
 
 /boxGrid {
-	[/data /space /grayscale /radius /size /y /x]
+	[/data /space /colorData /radius /size /y /x]
 	dup length 2 add dict begin {exch def} forall
 		/n data length 1 sub def
 		0 1 n {
 			/index exch def
-			x y size space add n index sub mul add size radius grayscale space
+			x y size space add n index sub mul add size radius colorData space
 			data index get
 			boxRow
 		} for
@@ -108,7 +108,7 @@ lightsOutConfig begin
 	/size 21 def
 	/cornerRadius 5 def
 	/buttonSpacing 3 def
-	/fillColor 0.8 def
+	/fillColor [[255 116 30] {255 div} forall] def
 	/pressOffset 3 def
 	/pressSize 5 def
 	/pressMultiplier 2 def
