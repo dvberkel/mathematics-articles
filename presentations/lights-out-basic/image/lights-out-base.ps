@@ -47,6 +47,18 @@
 	end
 } def
 
+/boxGrid {
+	[/data /space /grayscale /radius /size /y /x]
+	dup length 1 add dict begin {exch def} forall
+		0 1 data length 1 sub {
+			/index exch def
+			x y size space add index mul add size radius grayscale space
+			data index get
+			boxRow
+		} for
+	end
+} def
+
 /lightsOutConfig 4 dict def
 lightsOutConfig begin
 	/size 30 def
@@ -67,6 +79,12 @@ end
 	end
 } def
 
+/buttonGrid {
+	lightsOutConfig begin
+		size cornerRadius fillColor buttonSpacing 5 -1 roll boxGrid
+	end
+} def
+
 %%EndProlog
 %%Page: 1 1
 save /cleanslate exch def
@@ -75,7 +93,14 @@ initialize
 
 10 10 true button
 10 50 [true false true true] buttonRow
-
+10 90
+[
+	[true true false false]
+	[false true true false]
+	[false false true true]
+	[true true false false]
+]
+buttonGrid
 
 cleanslate restore
 %%PageTrailer
