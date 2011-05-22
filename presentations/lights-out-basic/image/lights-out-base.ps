@@ -88,6 +88,19 @@
 	end
 } def
 
+/crossGrid {
+	[/data /space /multiplier /size /y /x]
+	dup length 1 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 1 data length 1 sub {
+				/index exch def
+				0 space index mul size multiplier space data index get crossRow
+			} for
+		grestore
+	end
+} def
+
 /lightsOutConfig 5 dict def
 lightsOutConfig begin
 	/size 30 def
@@ -133,6 +146,15 @@ end
 	end
 } def
 
+/pressGrid {
+	lightsOutConfig begin
+		3 1 roll
+		2 {pressOffset add exch} repeat
+		3 -1 roll
+		pressSize pressMultiplier size buttonSpacing add 4 -1 roll crossGrid
+	end
+} def
+
 %%EndProlog
 %%Page: 1 1
 save /cleanslate exch def
@@ -152,6 +174,14 @@ buttonGrid
 
 10 10 press
 10 50 [false true true false] pressRow
+10 90
+[
+	[true false false true]
+	[true true false false]
+	[true false true false]
+	[false true false true]
+]
+pressGrid
 
 cleanslate restore
 %%PageTrailer
