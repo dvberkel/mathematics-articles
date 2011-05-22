@@ -31,8 +31,40 @@
 	end
 } def
 
+/boxRow {
+	[/data /space /grayscale /radius /size /y /x]
+	dup length 1 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 1 data length 1 sub {
+				/index exch def
+				size space add index mul 0 size radius
+				data index get
+				grayscale
+				box
+			} for
+		grestore
+	end
+} def
+
+/lightsOutConfig 4 dict def
+lightsOutConfig begin
+	/size 30 def
+	/cornerRadius 5 def
+	/buttonSpacing 5 def
+	/fillColor 0.8 def
+end
+
 /button {
-	50 5 3 -1 roll 0.8 box
+	lightsOutConfig begin
+		size cornerRadius 3 -1 roll fillColor box
+	end
+} def
+
+/buttonRow {
+	lightsOutConfig begin
+		size cornerRadius fillColor buttonSpacing 5 -1 roll boxRow
+	end
 } def
 
 %%EndProlog
@@ -42,6 +74,8 @@ save /cleanslate exch def
 initialize
 
 10 10 true button
+10 50 [true false true true] buttonRow
+
 
 cleanslate restore
 %%PageTrailer
