@@ -49,10 +49,11 @@
 
 /boxGrid {
 	[/data /space /grayscale /radius /size /y /x]
-	dup length 1 add dict begin {exch def} forall
-		0 1 data length 1 sub {
+	dup length 2 add dict begin {exch def} forall
+		/n data length 1 sub def
+		0 1 n {
 			/index exch def
-			x y size space add index mul add size radius grayscale space
+			x y size space add n index sub mul add size radius grayscale space
 			data index get
 			boxRow
 		} for
@@ -90,12 +91,13 @@
 
 /crossGrid {
 	[/data /space /multiplier /size /y /x]
-	dup length 1 add dict begin {exch def} forall
+	dup length 2 add dict begin {exch def} forall
+		/n data length 1 sub def
 		gsave
 			x y translate
-			0 1 data length 1 sub {
+			0 1 n {
 				/index exch def
-				0 space index mul size multiplier space data index get crossRow
+				0 space n index sub mul size multiplier space data index get crossRow
 			} for
 		grestore
 	end
