@@ -1,0 +1,49 @@
+%! PS-Adobe-1.0
+%%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
+%%For: Presentation
+%%Title: Lights Out Basic
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+/initialize {
+	75 25.1 div dup scale
+} def
+
+/box {
+	[/grayscale /on /radius /size /y /x]
+	dup length 0 add dict begin {exch def} forall
+		gsave
+			x y translate
+			radius 0 moveto
+			size 0 size size radius arct
+			size size 0 size radius arct
+			0 size 0 0 radius arct
+			0 0 size 0 radius arct
+			closepath
+			gsave
+				on {grayscale} {1} ifelse
+				setgray fill
+			grestore
+			stroke
+		grestore
+	end
+} def
+
+/button {
+	50 5 3 -1 roll 0.8 box
+} def
+
+%%EndProlog
+%%Page: 1 1
+save /cleanslate exch def
+
+initialize
+
+10 10 true button
+
+cleanslate restore
+%%PageTrailer
+%%Trailer
+%%EOF
