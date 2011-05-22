@@ -59,12 +59,29 @@
 	end
 } def
 
-/lightsOutConfig 4 dict def
+/cross {
+	[/multiplier /size /y /x] dup length 0 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 0 moveto
+			size size lineto
+		 	0 size moveto
+			size 0 lineto
+			currentlinewidth multiplier mul setlinewidth
+			stroke
+		grestore
+	end
+} def
+
+/lightsOutConfig 5 dict def
 lightsOutConfig begin
 	/size 30 def
 	/cornerRadius 5 def
 	/buttonSpacing 5 def
 	/fillColor 0.8 def
+	/pressOffset 5 def
+	/pressSize 5 def
+	/pressMultiplier 2 def
 end
 
 /button {
@@ -85,6 +102,13 @@ end
 	end
 } def
 
+/press {
+	lightsOutConfig begin
+		2 {pressOffset add exch} repeat
+		pressSize pressMultiplier cross	
+	end
+} def
+
 %%EndProlog
 %%Page: 1 1
 save /cleanslate exch def
@@ -101,6 +125,8 @@ initialize
 	[true true false false]
 ]
 buttonGrid
+
+10 10 press
 
 cleanslate restore
 %%PageTrailer
