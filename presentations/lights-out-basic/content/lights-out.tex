@@ -121,3 +121,45 @@
 	Find a $p \in \Ps$ such that $M(p) = -l$	
 \end{frame}
 
+\begin{frame}{Solution of Problem}
+	Linear Algebra
+	\begin{columns}[t]
+		\begin{column}{0.45\textwidth}
+			\begin{itemize}
+				\item Choose basis for $\Ps$ and $\Ls$
+				\item Express $M$ as a matrix
+				\item Solve $M p = l$ for p
+			\end{itemize}
+			
+			\uncover<2->{%
+				Fact:\\%
+				$\Dim\left(\Ker(M)\right) = 2$%
+			}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\[
+				M := \left(
+				\begin{tabular}{ccccc}
+					B & I & 0 & 0 & 0 \\
+					I & B & I & 0 & 0 \\
+					0 & I & B & I & 0 \\
+					0 & 0 & I & B & I \\
+					0 & 0 & 0 & I & B \\
+				\end{tabular}
+				\right)
+			\]
+			where
+			\[
+				B := \left(
+				\begin{tabular}{ccccc}
+					1 & 1 & 0 & 0 & 0 \\
+					1 & 1 & 1 & 0 & 0 \\
+					0 & 1 & 1 & 1 & 0 \\
+					0 & 0 & 1 & 1 & 1 \\
+					0 & 0 & 0 & 1 & 1 \\
+				\end{tabular}
+				\right)
+			\]
+		\end{column}
+	\end{columns}
+\end{frame}
