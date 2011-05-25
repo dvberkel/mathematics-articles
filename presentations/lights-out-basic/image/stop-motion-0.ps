@@ -1,0 +1,193 @@
+%! PS-Adobe-1.0
+%%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
+%%For: Presentation
+%%Title: Lights Out Basic
+%%BoundingBox: 28 28 381 381
+%%HiResBoundingBox: 28.386984 28.386984 380.978988 380.978988
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+/initialize {
+	75 25.1 div dup scale
+} def
+
+/box {
+	[/colorData /on /radius /size /y /x]
+	dup length 0 add dict begin {exch def} forall
+		gsave
+			x y translate
+			radius 0 moveto
+			size 0 size size radius arct
+			size size 0 size radius arct
+			0 size 0 0 radius arct
+			0 0 size 0 radius arct
+			closepath
+			gsave
+				on {colorData aload pop} {1 1 1} ifelse
+				setrgbcolor fill
+			grestore
+			stroke
+		grestore
+	end
+} def
+
+/boxRow {
+	[/data /space /colorData /radius /size /y /x]
+	dup length 1 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 1 data length 1 sub {
+				/index exch def
+				size space add index mul 0 size radius
+				data index get
+				colorData
+				box
+			} for
+		grestore
+	end
+} def
+
+/boxGrid {
+	[/data /space /colorData /radius /size /y /x]
+	dup length 2 add dict begin {exch def} forall
+		/n data length 1 sub def
+		0 1 n {
+			/index exch def
+			x y size space add n index sub mul add size radius colorData space
+			data index get
+			boxRow
+		} for
+	end
+} def
+
+/cross {
+	[/multiplier /size /y /x] dup length 0 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 0 moveto
+			size size lineto
+		 	0 size moveto
+			size 0 lineto
+			currentlinewidth multiplier mul setlinewidth
+			stroke
+		grestore
+	end
+} def
+
+/crossRow {
+	[/data /space /multiplier /size /y /x]
+	dup length 1 add dict begin {exch def} forall
+		gsave
+			x y translate
+			0 1 data length 1 sub {
+				/index exch def
+				data index get {
+					space index mul 0 size multiplier cross
+				} if
+			} for
+		grestore
+	end
+} def
+
+/crossGrid {
+	[/data /space /multiplier /size /y /x]
+	dup length 2 add dict begin {exch def} forall
+		/n data length 1 sub def
+		gsave
+			x y translate
+			0 1 n {
+				/index exch def
+				0 space n index sub mul size multiplier space data index get crossRow
+			} for
+		grestore
+	end
+} def
+
+/lightsOutConfig 5 dict def
+lightsOutConfig begin
+	/size 21 def
+	/cornerRadius 5 def
+	/buttonSpacing 3 def
+	/fillColor [[255 116 30] {255 div} forall] def
+	/pressOffset 3 def
+	/pressSize 5 def
+	/pressMultiplier 2 def
+end
+
+/button {
+	lightsOutConfig begin
+		size cornerRadius 3 -1 roll fillColor box
+	end
+} def
+
+/buttonRow {
+	lightsOutConfig begin
+		size cornerRadius fillColor buttonSpacing 5 -1 roll boxRow
+	end
+} def
+
+/buttonGrid {
+	lightsOutConfig begin
+		size cornerRadius fillColor buttonSpacing 5 -1 roll boxGrid
+	end
+} def
+
+/press {
+	lightsOutConfig begin
+		2 {pressOffset add exch} repeat
+		pressSize pressMultiplier cross	
+	end
+} def
+
+/pressRow {
+	lightsOutConfig begin
+		3 1 roll
+		2 {pressOffset add exch} repeat
+		3 -1 roll
+		pressSize pressMultiplier size buttonSpacing add 4 -1 roll crossRow
+	end
+} def
+
+/pressGrid {
+	lightsOutConfig begin
+		3 1 roll
+		2 {pressOffset add exch} repeat
+		3 -1 roll
+		pressSize pressMultiplier size buttonSpacing add 4 -1 roll crossGrid
+	end
+} def
+
+%%EndProlog
+%%Page: 1 1
+save /cleanslate exch def
+
+initialize
+
+10 10
+[
+	[false true true false true]
+	[false false false false true]
+	[false true true true false]
+	[false true false true false]
+	[false false false true true]
+]
+buttonGrid
+
+10 10
+[
+	[false true false true false]
+	[true false true true false]
+	[true true false true false]
+	[true true false true true]
+	[true false false false false]
+]
+pressGrid
+
+showpage
+
+cleanslate restore
+%%PageTrailer
+%%Trailer
+%%EOF

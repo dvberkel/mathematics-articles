@@ -6,7 +6,7 @@
 				\item number of changes
 				\item \structure{not} on the order of changes
 			\end{itemize}
-	
+			\bigskip
 			\uncover<2->{The order in which buttons are pressed is irrelevant}
 		\end{column}
 		
@@ -20,7 +20,8 @@
 	\begin{columns}[T]
 		\begin{column}{0.45\textwidth}
 			Pressing a button twice has no effect
-	
+			
+			\bigskip	
 			\uncover<2->{A button is pressed \structure{at most} once}
 		\end{column}
 		
@@ -49,7 +50,7 @@
 	Does a $p \in \Ps$ exist such that $\phi_{p}(l) = O$?\\
 	
 	\pause
-	
+	\bigskip
 	Find a $p \in \Ps$ such that $\phi_{p}(l) = O$
 \end{frame}
 
@@ -71,7 +72,7 @@
 	\end{theorem}
 	
 	\pause
-	
+	\bigskip
 	\begin{corollary}
 		$\Ls \cong \GF(2)^{25}$
 	\end{corollary}
@@ -85,7 +86,7 @@
 	\end{theorem}
 	
 	\pause
-	
+	\bigskip	
 	\begin{corollary}
 		$\Ps \cong \GF(2)^{25}$
 	\end{corollary}
@@ -96,7 +97,7 @@
 	$\phi_{p} : \Ls \rightarrow \Ls$ is \structure{not} a linear transformation
 	
 	\pause
-	
+	\bigskip
 	$\phi_{p}(l) = l + \phi_{p}(O)$
 \end{frame}
 
@@ -106,7 +107,7 @@
 	\end{definition}
 	
 	\pause
-	
+	\bigskip	
 	\begin{theorem}
 		$M$ is a linear transformation
 	\end{theorem}
@@ -117,7 +118,7 @@
 	Does a $p \in \Ps$ exist such that $M(p) = -l$?
 	
 	\pause
-	
+	\bigskip
 	Find a $p \in \Ps$ such that $M(p) = -l$	
 \end{frame}
 
@@ -128,10 +129,11 @@
 			\begin{itemize}
 				\item Choose basis for $\Ps$ and $\Ls$
 				\item Express $M$ as a matrix
-				\item Solve $M p = l$ for p
+				\item Solve $M p = -l$ for p
 			\end{itemize}
-			
+
 			\uncover<2->{%
+			\bigskip
 				Fact:\\%
 				$\Dim\left(\Ker(M)\right) = 2$%
 			}
@@ -164,6 +166,25 @@
 	\end{columns}
 \end{frame}
 
+\begin{frame}{Elements of $\Ker(M)$}
+	\begin{columns}[T]
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\includegraphics[width=0.5\textwidth]{image/element-ker-0.ps}\\
+				\bigskip
+				\includegraphics[width=0.5\textwidth]{image/element-ker-2.ps}\\
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\includegraphics[width=0.5\textwidth]{image/element-ker-1.ps}\\
+				\bigskip
+				\includegraphics[width=0.5\textwidth]{image/element-ker-3.ps}\\
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
 \begin{frame}{Impractical Solution}
 	\begin{center}
 		Who can solve a 25 by 25 matrix equations over $\GF(2)$?\\%
@@ -172,3 +193,44 @@
 	\end{center}
 \end{frame}
 
+\begin{frame}{Chasing the Lights}
+	\begin{columns}[T]
+		\begin{column}{0.45\textwidth}
+			For an $l \in \Ls$\\
+			and a $p \in \Ps$ such that\\
+			\[
+				Mp = -l
+			\]
+			\uncover<2->{%
+				\bigskip%
+				
+				Once the first row of buttons is pressed\\%
+				The solution is clear%
+			}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\centerline{\includegraphics[width=\textwidth]{image/chasing-the-light.ps}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Chasing the Lights}
+	\begin{center}
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-0.ps}
+		\hfill
+		\pause
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-1.ps}
+		\hfill
+		\pause
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-2.ps}
+		\hfill
+		\pause
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-3.ps}
+		\hfill
+		\pause
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-4.ps}
+		\hfill
+		\pause
+		\includegraphics[width=0.15\textwidth]{image/stop-motion-5.ps}
+	\end{center}
+\end{frame}
