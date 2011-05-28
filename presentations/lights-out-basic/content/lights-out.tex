@@ -106,6 +106,8 @@
 		$M : \Ps \rightarrow \Ls : p \mapsto \phi_{p}(O)$
 	\end{definition}
 	
+	$M(p)$ is called the \structure{effect of $p$}
+	
 	\pause
 	\bigskip	
 	\begin{theorem}
@@ -264,4 +266,41 @@
 			\includegraphics[width=\textwidth]{image/chase-of-4-result.ps}\\
 		\end{column}
 	\end{columns}
+\end{frame}
+
+\begin{frame}{Observations}
+	\begin{definition}
+		For a $l \in \Ls$ the $p \in \Ps$ which chases down $l$ a
+		is called \structure{chase of $l$}
+	\end{definition}
+	
+	\bigskip
+	
+	\begin{theorem}
+		Let $l \in \Ls$: chase of $l$ is unique
+	\end{theorem}
+	
+	\bigskip
+	
+	We denote the chase of a $l \in \Ls$ with $\chase(l)$
+\end{frame}
+
+\begin{frame}{Observations}
+	\begin{definition}
+		A $p \in \Ps$ is called a \structure{chase pattern}\\
+		if there exist a $p' \in \Ps|_{\text{first row}}$ such that
+		\[
+			p = p' + \chase(M(p'))
+		\]
+	\end{definition}
+	
+	\bigskip
+	
+	We denote the set of chase patterns with $\Cs$
+	
+	\bigskip
+	
+	\begin{theorem}
+		The set of chase patterns $\Cs$ is a linear subspace of $\Ps$
+	\end{theorem}
 \end{frame}
