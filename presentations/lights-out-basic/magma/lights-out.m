@@ -57,7 +57,7 @@ end function;
 q := 2;
 F := GF(q);
 
-for n := 1 to 5 do
+for n := 1 to 35 do
 	dimensions, WnP, index := dimensionsOfKernel(F,n);
-	printf "%5o %o\n", index, dimensions;
+	printf "%3o %3o %o\n", n, index, #dimensions;
 end for;
