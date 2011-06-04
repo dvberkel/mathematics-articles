@@ -51,7 +51,7 @@ function dimensionsOfKernel(F,n)
 		Append(~dimensions,dimension);
 		power := power * Wn;
 	until dimension eq n;
-	return dimensions, power, indexOf(Wn,I2n);
+	return dimensions, power, indexOf(power,I2n);
 end function;
 
 q := 2;
