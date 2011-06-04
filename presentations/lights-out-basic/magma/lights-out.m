@@ -30,6 +30,16 @@ function windowMatrix(F,n)
 	return Wn;
 end function;
 
+function indexOf(start,finish)
+	current := start;
+	index := 1;
+	while current ne finish do
+		current := current * start;
+		index := index + 1;
+	end while;
+	return index;
+end function;
+
 function dimensionsOfKernel(F,n)
 	Wn := windowMatrix(F,n);
 
@@ -41,13 +51,13 @@ function dimensionsOfKernel(F,n)
 		Append(~dimensions,dimension);
 		power := power * Wn;
 	until dimension eq n;
-	return dimensions, power;
+	return dimensions, power, indexOf(Wn,I2n);
 end function;
 
 q := 2;
 F := GF(q);
 
 for n := 1 to 5 do
-	dimensions, WnP := dimensionsOfKernel(F,n);
-	dimensions;
+	dimensions, WnP, index := dimensionsOfKernel(F,n);
+	printf "%5o %o\n", index, dimensions;
 end for;
