@@ -59,22 +59,22 @@
 		\begin{column}{0.45\linewidth}
 			\[
 				W_{c} := \left(
-				\begin{tabular}{cc}
-					$E_{c}$ & $I$ \\
-					$I$ & $O$ \\
-				\end{tabular}
+				\begin{array}{cc}
+					E_{c} & I \\
+					I     & O \\
+				\end{array}
 				\right)
 			\]
 			where
 			\[
 				E_{5} := \left(
-				\begin{tabular}{ccccc}
+				\begin{array}{ccccc}
 					1 & 1 & 0 & 0 & 0 \\
 					1 & 1 & 1 & 0 & 0 \\
 					0 & 1 & 1 & 1 & 0 \\
 					0 & 0 & 1 & 1 & 1 \\
 					0 & 0 & 0 & 1 & 1 \\
-				\end{tabular}
+				\end{array}
 				\right)
 			\]
 		\end{column}
@@ -92,24 +92,24 @@
 	\begin{proof}
 		\[
 			\left(
-			\begin{tabular}{cc}
-				$E$ & $I$ \\
-				$I$ & $O$ \\
-			\end{tabular}
+			\begin{array}{cc}
+				E & I \\
+				I & O \\
+			\end{array}
 			\right)
 			\cdot
 			\left(
-			\begin{tabular}{cc}
-				$O$ & $I$ \\
-				$I$ & $-E$ \\
-			\end{tabular}
+			\begin{array}{cc}
+				O & I  \\
+				I & -E \\
+			\end{array}
 			\right)
 			=
 			\left(
-			\begin{tabular}{cc}
-				$I$ & $O$ \\
-				$O$ & $I$ \\
-			\end{tabular}			
+			\begin{array}{cc}
+				I & O \\
+				O & I \\
+			\end{array}			
 			\right)
 		\]
 	\end{proof}
