@@ -117,7 +117,8 @@
 
 \begin{frame}{Windowing Transformation}
 	\begin{theorem}
-		The sequence $W_{c}^{0}, W_{c}^{1}, W_{c}^{2}, W_{c}^{3}, \ldots$ is periodic
+		The sequence $W_{c}^{0}, W_{c}^{1}, W_{c}^{2}, W_{c}^{3}, \ldots$ is
+		periodic
 	\end{theorem}
 	
 	\pause
@@ -137,14 +138,14 @@
 	\bigskip
 	
 	\begin{corollary}
-		The sequence of left upper submatrices of 
+		The sequence of left upper submatrices of
 		$W_{c}^{0}, W_{c}^{1}, W_{c}^{2},\ldots$ is periodic
 	\end{corollary}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Windowing Transformation}
 	\begin{lemma}
-		The sequence starts to repeat after the dimension of the kernel of the 
+		The sequence starts to repeat after the dimension of the kernel of the
 		upper left submatrix is $c$.
 	\end{lemma}
 	
@@ -162,4 +163,86 @@
 			\right)
 		\]
 	\end{proof}
+\end{frame}
+
+\begin{frame}{Windowing Transformation}
+	\begin{lemma}
+		The sequence of left upper submatrices of
+		$W_{c}^{0}, W_{c}^{1}, W_{c}^{2},\ldots$ is almost palindromic		
+	\end{lemma}
+	
+	\pause
+	\bigskip
+	
+	\begin{columns}[T]
+		\begin{column}{0.45\textwidth}
+			\begin{proof}
+				Exemplary proof
+			\end{proof}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\hfill
+			\includegraphics[height=0.5\textheight]{image/palindrome-23a.ps}
+			\hfill
+			\includegraphics[height=0.5\textheight]{image/palindrome-23b.ps}
+			\hspace*{\fill}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Observations}
+	Assume that the dimension of the kernel is $c$
+	
+	\bigskip
+	
+	Press any combination of buttons in the first row
+	
+	\bigskip
+	
+	The combination can be extended into an element of the kernel
+\end{frame}
+
+\begin{frame}{Observations}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			This is an element of the kernel for a $5 \times 7$ lights out
+			puzzle
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\includegraphics[width=\textwidth]{image/palindrome-07.ps}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Observations}
+	This generates an element of the kernel of $5 \times 15$ lights out puzzle 
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\includegraphics[height=0.8\textheight]{image/palindrome-23a.ps}
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\includegraphics[height=0.8\textheight]{image/palindrome-23b.ps}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Observations}
+	For puzzles of dimensions $c \times r$ and $c \times r'$ with
+	\[
+		r + 1 + r' = c 
+	\]
+	
+	\bigskip
+	\pause
+	
+	hence
+	\[
+		\dim(\Ker_{c \times r}) \le \dim(\Ker_{c \times r'})
+	\]
 \end{frame}
