@@ -35,5 +35,5 @@ K7 := Kernel(M7);
 M15 := layout(F,5,15);
 K15 := Kernel(M15);
 
-v := Kd.1 + Kd.3;
-postscript(v);
+//v := Kd.1 + Kd.3;
+//postscript(v);
