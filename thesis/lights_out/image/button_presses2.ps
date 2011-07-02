@@ -1,0 +1,72 @@
+%!PS-Adobe-1.0
+%%For: Muzings on Lights Out
+%%Creator: Daan Wanrooy
+%%CreationDate: Mon Nov 19 14:42:06 CET 2007
+%%BoundingBox: 197 320 540 735
+%%HiResBoundingBox: 197.014705 320.314701 539.995273 734.179267
+%%Pages: (atend)
+%%EndComments
+%%BeginProlog
+
+/square {% stack: x y size n flag => ---
+	[/flag /n /size /y /x] dup length 2 add dict begin {exch def} forall
+		/dl size n div def
+		x size 2 div add y size 2 div add moveto
+		dl neg 0 rmoveto
+		size 2 dl mul sub neg 0 rlineto
+		currentpoint dl sub dl 90 180 arc
+		0 size 2 dl mul sub neg rlineto
+		currentpoint exch dl add exch dl 180 270 arc
+		size 2 dl mul sub 0 rlineto
+		currentpoint dl add dl 270 360 arc
+		0 size 2 dl mul sub rlineto
+		currentpoint exch dl sub exch dl 0 90 arc
+		closepath
+		1 1 n 1 sub {
+			/i exch def
+			flag {
+				x size 2 div sub i dl mul add y size 2 div add moveto
+				0 size neg rlineto 
+			}{
+				x size 2 div sub y size 2 div add i dl mul sub moveto
+				size 0 rlineto 
+			} ifelse
+		} for
+	end	
+} def
+
+/button_press {% stack: x y size ds flag => ---
+	[/flag /n /ds /size /y /x] dup length 1 add dict begin {exch def} forall
+		/l size ds add def
+		[[x y] [x l add y] [x l neg add y] [x y l add] [x y l neg add]] {
+			aload pop size n flag square
+		} forall		
+	end	
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+
+	72 25.4 div dup scale
+	210 2 div 297 2 div translate
+	
+	/size 20 def
+	/ds 5 def
+	/n 5 def
+	
+	/l size ds add def
+	
+	l 2 div 0 translate
+	
+	0 0 2 {l mul exch} repeat size ds n false button_press
+	1 1 2 {l mul exch} repeat size ds n true button_press
+	stroke
+	
+	showpage
+cleanslate restore
+
+%%Trailer
+%%Pages: 1
+%%EOF

@@ -1,0 +1,80 @@
+%!PS-Adobe-1.0
+%%For: Muzings on Lights Out
+%%Creator: Daan Wanrooy
+%%CreationDate: Mon Nov 19 14:42:06 CET 2007
+%%BoundingBox: 26 273 569 815
+%%HiResBoundingBox: 26.929546 273.543742 568.345905 814.963264
+%%Pages: (atend)
+%%EndComments
+%%BeginProlog
+
+/square {% stack: x y size ds color => ---
+	[/color /ds /size /y /x] dup length 0 add dict begin {exch def} forall
+		x y ds sub moveto
+		x ds add y ds sub ds 180 90 arcn
+		size 2 ds mul sub 0 rlineto
+		currentpoint ds sub ds 90 0 arcn
+		0 size 2 ds mul sub neg rlineto
+		currentpoint exch ds sub exch ds 0 -90 arcn
+		size 2 ds mul sub neg 0 rlineto
+		currentpoint ds add ds -90 -180 arcn
+		closepath
+		gsave
+			color aload pop setrgbcolor
+			fill
+		grestore
+		stroke
+	end	
+} def
+
+/matrix_square {% stack: size ds matrix => ---
+	[/A /ds /size] dup length 6 add dict begin {exch def} forall
+		/l size ds add def
+		A 0 get aload pop [/q /columns /rows] {exch def} forall
+		/data A 1 get def
+		0 1 rows columns mul 1 sub {
+			/i exch def
+			 i columns mod l mul 
+			 i columns idiv l mul neg 
+			 size ds 
+			 [ 1 data i get q 1 add div sub dup dup] square
+		} for
+	end	
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+	
+	/offset 10 def
+	
+	72 25.4 div dup scale
+	offset 297 offset sub translate
+	
+	/ds 3 def
+	/A [ [12 12 5] [
+0 0 4 4 3 4 4 3 4 4 0 0 
+0 1 2 4 4 4 4 4 4 2 1 0 
+4 2 4 1 0 4 4 0 1 4 2 4 
+4 4 1 1 1 3 3 1 1 1 4 4 
+3 4 0 1 0 4 4 0 1 0 4 3 
+4 4 4 3 4 4 4 4 3 4 4 4 
+4 4 4 3 4 4 4 4 3 4 4 4 
+3 4 0 1 0 4 4 0 1 0 4 3 
+4 4 1 1 1 3 3 1 1 1 4 4 
+4 2 4 1 0 4 4 0 1 4 2 4 
+0 1 2 4 4 4 4 4 4 2 1 0 
+0 0 4 4 3 4 4 3 4 4 0 0 
+	]] def
+	/columns A 0 get 1 get def
+	/size 210 offset 2 mul sub columns 1 sub ds mul sub columns div def 
+	
+	size ds A matrix_square
+
+	showpage
+cleanslate restore
+
+%%Trailer
+%%Pages: 1
+%%EOF

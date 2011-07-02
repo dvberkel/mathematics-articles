@@ -1,0 +1,1015 @@
+\chapter{Mathematics of Lights Out}\label{chapter:mathematics}
+
+\section{General Setting}
+
+\begin{definition}
+	A (lights out) \emph{layout}\index{layout} is a pair $\mathcal{L} :=
+	\langle\Gamma,q\rangle$ where $\Gamma$ is a finite directed multigraph
+	and $q$ a natural number. 
+	
+	A \emph{state}\index{state} is a tuple $S :=
+	\langle\mathcal{L},\lambda\rangle$ where $\mathcal{L} :=
+	\langle\Gamma,q\rangle$ is a layout and $\lambda \in
+	\mathcal{M}(\Gamma,\Z/q\Z)$ is an element of the module of functions
+	from the vertices of $\Gamma$ to $\Z/q\Z$. The state of a vertex $v$ is 
+	defined as $\lambda(v)$.
+	
+	For every layout $\mathcal{L}$ we distinguish a special state
+	$\langle\mathcal{L},O\rangle$ called the zero state. ($O(v) = 0$ for all
+	$v\in\Gamma$.) 
+	
+	With every vertex $v\in\Gamma$ there is a $\overline{v} \in
+	\mathcal{M}(\Gamma,\Z/q\Z)$ defined as follows
+	\[
+%		\overline{v}(u) = \left\{
+%		\begin{array}{cl}
+%			m_{vu} & \text{if } u \text{ is adjacent to } v \\
+%			0 & \text{otherwise} \\		
+%		\end{array}
+%		\right.
+		\overline{v}(u) = m_{v,u}
+	\]
+	
+	($m_{v,u}$ is the multiplicity of the edges from $v$ to $u$.)
+	Pressing a vertex $v\in\Gamma$ turns a state $S :=
+	\langle\mathcal{L},\lambda\rangle$ into state
+	$S':=\langle\mathcal{L},\lambda+\overline{v}\rangle$. We denote this 
+	by $S \overset{v}{\rightarrow} S'$.
+	
+	Given states $S$ and $S'$ we call $S'$ accessible\index{accessible} from
+	$S$ if there exist a finite sequence of vertices
+	$(v_{1},v_{2},\ldots,v_{n})$ and a corresponding sequence of
+	states $(S_{0},S_{1},\ldots,S_{n})$ such that 
+	\begin{enumerate}
+		\item $S_{0} := S$.
+		
+		\item $S_{n} := S'$.
+
+		\item $S_{k-1} \overset{v_{k}}{\rightarrow}
+		S_{k}$ for all $k\in\{1,\ldots,n\}$.
+	\end{enumerate}
+	We say that the sequence $(v_{1},v_{2},\ldots,v_{n})$ leads $S$
+	into $S'$.
+	
+	The object of a lights out puzzle is given a state $S$ to determine if
+	the zero state is accessible and, if it is, to give a sequence of
+	vertices which lead to the zero state. If the zero state is accessible from $S$ we call
+	$S$ \emph{solvable}. 
+\end{definition}
+
+\begin{remark}
+	We will write $\mathcal{M}_{\mathcal{L}}$ for
+	$\mathcal{M}(\Gamma,\Z/q\Z)$ for every layout 
+	$\mathcal{L}:=\langle\Gamma,q\rangle$.
+\end{remark}
+
+\begin{example}\label{example:directedgraph}
+	Let $\Gamma$ be the graph on $\{u,v,w\}$ described by the following
+	adjacency matrix. (See also figure \ref{figure:directedgraph})
+	\[
+		\left(
+		\begin{array}{ccc}
+			0 & 1 & 1 \\
+			1 & 0 & 0 \\
+			1 & 1 & 1 \\
+		\end{array}
+		\right)
+	\]
+	Then $\mathcal{L}:=\langle\Gamma,3\rangle$ is a layout. The state
+	$\langle\mathcal{L},\lambda\rangle$ where $\lambda$ is defined by
+	$\lambda(u):= 2$, $\lambda(v):= 1$ and $\lambda(w):= 0$ is solvable.
+	When we press all vertices twice the zero state is reached.
+	
+	Notice that $\langle\mathcal{L},\mu\rangle$ with $\mu(u):= 0$, $\mu(v):=
+	0$ and $\mu(w):= 1$ is not solvable. To see this, let $x,y,z\in\N$ be
+	the number of times $u,v,w$ are pressed, respectively. The state of $u$
+	is determined by $y+z \mod 3$. The states of $v$ and $w$ are determined
+	by $x \mod 3$ and $1+x+y+z \mod 3$ respectively. So the	following
+	equations have to hold:
+	\[
+		\begin{array}{r@{\;\equiv\;}l<{\mod 3}}
+			y + z         & 0\\
+			x             & 0\\
+			1 + x + y + z & 0\\
+		\end{array}
+	\]
+	Which are clearly incompatible.
+	\begin{figure}
+		\begin{center}
+			\includegraphics{image/graph.1}
+		\end{center}
+		\caption{Directed graph $\Gamma$ used in example
+		\ref{example:directedgraph}.}
+		\label{figure:directedgraph}
+	\end{figure}
+\end{example}
+
+\begin{remark}
+	In example \ref{example:directedgraph} state
+	$\langle\mathcal{L},\lambda\rangle$ was solved by pressing every button
+	twice.
+	
+	This is not the only way to solve this puzzle. We can also press vertex
+	$u$ twice and either vertex $v$ or vertex $w$ once.
+\end{remark}
+
+\section{Solving Lights Out}
+
+\begin{remark}
+	From the commutativity of addition in $\mathcal{M}(\Gamma,\Z/q\Z)$ it is
+	clear that the order in which to press vertices is irrelevant.
+	
+	Furthermore, because $q\overline{v}=O$ no vertex will have to be pressed
+	more then $q-1$ times.
+\end{remark}
+
+\begin{remark}
+	Because the order in which vertices are pressed is irrelevant we can
+	fix any order. We will assume that every layout comes equipped with an
+	ordering of the vertices.
+	
+	Because of this we will use the vertices as index set.
+\end{remark}
+
+\begin{definition}
+	For a layout $\mathcal{L}:=\langle\Gamma,q\rangle$ we define the press
+	space $\mathcal{P}_{\mathcal{L}}:=(\Z/q\Z)^{\#\Gamma}$.
+	
+	With every $p\in\mathcal{P}_{\mathcal{L}}$ we define a
+	$\overline{p}\in\mathcal{M}_{\mathcal{L}}$ by $\overline{p} =
+	\sum_{v\in\Gamma} p_{v}\overline{v}$.
+\end{definition}
+
+\begin{definition}
+	For every layout $\mathcal{L}$ we define $I_{\mathcal{L}} :
+	\mathcal{P}_{\mathcal{L}} \rightarrow \mathcal{M}_{\mathcal{L}} :
+	p\mapsto\overline{p}$.
+\end{definition}
+
+\begin{remark}
+	If the layout $\mathcal{L}$ is clear from the context then we will drop
+	the subscript from $\mathcal{M}_{\mathcal{L}}$,
+	$\mathcal{P}_\mathcal{L}$ and $I_{\mathcal{L}}$ and write $\mathcal{M}$,
+	$\mathcal{P}$ and $I$ instead.
+\end{remark}
+
+\begin{lemma}
+	let $\mathcal{L}:=\langle\Gamma,q\rangle$ be a layout. $I :
+	\mathcal{P}\rightarrow\mathcal{M} : p\mapsto\overline{p}$ is a
+	\emph{homomorphism}. 
+\end{lemma}
+
+\begin{proof}
+	Let $s,t\in\mathcal{P}$. $I(s+t) = \overline{s+t} =
+	\sum_{v\in\Gamma} (s_{v}+t_{v})\overline{v} =
+	\sum_{v\in\Gamma} s_{v}\overline{v} +
+	\sum_{v\in\Gamma} t_{v}\overline{v} = \overline{s} +
+	\overline{t} = I(s) + I(t)$.
+	
+	Let $r\in \Z/q\Z$. $I(rs) = \overline{rs} = \sum_{v\in\Gamma}
+	rs_{v}\overline{v} = r \sum_{v\in\Gamma} s_{v}\overline{v} = rI(s)$.
+\end{proof}
+
+\begin{remark}
+	We will extend the notation $S\overset{v}{\rightarrow}S'$ to include
+	$S\overset{p}{\rightarrow}S'$ for $p\in\mathcal{P}$. By this we mean 
+	that the sequence $(\underset{p_{v_{1}}}{\underbrace{v_{1},\ldots,v_{1}}},
+	\ldots ,\underset{p_{v_{n}}}{\underbrace{v_{n},\ldots,v_{n}}})$ leads $S$
+	into $S'$.
+\end{remark}
+
+\begin{theorem}\label{theorem:equivalence}
+	Let $\mathcal{L}$ be a layout and let
+	$S:=\langle\mathcal{L},\lambda\rangle$ and
+	$S':=\langle\mathcal{L},\lambda'\rangle$ be states. The following
+	statements are equivalent.
+	\begin{enumerate}
+		\item\label{layout:equivalent:A} $S'$ is accessible from $S$.
+		\item\label{layout:equivalent:B} $\langle\mathcal{L},
+		\lambda'-\lambda\rangle$ is accessible from the zero state.
+		\item\label{layout:equivalent:C} $\langle\mathcal{L},
+		\lambda-\lambda'\rangle$ is solvable. 
+		\item\label{layout:equivalent:D} $(\lambda'-\lambda)\in\Im(I)$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	We will show the following chain of implications: \ref{layout:equivalent:A}
+	$\Rightarrow$ \ref{layout:equivalent:B} $\Rightarrow$\ref{layout:equivalent:C}
+	$\Rightarrow$ \ref{layout:equivalent:D} $\Rightarrow$\ref{layout:equivalent:A}.
+	\begin{namedlist}[\ref{layout:equivalent:D}$\Rightarrow$\ref{layout:equivalent:A}]
+		\item[\ref{layout:equivalent:A}$\Rightarrow$\ref{layout:equivalent:B}] 
+		There exists a $p\in\mathcal{P}$ such that $S \overset{p}{\rightarrow} S'$ 
+		and thus $\lambda' = \lambda+\overline{p}$. Hence $\lambda'-\lambda = O + \overline{p}$. 
+		So $\langle\mathcal{L},\lambda'-\lambda\rangle$ is accessible
+		from the zero state.
+		
+		\item[\ref{layout:equivalent:B}$\Rightarrow$\ref{layout:equivalent:C}] 
+		There exists a $p\in\mathcal{P}$ such that $\langle\mathcal{L},O\rangle
+		\overset{p}{\rightarrow} \langle\mathcal{L},\lambda'-
+		\lambda\rangle$ and thus $O+\overline{p} = \lambda'-\lambda$.
+		Then $(\lambda-\lambda') + \overline{p} = (\lambda-\lambda') +
+		(\lambda'-\lambda) = O.$ So $\langle\mathcal{L},\lambda-
+		\lambda'\rangle$ is solvable.
+		
+		\item[\ref{layout:equivalent:C}$\Rightarrow$\ref{layout:equivalent:D}] 
+		There exists a $p\in\mathcal{P}$ such that
+		$\langle\mathcal{L},\lambda-\lambda'\rangle
+		\overset{p}{\rightarrow} \langle\mathcal{L},O\rangle$ and thus
+		$(\lambda-\lambda') + \overline{p} = O$. But then $I(p) =
+		\overline{p} = - (\lambda-\lambda') = \lambda'-\lambda$. So
+		$(\lambda'-\lambda)\in\Im(I)$.
+		 
+		\item[\ref{layout:equivalent:D}$\Rightarrow$\ref{layout:equivalent:A}]
+		There exists a $p\in\mathcal{P}$ such that $I(p) = \overline{p} =
+		\lambda'-\lambda$. But then $\lambda' = \lambda + \overline{p}$,
+		hence $S \overset{p}{\rightarrow} S'$.
+	\end{namedlist}
+	
+	This shows the equivalence of the various statements.
+\end{proof}
+
+\begin{remark}
+	By choosing the standard basis for $\mathcal{P}$ and $\mathcal{M}$ the
+	matrix associated with $I$ is precisely the adjacency matrix of the
+	directed graph on which the layout is defined.
+	
+	Because of this $\Im(I)$ can be identified as the column space of the
+	adjacency matrix of underlying graph.
+\end{remark}
+
+\begin{definition}
+	We will denote the \emph{adjacency matrix} mentioned in the preceding
+	remark with $A_{\mathcal{L}}$. 
+\end{definition}
+
+\begin{example}
+	We take $\mathcal{L}$, $\lambda$ and $\mu$ as defined in example
+	\ref{example:directedgraph}. Then $\Im(I) = \Col(A_{\mathcal{L}})$. It
+	is clear that $\Col(A_{\mathcal{L}})$ is spanned by the vectors $b_{1}
+	:= (0\;1\;1)^{t}$ and $b_{2} := (1\;0\;1)^{t}$.
+	
+	Now $-\lambda = -(2\;1\;0)^{t} = (1\;2\;0)^{t}$. We find (again) that
+	$-(1\;2\;0)^{t} = (0\;2\;2)^{t} + (1\;0\;1) = 2\cdot b_{1} + b_{2}$. So
+	theorem \ref{theorem:equivalence} tells us that $\lambda$ is solvable.
+	Furthermore, by expressing $\lambda$ as a lineair combinations of
+	$b_{1}$ and $b_{2}$ we find a solution. The coefficients precisely tell
+	us how many times a certain button must be pressed.
+	
+	In order tot show that $-\mu = -(0\;0\;1)^{t} = -(0\;0\;2)^{t}$ is not
+	solvable it is sufficient to note that
+	$-\mu\not\in\Im(I)=\Col(A_{\mathcal{L}})$. We can deduce this from the
+	fact that the first two components of $-\mu$ are zero and therefore the
+	coefficients of $b_{1}$ and $b_{2}$ should both be zero. But clearly
+	$-\mu \not= 0$. 
+\end{example}
+
+\begin{definition}
+	For every layout $\mathcal{L}:=\langle\Gamma,q\rangle$ we define an
+	associate layout $\mathcal{L}^{t}$ by $\mathcal{L}^{t} :=
+	\langle\Gamma^{t},q\rangle$. Here $\Gamma^{t}$ is the graph obtained
+	from $\Gamma$ by reversing all the edges.
+\end{definition}
+
+\begin{theorem}\label{theorem:transpose}
+	Let $\mathcal{L}$ be a layout. $\dim(\Im(I_{\mathcal{L}})) =
+	\dim(\Im(I_{\mathcal{L}^{t}}))$.
+\end{theorem}
+
+\begin{proof}
+	Notice that $\Im( I_{\mathcal{L}} ) = \Col( A_{\mathcal{L}} ) = \Row(
+	A_{\mathcal{L}^{t}} )$ so the dimension of $\Im( I_{\mathcal{L}} )$
+	equals the dimension of $\Row( A_{\mathcal{L}^{t}} )$. 
+	
+	Now by corollary \ref{corollary:dimcolisdimrow} $\dim( \Row(
+	A_{\mathcal{L}^{t}} ) ) = \dim( \Col( A_{\mathcal{L}^{t}} ) )$. 
+	
+	Because $\Col( A_{\mathcal{L}^{t}} ) = \Im( I_{\mathcal{L}^{t}} )$ one
+	has $\dim( \Im( I_{\mathcal{L}} ) ) = \dim( \Im( I_{\mathcal{L}^{t}} )
+	)$.
+\end{proof}
+
+\begin{example}
+	Let $\mathcal{L}$ be the layout of example \ref{example:directedgraph}.
+	We will verify theorem \ref{theorem:transpose}. Recall that 
+	\[
+		A_{\mathcal{L}} =
+		\left(
+		\begin{array}{ccc}
+			0 & 1 & 1 \\
+			1 & 0 & 0 \\
+			1 & 1 & 1 \\
+		\end{array}
+		\right)
+	\]
+	so
+	\[
+		A_{\mathcal{L}^{t}} =
+		\left(
+		\begin{array}{ccc}
+			0 & 1 & 1 \\
+			1 & 0 & 1 \\
+			1 & 0 & 1 \\
+		\end{array}
+		\right)
+	\]
+	
+	$\Im(I_{\mathcal{L}}) = \Col(A_{\mathcal{L}})$ is spanned by
+	$(0\;1\;1)^{t}$ and $(1\;0\;1)^{t}$. $\Im(I_{\mathcal{L}^{t}}) =
+	\Col(A_{\mathcal{L}^{t}})$ is spanned by $(0\;1\;1)^{t}$ and
+	$(1\;0\;0)^{t}$. So $\dim(\Im(\mathcal{L})) = \dim(\Im(\mathcal{L}^{t}))
+	= 2$.
+	
+	Notice that $\Im(I_{\mathcal{L}}) \not= \Im(I_{\mathcal{L}^{t}})$ for
+	$(1\;0\;0)^{t} \in \Im(I_{\mathcal{L}^{t}})$ but $(1\;0\;0)^{t} \not\in
+	\Im(I_{\mathcal{L}})$. (To see that $(1\;0\;0)^{t} \not\in
+	\Im(I_{\mathcal{L}})$, notice that the second component of
+	$(1\;0\;0)^{t}$ is zero, therefore the coefficient of $b_{1}$ should be
+	zero. But neither $b_{2}$ nor $2b_{2}$ equals $(1\;0\;0)^{t}$.)
+\end{example}
+
+\section{Symmetric Graphs}
+
+\begin{definition}
+	Let $\mathcal{L}$ be a layout. $\mathcal{L}$ is called \emph{reflexive}
+	if $A_\mathcal{L}$ is reflexive.
+	
+	$\mathcal{L}$ is called \emph{symmetric} if $A_{\mathcal{L}}$ is
+	symmetric. In other words $\mathcal{L}$ is symmetric if
+	$\Gamma_{\mathcal{L}} = \Gamma_{\mathcal{L}^t} =
+	(\Gamma_{\mathcal{L}})^t$.
+\end{definition}
+
+\begin{proposition}
+	Let $\mathcal{L}$ be a symmetric layout. A state
+	$S=\langle\mathcal{L},\lambda\rangle$ is solvable if and only if
+	for every $p\in\Ker(I_{\mathcal{L}}): \sum_{v\in\Gamma}
+	p_{v}\lambda_{v} = 0$.
+\end{proposition}
+
+\begin{remark}
+	$\sum_{v\in\Gamma} p_{v}\lambda_{v}$ can be seen as the standard inner
+	product of the vectors $p$ and $\lambda$. We do not speak of an
+	inproduct because it is not neccesarily definite.
+\end{remark}
+
+\begin{proof}
+	By theorem \ref{theorem:equivalence} $S$ is solvable if and only if
+	$-\lambda \in \Im(I_{\mathcal{L}})$. But $\Im(I_{\mathcal{L}}) =
+	\Col(A_{\mathcal{L}}) = \Row(A_{\mathcal{L}}^{t}) =
+	\Row(A_{\mathcal{L}^{t}}) = \Row(A_{\mathcal{L}})$. 
+	
+	Now for every $p\in\Ker(I_{\mathcal{L}})$: $I_{\mathcal{L}}(p)=O$. But
+	$I_{\mathcal{L}}(p)=O$ if and only if for every
+	$r\in\Row(A_{\mathcal{L}})$: $\sum_{v\in\Gamma_{\mathcal{L}}} p_{v}r_{v}
+	= 0$.
+	
+	In particular, because $\lambda\in\Row(A_{\mathcal{L}})$,
+	$\sum_{v\in\Gamma_{\mathcal{L}}} p_{v}\lambda_{v} = 0$.
+\end{proof}
+
+\begin{theorem}\label{theorem:kercharacterization}
+	$p \in \Ker(I_{\mathcal{L}})$ if and only if for all
+	$v\in\Gamma_{\mathcal{L}}$: $\sum_{u\in N(v)} p_{u}m_{u,v} = 0$.
+	Here $m_{u,v}$ is the multiplicity of the edges from $u$ to $v$.
+\end{theorem}
+
+\begin{proof}
+	$p \in \Ker(I)$ if and only if $I(p) = O$ if and only if for all
+	$v\in\Gamma$: $O = \overline{p}(v) = \sum_{u\in\Gamma}
+	p_{u}\overline{u}(v) = \sum_{u\in N(v)} p_{u}\overline{u}(v) +
+	\sum_{u\not\in N(v)} p_{u}\overline{u}(v) = \sum_{u\in N(v)}
+	p_{u}m_{u,v}$. 
+\end{proof}
+
+\begin{example}
+	The layout $\mathcal{L}$ from example \ref{example:directedgraph} is
+	neither reflexive nor symmetric. We can create a symmetric layout
+	$\mathcal{L}'$ from $\mathcal{L}$ by introducing in
+	$\Gamma_{\mathcal{L}}$ an edge from $w$ to $v$. We will study
+	$\mathcal{L}'$.
+	
+	We will show that every layout in $\mathcal{L}'$ is solvable. We do this
+	be showing that $\Ker( I_{\mathcal{L}'} )$ is trivial. (It can
+	also be shown by examining $\Im( I_{\mathcal{L}'} )$.)
+	
+	Let $p\in\Ker( I_{\mathcal{L}'} )$. Assume $p_{u} \not= 0$. Without loss
+	of generality we can assume that $p_{u} = 1$. (Otherwise $2p\in \Ker(
+	I_{\mathcal{L}'} )$ and $(2p)_{u} = 1$.) By theorem
+	\ref{theorem:kercharacterization} $\sum_{x\in N(v)} p_{x} = 0$. Now
+	$N(v) = \{u,w\}$ so it follows that $p_{w} = 2$. In order to satisfy
+	$\sum_{x\in N(u)} p_{x} = 0$ it must be the case that $p_{v} = 1$. But
+	to satisfy $\sum_{x\in N(w)} p_{x} = 0$ it should be the case that
+	$p_{v} = 0$. The assumption that $p_{u} \not= 0$ leads to a
+	contradiction. So $p_{u} = 0$. By symmetries considerations $p_{v} = 0$
+	also. Now the only way for $\sum_{x\in N(y)} p_{x}$ to be $0$ for any
+	$y\in\Gamma_{\mathcal{L}'}$ is if $p_{w} = 0$.
+	
+	This shows that $\Ker( I_{\mathcal{L}'} )$ is trivial. By proposition
+	\ref{proposition:ranknullity} $\dim( \Im(I_{\mathcal{L}'}) ) =
+	\dim(\mathcal{M}_{\mathcal{L}'}) - \dim( \Ker(I_{\mathcal{L}'}) ) = 3 -
+	0 = 3$. So $\Im(I_{\mathcal{L}'}) = \mathcal{M}_{\mathcal{L}'}$ and
+	every state is solvable.
+\end{example}
+
+\begin{conjecture}[Decomposition Conjecture]
+	Let $\Gamma$ be a multi-directed graph and $q\in\N$. Let
+	$q=\prod_{i:=1}^{r} p_{i}^{k_{i}}$ where $p_i$ are different primes.
+	\[
+		\dim(\Ker(I_{\langle\Gamma,q\rangle})) = \max_{i\in \{1,\ldots,r\}} \dim(\Ker(I_{\langle\Gamma,p_{i}\rangle})).
+	\]
+\end{conjecture}
+
+\begin{proof}[partial]
+	Let $q=\prod_{i:=1}^{r} p_{i}^{k_{i}}$. We can show the partial result
+	\[
+		\dim(\Ker(I_{\langle\Gamma,q\rangle})) \ge \max_{i\in \{1,\ldots,r\}} \dim(\Ker(I_{\langle\Gamma,p_{i}\rangle})).
+	\]
+	
+	Let $p$ be a prime which divides $q$. Let $\mathcal{L} := \langle
+	\Gamma, q \rangle$ and $\mathcal{L}_{p} := \langle \Gamma, p \rangle$ We
+	will show that $\dim( \Ker( I_{\mathcal{L}_{p}} ) ) \le \dim(
+	\Ker( I_{\mathcal{L}} ) )$.
+	
+	Let $d \in \Ker( I_{\mathcal{L}_{p}} )$. Define $\tilde{d}
+	:= \sum_{v \in \Gamma} \frac{q}{p} d_{v} \in
+	\mathcal{P}_{\mathcal{L}}$. 
+	
+	By this we mean the following: $d$ is a press pattern of
+	$\mathcal{L}_{p}$. Every vertex $v$ gets pressed $d_{v}$ times.
+	$\tilde{d}$ is the press pattern in $\mathcal{L}$ where vertex $v$ gets
+	pressed $\frac{q}{p}d_{v}$ times.
+		
+	We will show that $\tilde{d} \in \Ker( I_{\mathcal{L}} )$. Now
+	$d \in \Ker( I_{\mathcal{L}_{p}} )$ so, by theorem
+	\ref{theorem:kercharacterization} $\sum_{u\in N(v)} d_{u} m_{u,v} = 0$
+	for all $v\in\Gamma$. In otherwords, for all $v\in\Gamma$ there exist a
+	$s_{v}\in\N$ such that $\sum_{u\in N(v)} d_{u} m_{u,v} = s_{v}p$.
+	
+	So $\sum_{u\in N(v)} \tilde{d}_{u} m_{u,v} = \sum_{u\in N(v)}
+	\frac{q}{p} d_{u} m_{u,v} = \frac{q}{p} \sum_{u\in N(v)} \tilde{d}_{u}
+	m_{u,v} = \frac{q}{p} (s_{v}p) = s_{v}q$. And by theorem
+	\ref{theorem:kercharacterization} $\tilde{d} \in \Ker( I_{\mathcal{L}}
+	)$.
+	
+	Furthermore, if $d_{1},d_{2}\in \Ker( I_{\mathcal{L}_{p}})$ and
+	$\tilde{d_{1}} = \tilde{d_{2}}$ then for all $v\in\Gamma$: $0 = O_{v} =
+	(\tilde{d_{1}})_{v} - (\tilde{d_{2}})_{v} = \frac{q}{p}((d_{1})_{v} -
+	(d_{2})_{v})$ so $d_{1} = d_{2}$. If we apply this result to a basis for
+	$\Ker( I_{\mathcal{L}_{p}} )$ we find that there are at least as many
+	independent elements in $\Ker( I_{\mathcal{L}} )$.
+	
+	Hence $\dim( \Ker( I_{\mathcal{L}_{p}} ) ) \le \dim(
+	\Ker( I_{\mathcal{L}} ) )$. This proofs that
+	$\dim(\Ker(I_{\langle\Gamma,q\rangle})) \ge \max_{i\in \{1,\ldots,r\}}
+	\dim(\Ker(I_{\langle\Gamma,p_{i}\rangle}))$.
+\end{proof}
+
+
+\section{Ordering Layouts}
+
+\begin{definition}
+	Layout $\mathcal{L}:=\langle\Gamma,q\rangle$ is called \emph{similar} to
+	$\mathcal{L}':=\langle\Gamma',q\rangle$ if there exists an isomorphism
+	$\sigma : \mathcal{M}_{\mathcal{L}} \rightarrow
+	\mathcal{M}_{\mathcal{L}'}$ such that
+	\[
+		\langle\mathcal{L},\lambda\rangle \text{ is solvable}
+		\text{ if and only if }
+		\langle\mathcal{L}',\sigma(\lambda)\rangle \text{ is solvable}
+	\]
+	
+	We will denote this by $\mathcal{L} \equiv \mathcal{L}'$. 
+\end{definition}
+
+\begin{theorem}
+	$\equiv$ is an equivalence relation.
+\end{theorem}
+
+\begin{proof}
+	We will show that $\equiv$ is a reflexive, symmetric and transitive.
+	
+	Let $\mathcal{L}_{1}$, $\mathcal{L}_{2}$ and $\mathcal{L}_{3}$ be
+	layouts.
+	\begin{namedlist}[Transitivity]
+		\item[Reflexivity] Define $\sigma :
+		\mathcal{M}_{\mathcal{L}_{1}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{1}} : \lambda \mapsto \lambda$.
+		$\sigma$ is an isomorphism and for every state
+		$S:=\langle\mathcal{L}_{1},\lambda\rangle$, $S$ is solvable if
+		and only if is 	$\langle\mathcal{L}_{1},\sigma(\lambda)\rangle =
+		\langle\mathcal{L}_{1},\lambda\rangle = S$ is solvable. This
+		shows that $\equiv$ is reflexive.
+		
+		\item[Symmetry] If $\mathcal{L}_{1} \equiv \mathcal{L}_{2}$ then
+		there exist an isomorphism $\sigma :
+		\mathcal{M}_{\mathcal{L}_{1}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{2}}$ such that 
+		\[
+			\langle\mathcal{L}_{1},\lambda\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{2},\sigma(\lambda)\rangle \text{ is solvable} \\
+		\]
+		
+		Then $\sigma^{-1}$ is an isomorphism from
+		$\mathcal{M}_{\mathcal{L}_{2}}$ to
+		$\mathcal{M}_{\mathcal{L}_{1}}$ such that for every $\mu \in
+		\mathcal{M}_{\mathcal{L}_{2}}$: $\langle \mathcal{L}_{2}, \mu
+		\rangle = \langle \mathcal{L}_{2}, \sigma(\sigma^{-1}(\mu))
+		\rangle$ is solvable if and only $\langle \mathcal{L}_{1},
+		\sigma^{-1}(\mu)) \rangle$ is solvable. This shows that $\equiv$
+		is symmetric. 
+				
+		\item[Transitivity] If $\mathcal{L}_{1} \equiv \mathcal{L}_{2}$
+		and $\mathcal{L}_{2} \equiv \mathcal{L}_{3}$ then there are
+		isomorphisms $\sigma_{1} : \mathcal{M}_{\mathcal{L}_{1}}
+		\rightarrow \mathcal{M}_{\mathcal{L}_{2}}$ and $\sigma_{2} :
+		\mathcal{M}_{\mathcal{L}_{2}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{1}}$ 	such that
+		\[
+			\begin{array}{c}
+				\langle\mathcal{L}_{1},\lambda_{1}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{2},\sigma_{1}(\lambda_{1})\rangle \text{ is solvable} \\
+				\langle\mathcal{L}_{2},\lambda_{2}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{3},\sigma_{2}(\lambda_{2})\rangle \text{ is solvable} \\
+			\end{array}
+		\]
+		
+		But then $\sigma = \sigma_{2}\circ\sigma_{1}$ is an isomorphism
+		and $\langle \mathcal{L}_{3}, \sigma(\lambda_{1}) \rangle = \langle
+		\mathcal{L}_{3}, \sigma_{2}(\sigma_{1}(\lambda_{1})) \rangle$ is
+		solvable if and only if $\langle \mathcal{L}_{2},
+		\sigma_{1}(\lambda_{1}) \rangle$ is solvable if and only if 
+		$\langle \mathcal{L}_{1}, \lambda_{1} \rangle$ is solvable. This
+		shows that $\equiv$ is transitive.
+	\end{namedlist}
+	
+	This shows that $\equiv$ is an equivalence relation.
+\end{proof}
+
+\begin{definition}
+	Layout $\mathcal{L}':=\langle\Gamma',q\rangle$ is called \emph{simpler}
+	then $\mathcal{L}:=\langle\Gamma,q\rangle$ if there exist an
+	epimorphism $\sigma : \mathcal{M}_{\mathcal{L}} \rightarrow
+	\mathcal{M}_{\mathcal{L}'}$ such that
+	\[
+		\langle\mathcal{L},\lambda\rangle \text{ is solvable}
+		\text{ if and only if }
+		\langle\mathcal{L}',\sigma(\lambda)\rangle \text{ is solvable}
+	\]
+	
+	We will denote this by $\mathcal{L}' \preceq \mathcal{L}$.
+\end{definition}
+
+\begin{theorem}
+	$\preceq$ is a partial ordering.
+\end{theorem}
+
+\begin{proof}
+	We shall show that $\preceq$ is reflexive, antisymmetric and transitive.
+	
+	Let $\mathcal{L}_{1}$, $\mathcal{L}_{2}$ and $\mathcal{L}_{3}$ be
+	layouts.
+	\begin{namedlist}[Transitivity]
+		\item[Reflexivity] Define the epimorphism $\sigma :
+		\mathcal{M}_{\mathcal{L}_{1}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{1}} : \lambda \mapsto \lambda$. Then
+		for every state $S:=\langle\mathcal{L}_{1},\lambda\rangle$, $S$
+		is solvable if and only if
+		$\langle\mathcal{L}_{1},\sigma(\lambda)\rangle =
+		\langle\mathcal{L}_{1},\lambda\rangle = S$ is solvable. This
+		shows that $\preceq$ is reflexive.
+		
+		\item[Antisymmetry] If $\mathcal{L}_{1} \preceq \mathcal{L}_{2}$
+		and $\mathcal{L}_{2} \preceq \mathcal{L}_{1}$ then there are
+		epimorphisms $\sigma_{1} : \mathcal{M}_{\mathcal{L}_{1}}
+		\rightarrow \mathcal{M}_{\mathcal{L}_{2}}$ and $\sigma_{1} :
+		\mathcal{M}_{\mathcal{L}_{2}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{1}}$ such that
+		\[
+			\begin{array}{c}
+				\langle\mathcal{L}_{1},\lambda_{1}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{2},\sigma_{1}(\lambda_{1})\rangle \text{ is solvable} \\
+				\langle\mathcal{L}_{2},\lambda_{2}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{1},\sigma_{2}(\lambda_{2})\rangle \text{ is solvable} \\
+			\end{array}
+		\]
+		We will show that $\sigma_{1}$ is in fact an isomorphism. 
+		
+		By proposition \ref{proposition:ranknullity} we know that
+		$\dim( \mathcal{M}_{\mathcal{L}_{2}} ) = \dim(\Im(\sigma_{1})) =
+		\dim( \mathcal{M}_{\mathcal{L}_{1}} ) - \dim(\Ker(\sigma_{1}))
+		\le \dim( \mathcal{M}_{\mathcal{L}_{1}} )$. By similiar
+		reasoning we know that $\dim( \mathcal{M}_{\mathcal{L}_{1}} )
+		\le \dim( \mathcal{M}_{\mathcal{L}_{2}} )$ so $\dim(
+		\mathcal{M}_{\mathcal{L}_{1}} ) = \dim(
+		\mathcal{M}_{\mathcal{L}_{2}} )$.
+		
+		But then, by proposition \ref{proposition:ranknullity},
+		$\dim(\Ker(\sigma_{1})) = \dim( \mathcal{M}_{\mathcal{L}_{1}} )
+		- \dim(\Im(\sigma_{1})) = \dim( \mathcal{M}_{\mathcal{L}_{1}} )
+		- \dim(\mathcal{M}_{\mathcal{L}_{2}} ) = 0$ so $\sigma_{1}$ is
+		injective and therefore $\sigma_{1}$ is an isomorphism. Hence
+		$\mathcal{L}_{1} \equiv \mathcal{L}_{2}$. This proves that
+		$\preceq$ is antisymmetric.
+						
+		\item[Transitivity] If $\mathcal{L}_{2} \preceq \mathcal{L}_{1}$
+		and $\mathcal{L}_{3} \preceq \mathcal{L}_{2}$ then there are
+		epimorphisms $\sigma_{1} : \mathcal{M}_{\mathcal{L}_{1}}
+		\rightarrow \mathcal{M}_{\mathcal{L}_{2}}$ and $\sigma_{2} :
+		\mathcal{M}_{\mathcal{L}_{2}} \rightarrow
+		\mathcal{M}_{\mathcal{L}_{3}}$ such that 
+		\[
+			\begin{array}{c}
+				\langle\mathcal{L}_{1},\lambda_{1}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{2},\sigma_{1}(\lambda_{1})\rangle \text{ is solvable} \\
+				\langle\mathcal{L}_{2},\lambda_{2}\rangle \text{ is solvable if and only if } \langle\mathcal{L}_{3},\sigma_{2}(\lambda_{2})\rangle \text{ is solvable} \\
+			\end{array}
+		\]
+		
+		But then $\sigma := \sigma_{2}\circ\sigma_{1}$ is an
+		epimorphism such that for every $\lambda_{1} \in
+		\mathcal{M}_{\mathcal{L}_{1}}$: $\langle \mathcal{L}_{3},
+		\sigma(\lambda_{1}) \rangle = \langle \mathcal{L}_{3},
+		\sigma_{2}(\sigma_{1}(\lambda_{1})) \rangle$ is solvable if and
+		only if $\langle \mathcal{L}_{2}, \sigma_{1}(\lambda_{1})
+		\rangle$ is solvable if and only if $\langle \mathcal{L}_{1},
+		\lambda_{1} \rangle$ is solvable. This shows that $\preceq$ is
+		transitive. 
+	\end{namedlist}
+	
+	This shows that $\preceq$ is a ordering relation.
+\end{proof}
+
+\begin{example}\label{example:wheel1} 
+	Let $\Gamma$ be the graph on $\{u,v,w,x,y,z\}$ defined by the following
+	adjacency matrix. (See also figure \ref{figure:wheel}.)
+	\[
+		\left(
+		\begin{array}{cccccc}
+			1 & 1 & 0 & 0 & 0 & 0 \\
+			0 & 1 & 1 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 1 & 0 \\
+			0 & 0 & 0 & 0 & 1 & 1 \\
+			1 & 0 & 0 & 0 & 0 & 1 \\
+		\end{array}
+		\right)
+	\]
+	\begin{figure}
+		\begin{center}
+			\includegraphics{image/graph.7}
+		\end{center}
+		\caption{The rim graph of order 6 of example
+		\ref{example:wheel1}}\label{figure:wheel}
+	\end{figure}
+	
+	Define layout $\mathcal{L} := \langle\Gamma,2\rangle$. Furthermore
+	define the graph $\Gamma'$ on the point $t$ and no edges and the layout
+	$\mathcal{L}' := \langle\Gamma',2\rangle$. We will show that
+	$\mathcal{L}' \preceq \mathcal{L}$.
+	
+	By studying $A_{\mathcal{L}}$ it is clear that every vector in the image
+	of $I_{\mathcal{L}}$ has even weight and that all vectors of even weight
+	are in the image of $I_{\mathcal{L}}$. So a state is solvable if and
+	only if it has an even weight.
+	
+	Define $\sigma : \mathcal{M}_{\mathcal{L}} \rightarrow
+	\mathcal{M}_{\mathcal{L}'} : \lambda \mapsto (t \mapsto
+	\sum_{v\in\Gamma} \lambda(v))$. $\sigma$ is a homomorphism because for
+	all $\lambda,\mu \in \mathcal{M}_{\mathcal{L}}$: $\sigma(\lambda + \mu)
+	= (t \mapsto \sum_{v\in\Gamma} (\lambda+\mu)(v) ) = (t \mapsto
+	\sum_{v\in\Gamma} (\lambda(v) + \mu(v)) ) = (t \mapsto \sum_{v\in\Gamma}
+	\lambda(v)) + (t \mapsto \sum_{v\in\Gamma} \mu(v)) = \sigma(v) +
+	\sigma(\mu)$. And for all $r\in\Z/2\Z$: $\sigma(r\lambda) = (t \mapsto 
+	\sum_{v\in\Gamma} (r\lambda) (v)) = r (t \mapsto \sum_{v\in\Gamma}
+	\lambda(v)) = r\sigma(\lambda)$.
+	
+	Furthermore $\sigma$ is surjective. (This can be seen by considering a
+	state in which only one vertex is in state $1$.)
+	
+	We already know that for a $\lambda \in \mathcal{M}_{\mathcal{L}}$:
+	$\langle\mathcal{L},\lambda\rangle$ is solvable if and only if $\lambda$
+	has even weight i.e. $\sum_{u\in\Gamma_{\mathcal{L}}} \lambda_{u} = 0$.
+	But it is also clear that for a $\mu \in \mathcal{M}_{\mathcal{L}'}$:
+	$\langle\mathcal{L}',\mu\rangle$ is solvable if and only if $\mu(t) =
+	0$. Hence $\langle\mathcal{L},\lambda\rangle$ is solvable if and only if
+	$\langle\mathcal{L}',\sigma(\lambda)\rangle$ is solvable.
+	
+	This show that $\mathcal{L}' \preceq \mathcal{L}$.
+\end{example}
+	
+In the next section we will extend this example.
+
+\section{Chaseable Layouts}
+
+\begin{definition}
+	A layout $\mathcal{L}=\langle\Gamma,q\rangle$ is \emph{chaseable} if and
+	only if there exists an \emph{ordered partition} $(V_{1},\ldots,V_{n})$
+	of $\Gamma$ such that the following holds
+	\begin{definitionlist}[C]
+		\item\label{chase:out} For all $1\le i<n$, for all $u\in V_{i}$
+		there exists a $v\in V_{i+1}$ such that $u\in N(v)$.  
+		
+		\item\label{chase:unique} For all $1<j\le n$, for all $v\in
+		V_{j}$: $\#(V_{j-1} \cap N(v)) \le 1$. 
+		
+		\item\label{chase:clean} For all $1<j\le n$, for all $1\le i <
+		j-1$ for all $v\in V_{j}$: $\#(V_{i} \cap N(v)) = 0$. 
+	\end{definitionlist}
+	
+	The unique $v$ of $u$ as in \ref{chase:out} is called the
+	\emph{annilator} $\Ann_{u}$ of $u$. Define a function
+	$\Ann_{\mathcal{L}} : (\Gamma \backslash V_{n}) \rightarrow \Gamma : v
+	\mapsto \Ann_{v}$.
+\end{definition}
+
+\begin{remark}
+	If the context is clear we will drop subscripts from
+	$\Ann_{\mathcal{L}}$.
+	
+	Every layout $\mathcal{L}$ is chaseable by considering the trivial
+	partition i.e. the partition $(\Gamma_{\mathcal{L}})$. Usually we will
+	not be interrested in this trivial chaseable layout.
+\end{remark}
+
+\begin{definition}
+	Let $\mathcal{L}$ be a chaseable layout. Define the set of free vertices
+	$F_{\mathcal{L}} := \{v\in\Gamma_{\mathcal{L}} \bar v\not\in
+	\Im(\Ann)\}$. 
+\end{definition}
+
+\begin{lemma}\label{lemma:embeddable}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$. $\Ann_{\mathcal{L}}$ induces an embeddding of
+	$V_{i}$ into $V_{j}$ for every $1\le i\le j\le n$.
+\end{lemma}
+
+\begin{proof}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$. We will first proof that $\Ann$ embeds $V_{i}$ 
+	in $V_{i+1}$ for all $1\le i < n$.
+	
+	From property \ref{chase:out} and \ref{chase:unique} it is clear that
+	for all $1\le i < n$: $\Ann|_{V_{i}}$ is injective and
+	$\Im(\Ann|_{V_{i}})\subset V_{i+1}$. This shows that $V_{i}$ is
+	embeddable in $V_{i+1}$.
+	
+	No applying $\Ann$ $j-i$ times $V_{i}$ gets embedded into $V_{j}$ which
+	proofs the result.
+\end{proof}
+
+\begin{corollary}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$. $\Ann_{\mathcal{L}}$ induces a bijection from
+	$F_{\mathcal{L}}$ into $V_{n}$.
+\end{corollary}
+
+\begin{proof}
+	By the above lemma $V_{i}$ is embeddable in $V_{i+1}$ for every $1\le i
+	< n$. So $F\cap V_{i}$ is embeddable in $V_{i+1}$ and $\Ann(F\cap
+	V_{i})$ is disjoint from $F\cap V_{i+1}$.
+	
+	Considering the sequence of subset $F_{1} := F\cap V_{1}$ and
+	$F_{k+1} := \Ann(F_{k}) \cup (F\cap V_{k+1})$ for all
+	$k\in\{1,\ldots,n-1\}$. We will show that for all
+	$k \in \{1,\ldots,n\}$: $F_{k} = V_{k}$.
+	
+	Because for all $i\in\{1,\ldots,n-1\}$: $\Ann(V_{i})\subset V_{i+1}
+	\subset \Cup_{j>1} V_{j}$ so $V_{1} \not\in \Im(\Ann)$ hence $V_{1}
+	\subset F$ so $F_{1} = V_{1} \cap F = V_{1}$.
+	
+	Assume that $F_{k} = V_{k}$ for a certain $k$. Then $F_{k+1} =
+	\Ann(F_{k}) \cup (F\cap V_{k+1}) = \Ann(V_{k}) \cup \{v \in V_{k+1} \bar
+	v \not\in \Im(\Ann)\} = \{v \in V_{k+1} \bar v \in \Im(\Ann)\} \cup \{v
+	\in V_{k+1} \bar v \not\in \Im(\Ann)\} = V_{k+1}$.
+	
+	So by the principle of induction: for all $k \in \{1,\ldots,n\}$: $F_{k}
+	= V_{k}$. This shows that $\Ann$ induces a bijection from $F$ to
+	$V_{n}$. 
+\end{proof}
+
+\begin{definition}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$. A state	$S:=\langle\mathcal{L},\lambda\rangle$
+	is chaseable if and only if there exists a press pattern
+	$p\in\mathcal{P}_{\mathcal{L}}$ such that $p$ lead $S$ into a state
+	$S':=\langle\mathcal{L},\lambda'\rangle$ with only lit vertices in
+	$V_{n}$. ($\lambda'(v)=0$ for all $v\in\Gamma_{\mathcal{L}}\backslash
+	V_{n}$.)   
+
+	State $S'$ is called a chased state of $S$.
+\end{definition}
+
+\begin{lemma}\label{lemma:statechaseable}
+	Let $\mathcal{L}$ be a chaseable layout. Every state $S$ of
+	$\mathcal{L}$ is chaseable.
+\end{lemma}
+
+\begin{proof}
+	Let $(V_{1},\ldots,V_{n})$ be a partition for which $\mathcal{L}$ is
+	chaseable. For every state $S=\langle\mathcal{L},\lambda\rangle$ we
+	define a sequence of states $(S_{1} := \langle\mathcal{L},
+	\lambda_{1}\rangle ,\ldots,S_{n} := \langle\mathcal{L},
+	\lambda_{1}\rangle)$ and a sequence of presses $(p_{1},\ldots,p_{n-1})$
+	inductively.
+	
+	$S_{1}:= \langle\mathcal{L},\lambda_{1}\rangle = S$. for all
+	$k\in\{1,\ldots,n-1\}$: $p_{k} := \sum_{v\in V_{k}}
+	-\lambda_{k}(v)\Ann(v)$ and $S_{k+1}:=\langle\Gamma, \lambda_{k+1}\rangle$
+	is defined by $S_{k} \overset{p_{k}}{\rightarrow} S_{k+1}$ so
+	$\lambda_{k+1}:=\lambda_{k}+\overline{p_{k}}$. Define $S':=S_{n}$ and
+	$p:=\sum_{i:=1}^{n} p_{i}$.
+	
+	We will proof that $S'$ is a chased state of $S$ and that $p$ leads $S$
+	into $S'$. We shall proof the following with induction to $k$: $S_{k}$
+	has no lit vertices in $\Cup_{i<k} V_{i}$.
+	
+	For $k=1$ this is trivially true. Assume that the statement is true for a
+	certain $k>1$. Then for all $v\in\Cup_{i<k} V_{i}$: $\lambda_{k+1}(v) =
+	\lambda_{k}(v) + \overline{p_{k}}(v) = 0 + 0 = 0$. ($\overline{p_{k}}(v)
+	= 0$ because of condition \ref{chase:clean}.) For all $v\in V_{k}$:
+	$\lambda_{k+1}(v) = \lambda_{k}(v) + \overline{p_{k}}(v) =
+	\lambda_{k}(v) + (-\lambda_{k}(v)) = 0$.
+	
+	This proves that every state is chaseable.
+\end{proof}
+
+\begin{lemma}
+	Let $\mathcal{L}$ be a chaseable layout and $S$ a state. The chased
+	state of $S$ is unique.
+\end{lemma}
+
+\begin{proof}
+	Let $\mathcal{L}$ be a chaseable layout and $S := \langle \mathcal{L},
+	\lambda \rangle$ a state. By lemma \ref{lemma:statechaseable} $S$ is
+	chaseable. Assume that there are two press patterns $p$ and $p'$ that
+	chase $S$ down i.e. $\lambda + \overline{p} = O$ and $\lambda +
+	\overline{p'} = O$. Then $\overline{p-p'} = \overline{p} - \overline{p'}
+	= (\lambda + \overline{p}) - (\lambda + \overline{p'}) = O - O = O$.
+\end{proof}
+
+\begin{proof}
+	By the above proof the press pattern which leads $S$ into its chased
+	state is uniquely defined.
+\end{proof}
+
+\begin{definition}
+	Let $\mathcal{L}$ be a chaseable layout. We define a mapping\mbox{ }
+	$\down_{\mathcal{L}} : \mathcal{M}_{\mathcal{L}} \rightarrow
+	\mathcal{M}_{\mathcal{L}} : \lambda \mapsto \lambda\down_\mathcal{L}$
+	where $\lambda\down_\mathcal{L}$ is the chased state of $\lambda$.
+	
+	For every state $S := \langle\mathcal{L},\lambda\rangle$ we define the
+	chased state $S\down := \langle\mathcal{L},\lambda\down\rangle$.
+\end{definition}
+
+\begin{remark}
+	Again if the context will permit it we will drop the subscript on
+	$\thickspace\down_{\mathcal{L}}$.
+\end{remark}
+
+\begin{lemma}\label{lemma:homomorphism}
+	Let $\mathcal{L}:=\langle \Gamma, q \rangle$ be a chaseable layout. \
+	$\down_{\mathcal{L}}$ is a homomorphism. 
+\end{lemma}
+
+\begin{proof}
+	Let $\mathcal{L}$ be a chaseable layout and $\lambda,\mu \in
+	\mathcal{M}$. By lemma \ref{lemma:statechaseable} there are $p,q \in
+	\mathcal{P}$ such that $\lambda\down = \lambda + \overline{p}$ and
+	$\mu\down = \mu + \overline{q}$.
+	
+	Now $(\lambda+\mu) + \overline{p+q} = (\lambda + \overline{p}) + (\mu +
+	\overline{q}) = \lambda\down + \mu\down$. So $p+q$ chases
+	$\langle\mathcal{L},\lambda+\mu\rangle$ down. But then
+	$(\lambda+\mu)\down = \lambda\down + \mu\down$.
+	
+	Furthermore, for all $r\in\Z\/q\Z$: $r\lambda + r\overline{p} =
+	r(\lambda + \overline{p}) = r(\lambda\down)$ so $rp$ chases
+	$\langle\mathcal{L},r\lambda\rangle$ down. But then $(r\lambda)\down =
+	r(\lambda\down)$. 
+	
+	This proofs that $\down$ is a homomorphism.
+\end{proof}
+
+\begin{definition}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$ and let $\phi$ be a bijection of
+	$F_{\mathcal{L}}$ in $V_{n}$. Define $\mathcal{L}\down := \langle
+	\Gamma_{\mathcal{L}}\down,q\rangle$ where $\Gamma_{\mathcal{L}}\down$ is
+	the graph on $V_{n}$ with the multiplicities defined for all $f \in
+	F_{\mathcal{L}}$ and for all $v\in V_{n}$
+	\[
+		m_{\phi(f),v} := (\overline{f})\down(v)
+	\]
+\end{definition}
+
+\begin{theorem}
+	$\mathcal{L}\down \preceq \mathcal{L}$ for all chaseable layouts
+	$\mathcal{L}$.
+\end{theorem}
+
+\begin{proof}
+	Let $\mathcal{L}$ be a chaseable layout with partition
+	$(V_{1},\ldots,V_{n})$ and define $\phi : \mathcal{L} \rightarrow
+	\mathcal{L}\down : \lambda \mapsto \lambda\down$. In lemma
+	\ref{lemma:homomorphism} is shown that $\phi$ is a homomorphism. By
+	inspecting a light pattern $\lambda$ with only lit buttons in $V_{n}$ we
+	see that $\sigma$ is an epimorphism. We	shall show that $\lambda \in
+	\mathcal{M}_{\mathcal{L}}$ is solvable if and only if $\phi( \lambda )$
+	is solvable.
+		
+	Let $\lambda \in \mathcal{M}_{\mathcal{L}}$ be solvable. By theorem
+	\ref{theorem:equivalence} there is a $p\in\mathcal{P}_{\mathcal{L}}$
+	such that $\overline{p}=-\lambda$. But then $O_{\mathcal{L\;\down}} =
+	O_{\mathcal{L}}\down = (\overline{p}+\lambda)\down = \overline{p}\down +
+	\lambda\down$, so $\lambda\down$ is solvable.
+
+	Furthermore if $\lambda\down$ is solvable there is a $q \in
+	\mathcal{P}_{\mathcal{L}\;\down}$ such that $\overline{q} + \lambda\down =
+	O_{\mathcal{L}\;\down}$. Via the bijective embedding of $F_{\mathcal{L}}$
+	in $V_{n}$, there is a corresponding $p\in\mathcal{P}_{\mathcal{L}}$ with
+	$\overline{p}\down = \overline{q}$ thus $(\overline{p} + \lambda)\down =
+	\overline{p}\down + \lambda\down = \overline{q} + \lambda\down =
+	O_{\mathcal{L}}$, so $\lambda$ is solvable.
+	
+	This proofs that $\mathcal{L}\down \preceq \mathcal{L}$.
+\end{proof}
+
+\begin{example}\label{example:wheel2}
+	We define the rim graph of order $n$ to be the graph on
+	$\{0,\ldots,n-1\}$ with edges from $0$ to $n-1$ and $i$ to $i-1$ for all
+	$1<i\le n-1$ and from every vertex to it self. (For the wheel graph of
+	order 6 see figure \ref{figure:wheel}.) We will denote the wheel graph
+	of order $n$ with $W_{n}$.
+	
+	Also define graph $\Delta_n := (\{1\},\{1,\ldots,n\},i,t)$ where for all
+	$e\in E(\Delta)$ $i(e)=t(e)=1$. (See figure
+	\ref{figure:simplerwheel} for a picture of $\Delta_{0}$,
+	$\Delta_{1}$ and $\Delta_{2}$.)
+		
+	We will show the following.
+	\begin{namedlist}
+		\item[$\langle\Delta_0,q\rangle \preceq \langle W_n,q\rangle$] if $n$ is even.
+		\item[$\langle\Delta_1,q\rangle \preceq \langle W_n,q\rangle$] if $n$ is odd and
+		$q$ is odd.
+		\item[$\langle\Delta_2,q\rangle \preceq \langle W_n,q\rangle$] if $n$ is odd and
+		$q$ is even.
+	\end{namedlist}
+	\begin{figure}
+		\begin{center}
+			\hspace*{\fill}
+			\subfigure[$\Delta_{0}$]{\includegraphics{image/graph.8}}
+			\hfill
+			\subfigure[$\Delta_{1}$]{\includegraphics{image/graph.9}}
+			\hfill
+			\subfigure[$\Delta_{2}$]{\includegraphics{image/graph.10}}
+			\hspace*{\fill}
+		\end{center}
+		\caption{The three simpler layouts used in example
+		\ref{example:wheel2}}\label{figure:simplerwheel} 
+	\end{figure}
+	
+	First of all we will show that $\mathcal{L}_{n} := \langle W_{n},q\rangle$
+	is a chaseable layout. We define for all $1\le i\le n$: $V_{i} :=
+	\{i\}$. That $(V_{1},\ldots,V_{n})$ is a partition for $\langle
+	W_{n},q\rangle$ can be readily seen.
+	
+	We will now show that $\mathcal{L}$ with partition
+	$\{V_{1},\ldots,V_{n}\}$ satisfies all necessary properties
+	\begin{namedlist}
+		\item[\ref{chase:out}] For all $i\in\{1,\ldots,n-1\}$: $i\in
+		V_{i}$ has annilator $i+1\in V_{i+1}$.
+		
+		\item[\ref{chase:unique}] For all $j\in\{2,\ldots,n\}$:
+		$N(j) = \{j-1\}$ so $\#N(j)\le 1$.
+
+		\item[\ref{chase:clean}] Again, for all $j\in\{2,\ldots,n\}$:
+		$N(j) = \{j-1\}$ so for all $i\in\{1,2,\ldots,j-2\}$: $V_{i}
+		\cap V_{j} = \varnothing$ so $\#V_{i} \cap V_{j} = 0$.
+	\end{namedlist}
+	This shows that $\mathcal{L}_{n}$ is a chaseable layout.
+	
+	We will determine $\mathcal{L}_{n}\down$. Notice that
+	$F_{\mathcal{L}_{n}} = \{1\}$. With induction it can be shown that the
+	press pattern $p$ which chases $\overline{1}$ down satisfies the
+	following conditions 
+	\[
+		p_{i} = \left\{
+		\begin{array}{ll}
+			1   & \text{ if } i \text{ is odd} \\
+			q-1 & \text{ if } i \text{ is even}\\
+		\end{array}
+		\right.
+	\]
+	
+	Assume for now that $n$ is even. Then $p_{n}=q-1$ and
+	$\overline{1}\down(n) = 1\cdot\overline{1}(n) +
+	(q-1)\cdot\overline{n}(n) = 0$. So it is clear that $\langle
+	W_{n},q\rangle\down = \langle\Delta_{0},q\rangle$ when $n$ is even.
+	
+	Assume for now that $n$ is odd. Then $p_{n}=1$ and $\overline{1}\down(n) = 1\cdot\overline{1}(n) +
+	1\cdot\overline{n}(n) = 2$. So it is clear that $\langle
+	W_{n},q\rangle\down = \langle\Delta_{2},q\rangle$ when $n$ is odd.
+	
+	But when $q$ is odd, say $q=2k+1$, then by pressing vertex $1$ for $k+1$
+	times we get: $\overline{(k+1)\cdot 1}\down(n) =
+	((k+1)\overline{1})\down(n) = (k+1)\overline{1}\down(n) = (k+1) 2 = 2k+2
+	= q + 1$ so $\overline{(k+1)\cdot 1}\down(n) \equiv 1 \pmod q$. Hence if
+	$q$ is odd then $\langle W_{n},q\rangle\down =
+	\langle\Delta_{1},q\rangle$.	
+\end{example}

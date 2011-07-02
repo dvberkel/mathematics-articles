@@ -1,0 +1,764 @@
+\chapter{Preliminaries}
+
+This chapter gathers results needed in earlier chapters. It is assumed the
+reader has at least seen the definition of a ring.
+
+\section{Graphs}
+
+In general there is no consensus among mathematicians what a graph is. Everybody
+adopts her own definition. Because we are interested in a particular kind of
+graph we will choose are definitions apropriatly.
+
+\begin{definition}
+	A \emph{directed multigraph} $\Gamma:=(V,E,i,t)$ is a four-tuple where
+	$V$ and $E$ are disjoint sets, $i$ and $t$ are mappingss from $E$ to
+	$V$.
+	
+	Elements of $V$ are called \emph{vertices} and elements of $E$ are
+	called \emph{directed edges}. An edge $e\in E$ has a \emph{initial vertex} $i(e)$
+	and \emph{terminal vertex} $t(e)$. $e$ joins $i(e)$ and $t(e)$ and is
+	directed from $i(e)$ and to $t(e)$.
+\end{definition}
+
+\begin{remark}		
+	It is possible that there are multiple edges between the same vertices. 
+	
+	It is also possible that an edge has an initial	vertex which is the same
+	as the terminal vertex. Such edges are called \emph{loops}.
+\end{remark}
+
+We would like to shorten our notations where ever possible. The following remark
+makes a step in that direction.
+
+\begin{remark}
+	We will use the following notation for a directed multigraph $\Gamma :=
+	(V,E,i,t)$. $v\in\Gamma$ will mean that $v\in V$, $e\in E(\Gamma)$ will
+	mean $e\in E$. $i_{\Gamma} := i$ and $t_{\Gamma} := t$ or if the context
+	permits it we will drop the subscript altogether. 
+\end{remark}
+
+A general notion in graphs is that of adjacency. We will define these concepts
+in the following definition.
+
+\begin{definition}
+	For every directed multigraph $\Gamma$ and vertices $u,v\in\Gamma$ we
+	say that $u$ is adjacent to $v$ if there exist an edge $e\in E(\Gamma)$
+	such that $i(e)=v$ and $t(e)=u$.
+	
+	The neighbourhood of $v\in\Gamma$ is the set $N(v):=\{ u\in\Gamma \bar u
+	\text{ is adjacent to } v\}$.
+	
+	We define the multiplicity $m_{u,v}$ as the number of edges $e\in
+	E(\Gamma)$ with $i(e)=u$ and $t(e)=v$.
+	
+	If we have chosen an ordering of the vertices of $\Gamma$ we define the
+	adjacency matrix $A_{\Gamma}$ to be the matrix with $m_{u,v}$ on row $v$
+	and column $u$.
+\end{definition}
+
+\begin{example}\label{example:multigraph}
+	Let $\Gamma := (\{u,v,w\},\{1,2,3,4,5,6,7\},i,t)$ where $i$ and $t$ are
+	defined by tables \ref{table:initial} and \ref{table:terminal}
+	respectively.
+	\begin{table}
+		\begin{center}
+			\begin{tabular}{|c|ccccccc|}
+				\hline
+				$e$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+				\hline
+				$i(e)$ & $u$ & $u$ & $v$ & $u$ & $w$ & $v$ & $v$ \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{Definition of $i_{\Gamma}$ of example
+		\ref{example:multigraph}.}\label{table:initial}
+	\end{table}
+	\begin{table}
+		\begin{center}
+			\begin{tabular}{|c|ccccccc|}
+				\hline
+				$e$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+				\hline
+				$t(e)$ & $v$ & $v$ & $u$ & $w$ & $u$ & $w$ & $v$ \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{Definition of $t_{\Gamma}$ of example
+		\ref{example:multigraph}.}\label{table:terminal}
+	\end{table}
+	(See also figure \ref{figure:multigraph})
+	\begin{figure}
+		\begin{center}
+			\includegraphics{image/graph.6}
+		\end{center}
+		\caption{The graph $\Gamma$ of example
+		\ref{example:multigraph}}\label{figure:multigraph} 
+	\end{figure}
+	
+	In $\Gamma$ $u$ is adjacent to $v$ and $w$, $v$ is adjacent to $u$ and
+	itself and $w$ is adjacent to $u$ and $v$. This information determines
+	the neighbourhoods of all the vertices.
+	
+	The following matrix is the adjacency matrix $A_{\Gamma}$.
+	\[
+		\left(
+		\begin{array}{ccc}
+			0 & 1 & 1 \\
+			2 & 1 & 0 \\
+			1 & 1 & 0 \\
+		\end{array}
+		\right)
+	\]
+	
+	Edge $7$ is a loop.
+\end{example}
+
+Example \ref{example:multigraph} is an example where a picture can be made.
+These pictures can be unwieldy if many edges have the same endpoints. In order
+to adress this consider the following convention.
+
+\begin{remark}
+	If in a picture of a directed graph an edge between vertices $u$ and $v$
+	is seen without an arrow, it must be interpreted as two directed edges.
+	One from $u$ to $v$ and another from $v$ to $u$.
+	
+	If an edge from $u$ to $v$ is labelled with a natural number $n$ it
+	tells us that the multiplicity $m_{u,v} = n$. 
+\end{remark}
+
+There are various operations we preform on graphs. They will have our interest
+in following chapters so we shall define them here.
+
+\begin{definition}
+	Let $\Gamma$ be a directed multigraph. We will define an
+	\emph{associate} $\Gamma'$ of $\Gamma$ as follows. $\Gamma'$ is a
+	directed multigraph on the vertices and edges of $\Gamma$ with for all
+	$e\in E_{\Gamma'}$
+	\[
+		i_{\Gamma'}(e) = t_{\Gamma}(e)
+		\Leftrightarrow
+		t_{\Gamma'}(e) = i_{\Gamma}(e)
+	\]
+	
+	This corresponds to reversing all directions of the edges.
+\end{definition}
+
+It is thinkable that the operation just described executed by different
+operators produce different results. That this is not the case is stated in the
+following lemma.
+
+\begin{lemma}
+	Every directed multigraph $\Gamma$ has a unique associate.
+\end{lemma}
+
+\begin{proof}
+	Let $\Gamma_{1}$ and $\Gamma_{2}$ be associates of $\Gamma$. Then for
+	all $e\in\Gamma$: $i_{\Gamma_{1}}(e) = t_{\Gamma}(e) =
+	i_{\Gamma_{2}}(e)$ and $t_{\Gamma_{1}}(e) = i_{\Gamma}(e) =
+	t_{\Gamma_{2}}(e)$.
+	
+	This shows that $\Gamma_{1} = \Gamma_{2}$.
+\end{proof}
+
+The above lemma justifies the following definition.
+
+\begin{definition}
+	We will denote the associate of $\Gamma$ by $\Gamma^{t}$.
+\end{definition}
+
+\begin{example}\label{example:associate}
+	Let $\Gamma$ be the directed multigraph on $\{u,v,w,x,y\}$ defined by
+	the following adjacency matrix (See also figure \ref{figure:associate}.)
+	\[
+		\left(
+		\begin{array}{ccccc}
+			0 & 0 & 0 & 0 & 0 \\
+			1 & 0 & 0 & 0 & 0 \\
+			0 & 1 & 1 & 0 & 0 \\
+			0 & 1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 & 0 \\
+		\end{array}
+		\right)
+	\]
+	
+	$\Gamma^{t}$ is obtained from the graph of $\Gamma$ by reversing the
+	direction of every edge.
+	\begin{figure}
+		\begin{center}
+			\hfill
+			\subfigure[$\Gamma$]{\includegraphics{image/graph.4}}
+			\hfill
+			\subfigure[$\Gamma^{t}$]{\includegraphics{image/graph.5}}
+			\hspace*{\fill}
+		\end{center}
+		\caption{The graphs $\Gamma$ and $\Gamma^{t}$ of example
+		\ref{example:associate}}\label{figure:associate}
+	\end{figure}
+	The adjacency matrix of $\Gamma^{t}$ is the transpose of the adjacency
+	matrix of $\Gamma$.
+\end{example}
+
+\section{Modules}
+
+A module is an extension of the concept of vectorspace.
+
+\begin{definition}
+	Let $R$ be a ring. An $R$-module $M$ is an abelian group $(M,+)$ with an
+	operation $\cdot$ from $R\times M$ to $M$ such that for all $m,n\in M$
+	and $r,s\in R$ 
+	\begin{definitionlist}[M]
+		\item $r\cdot(m+n) = r\cdot m + r\cdot n$. \label{module:grouphomomorphism}
+		\item $(r+s)\cdot m = r\cdot m + s\cdot m$. \label{module:ringhomomorphism1}
+		\item $r\cdot(s\cdot m) = (rs)\cdot m$. \label{module:ringhomomorphism2}
+		\item $1\cdot m = m$. \label{module:ringhomomorphism3}
+	\end{definitionlist}
+\end{definition}
+
+\begin{remark}
+	We will often suppress the use of $\cdot$.
+\end{remark}
+
+\begin{example}\label{example:ringmodule}
+	Let $R$ be a ring. Then $R$ is also an $R$-module.
+\end{example}
+
+\begin{example}
+	Let $F$ be a field and $V$ an $F$-vector space. Then $V$ is also an
+	$F$-module.
+\end{example} 
+
+The single most important idea in vector spaces is that of a base. We will
+define a similiar notion for modules.
+
+\begin{definition}
+	A free $R$-module $M$ is a $R$-module with a finite subset
+	$\{b_{1},\ldots,b_{n}\}\subset M$ such that 
+	\begin{definitionlist}[B]
+		\item\label{basis:generating} For every $m\in M$ there exist 
+		$r_{1},\ldots,r_{n}\in R$ such that $m=\sum_{i=1}^{n}
+		r_{n}b_{n}$.
+		
+		\item\label{basis:independent} If $\sum_{i=1}^{n} r_{n}b_{n} =
+		0$ with $b_{i}\not=b_{j}$ if $i\not=j$ then
+		$r_{1}=\ldots=r_{n}=0$. 
+	\end{definitionlist}
+	A set with property \ref{basis:generating} is called a generating set. A
+	set with property \ref{basis:independent} is called a linearly
+	independent set. So a free $R$-module $M$ is a module with linearly
+	independent, generating set. 	
+\end{definition}
+
+\subsection{Submodules}
+
+\begin{definition}
+	Let $M$ be an $R$-module. A subset $N$ of $M$ is a $R$-submodule of $M$
+	if $N$ is a module with the operations of $M$ restricted to $N$. We will
+	denote this by $N<M$.
+\end{definition}
+
+In order to recognize submodules the following test is appropriate.
+
+\begin{proposition}[Submodule Test]
+	Let $M$ be an $R$-module. The following are equivalent.
+	\begin{enumerate}
+		\item\label{submodule:equivalence:A} $N$ is an $R$-submodule of
+		$M$. 
+		
+		\item\label{submodule:equivalence:B} For all $x,y\in N$ and for
+		all $r\in R$: $x+y\in N$, $-x\in N$ and $rx\in N$.
+		
+		\item\label{submodule:equivalence:C} For all $x,y\in N$ and for
+		all $r\in R$: $x-y\in N$ and $rx\in N$.
+	\end{enumerate}	
+\end{proposition}
+
+\begin{proof}
+	We will show the following chain of implications
+	\ref{submodule:equivalence:A} $\Rightarrow$
+	\ref{submodule:equivalence:B} $\Rightarrow$
+	\ref{submodule:equivalence:C} $\Rightarrow$
+	\ref{submodule:equivalence:A}.
+	
+	\begin{namedlist}[\ref{submodule:equivalence:A} $\Rightarrow$ \ref{submodule:equivalence:B}]
+		\item[\ref{submodule:equivalence:A} $\Rightarrow$ \ref{submodule:equivalence:B}]
+		If $N$ is a $R$-submodule of $M$ then in particular $N$ is an
+		abelian group and for all $r\in R$ for all $x\in N$: $rx\in N$.
+				
+		\item[\ref{submodule:equivalence:B} $\Rightarrow$ \ref{submodule:equivalence:C}]
+		Notice that for all $x,y\in N$: $x-y = x + (-y) \in N$
+		
+		\item[\ref{submodule:equivalence:C} $\Rightarrow$ \ref{submodule:equivalence:A}]
+		By the subgroup test $N$ is a subgroup of $(M,+)$. Because $N$
+		is also closed under scalar multiplication and scalar
+		multiplication is well behaved, $N$ is an $R$-submodule.
+	\end{namedlist}
+\end{proof}
+
+\begin{example}\label{example:submodule}
+	By example \ref{example:ringmodule} $\Z$ is a $\Z$-module. Let
+	$q\in\N$. We will prove that $q\Z := \{qz \bar z\in \Z\}$ is a
+	$\Z$-submodule of $\Z$. 
+	
+	Let $qx,qy\in q\Z$ then $qx-qy = q(x-y) \in q\Z$ because $x-y\in\Z$.
+	Furthermore for every $r\in\Z$ $r(qx) = q(rx) \in q\Z$ because $rx \in
+	\Z$.
+	
+	By the submodule test $q\Z$ is a $\Z$-submodule of $\Z$.
+\end{example}
+
+\subsection{Quotient Module}
+
+Taking quotients is a very strong tool in mathematics. We develop the theory for
+modules here.
+
+\begin{definition}
+	Let $M$ be an $R$-module and $N$ a $R$-submodule of $M$. We define a
+	relation $\sim_{N}$ on $M$. For $x,y\in M$
+	\[
+		x \sim_{N} y \Leftrightarrow x-y \in N
+	\]
+\end{definition}
+
+\begin{proposition}
+	$\sim_{N}$ is an equivalence relation for all $R$-modules $M$ and
+	$R$-submodules $N$.
+\end{proposition}
+
+\begin{proof}
+	We will show that $\sim_{N}$ is reflexive, symmetric and transitive.
+	\begin{namedlist}[Transitivity]
+		\item[Reflexivity] For all $x\in M$ $x-x = 0 \in N$. This shows
+		that $\sim_{N}$ is reflexive.
+		
+		\item[Symmetry] If $x\sim_{N} y$ for $x,y\in M$ then $x-y\in N$
+		but then also $-(x-y) = y-x \in N$ thus $y\sim_{N} x$ which shows
+		that $\sim_{N}$ is symmetric.
+		
+		\item[Transitivity] If $x\sim_{N} y$ and $y\sim_{N} z$ for
+		$x,y,z\in M$ then $x-y\in N$ and $y-z\in N$. But then also
+		$(x-y) + (y-z) = x-z \in N$ so $x\sim_{N} z$. Hence $\sim_{N}$
+		is transitive.
+	\end{namedlist}
+	
+	This shows that $\sim_{N}$ is an equivalence relation.
+\end{proof}
+
+Naming the equivalence classes is appropriate now.
+
+\begin{definition}
+	The set of equivalence classes with respect to $\sim_{N}$ will be
+	denoted by $M/N$ for all $R$-modules $M$ and submodules $N$.
+	
+	An element in $M/N$ will be denoted by $x+N$ for an $x\in M$.
+\end{definition}
+
+A great aspect of taking quotients is that you will end up with a new module. We
+lay the foundations of this in the following definition, lemma and proposition.
+
+\begin{definition}
+	We define operations $\oplus$ from $M/N \times M/N$ to $M/N$ and $\odot$
+	from $R\times M/N$ to $M/N$. For all $x+N,y+N\in M/N$ and $r\in R$
+	\begin{definitionlist}[Q]
+		\item $(x+N) \oplus (y+N) = (x+y) + N$.
+		
+		\item $r\odot(x+N) = rx + N$.
+	\end{definitionlist}
+\end{definition}
+
+\begin{lemma}
+	Operations $\oplus$ and $\odot$ on $M/N$ are well defined.
+\end{lemma}
+
+\begin{proof}
+	Let $x+N = y+N$ and $s+N = t+N$ then $x-y\in N$ and $s-t\in N$ and so
+	$(x-y) + (s-t) = (x+s) - (y+t) \in N$ hence $(x+N) \oplus (s+N) = (y+N)
+	\oplus (t+N)$.
+	
+	Furthermore $r(x-y)=rx - ry\in N$ so $r\odot(x+N) = r\odot(y+N)$.
+\end{proof}
+
+\begin{proposition}
+	$M/N$ with $\oplus$ and $\odot$ make an $R$-module for all $R$-modules
+	$M$ and $R$-submodules $N$.
+\end{proposition}
+
+\begin{proof}
+	Notice that because $(M,+)$ is an abelian group $(N,+) \triangleleft
+	(M,+)$ so $(M/N,\oplus)$ is an abelian group.
+	
+	Furthermore for all $x+N,y+N\in M/N$ and $r\in R$
+	\begin{namedlist}[\ref{module:ringhomomorphism3}]
+		\item[\ref{module:grouphomomorphism}] $r\odot((x+N) \oplus
+		(y+N)) = r\odot((x+y)+N) = r(x+y)+N = (rx+ry)+N = (rx+N) \oplus
+		(ry+N) = r\odot(x+N)\oplus r\odot(y+N)$.
+		
+		\item[\ref{module:ringhomomorphism1}] $(r+s)\odot(x+N) =
+		((r+s)x)+N = (rx + sx)+N = ((rx)+N)\oplus((sx)+N) = r\odot(x+N)
+		\oplus s\odot(x+N)$.
+
+		\item[\ref{module:ringhomomorphism2}] $r\odot(s\odot (x+N)) =
+		r\odot((sx)+N) = r(sx)+N = ((rs)x)+N = (rs)\odot(x+N)$.
+		
+		\item[\ref{module:ringhomomorphism3}] $1\odot(x+N) = (1x)+N =
+		x+N$. 
+	\end{namedlist}
+	
+	This shows that $M/N$ is an $R$-module.
+\end{proof}
+
+\begin{remark}
+	We will often write $+$ for $\oplus$ and suppress $\odot$ in calculations
+	in $M/N$.
+\end{remark}
+
+\begin{example}
+	By example \ref{example:submodule} we know that $q\Z$ is a submodule of
+	$\Z$ for every $q\in\N$. So we can form the quotient module $\Z/q\Z$. As
+	per the construction this is a $\Z$ module. 
+	
+	With a sleightly different view we can see $\Z/q\Z$ as a $\Z/q\Z$
+	module, because $\Z/q\Z$ is also a ring.
+\end{example}
+
+\subsection{Homomorphisms}
+
+\begin{definition}
+	Let $M,N$ be $R$-modules and $\phi:M\rightarrow N$ be a mapping. $\phi$
+	is called a homomorphism if for all $x,y\in M$ and $r\in R$: $\phi(x+y) =
+	\phi(x) + \phi(y)$ and $\phi(rx) = r\phi(x)$.
+	
+	An endomorphism is a homomorphism from a $R$-module to itself. An
+	isomorphism is a bijective homomorphism. An automorphism is a bijective
+	endomorphism.
+\end{definition}
+
+\begin{example}\label{example:homomorphism1}
+	Define $\phi : \Z \rightarrow \Z/q\Z : x \mapsto (x \mod q)$. We will
+	denote the residue class of $x$ by $\overline{x}$. (So $x = \overline{x}
+	\mod q$.) We will show that $\phi$ is an homomorphism.
+	
+	$\phi$ is an homomorphism because for all $x,y\in\Z$ $\phi(x+y) =
+	\overline{x+y} = \overline{x} + \overline{y} = \phi(x) + \phi(y)$.
+	Furthermore for every $r\in\Z$ $\phi(rx) = \overline{rx} =
+	\overline{r}\overline{x} = r\phi(x)$ because $\overline{r}\overline{x} -
+	r\overline{x} = (\overline{r}-r)\overline{x} = 0\overline{x} = 0 \mod
+	q$.
+	
+	This shows that $\phi$ is a homomorphism.
+\end{example}
+
+\begin{definition}
+	Let $\phi$ be a homomorphism between $R$-modules $M$ and $N$. The kernel
+	of $\phi$ is defined as $\Ker(\phi) := \{m\in M \bar \phi(m)= 0\}$. The
+	image of $\phi$ is defined as $\Im(\phi) := \{\phi(m) \bar m\in M\}$.
+\end{definition}
+
+\begin{lemma}
+	Let $\phi$ be a homomorphism between $R$-modules $M$ and $N$. Then
+	$\Ker(\phi)$ is a submodule of $M$ and $\Im(\phi)$ is a submodule of
+	$N$.
+\end{lemma}
+
+\begin{proof}
+	Let $x,y\in\Ker(\phi)$ and $r\in R$ then $\phi(x-y) = \phi(x) - \phi(y)
+	= 0 - 0 = 0$ and $\phi(rx) = r\phi(x) = r0 = 0$. So $\Ker(\phi)$ is a
+	submodule of $M$.
+	
+	Let $s,t\in\Im(\phi)$ and $x,y\in M$ such that $\phi(x)=s$ and
+	$\phi(y)=t$. Then $\phi(x-y) = \phi(x) - \phi(y) = s-t$ so
+	$s-t\in\Im(\phi)$. Also $\phi(rx) = r\phi(x) = rs$ so $rx\in\Im(\phi)$
+	for all $r\in R$. Hence $\Im(\phi)$ is a submodule of $N$.
+\end{proof}
+
+\begin{example}\label{example:homomorphism2}
+	We will determine the kernel and image of the homomorphism of $\phi$
+	from example \ref{example:homomorphism1}.
+	
+	$\Ker(\phi) = \{x \bar \phi(x) = \overline{x} = 0 \mod q\} = q\Z$.
+	
+	$\Im(\phi) = \Z/q\Z$.
+\end{example}
+
+\begin{proposition}[Isomorphism Theorem]
+	Let $M,N$ be $R$-modules and $\phi$ a homomorphism from $M$ to $N$. Then
+	$M/\Ker(\phi)$ is isomorphic to	$\Im(\phi)$.
+\end{proposition}
+
+\begin{proof}
+	Define $\overline{\phi} : M/\Ker(\phi) \rightarrow \Im(\phi) :
+	x+\Ker(\phi) \mapsto \phi(x)$. We will show that $\overline{\phi}$ is
+	well defined and that $\overline{\phi}$ is an isomorphism.
+	
+	Let $x+\Ker(\phi)=y+\Ker(\phi)$ then $x-y\in\Ker(\phi)$ so $0 =
+	\phi(x-y) = \phi(x) - \phi(y)$ hence $\phi(x)=\phi(y)$. This shows that
+	$\overline{\phi}$ is well defined.
+	
+	Let $x+\Ker(\phi),y+\Ker(\phi)\in M/\Ker(\phi)$ and $r\in R$. Then
+	$\overline{\phi}( (x+\Ker(\phi)) + (y+\Ker(\phi)) ) =
+	\overline{\phi}((x+y)+\Ker(\phi)) = \phi(x+y) = \phi(x) + \phi(y) =
+	\overline{\phi}(x+\Ker(\phi)) + \overline{\phi}(y+\Ker(\phi))$. Also
+	$\overline{\phi}(r(x+N)) = \overline{\phi}((rx)+N) = \phi(rx) = r\phi(x)
+	= r\overline{\phi}(x+N)$. This shows that $\overline{\phi}$ is a
+	homomorphism.
+	
+	Furthermore if $\overline{\phi}(x+\Ker(\phi)) =
+	\overline{\phi}(y+\Ker(\phi))$ then $\phi(x) = \phi(y)$ hence
+	$\Ker(\phi)\ni 0 = \phi(x) - \phi(y) = \phi(x-y)$ thus $x+\Ker(\phi) = y
+	+\Ker(\phi)$. This shows that $\overline{\phi}$ is injective.
+	
+	Now let $s\in\Im(\phi)$ and $x\in M$ such that $\phi(x)=s$ then
+	$\overline{\phi}(x+\Ker(\phi)) = \phi(x) = s$. This shows that
+	$\overline{\phi}$ is surjective.
+	
+	All together this shows that $M/\Ker(\phi)$ is isomorphic to $\Im(\phi)$.
+\end{proof}
+
+\begin{example}
+	from examples \ref{example:homomorphism1} and
+	\ref{example:homomorphism2} it is clear that $\Z/q\Z$ is isomorphic to
+	$\Z/q\Z$.	
+\end{example}
+
+\subsection{Free Modules over Commutative Rings}
+
+\begin{theorem}
+	Let $M$ be a free $R$-module where $R$ is a commutative ring. Any two
+	bases of $M$ have the same cardinality. 
+\end{theorem}
+
+for a proof see \cite{roman07}.
+
+\begin{proposition}\label{theorem:MisRn}
+	$M\isomorphic R^{n}$ for certain $n\in N$ for every free $R$-module $M$
+	where $R$ is a commutative ring.
+\end{proposition}
+
+\begin{proof}
+	Let $B:=\{b_{1},\ldots,b_{n}\}$ be a basis for $M$. For all $M\ni m :=
+	\sum_{i:=1}^{n}m_{i}b_{i}$ define $\phi: M \rightarrow R^{n} : m \mapsto
+	\sum_{i:=1}^{n}m_{i}e_{i}$ where the $e_{i}$ is the $i$th standard base
+	element. We will show that $\phi$ is a isomorphism.
+	
+	Let $x,y\in M$ with $x=\sum_{i:=1}^{n}x_{i}b_{i}$ and
+	$y=\sum_{i:=1}^{n}y_{i}b_{i}$ and $r\in R$. Then $\phi(x+y) = \phi(
+	\sum_{i:=1}^{n} x_{i}b_{i} + \sum_{i:=1}^{n} x_{i}b_{i} ) = \phi(
+	\sum_{i:=1}^{n} (x_{i}+y_{i})b_{i} ) = \sum_{i:=1}^{n}(x_{i}+y_{i})e_{i}
+	= \sum_{i:=1}^{n}x_{i}e_{i} + \sum_{i:=1}^{n}y_{i}e_{i} = \phi(x) +
+	\phi(y)$. Also $\phi(rx) = \phi(\sum_{i:=1}^{n}(rx_{i})b_{i}) =
+	\sum_{i:=1}^{n}(rx_{i})e_{i} = r\sum_{i:=1}^{n}(x_{i})e_{i} = r\phi(x)$.
+\end{proof}
+
+\begin{proposition}[Rank-Nulllity Theorem]\label{proposition:ranknullity}
+	Let $R$ be a PID and $f:M\rightarrow N$ be an $R$-module homomorphism of
+	finite dimensional free $R$-modules. Then
+	\[
+		\dim(M) = \dim( \Ker( f ) ) + \dim( \Im( f ) )
+	\]
+\end{proposition}
+
+for a proof see \cite{adkins92}.
+
+\begin{remark}
+	PID stands for \emph{Principal Ideal Domain}.
+\end{remark}
+
+\begin{proof}
+	Find a basis for $\Ker(\phi)$ extend to a basis for $V$. $\Im(\phi)
+	\isomorphic V/\Ker(\phi)$ so $\dim(\Im(\phi)) = \dim(V) -
+	\dim(\Ker(\phi))$.  
+\end{proof}
+
+\subsection{Modules of Functions}
+
+\begin{definition}
+	Let $X$ be a set and $R$ be a ring. Define the set $\mathcal{M}(X,R)$ of
+	functions from $X$ to $R$ of finite support.
+	
+	For all $f,g\in\mathcal{M}(X,R)$, for all $r\in R$ we define operations
+	$\boxplus$ from $\mathcal{M}(X,R)\times\mathcal{M}(X,R)$ to
+	$\mathcal{M}(X,R)$ and $\boxdot$ from $R\times\mathcal{M}(X,R)$ to
+	$\mathcal{M}(X,R)$. 
+	
+	Forall $x\in X$:
+	\begin{definitionlist}[$\mathcal{M}$]
+		\item $(f\boxplus g)(x) := f(x) + g(x)$.
+		\item $(r\boxdot f)(x) := r f(x)$. 
+	\end{definitionlist}
+\end{definition}
+
+\begin{lemma}
+	$\mathcal{M}(X,R)$ with operations $\boxplus$ and $\boxdot$ is a
+	$R$-module for all sets $X$ and all rings $R$. 
+\end{lemma}
+
+\begin{proof}
+	Let $X$ be a set and $R$ be a ring. Showing that $\mathcal{M}(X,R)$ is a
+	$R$-module amounts to showing that $(\mathcal{M}(X,R),\boxplus)$ is a
+	abelian group and that $\boxdot$ behaves nicely with respect to
+	$\boxplus$. We first will show that $(\mathcal{M}(X,R),\boxplus)$ is an
+	abelian group.
+	
+	Define $\mathcal{M} := \mathcal{M}(X,R)$ and let $f,g,h\in\mathcal{M}$.
+	
+	Notice that $\mathcal{M}$ is closed under $\boxplus$. Let $U,V\subset X$
+	be the (finite) supports of $f,g$ respectively. It is clear that the
+	support of $f\boxplus g$ is contained in $U\cup V$ and is therefore
+	necessarily finite.  
+	
+	Define $O:X\rightarrow R : x\mapsto 0$. Then forall $x\in X$: $f(x) =
+	f(x) + 0 = f(x) + O(x) = (f\boxplus O)(x)$ so $O$ acts as the identity
+	for $+$.
+	
+	Furtermore let $\overline{f}:X\rightarrow R: x\mapsto -f(x)$ then
+	$\overline{f}\in \mathcal{M}$ and forall $x\in X$:
+	$(f\boxplus\overline{f})(x) = f(x) + \overline{f}(x) = 
+	f(x) + -f(x) = 0 = O(x)$. Elements in $\mathcal{M}$ have inverses.
+	
+	Also $(f\boxplus (g\boxplus h))(x) = f(x) + (g\boxplus h)(x) = f(x) +
+	g(x) + h(x) = (f\boxplus g)(x) + h(x) = ((f\boxplus g)\boxplus h)(x)$
+	thus $+$ is associative. 
+	
+	Finally $(f\boxplus g)(x) = f(x) + g(x) = g(x) + f(x) = (g\boxplus f)(x)$.
+	
+	This shows that $(\mathcal{M},\boxplus)$ is a abelian group.
+	
+	We will continue are proof by showing that $\boxdot$ behaves nicely with
+	respect to $\boxplus$. Notice that forall $r\in R$: $r\boxdot
+	f\in\mathcal{M}$ because the support of $r\boxdot f$ is contained in the
+	support of $f$. So $\mathcal{M}$ is closed under $\boxdot$.
+	
+	Now we will show the following facts: for all $r,s\in R$ and for all
+	$x\in X$
+	\begin{namedlist}[\ref{module:ringhomomorphism3}]
+		\item[\ref{module:grouphomomorphism}] $(r\boxdot(f\boxplus g))(x) =
+		r((f\boxplus g)(x)) = r(f(x)+g(x)) = rf(x) + rg(x) = (r\boxdot
+		f)(x) \boxplus (r\boxdot g)(x)$.
+		
+		\item[\ref{module:ringhomomorphism1}] $((r+s)\boxdot f)(x) =
+		(r+s)f(x) = rf(x) + sf(x) = (r\boxdot f)(x) + (s\boxdot f)(x)$.
+
+		\item[\ref{module:ringhomomorphism2}] $((r\boxdot(s\boxdot f))(x) =
+		r((s\boxdot f)(x)) = r(sf(x)) = (rs)f(x) = ((rs)\boxdot f)(x)$.
+		
+		\item[\ref{module:ringhomomorphism3}] $(1\boxdot f)(x) = 1f(x) =
+		f(x)$. 
+	\end{namedlist}
+	
+	This shows that $\mathcal{M}$ is a $R$-module.
+\end{proof}
+
+\begin{remark}
+	We will often write $+$ for $\boxplus$ and supress the use of $\boxdot$
+	in calculations in $\mathcal{M}(X,R)$.
+\end{remark}
+
+\begin{lemma}
+	$\mathcal{M}(X,R)$ is a free $R$-module for all sets $X$ and all rings
+	$R$.	
+\end{lemma}
+
+\begin{proof}
+	Let $\mathcal{M}:=\mathcal{M}(X,R)$.
+	
+	For every $y\in X$ define $\overline{y}\in\mathcal{M}$  for all $x\in X$
+	as
+	\[
+		\overline{y}(x):=\left\{
+		\begin{array}{rl}
+			1 & \text{if } x \text{ is equal to } y \\
+			0 & \text{otherwise} \\		
+		\end{array}
+		\right.
+	\]
+	and let $B:=\{\overline{x}\bar\forall x\in X\}$. We will show that $B$
+	is a linearly independent generating set for $\mathcal{M}$.
+	
+	Take $f\in\mathcal{M}$ and let $U$ be the (finite) support of $f$.
+	Notice that $f=\sum_{u\in U} f(u)\overline{u}$. This shows that $B$ is a
+	generating set for $\mathcal{M}$.
+	
+	Now let $S$ be a finite subset of $X$ with $r_{s}\in R$ forall $s\in S$
+	such that $\sum_{s\in S} r_{s}\overline{s} = O$. Forall $t\in S$: $r_{t}
+	= r_{t} 1 = r_{t} \overline{t}(t) = (\sum_{s\in S} r_{s}\overline{s})(t)
+	= O(t) = 0$ which shows that $B$ is lineairly independent set for
+	$\mathcal{M}$. 
+\end{proof}
+
+\begin{corollary}
+	Let $X$ be a finite set. $\mathcal{M}(X,\Z/q\Z)\isomorphic
+	(\Z/q\Z)^{\#X}$.
+\end{corollary}
+
+\begin{proof}
+	This is a consequence of theorem \ref{theorem:MisRn}.
+\end{proof}
+
+\subsection{Matrices over Modules}
+
+\begin{proposition}{Smith Normal Form}
+	Let $R$ be a principal ideal domain and let $A\in M_{m,n}(R)$. Then
+	there is a $U\in GL(m,R)$ and a $V\in GL(n,R)$ such that
+	\[
+		UAV=\left(
+		\begin{array}{cc}
+			D_r & 0 \\
+			0   & 0 \\
+		\end{array}
+		\right)
+	\]
+	where $r=rank(A)$ and $D_r = diag(s_{1},\ldots,s_{r})$ with
+	$s_{i}\not=0$ for all $1\le i \le r$ and $s_{i} | s_{i+1}$ for all $1\le
+	i \le r-1$. Furthermore, if $R$ is an Euclidean domain, ten the matrices
+	U and V can be taken te be a product of elementary matrices.
+\end{proposition}
+
+for a proof see \cite{adkins92}
+
+\begin{corollary}\label{corollary:dimcolisdimrow}
+	$\dim(\Col(A)) = \dim(\Row(A))$ for every matrix $A$ over a free
+	$R$-module where $R$ is a division ring.
+\end{corollary}
+
+\begin{example}
+	Let $S\in M_{3,4}(\Z/9\Z)$ be given by
+	\[
+		S = \left(
+		\begin{array}{cccc}
+			1 & 2 & 3 & 6 \\
+			2 & 1 & 0 & 6 \\
+			5 & 4 & 6 & 3 \\
+		\end{array}
+		\right)
+	\]
+	Will be brought to smith normal form by $U\in M_{3,3}(\Z/9\Z)$ and $V\in
+	M_{4,4}(\Z/9\Z)$ where
+	\[
+		U = \left(
+		\begin{array}{ccc}
+			0 & 5 & 0 \\
+			8 & 5 & 0 \\
+			2 & 1 & 1 \\
+		\end{array}
+		\right)
+		\quad
+		V = \left(
+		\begin{array}{cccc}
+			1 & 4 & 4 & 6 \\
+			0 & 1 & 1 & 0 \\
+			0 & 0 & 1 & 8 \\
+			0 & 0 & 0 & 1 \\
+		\end{array}
+		\right)
+	\]
+	and
+	\[
+		USV = \left(
+		\begin{array}{cccc}
+			1 & 0 & 0 & 0 \\
+			0 & 3 & 0 & 0 \\
+			0 & 0 & 3 & 0 \\
+		\end{array}
+		\right)
+	\]
+\end{example}
+

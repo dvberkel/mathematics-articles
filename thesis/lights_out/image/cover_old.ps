@@ -1,0 +1,69 @@
+%!PS-Adobe-1.0
+%%For: Muzings on Lights Out
+%%Creator: Daan Wanrooy
+%%CreationDate: Mon Nov 19 14:42:06 CET 2007
+%%Pages: (atend)
+%%BoundingBox: 26 299 523 796
+%%HiResBoundingBox: 26.929124 299.228264 522.818984 795.118124
+%%EndComments
+%%BeginProlog
+
+/square {% stack: x y size ds => ---
+	[/ds /size /y /x] dup length 0 add dict begin {exch def} forall
+		x y ds sub moveto
+		x ds add y ds sub ds 180 90 arcn
+		size 2 ds mul sub 0 rlineto
+		currentpoint ds sub ds 90 0 arcn
+		0 size 2 ds mul sub neg rlineto
+		currentpoint exch ds sub exch ds 0 -90 arcn
+		size 2 ds mul sub neg 0 rlineto
+		currentpoint ds add ds -90 -180 arcn
+		closepath
+	end	
+} def
+
+/square_border {% stack: size ds n => ---
+	[/n /ds /size] dup length 2 add dict begin {exch def} forall
+		/l size ds add def
+		/size l n 1 sub div ds sub def
+		0 1 n 1 sub {
+			/i exch def
+			i size ds add mul l neg size ds square
+			l i size ds add mul neg size ds square			
+		} for
+		size ds add n 1 sub mul size add
+	end	
+} def
+
+/square_array {% stack: size ds [data] => ---
+	[/data /ds /size] dup length 1 add dict begin {exch def} forall
+		0 0 size ds square
+		data {
+			/n exch def
+			/size size ds n square_border def
+		} forall
+	end	
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+
+	72 25.4 div dup scale
+	10 280 translate
+	
+	/size 50 def
+	/ds 3 def
+	/data [0 1 7 { 2 mul 3 add} for] def
+	
+	size ds data square_array
+	
+	stroke
+	
+	showpage
+cleanslate restore
+
+%%Trailer
+%%Pages: 1
+%%EOF

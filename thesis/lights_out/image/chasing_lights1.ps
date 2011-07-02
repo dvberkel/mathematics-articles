@@ -1,0 +1,90 @@
+%!PS-Adobe-1.0
+%%For: Muzings on Lights Out
+%%Creator: Daan Wanrooy
+%%CreationDate: Mon Nov 19 14:42:06 CET 2007
+%%Pages: (atend)
+%%BoundingBox: 83 228 427 427
+%%HiResBoundingBox: 83.609997 228.563993 426.617987 426.617987
+%%EndComments
+%%BeginProlog
+
+/square {% stack: x y size dl colored pressed => ---
+	[/pressed /colored /dl /size /y /x] dup length 2 add dict begin {exch def} forall
+		x size 2 div add y size 2 div add moveto
+		dl neg 0 rmoveto
+		size 2 dl mul sub neg 0 rlineto
+		currentpoint dl sub dl 90 180 arc
+		0 size 2 dl mul sub neg rlineto
+		currentpoint exch dl add exch dl 180 270 arc
+		size 2 dl mul sub 0 rlineto
+		currentpoint dl add dl 270 360 arc
+		0 size 2 dl mul sub rlineto
+		currentpoint exch dl sub exch dl 0 90 arc
+		closepath
+		colored {
+			gsave
+				.7 setgray
+				fill
+			grestore
+		} if
+		pressed {
+			x dl sub y dl sub moveto
+			dl dl 2 {2 mul exch} repeat rlineto
+			x dl sub y dl add moveto
+			dl dl neg 2 {2 mul exch} repeat rlineto
+		} if
+		stroke
+	end	
+} def
+
+/grid {% stack: x y c r size [coloring] [presses] ds
+	[/presses /coloring /ds /size /r /c /y /x] dup length 4 add dict begin {exch def} forall
+		/l size ds add def
+		0 1 r 1 sub {
+			/j exch def
+			/color_row coloring r 1 sub j sub get def
+			/press_row presses r 1 sub j sub get def
+			0 1 c 1 sub {
+				/i exch def
+				i j 2 {l mul exch} repeat size ds 
+				color_row i get press_row i get square
+			} for
+		} for 
+	end
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+	72 25.4 div dup scale
+	
+	/size 20 def
+	/ds 5 def
+	/n 5 def
+	
+	2 size mul 2 size mul translate
+	
+	/l size ds add def
+	
+	-20 30 moveto
+	 26 80 
+	 72 30 
+	120 60 curveto
+	120 120 lineto
+	-20 120 lineto
+	closepath
+	clip
+	newpath	
+	
+	0 0 5 5 size ds 
+	[[true  false true  true  false] [true  true  false true  true ] [false true  true  false true ] [false false false false false] [false false false false false]] 
+	[[false true  false true  false] [false true  true  false true ] [false false false false false] [false false false false false] [false false false false false]] 
+	grid
+	
+	showpage
+cleanslate restore
+
+%%Trailer
+%%Pages: 1
+%%EOF

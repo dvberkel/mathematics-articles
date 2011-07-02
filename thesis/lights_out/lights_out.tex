@@ -1,0 +1,42 @@
+\documentclass[12pt,twosided]{thesis}
+
+\usepackage{amsmath,amssymb,amstext}
+\usepackage{graphicx,subfigure}
+\usepackage{array}
+
+\usepackage{index}
+\proofmodetrue
+
+%\usepackage{glossary}
+
+\usepackage{lscape}
+\usepackage{multicol}
+\usepackage{xspace}
+
+\include{content/commands}
+
+%\makeglossary
+\makeindex
+
+\begin{document}
+	\frontmatter
+	\include{content/cover}
+	%\include{content/preface}
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	\mainmatter
+	\include{content/lights_out}
+	\include{content/mathematics}
+	\include{content/detail}
+	
+	\backmatter
+	\include{content/prelimenaries}
+	\include{content/dimension_ker}
+	\bibliographystyle{alpha}
+	\bibliography{lights_out}
+	
+%	\printglossary
+	\printindex
+\end{document}

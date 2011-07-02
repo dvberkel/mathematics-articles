@@ -1,0 +1,27 @@
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\isomorphic}{\ensuremath{\cong}}
+\newcommand{\Ker}{\ensuremath{\operatorname{Ker}}}
+\renewcommand{\Im}{\ensuremath{\operatorname{Im}}}
+\newcommand{\Row}{\ensuremath{\operatorname{Row}}}
+\newcommand{\Col}{\ensuremath{\operatorname{Col}}}
+\newcommand{\Ann}{\ensuremath{\operatorname{Ann}}}
+%\newcommand{\det}{\ensuremath{\operatorname{Det}}}
+\renewcommand{\bar}{\ensuremath{\thickspace|\thickspace}}
+
+\newcommand{\lo}{Lights Out\raisebox{1ex}{\footnotesize\textregistered}\xspace}
+\newcommand{\down}{\ensuremath{\negthickspace\downarrow}}
+
+\newcommand{\namedlistlabel}[1]{\textsf{#1:}\hfil}
+\newenvironment{namedlist}[1][\quad]{%
+\	\begin{list}{}{
+		\renewcommand{\makelabel}{\namedlistlabel}
+		\settowidth{\labelwidth}{\textsf{#1:}}
+		\setlength{\leftmargin}{\labelwidth+\labelsep}
+	}
+}{\end{list}}
+
+\newcommand{\Index}[2][null]{
+	\ifthenelse{\equal{#1}{null}}{\index{#2}}{\index{#1}}
+}
+\renewcommand{\emph}[2][null]{{\itshape#2}\Index[#1]{#2}\xspace}
