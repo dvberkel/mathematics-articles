@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+# This README file instructs how to "build" this metapost images.
+#
+# The following instructions build the metapost images. It can be run with the 
+# following command:
+# 	bash README
+
+mpost -tex=latex graph

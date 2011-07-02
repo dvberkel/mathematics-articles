@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+# This README file instructs how to "build" this thesis.
+#
+# First and foremost it depends on the thesis.class. The thesis class can be
+# found at: http://code.google.com/p/persphone
+#
+# The following instructions build the thesis. It can be run with the following
+# command:
+# 	bash README
+
+name=lights_out
+
+for dir in code content image
+do
+	if [ -f $dir/README ]
+	then
+		cd $dir
+		bash README
+		cd ..
+	fi
+done
+
+latex $name
+bibtex $name
+makeindex $name
+latex $name
+latex $name
+dvips $name.dvi -o $name.ps
