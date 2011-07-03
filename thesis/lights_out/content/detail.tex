@@ -316,8 +316,25 @@ $I_{\mathcal{L}_{c,r,q}}$.
 \end{proposition}
 
 \begin{proof}
-	The assertion follows from theorem \ref{proposition:WpowerI} and lemma
-	\ref{lemma:Winverse}.
+	The inverse of $W_{c}$ is
+	\[
+ 		\left(
+		\begin{array}{cc}
+			0 & I      \\
+			I & -E_{c} \\
+		\end{array}
+		\right)
+	\]
+	according to lemma \ref{lemma:Winverse}. So $W_{c}^{-2}$ is
+	\[
+ 		\left(
+		\begin{array}{cc}
+			I      & -E_{c}      \\
+			-E_{c} & I+E_{c}^{2} \\
+		\end{array}
+		\right)
+	\]
+	which proofs the proposition.	
 \end{proof}
 
 \begin{proposition}
