@@ -346,6 +346,20 @@ $I_{\mathcal{L}_{c,r,q}}$.
 \end{proposition}
 
 \begin{proof}
-	Because every button press in the first row can be extended to a element
-	of $\Ker(I_{\mathcal{L}_{r,c,q}})$.
+	Every button press in the first row can be extended to a element
+	of $\Ker(I_{\mathcal{L}_{r,c,q}})$. In particular an element of 
+	$\Ker(I_{\mathcal{L}_{t,c,q}})$ can be extended in this manner. But an
+	element in $\Ker(I_{\mathcal{L}_{t,c,q}})$ will have no effect in the 
+	first $t$ rows.
+	Because some buttons will be pressed in the $t^{\text{th}}$ row some lights
+	will be lit in the ($t+1)^{\text{th}}$ row. Because the press pattern will
+	be expaned into an element of $\Ker(I_{\mathcal{L}_{r,c,q}})$ there will
+	be no effect in the last $t' = r - t - 1$ rows i.e. an element of
+	$\Ker(I_{\mathcal{L}_{t',c,q}})$ will be generated. So
+	\[
+		\dim(\Ker(I_{\mathcal{L}_{t,c,q}}))%
+		\le%
+		\dim(\Ker(I_{\mathcal{L}_{t',c,q}}))
+	\]
+	But this argument is symmetric and this proofs the proposition.
 \end{proof}
