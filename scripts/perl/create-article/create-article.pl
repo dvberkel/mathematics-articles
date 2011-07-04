@@ -32,6 +32,9 @@ use warnings;
 use Getopt::Long;
 use Cwd;
 
+# Name of README file.
+my $README = "README";
+
 # The directories which will created under the <name> directory.
 my @directories = qw/content lib image/;
 
@@ -172,23 +175,23 @@ EO_KEEP
 ;
 
 # Executable README snippet
-$snippets{'README'} = <<EO_README
+$snippets{$README} = <<EO_README
 #! /usr/bin/env bash
 
-# This README file instructs how to build $name.
+# This $README file instructs how to build $name.
 #
 # The following instructions build $name. It can be run with the following
 # command:
-# 	bash README
+# 	bash $README
 
 name=$name
 
 for dir in @directories
 do
-	if [ -f \$dir/README ]
+	if [ -f \$dir/$README ]
 	then
 		cd \$dir
-		bash README
+		bash $README
 		cd ..
 	fi
 done
@@ -218,7 +221,7 @@ EO_MAIN
 createfiles(\%snippets);
 
 # Make the README file executable
-chmod 0754, "README";
+chmod 0754, "$README";
 
 # Creates a directory named $directory in the current working directory
 # unless one of the following conditions occurs.
