@@ -217,6 +217,9 @@ EO_MAIN
 # Create all the fills with the snippets.
 createfiles(\%snippets);
 
+# Make the README file executable
+chmod 0754, "README";
+
 # Creates a directory named $directory in the current working directory
 # unless one of the following conditions occurs.
 #   The directory already exists.
