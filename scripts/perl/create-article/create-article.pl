@@ -6,12 +6,14 @@
 #     |
 #     <name>.tex
 #     |
+#     README
+#     |
 #     +- content
 #     |   |
 #     |   abstract.tex
 #     |   |
 #     |   title.tex
-#     |   
+#     |
 #     +- lib
 #     |   |
 #     |   environment.tex
@@ -21,7 +23,7 @@
 #     +- image
 #         |
 #         .keep-generated
-#     
+#
 # Where <name> is an argument on the commandline.
 
 use strict;
@@ -82,7 +84,7 @@ EO_TITLE
 ;
 
 # Abstract snippet
-$snippets{'content/abstract.tex'} = <<EO_ABSTRACT 
+$snippets{'content/abstract.tex'} = <<EO_ABSTRACT
 \\begin{abstract}
 	In this article the authors...
 \\end{abstract}
@@ -169,8 +171,36 @@ $snippets{'image/.keep-generated'} = <<EO_KEEP
 EO_KEEP
 ;
 
+# Executable README snippet
+$snippets{'README'} = <<EO_README
+#! /usr/bin/env bash
+
+# This README file instructs how to build $name.
+#
+# The following instructions build $name. It can be run with the following
+# command:
+# 	bash README
+
+name=$name
+
+for dir in @directories
+do
+	if [ -f \$dir/README ]
+	then
+		cd \$dir
+		bash README
+		cd ..
+	fi
+done
+
+latex \$name
+latex \$name
+dvips \$name.dvi -o \$name.ps
+EO_README
+;
+
 # Main snippet
-$snippets{"$name.tex"}= <<EO_MAIN
+$snippets{"$name.tex"} = <<EO_MAIN
 \\documentclass[12pt,twoside,a4paper]{article}
 
 \\input{lib/commands}
@@ -203,7 +233,7 @@ sub createdirectory {
 		mkdir $directory or die "could not create directory $directory: $!\n";
 	} elsif (! -d $directory) {
 		
-		# $directory exists but is not an directory. 
+		# $directory exists but is not an directory.
 		die "$directory exists and is not a directory.\n";
 	}
 }
