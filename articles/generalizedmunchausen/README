@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+# This README file instructs how to build generalizedmunchausen.
+#
+# The following instructions build generalizedmunchausen. It can be run with the following
+# command:
+# 	bash README
+
+name=generalizedmunchausen
+
+for dir in content lib image
+do
+	if [ -f $dir/README ]
+	then
+		cd $dir
+		bash README
+		cd ..
+	fi
+done
+
+latex $name
+bibtex $name
+latex $name
+latex $name
+dvips $name.dvi -o $name.ps

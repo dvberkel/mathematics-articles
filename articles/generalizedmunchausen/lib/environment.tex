@@ -1,0 +1,60 @@
+%-- Units construction ---------------------------------------------------------
+
+\usepackage{ifthen}
+
+\newcounter{unit}
+\setcounter{unit}{0}
+\renewcommand{\theunit}{\arabic{unit}}
+\newcommand{\unitlabelstyle}{\bfseries}
+\newcommand{\unitreferencestyle}{}
+\newcommand{\unitname}{???}
+\newcommand{\unitlabel}[1]{#1}
+\newcommand{\unitclose}{}
+\newcommand{\increaseunitcounter}[1][y]{%
+	\ifthenelse{\equal{#1}{n}}{}{\refstepcounter{unit}}%
+	\renewcommand{\unitlabel}[1]{%
+		\mbox{%
+			{\unitlabelstyle\unitname\ifthenelse{\equal{#1}{n}}{}{\ \theunit}}%
+			\ifthenelse{\equal{##1}{}}{}{\unitreferencestyle\ (##1)}%
+		}%
+	}%
+}%
+\newcommand{\newunit}[5][y]{%
+	\newenvironment{#2}[1][]{%
+		\increaseunitcounter[#1]%
+		\renewcommand{\unitname}{#3}%
+		\renewcommand{\unitclose}{#4}%
+		\begin{list}{}{%
+			\renewcommand{\makelabel}{\unitlabel}%
+		}\item[##1]#5%
+	}{%
+		\hspace*{\fill}\unitclose%
+		\end{list}%
+		\renewcommand{\unitname}{???}%
+		\renewcommand{\unitlabel}[1]{#1}%
+		\renewcommand{\unitclose}{}%
+	}%
+}
+
+\newcommand{\notationname}{Notation}      \newcommand{\notationend}{\ensuremath{\bowtie}}       \newcommand{\notationstyle}{}
+\newcommand{\definitionname}{Definition}  \newcommand{\definitionend}{\ensuremath{\circ}}       \newcommand{\definitionstyle}{}
+\newcommand{\remarkname}{Remark}          \newcommand{\remarkend}{\ensuremath{\triangleleft}}   \newcommand{\remarkstyle}{}
+\newcommand{\examplename}{Example}        \newcommand{\exampleend}{\ensuremath{\triangleright}} \newcommand{\examplestyle}{}
+\newcommand{\conjecturename}{Conjecture}  \newcommand{\conjectureend}{\ensuremath{\diamond}}    \newcommand{\conjecturestyle}{\itshape}
+\newcommand{\lemmaname}{Lemma}            \newcommand{\lemmaend}{\ensuremath{\diamond}}         \newcommand{\lemmastyle}{\itshape}
+\newcommand{\theoremname}{Theorem}        \newcommand{\theoremend}{\ensuremath{\diamond}}       \newcommand{\theoremstyle}{\itshape}
+\newcommand{\propositionname}{Proposition}\newcommand{\propositionend}{\ensuremath{\diamond}}   \newcommand{\propositionstyle}{\itshape}
+\newcommand{\corollaryname}{Corollary}    \newcommand{\corollaryend}{\ensuremath{\diamond}}     \newcommand{\corollarystyle}{\itshape}
+\newcommand{\proofname}{Proof}            \newcommand{\proofend}{\ensuremath{\square}}          \newcommand{\proofstyle}{}
+
+\newunit[n]{notation}{\notationname}{\notationend}{\notationstyle}
+\newunit[n]{definition}{\definitionname}{\definitionend}{\definitionstyle}
+\newunit[n]{remark}{\remarkname}{\remarkend}{\remarkstyle}
+\newunit{example}{\examplename}{\exampleend}{\examplestyle}
+\newunit{conjecture}{\conjecturename}{\conjectureend}{\conjecturestyle}
+\newunit{lemma}{\lemmaname}{\lemmaend}{\lemmastyle}
+\newunit{theorem}{\theoremname}{\theoremend}{\theoremstyle}
+\newunit{proposition}{\propositionname}{\propositionend}{\propositionstyle}
+\newunit{corollary}{\corollaryname}{\corollaryend}{\corollarystyle}
+\newunit[n]{proof}{\proofname}{\proofend}{\proofstyle}
+
