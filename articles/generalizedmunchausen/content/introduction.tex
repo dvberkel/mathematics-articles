@@ -1,0 +1,21 @@
+A Munchausen number in base $b$ is defined in \cite{dvb} as a number $n$ such
+that
+\[
+	n = \sum_{i=0}^{m-1} c_{i}^{c_{i}}
+\]
+where $n = [c_{m-1},c_{m-2},\ldots,c_{0}]_{b}$ is the base $b$ representation
+of $n$.
+
+Perfect Digital Invariant numbers (see \cite{wikipedia:pdi}) are similiarly
+defined. A number $n$ is called $k$-PDI if
+\[
+	n = \sum_{i=0}^{m-1} c_{i}^{k}
+\]
+
+These definitions follow a certain pattern. In particular there exist a function
+$f : \R \rightarrow \R$ such that $n = \sum_{i=0}^{m-1} f\left(c_{i}\right)$
+is the condition on a number. For Munchausen numbers $f(x) := x^{x}$. For
+$k$-PDI numbers take $f(x) := x^{k}$.
+
+In this article we will proof that there are finitly many numbers in any base
+with these generalized properties.
