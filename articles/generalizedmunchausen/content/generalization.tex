@@ -1,0 +1,38 @@
+\section*{Generalized Munchausen Numbers}
+
+We will follow the conventions used in \cite{dvb}. $b\in\N$ will denote a base.
+Therefore $b \ge 2$. For every $n \in \N$ the \emph{base $b$ representation
+of $n$} will be denoted by $[c_{m-1}, c_{m-2}, \ldots, c_{0}]_{b}$, so 
+$0 \le c_{i} < b$ for all $i \in \{0,1,\ldots,m-1\}$ and 
+$n = \sum_{i=0}^{m-1} c_{i}b^{i}$.
+
+For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
+\N : n \mapsto \sum_{i=0}^{m-1} f(c_{i})$.
+
+\begin{definition}
+	An integer $n \in \N$ is called a \emph{$f$-Munchausen number in base $b$}
+	if and only if $n = \F_{b}(n)$.
+\end{definition}
+
+
+\begin{lemma}
+	For all functions $f : \R \rightarrow \R$ there exist an 
+	$M \in \R$ such that for all $n \in \N$: $\F_{b}(n) \le (\blog(n) + 1) M$.
+\end{lemma}
+
+\begin{proof}
+	Let $f : \R rightarrow \R$ be a function. Because $\{0,\ldots,m-1\}$ has 
+	finitely many elements $f$ will attain a maximum. Let $M$ be the maximum
+	attained by $f$ on $\{0,\ldots,m-1\}$. Hence, for all 
+	$c \in \{0,\ldots,m-1\}$: $f(c) \le M$.
+	
+	So $\F_{b}(n) = \sum_{i=0}^{m-1} f(c_{i}) \le 
+	\sum_{i=0}^{m-1} M = m \times M$.
+	
+	Now, the number of digits in the base $b$ represantation of $n$ equals 
+	$\floor{\blog(n) + 1}$. In other words $m := \floor{\blog(n) + 1} 
+	\le \blog(n) + 1$.
+	
+	So for every function $f$ there exist an $M$ such that 
+	$\F_{b}(n) \le (\blog(n) + 1) M$.
+\end{proof}
