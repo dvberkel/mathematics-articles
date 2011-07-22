@@ -14,7 +14,6 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	$b$} if and only if $n = \F_{b}(n)$.
 \end{definition}
 
-
 \begin{proposition}
 	For all functions $f : \R \rightarrow \R$ there exist an 
 	$M \in \R$ such that for all $n \in \N$: $\F_{b}(n) \le (\blog(n) + 1) M$.
@@ -111,4 +110,27 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 
 \begin{proof}
 	Substitute $x = \blog{y}$.
+\end{proof}
+
+\begin{theorem}
+	For every $f : \R \rightarrow \R$ there are finitly many $f$-digit
+	invariant numbers.
+\end{theorem}
+
+\begin{proof}
+	Let $M$ be the bound from the first proposition. By the preceding lemma 
+	there exist a $N \in \N$ such that for all $n \in \N$ with $n \gt N$:
+	$\frac{x}{\blog{x}} \gt 2M$. Hence
+	\[
+		\frac{x}{\blog{x} + 1} \ge \frac{x}{2\blog{x}} \gt M
+	\]
+	
+	Now
+	\[
+		n \gt (\blog{x} + 1) M \gt \mathcal{F}_{b} (n)
+	\]
+	
+	This proves that there are only finitly many possible candidates for the
+	equilaty $n = \mathcal{F}_{b}(n)$ i.e. there are finitly many $f$ digit
+	invariant numbers.
 \end{proof}
