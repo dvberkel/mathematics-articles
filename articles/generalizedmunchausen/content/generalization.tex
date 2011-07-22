@@ -38,58 +38,77 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 \end{proof}
 
 \begin{lemma}
-	For all $x \in \R$: $x < e^{x}$.
+	For all $x \in \R$: $x < b^{x}$.
 \end{lemma}
 
 \begin{proof}
-	for all $x \in \R$ the inequality $e^{x} \gt 0$ holds. So for $x \le 0$ the
+	for all $x \in \R$ the inequality $b^{x} \gt 0$ holds. So for $x \le 0$ the
 	lemma holds trivially.
 	
-	Now for $x \ge 0$ we have that the deriviative of $e^{x}$ is greater then
-	the derivative of $x$. Combining this with the fact that $e^{0} = 1 > 0$ we
-	can conclude that $x \lt e^{x}$ for all $x \ge 0$.
+	Now for $x \ge 0$ we have that the deriviative of $b^{x}$ is greater then
+	the derivative of $x$. Combining this with the fact that $b^{0} = 1 > 0$ we
+	can conclude that $x \lt b^{x}$ for all $x \ge 0$.
 	
-	This proves that $x < e^{x}$ holds for all $x \in \R$.
+	This proves that $x < b^{x}$ holds for all $x \in \R$.
 \end{proof}
 
+\begin{corollary}
+	for non-negative $x \in \R$: $\frac{b^{x}}{x} \ge 1$.
+\end{corollary}
+
+\begin{proof}
+	$1 = \frac{x}{x} \le \frac{b^{x}}{x}$ for $x \ge 0$.
+\end{proof}
 
 \begin{proposition}
 	For all $n \in \N$: 
 	\[
-		\lim_{x \rightarrow \infty} \frac{e^{x}}{x^{n}} = \infty
+		\lim_{x \rightarrow \infty} \frac{b^{x}}{x^{n}} = \infty
 	\]
 \end{proposition}
 
 \begin{proof}
 	We will prove this lemma with induction. In this proof we will call a number
 	$n \in \N$ \emph{strong} if and only if
-	$\lim_{x \rightarrow \infty} \frac{e^{x}}{x^{n}} = \infty$.
+	$\lim_{x \rightarrow \infty} \frac{b^{x}}{x^{n}} = \infty$.
 	
-	We now from the above lemma that $0$ is strong.
+	We can conclude from the above lemma that $0$ is strong.
 	
 	Next we will show that $1$ is strong.
 	\[
-		\frac{e^{x}}{x} =%
-		\frac{1}{2}\frac{\left(e^{\frac{x}{2}}\right)^2}{\frac{x}{2}} =%
-		\frac{1}{2}\left(\frac{e^{\frac{x}{2}}}{\frac{x}{2}}\right)e^{\frac{x}{2}}
+		\frac{b^{x}}{x} =%
+		\frac{1}{2}\frac{\left(b^{\frac{x}{2}}\right)^2}{\frac{x}{2}} =%
+		\frac{1}{2}\left(\frac{b^{\frac{x}{2}}}{\frac{x}{2}}\right)b^{\frac{x}{2}}
 	\]
-	In the above equality we know that 
-	$\frac{e^{\frac{x}{2}}}{\frac{x}{2}} > 1$. Because $0$ is strong we can
-	conclude that $1$ is strong as well.
+	In the above equality we know from the above corollary that 
+	$\frac{b^{\frac{x}{2}}}{\frac{x}{2}} > 1$ for all non-negative $x$.
+	Because $0$ is strong we can conclude that $1$ is strong as well.
 	
 	Now assume that $n \in N$ is strong. We will show that $n+1$ is also strong.
 	Examine the following equality:
 	\[
-		\frac{e^{x}}{x^{n+1}} =%
+		\frac{b^{x}}{x^{n+1}} =%
 		\frac{(n+1)^{n+1}}{(n+1)^{n+1}}%
-		\frac{\left(e^{\frac{x}{n+1}}\right)^{n+1}}{x^{n+1}} =%
+		\frac{\left(b^{\frac{x}{n+1}}\right)^{n+1}}{x^{n+1}} =%
 		\frac{1}{(n+1)^{n+1}}%
-		\left(\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)%
-		\left(\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)^{n}%	
+		\left(\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)%
+		\left(\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)^{n}%	
 	\]
-	Again, by using the fact that $\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}} > 1$
-	and with the induction hypothese it is clear that $n+1$ is strong.
+	Again, by using the fact that $\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}} > 1$
+	for non-negative $x$ and with the aid of the induction hypotheses, it is 
+	clear that $n+1$ is strong.
 	
 	This proves that all natural numbers are strong i.e for all $n \in \N$
-	$\lim_{x \rightarrow \infty} \frac{e^{x}}{x^{n}} = \infty$.
+	$\lim_{x \rightarrow \infty} \frac{b^{x}}{x^{n}} = \infty$.
+\end{proof}
+
+\begin{corollary}
+	for all $n \in \N$:
+	\[
+		\lim_{y \rightarrow \infty} \frac{{y}}{\left(\blog{y}\right)^{n}} = \infty
+	\]
+\end{corollary}
+
+\begin{proof}
+	Substitute $x = \blog{y}$.
 \end{proof}
