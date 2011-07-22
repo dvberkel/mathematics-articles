@@ -37,6 +37,22 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	$\F_{b}(n) \le (\blog(n) + 1) M$.
 \end{proof}
 
+\begin{lemma}
+	For all $x \in \R$: $x < e^{x}$.
+\end{lemma}
+
+\begin{proof}
+	for all $x \in \R$ the inequality $e^{x} \gt 0$ holds. So for $x \le 0$ the
+	lemma holds trivially.
+	
+	Now for $x \ge 0$ we have that the deriviative of $e^{x}$ is greater then
+	the derivative of $x$. Combining this with the fact that $e^{0} = 1 > 0$ we
+	can conclude that $x \lt e^{x}$ for all $x \ge 0$.
+	
+	This proves that $x < e^{x}$ holds for all $x \in \R$.
+\end{proof}
+
+
 \begin{proposition}
 	For all $n \in \N$: 
 	\[
@@ -49,12 +65,7 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	$n \in \N$ \emph{strong} if and only if
 	$\lim_{x \rightarrow \infty} \frac{e^{x}}{x^{n}} = \infty$.
 	
-	We will show that $0$ is strong by proving that $x \lt e^{x}$ for all 
-	$x \in \R$. First of all, notice that for $x \le 0$: $x \le 0 \lt e^{x}$.
-	Secondly, for $x \ge 0$	the derivative of $e^{x}$ is greater then the 
-	derivative of $x$ and $e^{0} = 1 \gt 0$. So $e^{x} \ge x$ for all $x \ge 0$.
-	Hence $\lim_{x \rightarrow \infty} e^{x} = \infty$. This proves that $0$
-	is strong.
+	We now from the above lemma that $0$ is strong.
 	
 	Next we will show that $1$ is strong.
 	\[
