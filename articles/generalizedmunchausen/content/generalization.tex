@@ -56,5 +56,29 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	Hence $\lim_{x \rightarrow \infty} e^{x} = \infty$. This proves that $0$
 	is strong.
 	
-	Now assume that $n$ is strong. We will show that $n+1$ is strong as well.
+	Next we will show that $1$ is strong.
+	\[
+		\frac{e^{x}}{x} =%
+		\frac{1}{2}\frac{\left(e^{\frac{x}{2}}\right)^2}{\frac{x}{2}} =%
+		\frac{1}{2}\left(\frac{e^{\frac{x}{2}}}{\frac{x}{2}}\right)e^{\frac{x}{2}}
+	\]
+	In the above equality we know that 
+	$\frac{e^{\frac{x}{2}}}{\frac{x}{2}} > 1$. Because $0$ is strong we can
+	conclude that $1$ is strong as well.
+	
+	Now assume that $n \in N$ is strong. We will show that $n+1$ is also strong.
+	Examine the following equality:
+	\[
+		\frac{e^{x}}{x^{n+1}} =%
+		\frac{(n+1)^{n+1}}{(n+1)^{n+1}}%
+		\frac{\left(e^{\frac{x}{n+1}}\right)^{n+1}}{x^{n+1}} =%
+		\frac{1}{(n+1)^{n+1}}%
+		\left(\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)%
+		\left(\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)^{n}%	
+	\]
+	Again, by using the fact that $\frac{e^{\frac{x}{n+1}}}{\frac{x}{n+1}} > 1$
+	and with the induction hypothese it is clear that $n+1$ is strong.
+	
+	This shows that all natural numbers are strong i.e for all $n \in \N$
+	$\lim_{x \rightarrow \infty} \frac{e^{x}}{x^{n}} = \infty$.
 \end{proof}
