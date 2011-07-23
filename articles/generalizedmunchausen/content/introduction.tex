@@ -1,16 +1,21 @@
-A Munchausen number in base $b$ is defined in \cite{dvb} as a number $n$ such
-that
+Numbers are a mathematicians best friend. Like everybody, mathematicians work
+hard to get to know interesting characteristics of their best friends.
+
+For example, a Munchausen number in base $b$ is defined in \cite{dvb} as a 
+number $n \in \N$ such that
 \[
 	n = \sum_{i=0}^{m-1} c_{i}^{c_{i}}
 \]
 where $n = [c_{m-1},c_{m-2},\ldots,c_{0}]_{b}$ is the base $b$ representation
-of $n$.
+of $n$. It can be shown that the number $3435$ is the only non-trivial
+Munchausen number in base $10$.
 
-Perfect Digital Invariant numbers (see \cite{wikipedia:pdi}) are similiarly
-defined. A number $n$ is called $k$-PDI if
+Digital Invariant numbers (see \cite{wikipedia:pdi}) are similiarly defined.
+A number $n$ is called $k$-digital invariant if and only if
 \[
 	n = \sum_{i=0}^{m-1} c_{i}^{k}
 \]
+
 
 These definitions follow a certain pattern. In particular there exist a function
 $f : \R \rightarrow \R$ such that $n = \sum_{i=0}^{m-1} f\left(c_{i}\right)$
