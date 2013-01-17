@@ -30,3 +30,104 @@ E_{c} := \left(
 \end{array}
 \right)
 \]
+
+\begin{lemma}
+  $W_{c}$ is invertable for all $c\in\N$.
+\end{lemma}
+
+\begin{proof}
+  \[
+  \left(
+  \begin{array}{cc}
+    E & I \\
+    I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I  \\
+    I & -E \\
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{cc}
+    I & O \\
+    O & I \\
+  \end{array}			
+  \right)
+  \]
+\end{proof}
+
+\begin{theorem}
+  The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is periodic.
+\end{theorem}
+
+\begin{proof}
+  There are finitely many square matrices of size $2c$ over
+  $\GF(q)$. So the sequence $\left(W_{c}^{n}\right)_{n\in\N}$ must
+  repeat. By the preceding lemma $W_{c}$ is invertable so the
+  sequence is periodic.
+\end{proof}
+
+The upper left submatrix of $W_{c}^{k}$ determine the results of
+changing down the lights of $c \times k$ lights out configuration.
+
+\begin{corollary}
+  The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
+  is periodic.
+\end{corollary}
+
+\begin{proof}
+  $\left(\Dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N} = \left(\dim\left(\Ker(W_{c}^{n}|_{1,1})\right)\right)_{n\in\N}$.
+\end{proof}
+
+\begin{lemma}
+  $\Dim\left(\Ker(P_{c,p-1})\right) = c$ where $p$ is period of the sequence. 
+\end{lemma}
+
+\begin{proof}
+  Notice that $W_{c}^{p} = I$ and thus $W_{c}^{p-1} =  W_{c}^{-1}$.
+  Furthermore $\Dim\left(\Ker(P_{c,p-1})\right) =
+  \Dim\left(\Ker(W_{c}^{p-1}|_{1,1})\right) =
+  \Dim\left(\Ker(W_{c}^{-1}|_{1,1})\right)$ and $W_{c}^{-1}|_{1,1} = O$. 
+  Hence $\Dim\left(\Ker(P_{c,p-2})\right) = c$.
+\end{proof}
+
+The last result implies that every pattern of presses in the first row
+can be extended into an element of the kernel.
+
+\begin{theorem}
+  The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
+  is almost palindromic.
+\end{theorem}
+
+\begin{proof}
+  let $p$ be the period of
+  $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$. We will show
+  that for $k,k'\in\N$ such that $k+1+k'=p$
+  \[
+  \dim\left(\Ker(P_{c,k})\right) = \dim\left(\Ker(P_{c,k'})\right)
+  \]
+
+  For all $v\in\Ker(P_{c,k})$, v determines a element of
+  $\Ker(p_{c,k'})$. To see this notice that $v$ can be extended to an
+  element of $V\in\Ker(P_{c,p})$. Because $v\in\Ker(p_{c,k})$ the
+  structure of $V$ is
+  
+  \[
+  V =
+  \left(
+  \begin{array}{ccc}
+    v & \underbrace{0}_{c\times} & v' \\
+  \end{array}
+  \right)^{t}
+  \]
+  
+  Because $V\in\Ker(P_{c,p})$ also
+  $v'\in\Ker(P_{c,k'})$. Hence  $\dim\left(\Ker(P_{c,k})\right) \le
+  \dim\left(\Ker(P_{c,k'})\right)$ 
+
+  Symmetry finishes the proof.
+\end{proof}
