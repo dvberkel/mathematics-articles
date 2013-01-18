@@ -71,16 +71,102 @@ E_{c} := \left(
   sequence is periodic.
 \end{proof}
 
-The upper left submatrix of $W_{c}^{k}$ determine the results of
-changing down the lights of $c \times k$ lights out configuration.
-
-\begin{corollary}
-  The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
-  is periodic.
-\end{corollary}
+\begin{lemma}[$W$-structure]
+  There exist a sequence of $c \times c$ matrices
+  $\left(A_{n}\right)_{n\in\N}$ such that
+  \[
+  W_{c}^{k+1}
+  =
+  \left(
+  \begin{array}{cc}
+    A_{k+2} & A_{k+1} \\
+    A_{k+1} & A_{k}   \\
+  \end{array}
+  \right)  
+  \]
+  for all $k\in\N$.
+\end{lemma}
 
 \begin{proof}
-  $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N} = \left(\dim\left(\Ker(W_{c}^{n}|_{1,1})\right)\right)_{n\in\N}$.
+  Define $A_{0} := O$, $A_{1} := I$ and 
+  $A_{n+1} := E \cdot A_{n} + A_{n-1}$ for all $n\in\N^{+}$. So 
+  $A_{2} = E \cdot I + O = E$. 
+
+  A number $n\in\N$ is called strong if and only if
+  \[
+  W_{c}^{n+1}
+  =
+  \left(
+  \begin{array}{cc}
+    A_{n+2} & A_{n+1} \\
+    A_{n+1} & A_{n}   \\
+  \end{array}
+  \right)  
+  \]
+
+  Notice that
+  $W_{c}^{1} = \left(\begin{smallmatrix} E & I \\ I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} A_{2} & A_{1} \\ A_{1} & A_{0} \\\end{smallmatrix}\right)$
+  so 0 is strong.
+
+  Assume that $k$ is strong. We will show that $k+1$ is strong as well.
+  \[
+  \begin{aligned}
+  W_{c}^{k+1} 
+  & = W \cdot W_{c}^{k} \\
+  & = 
+  \left(
+  \begin{array}{cc}
+    E & I \\
+    I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    A_{k+2} & A_{k+1} \\
+    A_{k+1} & A_{k}   \\
+  \end{array}
+  \right) \\
+  & = 
+  \left(
+  \begin{array}{cc}
+    E \cdot A_{k+2}  + A_{k+1} & E \cdot A_{k+1} + A_{k} \\
+    A_{k+2}                   & A_{k+1}                \\
+  \end{array}
+  \right) \\
+  & =
+  \left(
+  \begin{array}{cc}
+    A_{k+3} & A_{k+2} \\
+    A_{k+2} & A_{k+1} \\
+  \end{array}
+  \right) \\
+  \end{aligned}
+  \]
+
+  By applying the principle of mathematical induction all natural
+  numbers are strong, finishing the proof.
+\end{proof}
+
+\begin{corollary}
+  $W_{c}^{n}$ is symmetric for all $n\in\N$.
+\end{corollary}
+
+\begin{proposition}
+  The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
+  is periodic.
+\end{proposition}
+
+\begin{proof}
+  By the periodicity of $(W_{c}^{n})_{n\in\N}$
+  \[
+  \left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N} 
+  = 
+  \left(\dim\left(\Ker(A_{n+1})\right)\right)_{n\in\N}
+  \]
+
+  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ A_{n+1} & A_{n} \\\end{smallmatrix}\right)$
+  by the $W$-structure lemma.
 \end{proof}
 
 \begin{lemma}
@@ -88,15 +174,17 @@ changing down the lights of $c \times k$ lights out configuration.
 \end{lemma}
 
 \begin{proof}
-  Notice that $W_{c}^{p} = I$ and thus $W_{c}^{p-1} =  W_{c}^{-1}$.
-  Furthermore $\dim\left(\Ker(P_{c,p-1})\right) =
-  \dim\left(\Ker(W_{c}^{p-1}|_{1,1})\right) =
-  \dim\left(\Ker(W_{c}^{-1}|_{1,1})\right)$ and $W_{c}^{-1}|_{1,1} = O$. 
-  Hence $\dim\left(\Ker(P_{c,p-1})\right) = c$.
-\end{proof}
+  We will be using the notation as defined by the $W$-structure lemma.
 
-The last result implies that every pattern of presses in the first row
-can be extended into an element of the kernel.
+  Notice that $W_{c}^{p} = I$ and thus $W_{c}^{p-1} = W_{c}^{-1}$.
+  Furthermore
+  \[
+  \dim\left(\Ker(P_{c,p-1})\right)
+  =
+  \dim\left(\Ker(A_{p})\right) = \dim\left(O\right)
+  = c
+  \]
+\end{proof}
 
 \begin{theorem}
   The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
