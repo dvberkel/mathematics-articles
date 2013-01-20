@@ -215,6 +215,40 @@ E_{c} := \left(
   \]
 \end{proof}
 
+\begin{lemma}
+  If for $n\in\N$ we have $\dim\left(\Ker(P_{c,n})\right) = c$ then
+  \begin{itemize}
+    \item $\dim\left(\Ker(P_{c,n-1})\right) = 0$
+    \item $\dim\left(\Ker(P_{c,n+1})\right) = 0$
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  Choose $n\in\N$ such that $\dim\left(\Ker(P_{c,n})\right) = c$ hence
+  \[
+  W_{c}^{n}
+  =
+  \left(
+  \begin{array}{cc}
+    O & A_{n} \\
+    A_{n} & A_{n-1} \\
+  \end{array}
+  \right)
+  \]
+  and $(-1)^{n} = \det(W_{c}^{n}) = -\det(A_{n})^{2}$ so $A_{n}$ is
+  invertible.
+
+  Notice that 
+  $W_{c}^{n-1} = \left(\begin{smallmatrix} A_{n} & A_{n-1} \\A_{n-1} & A_{n-2} \\\end{smallmatrix}\right)$
+  and
+  $W_{c}^{n+1} = \left(\begin{smallmatrix} A_{n} & O \\ O & A_{n} \\\end{smallmatrix}\right)$
+  hence both
+  \begin{itemize}
+    \item $\dim\left(\Ker(P_{c,n-1})\right) = \dim\left(\Ker(A_{n})\right) = 0$
+    \item $\dim\left(\Ker(P_{c,n+1})\right) = \dim\left(\Ker(A_{n})\right) = 0$.
+  \end{itemize}
+\end{proof}
+
 \begin{theorem}
   The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
   is almost palindromic.
