@@ -60,6 +60,29 @@ E_{c} := \left(
   \]
 \end{proof}
 
+
+\begin{lemma}
+  $\det(W_{c}^{n}) = (-1)^{n}$ for all $n\in\N$.
+\end{lemma}
+
+\begin{proof}
+  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and 
+  \[
+  \det(W_{c}) = \det
+  \left(
+  \begin{array}{cc}
+    E & I \\
+    I & O \\
+  \end{array}
+  \right)
+  =
+  \det(E) \cdot \det(O) - \det(I) \cdot \det(I)
+  =
+  -1
+  \]
+  So with the principle of mathematical induction we proof the lemma.
+\end{proof}
+
 \begin{theorem}
   The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is periodic.
 \end{theorem}
@@ -152,21 +175,27 @@ E_{c} := \left(
   $W_{c}^{n}$ is symmetric for all $n\in\N$.
 \end{corollary}
 
+\begin{proof}
+  trivial.
+\end{proof}
+
 \begin{proposition}
   The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
   is periodic.
 \end{proposition}
 
 \begin{proof}
-  By the periodicity of $(W_{c}^{n})_{n\in\N}$
+  By the $W$-structure lemma
   \[
   \left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N} 
   = 
   \left(\dim\left(\Ker(A_{n+1})\right)\right)_{n\in\N}
   \]
 
-  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ A_{n+1} & A_{n} \\\end{smallmatrix}\right)$
-  by the $W$-structure lemma.
+  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ A_{n+1} & A_{n} \\\end{smallmatrix}\right)$.
+  Now  by the periodicity of $(W_{c}^{n})_{n\in\N}$ we have the
+  periodicity of
+  $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$.
 \end{proof}
 
 \begin{lemma}
