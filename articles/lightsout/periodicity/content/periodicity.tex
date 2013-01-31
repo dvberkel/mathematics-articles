@@ -9,8 +9,8 @@ as
 \[
 W_{c} := \left(
 \begin{array}{cc}
-  E_{c} & I \\
-  I    & O \\
+  -E_{c} & I \\
+  -I    & O \\
 \end{array}
 \right)
 \]
@@ -39,14 +39,14 @@ E_{c} := \left(
   \[
   \left(
   \begin{array}{cc}
-    E & I \\
-    I & O \\
+    -E & I \\
+    -I & O \\
   \end{array}
   \right)
   \cdot
   \left(
   \begin{array}{cc}
-    O & I  \\
+    O & -I  \\
     I & -E \\
   \end{array}
   \right)
@@ -62,7 +62,7 @@ E_{c} := \left(
 
 
 \begin{lemma}
-  $\det(W_{c}^{n}) = (-1)^{n}$ for all $n\in\N$.
+  $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
 \end{lemma}
 
 \begin{proof}
@@ -71,14 +71,14 @@ E_{c} := \left(
   \det(W_{c}) = \det
   \left(
   \begin{array}{cc}
-    E & I \\
-    I & O \\
+    -E & I \\
+    -I & O \\
   \end{array}
   \right)
   =
-  \det(E) \cdot \det(O) - \det(I) \cdot \det(I)
+  \det(-E) \cdot \det(O) - \det(-I) \cdot \det(I)
   =
-  -1
+  1
   \]
   So with the principle of mathematical induction we proof the lemma.
 \end{proof}
@@ -102,8 +102,8 @@ E_{c} := \left(
   =
   \left(
   \begin{array}{cc}
-    A_{k+2} & A_{k+1} \\
-    A_{k+1} & A_{k}   \\
+     A_{k+2} &  A_{k+1} \\
+    -A_{k+1} & -A_{k}   \\
   \end{array}
   \right)  
   \]
@@ -112,8 +112,8 @@ E_{c} := \left(
 
 \begin{proof}
   Define $A_{0} := O$, $A_{1} := I$ and 
-  $A_{n+1} := E \cdot A_{n} + A_{n-1}$ for all $n\in\N^{+}$. So 
-  $A_{2} = E \cdot I + O = E$. 
+  $A_{n+1} := -E \cdot A_{n} - A_{n-1}$ for all $n\in\N^{+}$. So 
+  $A_{2} = -E \cdot I + O = -E$. 
 
   A number $n\in\N$ is called strong if and only if
   \[
@@ -121,15 +121,15 @@ E_{c} := \left(
   =
   \left(
   \begin{array}{cc}
-    A_{n+2} & A_{n+1} \\
-    A_{n+1} & A_{n}   \\
+     A_{n+2} &  A_{n+1} \\
+    -A_{n+1} & -A_{n}   \\
   \end{array}
   \right)  
   \]
 
   Notice that
-  $W_{c}^{1} = \left(\begin{smallmatrix} E & I \\ I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} A_{2} & A_{1} \\ A_{1} & A_{0} \\\end{smallmatrix}\right)$
-  so 0 is strong.
+  $W_{c}^{1} = \left(\begin{smallmatrix} -E & I \\ -I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} A_{2} & A_{1} \\ -A_{1} & -A_{0} \\\end{smallmatrix}\right)$
+  so $0$ is strong.
 
   Assume that $k$ is strong. We will show that $k+1$ is strong as well.
   \[
@@ -139,29 +139,29 @@ E_{c} := \left(
   & = 
   \left(
   \begin{array}{cc}
-    E & I \\
-    I & O \\
+    -E & I \\
+    -I & O \\
   \end{array}
   \right)
   \cdot
   \left(
   \begin{array}{cc}
-    A_{k+2} & A_{k+1} \\
-    A_{k+1} & A_{k}   \\
+     A_{k+2} &  A_{k+1} \\
+    -A_{k+1} & -A_{k}   \\
   \end{array}
   \right) \\
   & = 
   \left(
   \begin{array}{cc}
-    E \cdot A_{k+2}  + A_{k+1} & E \cdot A_{k+1} + A_{k} \\
-    A_{k+2}                   & A_{k+1}                \\
+    -E \cdot A_{k+2} - A_{k+1} & -E \cdot A_{k+1} - A_{k} \\
+    -A_{k+2}                  & -A_{k+1}                 \\
   \end{array}
   \right) \\
   & =
   \left(
   \begin{array}{cc}
-    A_{k+3} & A_{k+2} \\
-    A_{k+2} & A_{k+1} \\
+     A_{k+3} &  A_{k+2} \\
+    -A_{k+2} & -A_{k+1} \\
   \end{array}
   \right) \\
   \end{aligned}
@@ -184,7 +184,7 @@ E_{c} := \left(
   \left(\dim\left(\Ker(A_{n+1})\right)\right)_{n\in\N}
   \]
 
-  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ A_{n+1} & A_{n} \\\end{smallmatrix}\right)$.
+  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ -A_{n+1} & -A_{n} \\\end{smallmatrix}\right)$.
   Now  by the periodicity of $(W_{c}^{n})_{n\in\N}$ we have the
   periodicity of
   $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$.
@@ -197,12 +197,14 @@ E_{c} := \left(
 \begin{proof}
   We will be using the notation as defined by the $W$-structure lemma.
 
-  Notice that $W_{c}^{p} = I$ and thus $W_{c}^{p-1} = W_{c}^{-1}$.
+  Notice that there exist a $k\in\N$ such that $W_{c}^{kp} = I$ and
+  thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$. 
   Furthermore
   \[
   \dim\left(\Ker(P_{c,p-1})\right)
   =
-  \dim\left(\Ker(A_{p})\right) = \dim\left(O\right)
+  \dim\left(\Ker(A_{p})\right)
+  \dim\left(\Ker(A_{kp})\right) = \dim\left(O\right)
   = c
   \]
 \end{proof}
@@ -222,12 +224,12 @@ E_{c} := \left(
   =
   \left(
   \begin{array}{cc}
-    O & A_{n} \\
-    A_{n} & A_{n-1} \\
+     O    &  A_{n}  \\
+    -A_{n} & -A_{n-1} \\
   \end{array}
   \right)
   \]
-  and $(-1)^{n} = \det(W_{c}^{n}) = -\det(A_{n})^{2}$ so $A_{n}$ is
+  and $1 = \det(W_{c}^{n}) = \det(A_{n})^{2}$ so $A_{n}$ is
   invertible.
 
   Notice that 
