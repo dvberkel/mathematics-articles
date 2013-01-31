@@ -203,7 +203,8 @@ E_{c} := \left(
   \[
   \dim\left(\Ker(P_{c,p-1})\right)
   =
-  \dim\left(\Ker(A_{p})\right)
+  \dim\left(\Ker(P_{c,kp-1})\right)
+  =
   \dim\left(\Ker(A_{kp})\right) = \dim\left(O\right)
   = c
   \]
@@ -233,9 +234,9 @@ E_{c} := \left(
   invertible.
 
   Notice that 
-  $W_{c}^{n-1} = \left(\begin{smallmatrix} A_{n} & A_{n-1} \\A_{n-1} & A_{n-2} \\\end{smallmatrix}\right)$
+  $W_{c}^{n-1} = \left(\begin{smallmatrix} A_{n} & A_{n-1} \\-A_{n-1} & -A_{n-2} \\\end{smallmatrix}\right)$
   and
-  $W_{c}^{n+1} = \left(\begin{smallmatrix} A_{n} & O \\ O & A_{n} \\\end{smallmatrix}\right)$
+  $W_{c}^{n+1} = \left(\begin{smallmatrix} A_{n} & O \\ O & -A_{n} \\\end{smallmatrix}\right)$
   hence both
   \begin{itemize}
     \item $\dim\left(\Ker(P_{c,n-1})\right) = \dim\left(\Ker(A_{n})\right) = 0$
