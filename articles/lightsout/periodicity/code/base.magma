@@ -12,7 +12,7 @@ function createE(F, c)
 end function;
 
 function nextWith(E, A, B)
-  return E*A+B, A;
+  return -E*A-B, A;
 end function;
 
 function period(E)

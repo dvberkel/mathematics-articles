@@ -1,19 +1,18 @@
 load "base.magma";
 
 q := 3;
-c := 6;
+c := 1;
 
 E := createE(GF(q), c);
-A := E; B := Parent(E) ! 1; O := Parent(E) ! 0;
+A := Parent(E) ! 1; B := Parent(E) ! 0; O := Parent(E) ! 0;
 
 print Dimension(Kernel(B));
-print Dimension(Kernel(A));
 
 n := 1;
-while A ne O do
-  n +:= 1;
-  A, B := nextWith(E, A, B);
+repeat
   print Dimension(Kernel(A));
-end while;
+  A, B := nextWith(E, A, B);
+  n +:= 1;
+until A eq O;
 
-print n + 1;
+print n;
