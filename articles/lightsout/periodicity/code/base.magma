@@ -1,0 +1,35 @@
+function createE(F, c)
+  M := MatrixAlgebra(F, c);
+  E := M ! 0;
+  for i in [1..c] do
+    for j in [(i-1)..(i+1)] do
+      if (j ge 1 and j le c) then
+        E[i,j] := F ! 1;
+      end if;
+    end for;
+  end for;
+  return E;
+end function;
+
+function nextWith(E, A, B)
+  return E*A+B, A;
+end function;
+
+function period(E)
+  A := E; B := Parent(E) ! 1; O := Parent(E) ! 0;
+  n := 1;
+  while A ne O do
+    n +:= 1;
+      A, B := nextWith(E, A, B);
+  end while;
+  return n + 1;
+end function;
+
+function power(E,k)
+  A := E; B := Parent(E) ! 1;
+  while (k gt 0) do
+    A, B := nextWith(E, A, B);
+    k -:= 1;
+  end while;
+  return B;
+end function;

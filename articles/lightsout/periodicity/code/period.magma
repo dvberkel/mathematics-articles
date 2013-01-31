@@ -1,0 +1,25 @@
+load "base.magma";
+
+q := 2; F := GF(q);
+c := 4;
+
+/*
+for c in [1..12] do
+  E := createE(F, c);
+  p := period(E);
+  printf "%2o, %o\n", c, p;
+end for;
+*/
+
+for c in [1..24] do
+  E := createE(F, c);
+  p := period(E);
+  if (p mod 2 eq 0) then
+    m := Dimension(Kernel(power(E,(p div 2) - 1)));
+    printf "%2o, %o, %o\n", c, p, m;
+  else
+    m := Dimension(Kernel(power(E,p div 2)));
+    n := Dimension(Kernel(power(E,(p div 2) + 1)));
+    printf "%2o, %o, %o, %o\n", c, p, m, n;
+  end if;
+end for;
