@@ -1,7 +1,7 @@
 load "base.magma";
 
 q := 3;
-c := 1;
+c := 12;
 
 E := createE(GF(q), c);
 A := Parent(E) ! 1; B := Parent(E) ! 0; O := Parent(E) ! 0;

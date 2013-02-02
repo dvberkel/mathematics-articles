@@ -184,7 +184,7 @@ E_{c} := \left(
   \left(\dim\left(\Ker(A_{n+1})\right)\right)_{n\in\N}
   \]
 
-  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+2} & A_{n+1}  \\ -A_{n+1} & -A_{n} \\\end{smallmatrix}\right)$.
+  where $W_{c}^{n}=\left(\begin{smallmatrix} A_{n+1} & A_{n}  \\ -A_{n} & -A_{n-1} \\\end{smallmatrix}\right)$.
   Now  by the periodicity of $(W_{c}^{n})_{n\in\N}$ we have the
   periodicity of
   $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$.
@@ -244,36 +244,152 @@ E_{c} := \left(
   \end{itemize}
 \end{proof}
 
+\begin{lemma}
+  $W_{c}$ and $W_{c}^{-1}$ are conjugates.
+\end{lemma}
+
+\begin{proof}
+  We will conjugate $W_{c}$ with 
+  $C := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
+  which is its own inverse
+  \[
+  \begin{aligned}
+  C \cdot W \cdot C^{-1}
+  & =
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    -E & I \\
+    -I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right) \\
+  & =
+  \left(
+  \begin{array}{cc}
+    -I & O \\
+    -E & I \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right) \\
+  & =
+  \left(
+  \begin{array}{cc}
+    0 & -I \\
+    I & -E \\
+  \end{array}
+  \right) \\
+  & =
+  W^{-1}
+  \end{aligned}
+  \]
+\end{proof}
+
+\begin{corollary}
+  $W^{-n} = 
+  \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right) 
+  W 
+  \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
+\end{corollary}
+
+\begin{proof}
+  trivial
+\end{proof}
+
+\begin{remark}
+  The effect of conjugating $W$ with 
+  $\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
+  is a rotation of $180^{\degree}$.
+\end{remark}
+
 \begin{theorem}
   The sequence $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$
   is almost palindromic.
 \end{theorem}
 
 \begin{proof}
-  let $p$ be the period of
-  $\left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}$. We will show
-  that for $k,k'\in\N$ such that $k+1+k'=p$
-  \[
-  \dim\left(\Ker(P_{c,k})\right) = \dim\left(\Ker(P_{c,k'})\right)
-  \]
+  We will be studing the double-infinite sequence
+  $(W_{c}^{z})_{z\in\Z}$.
 
-  For all $v\in\Ker(P_{c,k})$, v determines a element of
-  $\Ker(p_{c,k'})$. To see this notice that $v$ can be extended to an
-  element of $V\in\Ker(P_{c,p})$. Because $v\in\Ker(p_{c,k})$ the
-  structure of $V$ is
-  
+  By the $W$-structure lemma we have for every $n\in\N$
   \[
-  V =
+  W_{c}^{n+1}
+  =
   \left(
-  \begin{array}{ccc}
-    v & \underbrace{0}_{c\times} & v' \\
+  \begin{array}{cc}
+     A_{n+2} &  A_{n+1} \\
+    -A_{n+1} & -A_{n}   \\
   \end{array}
-  \right)^{t}
+  \right)  
   \]
-  
-  Because $V\in\Ker(P_{c,p})$ also
-  $v'\in\Ker(P_{c,k'})$. Hence  $\dim\left(\Ker(P_{c,k})\right) \le
-  \dim\left(\Ker(P_{c,k'})\right)$ 
 
-  Symmetry finishes the proof.
+  and with the preceding corollary
+  \[
+  W_{c}^{-(n+1)}
+  =
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+     A_{n+2} &  A_{n+1} \\
+    -A_{n+1} & -A_{n}   \\
+  \end{array}
+  \right)  
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{cc}
+    -A_{n}  & -A_{n+1} \\
+     A_{n+1} & A_{n+2} \\
+  \end{array}
+  \right)  
+  \]
+
+  thus for all $n\in\N$
+  \[
+  W_{c}^{-(n+3)}
+  =
+  \left(
+  \begin{array}{cc}
+    -A_{n+2}  & -A_{n+3} \\
+     A_{n+3} & A_{n+4} \\
+  \end{array}
+  \right)
+  \]
+
+  Hence $\dim\left(\Ker(P_{c,n})\right) =
+  \dim\left(\Ker(A_{n+1})\right) = 
+  \dim\left(\Ker(-A_{n+1})\right) = 
+  \dim\left(\Ker(P_{c,-(n+3)})\right)$.
+
+  this proofs the theorem.
 \end{proof}

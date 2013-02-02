@@ -16,13 +16,13 @@ function nextWith(E, A, B)
 end function;
 
 function period(E)
-  A := E; B := Parent(E) ! 1; O := Parent(E) ! 0;
+  A := Parent(E) ! 1; B := Parent(E) ! 0; O := Parent(E) ! 0;
   n := 1;
   while A ne O do
     n +:= 1;
-      A, B := nextWith(E, A, B);
+    A, B := nextWith(E, A, B);
   end while;
-  return n + 1;
+  return n;
 end function;
 
 function power(E,k)

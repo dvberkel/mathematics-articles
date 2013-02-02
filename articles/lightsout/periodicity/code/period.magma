@@ -1,16 +1,14 @@
 load "base.magma";
 
-q := 2; F := GF(q);
-c := 4;
+q := 11; F := GF(q);
 
-/*
 for c in [1..12] do
   E := createE(F, c);
   p := period(E);
   printf "%2o, %o\n", c, p;
 end for;
-*/
 
+/*
 for c in [1..24] do
   E := createE(F, c);
   p := period(E);
@@ -23,3 +21,4 @@ for c in [1..24] do
     printf "%2o, %o, %o, %o\n", c, p, m, n;
   end if;
 end for;
+*/
