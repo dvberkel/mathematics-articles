@@ -1,4 +1,4 @@
-\section{Periodicity}
+\section{Algebra}
 
 The process of chasing down the lights is formalized in the following
 manner.
@@ -55,7 +55,7 @@ E_{c} := \left(
   \begin{array}{cc}
     I & O \\
     O & I \\
-  \end{array}			
+  \end{array}
   \right)
   \]
 \end{proof}
@@ -66,7 +66,7 @@ E_{c} := \left(
 \end{lemma}
 
 \begin{proof}
-  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and 
+  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and
   \[
   \det(W_{c}) = \det
   \left(
@@ -105,15 +105,15 @@ E_{c} := \left(
      A_{k+2} &  A_{k+1} \\
     -A_{k+1} & -A_{k}   \\
   \end{array}
-  \right)  
+  \right)
   \]
   for all $k\in\N$.
 \end{lemma}
 
 \begin{proof}
-  Define $A_{0} := O$, $A_{1} := I$ and 
-  $A_{n+1} := -E \cdot A_{n} - A_{n-1}$ for all $n\in\N^{+}$. So 
-  $A_{2} = -E \cdot I + O = -E$. 
+  Define $A_{0} := O$, $A_{1} := I$ and
+  $A_{n+1} := -E \cdot A_{n} - A_{n-1}$ for all $n\in\N^{+}$. So
+  $A_{2} = -E \cdot I + O = -E$.
 
   A number $n\in\N$ is called strong if and only if
   \[
@@ -124,7 +124,7 @@ E_{c} := \left(
      A_{n+2} &  A_{n+1} \\
     -A_{n+1} & -A_{n}   \\
   \end{array}
-  \right)  
+  \right)
   \]
 
   Notice that
@@ -134,9 +134,9 @@ E_{c} := \left(
   Assume that $k$ is strong. We will show that $k+1$ is strong as well.
   \[
   \begin{aligned}
-  W_{c}^{k+1} 
+  W_{c}^{k+1}
   & = W \cdot W_{c}^{k} \\
-  & = 
+  & =
   \left(
   \begin{array}{cc}
     -E & I \\
@@ -150,7 +150,7 @@ E_{c} := \left(
     -A_{k+1} & -A_{k}   \\
   \end{array}
   \right) \\
-  & = 
+  & =
   \left(
   \begin{array}{cc}
     -E \cdot A_{k+2} - A_{k+1} & -E \cdot A_{k+1} - A_{k} \\
@@ -179,8 +179,8 @@ E_{c} := \left(
 \begin{proof}
   By the $W$-structure lemma
   \[
-  \left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N} 
-  = 
+  \left(\dim\left(\Ker(P_{c,n})\right)\right)_{n\in\N}
+  =
   \left(\dim\left(\Ker(A_{n+1})\right)\right)_{n\in\N}
   \]
 
@@ -191,14 +191,14 @@ E_{c} := \left(
 \end{proof}
 
 \begin{lemma}
-  $\dim\left(\Ker(P_{c,p-1})\right) = c$ where $p$ is period of the sequence. 
+  $\dim\left(\Ker(P_{c,p-1})\right) = c$ where $p$ is period of the sequence.
 \end{lemma}
 
 \begin{proof}
   We will be using the notation as defined by the $W$-structure lemma.
 
   Notice that there exist a $k\in\N$ such that $W_{c}^{kp} = I$ and
-  thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$. 
+  thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$.
   Furthermore
   \[
   \dim\left(\Ker(P_{c,p-1})\right)
@@ -233,7 +233,7 @@ E_{c} := \left(
   and $1 = \det(W_{c}^{n}) = \det(A_{n})^{2}$ so $A_{n}$ is
   invertible.
 
-  Notice that 
+  Notice that
   $W_{c}^{n-1} = \left(\begin{smallmatrix} A_{n} & A_{n-1} \\-A_{n-1} & -A_{n-2} \\\end{smallmatrix}\right)$
   and
   $W_{c}^{n+1} = \left(\begin{smallmatrix} A_{n} & O \\ O & -A_{n} \\\end{smallmatrix}\right)$
@@ -249,7 +249,7 @@ E_{c} := \left(
 \end{lemma}
 
 \begin{proof}
-  We will conjugate $W_{c}$ with 
+  We will conjugate $W_{c}$ with
   $C := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
   which is its own inverse
   \[
@@ -304,9 +304,9 @@ E_{c} := \left(
 \end{proof}
 
 \begin{corollary}
-  $W^{-n} = 
-  \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right) 
-  W 
+  $W^{-n} =
+  \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)
+  W
   \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
 \end{corollary}
 
@@ -315,7 +315,7 @@ E_{c} := \left(
 \end{proof}
 
 \begin{remark}
-  The effect of conjugating $W$ with 
+  The effect of conjugating $W$ with
   $\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
   is a rotation of $180^{\degree}$.
 \end{remark}
@@ -338,7 +338,7 @@ E_{c} := \left(
      A_{n+2} &  A_{n+1} \\
     -A_{n+1} & -A_{n}   \\
   \end{array}
-  \right)  
+  \right)
   \]
 
   and with the preceding corollary
@@ -357,7 +357,7 @@ E_{c} := \left(
      A_{n+2} &  A_{n+1} \\
     -A_{n+1} & -A_{n}   \\
   \end{array}
-  \right)  
+  \right)
   \cdot
   \left(
   \begin{array}{cc}
@@ -371,7 +371,7 @@ E_{c} := \left(
     -A_{n}  & -A_{n+1} \\
      A_{n+1} & A_{n+2} \\
   \end{array}
-  \right)  
+  \right)
   \]
 
   thus for all $n\in\N$
@@ -387,8 +387,8 @@ E_{c} := \left(
   \]
 
   Hence $\dim\left(\Ker(P_{c,n})\right) =
-  \dim\left(\Ker(A_{n+1})\right) = 
-  \dim\left(\Ker(-A_{n+1})\right) = 
+  \dim\left(\Ker(A_{n+1})\right) =
+  \dim\left(\Ker(-A_{n+1})\right) =
   \dim\left(\Ker(P_{c,-(n+3)})\right)$.
 
   this proofs the theorem.
