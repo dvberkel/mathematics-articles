@@ -3,18 +3,18 @@
 The process of chasing down the lights is formalized in the following
 manner.
 
-For all $r\in\N$ define the $2r\times 2r$ matrix
-$W_{r}$ with entries in $\GF(q)$ by
+For all $c\in\N$ define the $2c\times 2c$ matrix
+$W_{c}$ with entries in $\GF(q)$ by
 \[
-W_{r} := \left(
+W_{c} := \left(
 \begin{array}{cc}
-  -E_{r} & I \\
+  -E_{c} & I \\
   -I    & O \\
 \end{array}
 \right)
 \]
-where $O$ is the zero matrix, $I$ the identity and $E_{r}$ is defined
-as the $r\times r$ matrix with ones on the diagonal and the two main
+where $O$ is the zero matrix, $I$ the identity and $E_{c}$ is defined
+as the $c\times c$ matrix with ones on the diagonal and the two main
 sub-diagonals, and zeroes elsewhere.
 
 For example
@@ -31,7 +31,7 @@ E_{4} := \left(
 \]
 
 \begin{lemma}
-  $W_{r}$ is invertible for all $r\in\N$.
+  $W_{c}$ is invertible for all $c\in\N$.
 \end{lemma}
 
 \begin{proof}
@@ -61,13 +61,13 @@ E_{4} := \left(
 
 
 \begin{lemma}
-  $\det(W_{r}^{n}) = 1$ for all $n\in\N$.
+  $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
 \end{lemma}
 
 \begin{proof}
-  Note that $\det(W_{r}^{0}) = \det(I) = 1$ and
+  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and
   \[
-  \det(W_{r}) = \det
+  \det(W_{c}) = \det
   \left(
   \begin{array}{cc}
     -E & I \\
@@ -84,21 +84,21 @@ E_{4} := \left(
 \end{proof}
 
 \begin{theorem}
-  The sequence $\left(W_{r}^{n}\right)_{n\in\N}$ is purely periodic.
+  The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is purely periodic.
 \end{theorem}
 
 \begin{proof}
-  There are only finitely many different square matrices of size $2r$ over
-  $\GF(q)$. So the sequence $\left(W_{r}^{n}\right)_{n\in\N}$ must
-  become periodic. By the preceding lemma $W_{r}$ is invertible so the
+  There are only finitely many different square matrices of size $2c$ over
+  $\GF(q)$. So the sequence $\left(W_{c}^{n}\right)_{n\in\N}$ must
+  become periodic. By the preceding lemma $W_{c}$ is invertible so the
   sequence is periodic from the start.
 \end{proof}
 
 \begin{lemma}[$W$-structure]
-  There exists a sequence of $r \times r$ matrices
+  There exists a sequence of $c \times c$ matrices
   $\left(A_{n}\right)_{n\in\N}$ such that
   \[
-  W_{r}^{k+1}
+  W_{c}^{k+1}
   =
   \left(
   \begin{array}{cc}
@@ -117,7 +117,7 @@ E_{4} := \left(
 
   A number $n\in\N$ is called strong if and only if
   \[
-  W_{r}^{n+1}
+  W_{c}^{n+1}
   =
   \left(
   \begin{array}{cc}
@@ -128,14 +128,14 @@ E_{4} := \left(
   \]
 
   Notice that
-  $W_{r}^{1} = \left(\begin{smallmatrix} -E & I \\ -I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} A_{2} & A_{1} \\ -A_{1} & -A_{0} \\\end{smallmatrix}\right)$
+  $W_{c}^{1} = \left(\begin{smallmatrix} -E & I \\ -I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} A_{2} & A_{1} \\ -A_{1} & -A_{0} \\\end{smallmatrix}\right)$
   so $0$ is strong.
 
   Assume that $k$ is strong. We will show that $k+1$ is strong as well.
   \[
   \begin{aligned}
-  W_{r}^{k+1}
-  & = W \cdot W_{r}^{k} \\
+  W_{c}^{k+1}
+  & = W \cdot W_{c}^{k} \\
   & =
   \left(
   \begin{array}{cc}
@@ -172,84 +172,84 @@ E_{4} := \left(
 \end{proof}
 
 \begin{proposition}
-  The sequence $\left(\dim \Ker P_{r,n}\right)_{n\in\N}$
+  The sequence $\left(\dim \Ker P_{r,c}\right)_{r\in\N}$
   is periodic.
 \end{proposition}
 
 \begin{proof}
   By the $W$-structure lemma, for all $n\in\N$,
   \[
-  \dim\Ker P_{r,n}
+  \dim\Ker P_{r,c}
   =
-  \dim\Ker A_{n+1}
+  \dim\Ker A_{r+1}
   \]
 
-  where $W_{r}^{n}=\left(\begin{smallmatrix} A_{n+1} & A_{n}  \\ -A_{n} & -A_{n-1} \\\end{smallmatrix}\right)$.
-  By the periodicity of $(W_{r}^{n})_{n\in\N}$ we have the
+  where $W_{c}^{r}=\left(\begin{smallmatrix} A_{r+1} & A_{r}  \\ -A_{r} & -A_{r-1} \\\end{smallmatrix}\right)$.
+  By the periodicity of $(W_{c}^{r})_{r\in\N}$ we have the
   periodicity of
-  $\left(\dim\Ker(P_{r,n}\right)_{n\in\N}$.
+  $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
 \end{proof}
 
-\begin{lemma}
-  $\dim\Ker P_{r,p-1} = r$ where $p$ is period of the sequence.
+\begin{lemma}[Maximal Dimension]
+  $\dim\Ker P_{p-1,c} = c$ where $p$ is period of the sequence.
 \end{lemma}
 
 \begin{proof}
   We will be using the notation as defined by the $W$-structure lemma.
 
-  Notice that there exists $k\in\N$ such that $W_{r}^{kp} = I$ and
-  thus $W_{r}^{kp-1} = W_{r}^{-1} \cdot W_{r}^{kp} = W_{r}^{-1}$.
+  Notice that there exists $k\in\N$ such that $W_{c}^{kp} = I$ and
+  thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$.
   Furthermore
   \[
-  \dim\Ker P_{r,p-1}
+  \dim\Ker P_{p-1,c}
   =
-  \dim\Ker P_{r,kp-1}
+  \dim\Ker P_{kp-1,c}
   =
   \dim\Ker A_{kp} = \dim O
-  = r
+  = c
   \]
 \end{proof}
 
 \begin{lemma}
-  If for some $n\in\N$ we have $\dim\Ker P_{r,n} = r$ then
+  If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
   \begin{itemize}
-    \item $\dim\Ker P_{r,n-1} = 0$
-    \item $\dim\Ker P_{r,n+1} = 0$
+    \item $\dim\Ker P_{r-1,c} = 0$
+    \item $\dim\Ker P_{r+1,c} = 0$
   \end{itemize}
 \end{lemma}
 
 \begin{proof}
-  Let $n\in\N$ be such that $\dim\Ker P_{r,n} = r$; then
+  Let $r\in\N$ be such that $\dim\Ker P_{r,c} = c$; then
   \[
-  W_{r}^{n}
+  W_{c}^{r}
   =
   \left(
   \begin{array}{cc}
-     O    &  A_{n}  \\
-    -A_{n} & -A_{n-1} \\
+     O    &  A_{r}  \\
+    -A_{r} & -A_{r-1} \\
   \end{array}
   \right)
   \]
-  and $1 = \det W_{r}^{n} = (\det A_{n})^{2}$, so $A_{n}$ is
+  and $1 = \det W_{c}^{r} = (\det A_{r})^{2}$, so $A_{r}$ is
   invertible.
 
   Note that
-  $W_{r}^{n-1} = \left(\begin{smallmatrix} A_{n} & A_{n-1} \\-A_{n-1} & -A_{n-2} \\\end{smallmatrix}\right)$
+  $W_{c}^{r-1} = \left(\begin{smallmatrix} A_{r} & A_{r-1} \\-A_{r-1} & -A_{r-2} \\\end{smallmatrix}\right)$
   and
-  $W_{r}^{n+1} = \left(\begin{smallmatrix} A_{n} & O \\ O & -A_{n} \\\end{smallmatrix}\right)$,
+  $W_{c}^{r+1} = \left(\begin{smallmatrix} A_{r} & O \\ O & -A_{r} \\\end{smallmatrix}\right)$,
   hence both
   \begin{itemize}
-    \item $\dim\Ker P_{r,n-1} = \dim\Ker A_{n} = 0$,
-    \item $\dim\Ker P_{r,n+1} = \dim\Ker A_{n} = 0$.
+    \item $\dim\Ker P_{r-1,c} = \dim\Ker A_{r} = 0$,
+    \item $\dim\Ker P_{r+1,c} = \dim\Ker A_{r} = 0$.
   \end{itemize}
 \end{proof}
 
 \begin{lemma}
-  $W_{r}$ and $W_{r}^{-1}$ are conjugates.
+  $W_{c}$ and $W_{c}^{-1}$ are conjugates.
 \end{lemma}
 
 \begin{proof}
-  We will conjugate $W=W_{r}$ by
+  We will conjugate $W=W_{c}$ by
   $C := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$,
   which is its own inverse,
   \[
@@ -304,9 +304,9 @@ E_{4} := \left(
 \end{proof}
 
 \begin{corollary}
-  $W_r^{-n} =
+  $W_{c}^{-n} =
   \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)
-  W_r
+  W_{c}^{n}
   \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
 \end{corollary}
 
@@ -321,27 +321,27 @@ E_{4} := \left(
 \end{remark}
 
 \begin{theorem}
-  The sequence $\left(\dim\Ker P_{r,n}\right)_{n\in\N}$
+  The sequence $\left(\dim\Ker P_{r,c}\right)_{r\in\N}$
   is almost palindromic.
 \end{theorem}
 
 \begin{proof}
   We will be studing the doubly-infinite sequence
-  $(W_{r}^{z})_{z\in\Z}$.
+  $(W_{c}^{z})_{z\in\Z}$.
 
-  By the $W$-structure lemma we have, for every $n\in\N$,
+  By the $W$-structure lemma we have, for every $r\in\N$,
   \[
-  W_{r}^{n+1}
+  W_{c}^{r+1}
   =
   \left(
   \begin{array}{cc}
-     A_{n+2} &  A_{n+1} \\
-    -A_{n+1} & -A_{n}   \\
+     A_{r+2} &  A_{r+1} \\
+    -A_{r+1} & -A_{r}   \\
   \end{array}
   \right)
   \]
 
-  and by the preceding corollary $W_{r}^{-(n+1)}$ equals
+  and by the preceding corollary $W_{c}^{-(r+1)}$ equals
   \[
   \left(
   \begin{array}{cc}
@@ -352,8 +352,8 @@ E_{4} := \left(
   \cdot
   \left(
   \begin{array}{cc}
-     A_{n+2} &  A_{n+1} \\
-    -A_{n+1} & -A_{n}   \\
+     A_{r+2} &  A_{r+1} \\
+    -A_{r+1} & -A_{r}   \\
   \end{array}
   \right)
   \cdot
@@ -366,30 +366,30 @@ E_{4} := \left(
   =
   \left(
   \begin{array}{cc}
-    -A_{n}  & -A_{n+1} \\
-     A_{n+1} & A_{n+2} \\
+    -A_{r}  & -A_{r+1} \\
+     A_{r+1} & A_{r+2} \\
   \end{array}
   \right);
   \]
 
   thus for all $n\in\N$
   \[
-  W_{r}^{-(n+3)}
+  W_{c}^{-(r+3)}
   =
   \left(
   \begin{array}{cc}
-    -A_{n+2}  & -A_{n+3} \\
-     A_{n+3} & A_{n+4} \\
+    -A_{r+2}  & -A_{r+3} \\
+     A_{r+3} & A_{r+4} \\
   \end{array}
   \right).
   \]
 
   Hence
   \[
-  \dim\Ker P_{r,n} =
-  \dim\Ker A_{n+1} =
-  \dim\Ker(-A_{n+1}) =
-  \dim\Ker P_{r,-(n+3)}.
+  \dim\Ker P_{r,c} =
+  \dim\Ker A_{r+1} =
+  \dim\Ker(-A_{r+1}) =
+  \dim\Ker P_{-(r+3),c}.
   \]
 
   This proves the theorem.
