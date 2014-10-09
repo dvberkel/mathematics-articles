@@ -19,6 +19,8 @@ do
 done
 
 latex $name
+bibtex $name
+latex $name
 latex $name
 dvips $name.dvi -o $name.ps
 ps2pdf $name.ps
