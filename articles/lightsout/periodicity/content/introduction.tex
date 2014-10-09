@@ -1,19 +1,30 @@
 \section{Introduction}
 
-Introduction to Lights Out and the chasing down the lights. EtceteraS
+Introduction to Lights Out and the chasing down the lights. Etcetera.
 
 \begin{definition}
   For all $c,r\in\N^{+}$ we define the following symbols related to
-  $c \times r$ Lights Out layout.
+  $r \times c$ Lights Out layout.
+  
+  An {\it $r\times c$ light pattern} is an $r\times c$ matrix
+  with entries in $\GF_q$. The zero-pattern is the all-zeroes
+  matrix, indicated by $O$; it corresponds to the situation
+  where no lights are lit (on a $r\times c$ board).
+  The set of all $r\times c$ light patterns is denoted by $\Lp_{r,c}$.
 
-  $\Lp_{c,r}$ is the set of light patterns. $O \in \Lp_{c,r}$ is the
-  zero-pattern. I.e no lights are lit.
+  A {\it $r\times c$ press pattern $p$} is also an $r\times c$ matrix
+  with entries in $\GF_q$; it indicates the effect of changing
+  the light at position $i, j$ of the board by the entry $p_{i,j}$.
+  $\Pp_{r,c}$ is the set of all such press patterns.
 
-  $\Pp_{c,r}$ is the set of press patterns.
+  For every $p\in\Pp_{r,c}$ there exist a map $\phi_{p,r,c} : \Lp_{r,c}
+  \rightarrow \Lp_{r,c}$ that describes the effect of pressing $p$ on
+  a light pattern $\ell$.  The result will be $\ell + p$.
 
-  For every $p\in\Pp_{c,r}$ there exist a $\phi_{p,c,r} : \Lp_{c,r}
-  \rightarrow \Lp_{c,r}$ that describes the effect of pressing $p$ on
-  a light pattern. 
-
-  $P_{c,r} : \Pp_{c,r} \rightarrow \Lp_{c,r} : p \mapsto \phi_{p,c,r}(O)$.
+  Applying the map
+  $P_{r,c} : \Pp_{r,c} \rightarrow \Lp_{r,c}$
+  to a press pattern $p$ results in the light pattern $\ell$ that 
+  emerges when applying $p$ to the zero pattern. Thus
+  $p \mapsto \ell=\phi_{p,r,c}(O)$; note that the
+  matrices $p$ and $\ell$ are identical.
 \end{definition}
