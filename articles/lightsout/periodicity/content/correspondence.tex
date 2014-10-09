@@ -1,0 +1,31 @@
+\section{Correspondence}
+
+We have proven several theorems about the behaviour of $\dim\Ker
+P_{r,c}$. In this section we will interpret the results in the
+language of press patterns.
+
+Let $t$ be the period of $\dim\Ker P_{r,c}$ as $r$ runs over $\N$. The
+Maximal Dimension lemma says $\dim\Ker P_{t-1,c} = c$. In other words
+for a $(t-1)\times c$ Lights Out board there are $q^{c}$ press
+patterns $p\in\Pp_{r,c}$ such that $\phi_{p,r,c}(O) = O$.
+
+Notice that if for a press pattern $p\in\Ker P_{t-1,c}$ the first row
+is not pressed $p = O$. There are $q^{c}$ ways of pressing buttons in
+the first row, hence each can be extended to a press pattern in $\Ker
+P_{t-1,c}$.
+
+\begin{lemma}
+    Every set of button presses in the first row can be extended to an
+    press pattern inf $\Ker P_{t-1,c}$.
+\end{lemma}
+
+\begin{lemma}
+    for $u,v \in \N$ such that $u + 1 + v = t-1$; $\dim\Ker P_{u,c} =
+    \dim\Ker P_{v,c}$
+\end{lemma}
+
+\begin{proof}
+    For an element of $p \in \Ker P_{u,c}$ can be extended to an
+    element $p' \in \Ker P_{t-1, c}$. $\phi_{p,t-1,c}$ only effects
+    lights up buttons in row $u+1$. Hence $p'-p \in \Ker_{v,c}$.
+\end{proof}
