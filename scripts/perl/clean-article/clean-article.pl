@@ -34,7 +34,7 @@ GetOptions(
 
 # List the usage of this script if the user provided the --help option.
 if ($help) {
-	
+
 	die "usage: $0 [--dir=<directory>] [--help] [--bbl]\n";
 }
 
@@ -51,37 +51,37 @@ cleandirectory($directory);
 
 # Cleans directory recursively of all files in @clean.
 sub cleandirectory {
-	
+
 	local *DIR;
-	
+
 	my $directory = shift @_;
-	
+
 	# Go into the directory
-	chdir $directory or die "Could not make $directory current directory: $!\n";	
-	
+	chdir $directory or die "Could not make $directory current directory: $!\n";
+
 	# If the directory contains a .keep-generated file skip it.
 	if (-e '.keep-generated') {
-		
+
 		return "skipping";
 	}
-	
+
 	# Inspect all files
 	opendir DIR, '.' or die "Could not open $directory: $!\n";
 	for my $file (readdir DIR) {
-	
+
 		# Skip current and parent directory.
 		next if $file =~ m/^\.\.?$/;
-	
+
 		if (-d $file) {
-		
+
 			# Recurse in the directory
 			cleandirectory($file);
 			chdir '..';
 		} else {
-			
+
 			# If extension is found in @clean remove file
 			if ($file =~ /$regex/) {
-			
+
 				unlink $file;
 			}
 		}
