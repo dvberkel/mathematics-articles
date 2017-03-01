@@ -52,7 +52,7 @@ GetOptions(
 # List the usage of this script if the number of arguments is not correct
 # or if the user provided the --help option.
 if (scalar (@ARGV) != 1 || $help) {
-	
+
 	die "usage: $0 [--dir=<directory>] [--help] <name>\n";
 }
 
@@ -61,7 +61,7 @@ my $name = shift @ARGV;
 
 # Make the working directory the target directory.
 if ($directory ne getcwd) {
-	
+
 	chdir $directory or die "could not change directory to $directory: $!\n";
 }
 
@@ -71,11 +71,11 @@ chdir $name or die "could not change to directory $name: $!\n";
 
 # Create the directories.
 for $directory (@directories) {
-	
-	createdirectory($directory);	
+
+	createdirectory($directory);
 }
 
-# This has will hold all the snippets to fill the files with.
+# This hash will hold all the snippets to fill the files with.
 my %snippets;
 
 # Title snippet
@@ -230,15 +230,15 @@ chmod 0754, "$README";
 #
 # The later condition is seen as an error.
 sub createdirectory {
-	
+
 	my $directory = shift @_;
-	
+
 	if (! -e $directory) {
-		
+
 		# $directory does not exist.
 		mkdir $directory or die "could not create directory $directory: $!\n";
 	} elsif (! -d $directory) {
-		
+
 		# $directory exists but is not an directory.
 		die "$directory exists and is not a directory.\n";
 	}
@@ -247,7 +247,7 @@ sub createdirectory {
 # Creates a document with name $name and $content as content.
 # It only creates this document if a file with said name does not exists.
 sub createdocument {
-	
+
 	my $name = shift @_;
 	my $content = shift @_;
 
@@ -258,20 +258,20 @@ sub createdocument {
 		print LIB_SOURCE $content;
 		close LIB_SOURCE;
 	} else {
-		
+
 		print "skipping creation of $name, it already exists\n";
-	}	
+	}
 }
 
 # Given a hash reference of filenames to content snippets, this method
 # will create all the filenames with the corresponding snippets.
 sub createfiles {
-	
+
 	my $hashref = shift @_;
 	my %table = %$hashref;
 
 	for my $filename (keys %table) {
-		
-		createdocument($filename, $table{$filename});	
+
+		createdocument($filename, $table{$filename});
 	}
 }
