@@ -32,8 +32,10 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	$\floor{\blog(n) + 1}$. In other words $m := \floor{\blog(n) + 1} 
 	\le \blog(n) + 1$.
 	
-	So for every function $f$ there exist an $M$ such that 
-	$\F_{b}(n) \le (\blog(n) + 1) M$.
+	So for every function $f$ there exist an $M$ such that
+  \[
+	  \F_{b}(n) \le (\blog(n) + 1) M
+  \]
 \end{proof}
 
 \begin{lemma}
@@ -44,9 +46,9 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 	for all $x \in \R$ the inequality $b^{x} \gt 0$ holds. So for $x \le 0$ the
 	lemma holds trivially.
 	
-	Now for $x \ge 0$ we have that the deriviative of $b^{x}$ is greater then
-	the derivative of $x$. Combining this with the fact that $b^{0} = 1 > 0$ we
-	can conclude that $x \lt b^{x}$ for all $x \ge 0$.
+	Now for $x \ge 0$ the deriviative of $b^{x}$ is greater than the derivative of
+  $x$. Combining this with the fact that $b^{0} = 1 > 0$ we can conclude that $x
+  \lt b^{x}$ for all $x \ge 0$. 
 	
 	This proves that $x < b^{x}$ holds for all $x \in \R$.
 \end{proof}
@@ -89,13 +91,12 @@ For every $f : \R \rightarrow \R$ define a function $\F_{b} : \N \rightarrow
 		\frac{b^{x}}{x^{n+1}} =%
 		\frac{(n+1)^{n+1}}{(n+1)^{n+1}}%
 		\frac{\left(b^{\frac{x}{n+1}}\right)^{n+1}}{x^{n+1}} =%
-		\frac{1}{(n+1)^{n+1}}%
+		\frac{\left(b^{\frac{n-1}{n+1}}\right)^{x}}{(n+1)^{n+1}}%
 		\left(\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)%
-		\left(\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}}\right)^{n}%	
+		\frac{b^{\frac{x}{n+1}}}{\left(\frac{x}{n+1}\right)^{n}}%	
 	\]
-	Again, by using the fact that $\frac{b^{\frac{x}{n+1}}}{\frac{x}{n+1}} > 1$
-	for non-negative $x$ and with the aid of the induction hypotheses, it is 
-	clear that $n+1$ is strong.
+	Again, by using the fact the lemma, its corollary and the induction
+  hypotheses, it is clear that $n+1$ is strong.
 	
 	This proves that all natural numbers are strong i.e for all $n \in \N$
 	$\lim_{x \rightarrow \infty} \frac{b^{x}}{x^{n}} = \infty$.
