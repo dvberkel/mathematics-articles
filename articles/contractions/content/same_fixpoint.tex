@@ -1,0 +1,26 @@
+\begin{theorem}
+  Let $f_{0}, f_{1}, f_{2}, \ldots$ be a sequence of contractions, all with the
+  fixed point $z\in\mathbb{R}$, such that there exist an $\epsilon$ such that
+  for every $n\in\mathbb{N}$ the contraction constant $\alpha_{n}$ is less than
+  $1 - \epsilon$.
+
+  For every $x\in\mathbb{R}$ the sequence $x_{0}, x_{1}, x_{2}, \ldots$, with
+  $x_{0} = x$ and $x_{n+1} = f_{x}(x_{n})$ for all $n\in\mathbb{N}$, converges and
+  had limit $z$.
+\end{theorem}
+
+\begin{proof}
+  Let $f_{0}, f_{1}, \ldots$ and $x\in\mathbb{R}$ be given. Then
+  $\mathop{d}(x_{n+1}, z) = \mathop{d}(f_{n}(x_{n}), f_{n}(z)) \le
+  \alpha_{n}\mathop{d}(x_{n}, z) < (1-\epsilon)\mathop{d}(x_{n}, z)$.
+
+  With induction one sees that $\mathop{d}(x_{n}, z) <
+  (1-\epsilon)^{n}\mathop{d}(x_{0}, z)$. Hence
+
+  \[
+  \lim_{n->\infty}\mathop{d}(x_{n}, z) = \lim_{n->\infty}
+  (1-\epsilon)^{n}\mathop{d}(x_{0}, z) = 0
+  \]
+
+  This concludes the proof.
+\end{proof}
