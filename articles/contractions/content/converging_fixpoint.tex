@@ -1,5 +1,24 @@
+\begin{theorem}
+  Let $f_{0}, f_{1}, f_{2}, \ldots$ be a sequence of contractions, with the
+  fixed point $z_{n}\in\mathbb{R}$, such that
+  \begin{enumerate}
+    \item there exist an $\epsilon$ such that for every $n\in\mathbb{N}$ the
+      contraction constant $\alpha_{n}$ is less than $\alpha = 1 - \epsilon$.
+
+    \item $2\alpha < 1$
+
+    \item the sequence $z_{0}, z_{1}, \ldots$ converges and has limit
+      $z\in\mathbb{R}$.  
+  \end{enumerate}
+  
+
+  For every $x\in\mathbb{R}$ the sequence $x_{0}, x_{1}, x_{2}, \ldots$, with
+  $x_{0} = x$ and $x_{n+1} = f_{x}(x_{n})$ for all $n\in\mathbb{N}$, converges and
+  had limit $z$.
+\end{theorem}
+
 \begin{proof}
-  assume $\mathop{d}(x_{n}, z_{n}) \le \epsilon$, and $\mathop{d}(z_{n}, z) \le \alpha_{n}\epsilon$ 
+  assume $\mathop{d}(x_{n}, z_{n}) \le \epsilon$, and $\mathop{d}(z_{n}, z) \le \alpha\epsilon$ 
 
   \[
   \mathop{d}(x_{n+1}, z) \le \mathop{d}(x_{n+1}, z_{n}) + \mathop{d}(z_{n}, z)
@@ -8,7 +27,7 @@
   Notice
 
   \[
-  \mathop{d}(x_{n+1}, z_{n}) = \mathop{d}(f(x_{n}), f(z_{n})) \le \alpha_{n} \mathop{d}(x_{n}, z_{n}) \le \alpha_{n} \epsilon
+  \mathop{d}(x_{n+1}, z_{n}) = \mathop{d}(f(x_{n}), f(z_{n})) \le \alpha_{n} \mathop{d}(x_{n}, z_{n}) \le \alpha \epsilon
   \]
 
   Hence
