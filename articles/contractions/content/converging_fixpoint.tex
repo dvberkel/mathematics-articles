@@ -33,19 +33,20 @@
   Hence
 
   \[
-  \mathop{d}(x_{n+1}, z) \le 2 \alpha_{n} \epsilon = \beta \epsilon
+  \mathop{d}(x_{n+1}, z) \le 2 \alpha \epsilon = \beta \epsilon
   \]
 \end{proof}
 
 \begin{proof}
   let $x,y \in \mathbb{R}$ than $\mathop{d}(x_{n+1}, y_{n+1}) =
-  \mathop{d}(f(x_{n}), f(y_{n})) \le \alpha_{n}\mathop{d}(x_{n}, y_{n})$. With
-  induction $\mathop{d}(x_{n}, y_{n}) = \mathop{d}(x_{0}, y_{0})\Pi_{i=0}^{n} \alpha_{i}$
+  \mathop{d}(f(x_{n}), f(y_{n})) \le \alpha_{n}\mathop{d}(x_{n}, y_{n}) \le
+  \alpha\mathop{d}(x_{n}, y_{n})$. With induction $\mathop{d}(x_{n}, y_{n}) =
+  \mathop{d}(x_{0}, y_{0}) \alpha^{n}$ 
 
   Hence
 
   \[
-  \lim_{n \rightarrow \infty} \mathop{d}(x_{n}, y_{n}) = \mathop{d}(x_{0}, y_{0})\lim_{n \rightarrow \infty} \Pi_{i=0}^{n} \alpha_{i} = 0
+  \lim_{n \rightarrow \infty} \mathop{d}(x_{n}, y_{n}) = \mathop{d}(x_{0}, y_{0})\lim_{n \rightarrow \infty} \alpha^{n} = 0
   \]
 
 \end{proof}
