@@ -111,9 +111,9 @@ E_{4} := \left(
 \end{lemma}
 
 \begin{proof}
-  Define $E_{0} := O$, $E_{1} := I$ and
+  Define $E_{0} := I$, $E_{1} := E$ and
   $E_{n+1} := -E \cdot E_{n} - E_{n-1}$ for all $n\in\N^{+}$. So
-  $E_{2} = -E \cdot I - O = -E$. For convenience define $E_{-1} := -I$. 
+  $E_{2} = -E \cdot I - O = -E$. For convenience define $E_{-1} := O$. 
 
   A number $n\in\N$ is called strong if and only if
   \[
@@ -154,7 +154,7 @@ E_{4} := \left(
   \left(
   \begin{array}{cc}
     -E \cdot E_{k} - E_{k-1} & -E \cdot E_{k-1} - E_{k-2} \\
-    -R_{k}                  & -E_{k-1}                 \\
+    -E_{k}                  & -E_{k-1}                  \\
   \end{array}
   \right) \\
   & =
@@ -184,7 +184,7 @@ E_{4} := \left(
   \dim\Ker E_{r}
   \]
 
-  where $W_{c}^{r}=\left(\begin{smallmatrix} E_{r} & E_{r-1}  \\ -E_{r-1} & -E_{r-1} \\\end{smallmatrix}\right)$.
+  where $W_{c}^{r}=\left(\begin{smallmatrix} E_{r} & E_{r-1}  \\ -E_{r-1} & -E_{r-2} \\\end{smallmatrix}\right)$.
   By the periodicity of $(W_{c}^{r})_{r\in\N}$ we have the
   periodicity of
   $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
@@ -293,7 +293,7 @@ E_{4} := \left(
   & =
   \left(
   \begin{array}{cc}
-    0 & -I \\
+    O & -I \\
     I & -E \\
   \end{array}
   \right) \\
@@ -329,7 +329,7 @@ E_{4} := \left(
   We will be studing the doubly-infinite sequence
   $(W_{c}^{z})_{z\in\Z}$.
 
-  By the $W$-structure lemma we have, for every $r\in\N$,
+  By the $W$-structure lemma we have, for every $r\in\N^{+}$,
   \[
   W_{c}^{r}
   =
@@ -372,14 +372,14 @@ E_{4} := \left(
   \right);
   \]
 
-  thus for all $n\in\N$
+  thus for all $r\in\N$
   \[
-  W_{c}^{-(r+3)}
+  W_{c}^{-(r+2)}
   =
   \left(
   \begin{array}{cc}
-    -E_{r+1}  & -E_{r+2} \\
-     E_{r+2} & E_{r+3} \\
+    -E_{r}  & -E_{r+1} \\
+     E_{r+1} & E_{r+2} \\
   \end{array}
   \right).
   \]
@@ -387,9 +387,9 @@ E_{4} := \left(
   Hence
   \[
   \dim\Ker P_{r,c} =
-  \dim\Ker E_{r+1} =
-  \dim\Ker(-E_{r+1}) =
-  \dim\Ker P_{-(r+3),c}.
+  \dim\Ker E_{r} =
+  \dim\Ker(-E_{r}) =
+  \dim\Ker P_{-(r+2),c}.
   \]
 
   This proves the theorem.
