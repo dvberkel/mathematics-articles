@@ -14,3 +14,13 @@ createE := function(c)
   od;
   return M;
 end;
+
+createW := function(c)
+  local Ec;
+  Ec := createE(c);
+  return BlockMatrix([
+    [1, 1, -1*Ec],
+    [1, 2, IdentityMat(c)],
+    [2, 1, -IdentityMat(c)]
+  ], 2, 2);
+end;
