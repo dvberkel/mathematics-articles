@@ -13,7 +13,7 @@ W_{c} := \left(
 \end{array}
 \right)
 \]
-where $O$ is the zero matrix, $I$ the identity and $E_{c}$ is defined
+where $O$ is the zero matrix, $I$ the identity matrix and $E_{c}$ is defined
 as the $c\times c$ matrix with ones on the diagonal and the two main
 sub-diagonals, and zeroes elsewhere.
 
@@ -96,14 +96,14 @@ E_{4} := \left(
 
 \begin{lemma}[$W$-structure]
   There exists a sequence of $c \times c$ matrices
-  $\left(E_{n}\right)_{n\in\N}$ such that
+  $\left(T_{n}\right)_{n\in\N}$ such that
   \[
   W_{c}^{n}
   =
   \left(
   \begin{array}{cc}
-     E_{n} &  E_{n-1} \\
-    -E_{n-1} & -E_{n-2}   \\
+     T_{n} &  T_{n-1} \\
+    -T_{n-1} & -T_{n-2}   \\
   \end{array}
   \right)
   \]
@@ -111,9 +111,9 @@ E_{4} := \left(
 \end{lemma}
 
 \begin{proof}
-  Define $E_{0} := I$, $E_{1} := E$ and
-  $E_{n+1} := -E \cdot E_{n} - E_{n-1}$ for all $n\in\N^{+}$. So
-  $E_{2} = -E \cdot I - O = -E$. For convenience define $E_{-1} := O$. 
+  Define $T_{0} := I$, and for convenience $T_{-1} := O$ and
+  $E_{n+1} := -E \cdot T_{n} - T_{n-1}$ for all $n\in\N$. So
+  $T_{1} = -E \cdot I - O = -E$. For convenience define $T_{-1} := O$. 
 
   A number $n\in\N$ is called strong if and only if
   \[
@@ -121,8 +121,8 @@ E_{4} := \left(
   =
   \left(
   \begin{array}{cc}
-     E_{n} &  E_{n-1}  \\
-    -E_{n-1} & -E_{n-2} \\
+     T_{n} &  T_{n-1}  \\
+    -T_{n-1} & -T_{n-2} \\
   \end{array}
   \right)
   \]
@@ -146,22 +146,22 @@ E_{4} := \left(
   \cdot
   \left(
   \begin{array}{cc}
-     E_{k} &  E_{k-1}  \\
-    -E_{k-1} & -E_{k-2} \\
+     T_{k} &  T_{k-1}  \\
+    -T_{k-1} & -T_{k-2} \\
   \end{array}
   \right) \\
   & =
   \left(
   \begin{array}{cc}
-    -E \cdot E_{k} - E_{k-1} & -E \cdot E_{k-1} - E_{k-2} \\
-    -E_{k}                  & -E_{k-1}                  \\
+    -E \cdot T_{k} - T_{k-1} & -E \cdot T_{k-1} - T_{k-2} \\
+    -T_{k}                  & -T_{k-1}                  \\
   \end{array}
   \right) \\
   & =
   \left(
   \begin{array}{cc}
-     E_{k+1} &  E_{k} \\
-    -E_{k} & -E_{k-1} \\
+     T_{k+1} &  T_{k} \\
+    -T_{k} & -T_{k-1} \\
   \end{array}
   \right) \\
   \end{aligned}
@@ -181,13 +181,12 @@ E_{4} := \left(
   \[
   \dim\Ker P_{r,c}
   =
-  \dim\Ker E_{r}
+  \dim\Ker T_{r}
   \]
 
-  where $W_{c}^{r}=\left(\begin{smallmatrix} E_{r} & E_{r-1}  \\ -E_{r-1} & -E_{r-2} \\\end{smallmatrix}\right)$.
+  where $W_{c}^{r}=\left(\begin{smallmatrix} T_{r} & T_{r-1}  \\ -T_{r-1} & -T_{r-2} \\\end{smallmatrix}\right)$.
   By the periodicity of $(W_{c}^{r})_{r\in\N}$ we have the
-  periodicity of
-  $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
+  periodicity of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
 \end{proof}
 
 \begin{lemma}[Maximal Dimension]
@@ -205,7 +204,11 @@ E_{4} := \left(
   =
   \dim\Ker P_{kp-1,c}
   =
-  \dim\Ker E_{kp-1} = \dim O
+  \dim\Ker T_{kp-1}
+  =
+  \dim\Ket T_{-1}
+  =
+  \dim O
   = c
   \]
 \end{proof}
@@ -225,22 +228,22 @@ E_{4} := \left(
   =
   \left(
   \begin{array}{cc}
-     O    &  E_{r-1}  \\
-    -E_{r-1} & -E_{r-2} \\
+     O    &  T_{r-1}  \\
+    -T_{r-1} & -T_{r-2} \\
   \end{array}
   \right)
   \]
-  and $1 = \det W_{c}^{r} = (\det E_{r-1})^{2}$, so $E_{r-1}$ is
+  and $1 = \det W_{c}^{r} = (\det T_{r-1})^{2}$, so $T_{r-1}$ is
   invertible.
 
   Note that
-  $W_{c}^{r-1} = \left(\begin{smallmatrix} E_{r-1} & E_{r-2} \\-E_{r-2} & -E_{r-3} \\\end{smallmatrix}\right)$
+  $W_{c}^{r-1} = \left(\begin{smallmatrix} T_{r-1} & T_{r-2} \\-T_{r-2} & -T_{r-3} \\\end{smallmatrix}\right)$
   and
-  $W_{c}^{r+1} = \left(\begin{smallmatrix} E_{r-1} & O \\ O & -E_{r-1} \\\end{smallmatrix}\right)$,
+  $W_{c}^{r+1} = \left(\begin{smallmatrix} T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$,
   hence both
   \begin{itemize}
-    \item $\dim\Ker P_{r-1,c} = \dim\Ker E_{r-1} = 0$,
-    \item $\dim\Ker P_{r+1,c} = \dim\Ker E_{r-1} = 0$.
+    \item $\dim\Ker P_{r-1,c} = \dim\Ker T_{r-1} = 0$,
+    \item $\dim\Ker P_{r+1,c} = \dim\Ker T_{r-1} = 0$.
   \end{itemize}
 \end{proof}
 
@@ -314,12 +317,6 @@ E_{4} := \left(
   Clear.
 \end{proof}
 
-\begin{remark}
-  The effect of conjugating $W$ by
-  $\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
-  is a rotation of $180^{\degree}$.
-\end{remark}
-
 \begin{theorem}
   The sequence $\left(\dim\Ker P_{r,c}\right)_{r\in\N}$
   is almost palindromic.
@@ -329,14 +326,14 @@ E_{4} := \left(
   We will be studing the doubly-infinite sequence
   $(W_{c}^{z})_{z\in\Z}$.
 
-  By the $W$-structure lemma we have, for every $r\in\N^{+}$,
+  By the $W$-structure lemma we have, for every $r\in\N$,
   \[
   W_{c}^{r}
   =
   \left(
   \begin{array}{cc}
-     E_{r} &  E_{r-1}  \\
-    -E_{r-1} & -E_{r-2} \\
+     T_{r} &  T_{r-1}  \\
+    -T_{r-1} & -T_{r-2} \\
   \end{array}
   \right)
   \]
@@ -352,8 +349,8 @@ E_{4} := \left(
   \cdot
   \left(
   \begin{array}{cc}
-     E_{r} &  E_{r-1}  \\
-    -E_{r-1} & -E_{r-2} \\
+     T_{r} &  T_{r-1}  \\
+    -T_{r-1} & -T_{r-2} \\
   \end{array}
   \right)
   \cdot
@@ -366,8 +363,8 @@ E_{4} := \left(
   =
   \left(
   \begin{array}{cc}
-    -E_{r-2}  & -E_{r-1} \\
-     E_{r-1} & E_{r}     \\
+    -T_{r-2}  & -T_{r-1} \\
+     T_{r-1} & T_{r}     \\
   \end{array}
   \right);
   \]
@@ -378,8 +375,8 @@ E_{4} := \left(
   =
   \left(
   \begin{array}{cc}
-    -E_{r}  & -E_{r+1} \\
-     E_{r+1} & E_{r+2} \\
+    -T_{r}  & -T_{r+1} \\
+     T_{r+1} & T_{r+2} \\
   \end{array}
   \right).
   \]
@@ -387,8 +384,8 @@ E_{4} := \left(
   Hence
   \[
   \dim\Ker P_{r,c} =
-  \dim\Ker E_{r} =
-  \dim\Ker(-E_{r}) =
+  \dim\Ker T_{r} =
+  \dim\Ker(-T_{r}) =
   \dim\Ker P_{-(r+2),c}.
   \]
 
