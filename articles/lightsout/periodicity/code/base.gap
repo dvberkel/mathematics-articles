@@ -20,7 +20,7 @@ createW := function(c, F)
   Ec := createE(c);
   return F * BlockMatrix([
     [1, 1, -1*Ec],
-    [1, 2, IdentityMat(c)],
-    [2, 1, -IdentityMat(c)]
+    [1, 2, -IdentityMat(c)],
+    [2, 1, IdentityMat(c)]
   ], 2, 2);
 end;
