@@ -12,5 +12,3 @@ dimensions := function(c, F)
   until dimension = c;
   return dimensions;
 end;
-
-
