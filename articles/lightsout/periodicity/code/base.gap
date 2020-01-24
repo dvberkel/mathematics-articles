@@ -15,10 +15,10 @@ createE := function(c)
   return M;
 end;
 
-createW := function(c)
+createW := function(c, F)
   local Ec;
   Ec := createE(c);
-  return BlockMatrix([
+  return F * BlockMatrix([
     [1, 1, -1*Ec],
     [1, 2, IdentityMat(c)],
     [2, 1, -IdentityMat(c)]
