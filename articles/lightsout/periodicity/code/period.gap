@@ -8,7 +8,7 @@ dimensions := function(c, F)
   repeat
     dimension := Size(NullspaceMat((w^n){[1..c]}{[1..c]}));
     Add(dimensions, dimension);
-    n := n + 1; 
+    n := n + 1;
   until dimension = c;
   return dimensions;
 end;
