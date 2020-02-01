@@ -1,10 +1,9 @@
 \section{Algebra}
+We will formalize the process of chasing down the lights and proof all of our
+observations. To begin we will introduce a matrix of some interest.
 
-The process of chasing down the lights is formalized in the following
-manner.
-
-For all $c\in\N$ define the $2c\times 2c$ matrix
-$W_{c}$ with entries in $\GF(q)$ by
+For all $c\in\N$ define the $2c\times 2c$ matrix $W_{c}$ with entries in
+$\GF(q)$ by
 \[
 W_{c} := \left(
 \begin{array}{cc}
@@ -29,6 +28,13 @@ E_{4} := \left(
 \end{array}
 \right)
 \]
+
+The reason we are looking at $W_{c}$ is that its powers tell us something about
+the effect of chasing down the lights. In particular, if we have an $c \times r$
+lights out puzzle, the $c \times c$ upper left sub-matrix of $W_{c}^{r}$ is
+exactly the process of gathering the lights.
+
+The first interesting fact is that $W_{c}$ is invertible.
 
 \begin{lemma}
   $W_{c}$ is invertible for all $c\in\N$.
@@ -59,29 +65,9 @@ E_{4} := \left(
   \]
 \end{proof}
 
-
-\begin{lemma}
-  $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
-\end{lemma}
-
-\begin{proof}
-  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and
-  \[
-  \det(W_{c}) = \det
-  \left(
-  \begin{array}{cc}
-    -E & I \\
-    -I & O \\
-  \end{array}
-  \right)
-  =
-  \det(-E) \cdot \det(O) - \det(-I) \cdot \det(I)
-  =
-  1
-  \]
-  The lemma follows by multiplicativity of the determinant and
-  by induction on $n$.
-\end{proof}
+A consequence of the invertibility of $W_{c}$ is that the sequence of its powers
+is periodic. This also proofs our first observation, but we will have some more
+to say about that.
 
 \begin{theorem}
   The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is purely periodic.
@@ -94,7 +80,11 @@ E_{4} := \left(
   sequence is periodic from the start.
 \end{proof}
 
-\begin{lemma}[$W$-structure]
+As mentioned in \cite{leach17} there is a relation between the images of chasing
+down the lights and Fibonacci polynomials. We find that relation in our
+structure lemma.
+
+\begin{lemma}[structure]
   There exists a sequence of $c \times c$ matrices
   $\left(T_{n}\right)_{n\in\N}$ such that
   \[
@@ -128,14 +118,14 @@ E_{4} := \left(
   \]
 
   Notice that
-  $W_{c}^{1} = \left(\begin{smallmatrix} -E & I \\ -I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} E_{1} & E_{0} \\ -E_{0} & -E_{-1} \\\end{smallmatrix}\right)$
+  $W_{c}^{1} = \left(\begin{smallmatrix} -E & I \\ -I & O \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} T_{1} & T_{0} \\ -T_{0} & -T_{-1} \\\end{smallmatrix}\right)$
   so $1$ is strong.
 
   Assume that $k$ is strong. We will show that $k+1$ is strong as well.
   \[
   \begin{aligned}
   W_{c}^{k+1}
-  & = W \cdot W_{c}^{k} \\
+  & = W_{c} \cdot W_{c}^{k} \\
   & =
   \left(
   \begin{array}{cc}
@@ -167,34 +157,41 @@ E_{4} := \left(
   \end{aligned}
   \]
 
-  By mathematical induction all natural
-  numbers are strong, finishing the proof.
+  By mathematical induction all natural numbers are strong, finishing the proof.
 \end{proof}
 
-\begin{proposition}
-  The sequence $\left(\dim \Ker P_{r,c}\right)_{r\in\N}$
-  is periodic.
+With the structure lemma under our belt we can prove our first observation, i.e.
+the sequence of the dimension of kernels is periodic.
+
+\begin{proposition}[Observation 1]
+  The sequence $\left(\dim \Ker P_{r,c}\right)_{r\in\N}$ is periodic.
 \end{proposition}
 
 \begin{proof}
-  By the $W$-structure lemma, for all $n\in\N$,
+  By the structure lemma, for all $r\in\N$,
   \[
   \dim\Ker P_{r,c}
   =
   \dim\Ker T_{r}
   \]
 
-  where $W_{c}^{r}=\left(\begin{smallmatrix} T_{r} & T_{r-1}  \\ -T_{r-1} & -T_{r-2} \\\end{smallmatrix}\right)$.
   By the periodicity of $(W_{c}^{r})_{r\in\N}$ we have the
   periodicity of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
 \end{proof}
 
-\begin{lemma}[Maximal Dimension]
+It could be the case that the period of
+$\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$ is a divisor of the period of
+$(W_{c}^{r})_{r\in\N}$. This is not the case as we will see shortly.
+
+Next on our agenda is our second observation. The period repeats whenever the
+maximum dimension is reached.
+
+\begin{lemma}[Observation 2]
   $\dim\Ker P_{p-1,c} = c$ where $p$ is period of the sequence.
 \end{lemma}
 
 \begin{proof}
-  We will be using the notation as defined by the $W$-structure lemma.
+  We will be using the notation as defined by the structure lemma.
 
   Notice that there exists $k\in\N$ such that $W_{c}^{kp} = I$ and
   thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$.
@@ -213,13 +210,42 @@ E_{4} := \left(
   \]
 \end{proof}
 
+Before we will prove that the period of both sequences coincide, we will take a
+closer look at observation three. For this we need to know the determinant of
+$W_{c}^{n}$ for all $n\in\N$.
+
 \begin{lemma}
+  $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
+\end{lemma}
+
+\begin{proof}
+  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and
+  \[
+  \det(W_{c}) = \det
+  \left(
+  \begin{array}{cc}
+    -E & I \\
+    -I & O \\
+  \end{array}
+  \right)
+  =
+  \det(-E) \cdot \det(O) - \det(-I) \cdot \det(I)
+  =
+  1
+  \]
+  The lemma follows by multiplicativity of the determinant and
+  by induction on $n$.
+\end{proof}
+
+This little fact will helps us establishing the proof of observation three.
+
+\begin{theorem}[observation three]
   If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
   \begin{itemize}
     \item $\dim\Ker P_{r-1,c} = 0$
     \item $\dim\Ker P_{r+1,c} = 0$
   \end{itemize}
-\end{lemma}
+\end{theorem}
 
 \begin{proof}
   Let $r\in\N$ be such that $\dim\Ker P_{r,c} = c$; then
@@ -326,7 +352,7 @@ E_{4} := \left(
   We will be studing the doubly-infinite sequence
   $(W_{c}^{z})_{z\in\Z}$.
 
-  By the $W$-structure lemma we have, for every $r\in\N$,
+  By the structure lemma we have, for every $r\in\N$,
   \[
   W_{c}^{r}
   =
