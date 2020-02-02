@@ -1,5 +1,5 @@
 \section{Algebra}
-We will formalize the process of chasing down the lights and proof all of our
+We will formalize the process of chasing down the lights and prove all of our
 observations. To begin we will introduce a matrix of some interest.
 
 For all $c\in\N$ define the $2c\times 2c$ matrix $W_{c}$ with entries in
@@ -30,7 +30,7 @@ E_{4} := \left(
 \]
 
 The reason we are looking at $W_{c}$ is that its powers tell us something about
-the effect of chasing down the lights. In particular, if we have an $c \times r$
+the effect of chasing down the lights. In particular, if we have an $r \times c$
 lights out puzzle, the $c \times c$ upper left sub-matrix of $W_{c}^{r}$ is
 exactly the process of gathering the lights.
 
@@ -66,7 +66,7 @@ The first interesting fact is that $W_{c}$ is invertible.
 \end{proof}
 
 A consequence of the invertibility of $W_{c}$ is that the sequence of its powers
-is periodic. This also proofs our first observation, but we will have some more
+is periodic. This also proves our first observation, but we will have some more
 to say about that.
 
 \begin{theorem}
@@ -102,8 +102,8 @@ structure lemma.
 
 \begin{proof}
   Define $T_{0} := I$, and for convenience $T_{-1} := O$ and
-  $E_{n+1} := -E \cdot T_{n} - T_{n-1}$ for all $n\in\N$. So
-  $T_{1} = -E \cdot I - O = -E$. For convenience define $T_{-1} := O$. 
+  $T_{n+1} := -E \cdot T_{n} - T_{n-1}$ for all $n\in\N$. So
+  $T_{1} = -E \cdot I - O = -E$. 
 
   A number $n\in\N$ is called strong if and only if
   \[
@@ -179,9 +179,9 @@ the sequence of the dimension of kernels is periodic.
   periodicity of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
 \end{proof}
 
-It could be the case that the period of
-$\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$ is a divisor of the period of
-$(W_{c}^{r})_{r\in\N}$. This is not the case as we will see shortly.
+It could be the case that the period of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$
+is a divisor of the period of $(W_{c}^{r})_{r\in\N}$. In fact, these periods do
+not coincide. There is a relation which we will see shortly.
 
 Next on our agenda is our second observation. The period repeats whenever the
 maximum dimension is reached.
@@ -210,9 +210,9 @@ maximum dimension is reached.
   \]
 \end{proof}
 
-Before we will prove that the period of both sequences coincide, we will take a
-closer look at observation three. For this we need to know the determinant of
-$W_{c}^{n}$ for all $n\in\N$.
+Before we will dive deeper in the question if the period of both sequences
+coincide, we will take a closer look at observation three. For this we need to
+know the determinant of $W_{c}^{n}$ for all $n\in\N$.
 
 \begin{lemma}
   $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
@@ -239,7 +239,7 @@ $W_{c}^{n}$ for all $n\in\N$.
 
 This little fact will helps us establishing the proof of observation three.
 
-\begin{theorem}[observation three]
+\begin{theorem}[Observation 3]
   If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
   \begin{itemize}
     \item $\dim\Ker P_{r-1,c} = 0$
