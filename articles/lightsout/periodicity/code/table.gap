@@ -4,5 +4,6 @@ F := Z(2);
 
 for column in [1..20] do
   dims := dimensions(column, F);
-  Display(dims);
+  period := Size(dims);
+  Display([period, dims]);
 od;
