@@ -1,0 +1,114 @@
+%!PS-Adobe-1.0
+%%For: Muzings on Lights Out
+%%Creator: Daan Wanrooy
+%%CreationDate: Mon Nov 19 14:42:06 CET 2007
+%%Pages: (atend)
+%%BoundingBox: 52 182 523 529
+%%HiResBoundingBox: 52.433998 182.933994 522.989984 528.659984
+%%EndComments
+%%BeginProlog
+
+/square {% stack: x y size dl colored pressed => ---
+	[/pressed /colored /dl /size /y /x] dup length 2 add dict begin {exch def} forall
+		x size 2 div add y size 2 div add moveto
+		dl neg 0 rmoveto
+		size 2 dl mul sub neg 0 rlineto
+		currentpoint dl sub dl 90 180 arc
+		0 size 2 dl mul sub neg rlineto
+		currentpoint exch dl add exch dl 180 270 arc
+		size 2 dl mul sub 0 rlineto
+		currentpoint dl add dl 270 360 arc
+		0 size 2 dl mul sub rlineto
+		currentpoint exch dl sub exch dl 0 90 arc
+		closepath
+		colored {
+			gsave
+				.7 setgray
+				fill
+			grestore
+		} if
+		pressed {
+			x dl sub y dl sub moveto
+			dl dl 2 {2 mul exch} repeat rlineto
+			x dl sub y dl add moveto
+			dl dl neg 2 {2 mul exch} repeat rlineto
+		} if
+		stroke
+	end
+} def
+
+/grid {% stack: x y c r size [coloring] [presses] ds
+	[/presses /coloring /ds /size /r /c /y /x] dup length 4 add dict begin {exch def} forall
+		/l size ds add def
+		0 1 r 1 sub {
+			/j exch def
+			/color_row coloring r 1 sub j sub get def
+			/press_row presses r 1 sub j sub get def
+			0 1 c 1 sub {
+				/i exch def
+				i j 2 {l mul exch} repeat size ds
+				color_row i get press_row i get square
+			} for
+		} for
+	end
+} def
+
+/window {% stack : x y c n size ds => ---
+	[/ds /size /n /c /y /x] dup length 2 add dict begin {exch def} forall
+		/l size ds add def
+		/w n l mul def
+
+		0 n 2 sub c sub l mul moveto
+
+		c 2 mod 0 eq {
+			ds 4 div neg 0 rmoveto
+		} if
+
+		l 2 div neg dup rmoveto
+		w 0 rlineto
+		0 2 l mul rlineto
+		w neg 0 rlineto
+		closepath
+		gsave
+			[2 3] 0 setdash
+			stroke
+		grestore
+		newpath
+	end
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+	72 25.4 div dup scale
+
+	/size 25 def
+	/ds 8 def
+	/n 5 def
+
+	3 2 div size mul dup translate
+
+	-20 20 moveto
+	 26 70
+	 72 30
+	155 50 curveto
+	155 150 lineto
+	-20 150 lineto
+	closepath
+	clip
+	newpath
+
+	0 0 1 n size ds window
+
+	0 0 5 5 size ds
+	[[false false false false false] [true  false false false true ] [true  true  false true  true ] [false false false false false] [false false false false false]]
+	[[false false false false false] [false false false false false] [true  false false false true ] [true  true  false true  true ] [true  false false false true ]]
+	grid
+
+	showpage
+cleanslate restore
+
+%%Trailer
+%%Pages: 1
+%%EOF
