@@ -66,8 +66,8 @@ The first interesting fact is that $W_{c}$ is invertible.
 \end{proof}
 
 A consequence of the invertibility of $W_{c}$ is that the sequence of its powers
-is periodic. This also proves our first observation, but we will have some more
-to say about that.
+is periodic. This also proves our observation \ref{observation.periodic}, but we
+will have some more to say about that.
 
 \begin{theorem}
   The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is purely periodic.
@@ -163,7 +163,7 @@ structure lemma.
 With the structure lemma under our belt we can prove our first observation, i.e.
 the sequence of the dimension of kernels is periodic.
 
-\begin{proposition}[Observation 1]
+\begin{proposition}[Observation \ref{observation.periodic}]
   The sequence $\left(\dim \Ker P_{r,c}\right)_{r\in\N}$ is periodic.
 \end{proposition}
 
@@ -183,25 +183,21 @@ It could be the case that the period of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$
 is a divisor of the period of $(W_{c}^{r})_{r\in\N}$. In fact, these periods do
 not coincide. There is a relation which we will see shortly.
 
-Next on our agenda is our second observation. The period repeats whenever the
-maximum dimension is reached.
+Next on our agenda is our observation \ref{observation.maximal}. I.e. for each
+number of columns $c$ there is a kernel with that dimension.
 
-\begin{lemma}[Observation 2]
-  $\dim\Ker P_{p-1,c} = c$ where $p$ is period of the sequence.
+\begin{lemma}[Observation \ref{observation.maximal}]
+  There is a kernel of maximal dimension.
 \end{lemma}
 
 \begin{proof}
   We will be using the notation as defined by the structure lemma.
 
-  Notice that there exists $k\in\N$ such that $W_{c}^{kp} = I$ and
-  thus $W_{c}^{kp-1} = W_{c}^{-1} \cdot W_{c}^{kp} = W_{c}^{-1}$.
+  Notice that there exists $p\in\N$ such that $W_{c}^{p} = I$ and
+  thus $W_{c}^{p-1} = W_{c}^{-1} \cdot W_{c}^{p} = W_{c}^{-1}$.
   Furthermore
   \[
   \dim\Ker P_{p-1,c}
-  =
-  \dim\Ker P_{kp-1,c}
-  =
-  \dim\Ker T_{kp-1}
   =
   \dim\Ker T_{-1}
   =
@@ -211,8 +207,8 @@ maximum dimension is reached.
 \end{proof}
 
 Before we will dive deeper in the question if the period of both sequences
-coincide, we will take a closer look at observation three. For this we need to
-know the determinant of $W_{c}^{n}$ for all $n\in\N$.
+coincide, we will take a closer look at observation \ref{observation.surround}.
+For this we need to know the determinant of $W_{c}^{n}$ for all $n\in\N$.
 
 \begin{lemma}
   $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
@@ -237,9 +233,10 @@ know the determinant of $W_{c}^{n}$ for all $n\in\N$.
   by induction on $n$.
 \end{proof}
 
-This little fact will helps us establishing the proof of observation three.
+This little fact will helps us establishing the proof of observation
+\ref{observation.surround}.
 
-\begin{theorem}[Observation 3]
+\begin{theorem}[Observation \ref{observation.surround}]
   If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
   \begin{itemize}
     \item $\dim\Ker P_{r-1,c} = 0$
@@ -272,6 +269,14 @@ This little fact will helps us establishing the proof of observation three.
     \item $\dim\Ker P_{r+1,c} = \dim\Ker T_{r-1} = 0$.
   \end{itemize}
 \end{proof}
+
+In proving our observation \ref{observation.surround} we have learned that the
+structure of the corresponding matrix power is particular simple. This fact will
+be instrumental in the relation between the period of
+$\left(W_{c}^{n}\right)_{n\in\N}$ and that of
+$\left(\dim\Ker P_{r,c}\right)_{r\in\N}$.
+
+But first we will see that $W_{c}$ and it's inverse are conjugates.
 
 \begin{lemma}
   $W_{c}$ and $W_{c}^{-1}$ are conjugates.
@@ -342,6 +347,13 @@ This little fact will helps us establishing the proof of observation three.
 \begin{proof}
   Clear.
 \end{proof}
+
+Note that conjugating any matrix with
+$\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$ 
+corresponds to rotating the four cardinal sub-matrices through 180 degrees.
+
+This fact will be the linchpin in the proof of observation
+\ref{observation.palindromic}.
 
 \begin{theorem}
   The sequence $\left(\dim\Ker P_{r,c}\right)_{r\in\N}$
