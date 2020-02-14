@@ -1,4 +1,37 @@
 \section{Introduction}
+Lights Out is a handheld electronic puzzle game produced by Tiger Electronics in
+the 1990s. It consists of a square grid of buttons that act as lights. The
+object of the game is to turn off all the lights. This can be achieved by
+pressing a series of buttons. Each button press has the effect of changing the
+state of the light from off to on and vice versa for itself and each of it's
+direct neighbors.
+
+Lights Out, and its variants and predecessors, has a long history of
+being studied by mathematicians. In \cite{anderson98}, and before that in
+\cite{pelletier87}, a connection is made between Lights Out and linear algebra.
+Their approach amounts to solving a linear equation
+
+\[
+Ax=-b
+\]
+
+Where $A$ is a $25\times 25$ square matrix, $b$ is the light pattern that needs
+to be turned off. A solution to the equation tells you which buttons to press.
+
+Solving this matrix equation by hand is not feasible. It does give insight into
+when a solutions is possible and how many different solution exist. A practical
+solution is given in \cite{martin01} where a technique knows as gathering or
+\emph{chasing the lights} is introduced.
+
+\begin{figure}
+  \mbox{
+    \subfigure{\epsfig{figure=image/windowing01.ps,width=.40\textwidth}}
+    \hfill
+    \subfigure{\epsfig{figure=image/windowing02.ps,width=.40\textwidth}}
+  }
+  \caption{Chasing the lights}
+\end{figure}
+
 
 Introduction to Lights Out and the chasing down the lights. See \cite{martin01}.
 
