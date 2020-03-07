@@ -3,7 +3,7 @@ Lights Out is a handheld electronic puzzle game produced by Tiger Electronics in
 the 1990s. It consists of a square grid of buttons that act as lights. The
 object of the game is to turn off all the lights. This can be achieved by
 pressing a series of buttons. Each button press has the effect of changing the
-state of the light from off to on and vice versa for itself and each of it's
+state of the light from off to on, and vice versa, for itself and each of it's
 direct neighbors.
 
 Lights Out, and its variants and predecessors, has a long history of
@@ -12,49 +12,55 @@ being studied by mathematicians. In \cite{anderson98}, and before that in
 Their approach amounts to solving a linear equation
 
 \[
-Ax=-b
+Ap=-s
 \]
 
-Where $A$ is a $25\times 25$ square matrix, $b$ is the light pattern that needs
+Where $A$ is a $25\times 25$ square matrix, $s$ is the light pattern that needs
 to be turned off. A solution to the equation tells you which buttons to press.
 
 Solving this matrix equation by hand is not feasible. It does give insight into
-when a solutions is possible and how many different solution exist. A practical
-solution is given in \cite{martin01} where a technique knows as gathering or
+when a solutions is possible and how many different solutions exist. A practical
+solution is given in \cite{martin01} where a technique known as gathering or
 \emph{chasing the lights} is introduced.
 
 \begin{figure}
   \mbox{
-    \subfigure{\epsfig{figure=image/windowing01.ps,width=.40\textwidth}}
-    \hfill
-    \subfigure{\epsfig{figure=image/windowing02.ps,width=.40\textwidth}}
+    \subfigure[Window of first two rows\label{first_row_pressed}]{\epsfig{figure=image/windowing01.ps,width=.40\textwidth}}
+    \subfigure[Next window\label{second_row_pressed}]{\epsfig{figure=image/windowing02.ps,width=.40\textwidth}}
   }
   \caption{Chasing the lights}
+  \label{chasing}
 \end{figure}
 
+A moments thought will bring the realization that the order in which we press
+buttons to turn the lights of is of no importance. This means that we can pick
+any order. We will chose to press buttons per row from left to right and the rows
+from top to bottom.
 
-Introduction to Lights Out and the chasing down the lights. See \cite{martin01}.
+Now let's say that we are in the process of turning of the lights. In figure
+\ref{chasing} we have already pressed all the buttons in the first row. There is
+only one way to turn of the lights that are still lit in the first row. I.e. to
+press each button in the second row that is directly underneath a lit button. No
+other buttons we still need to press effects the first row.
 
-\begin{definition}
-  For all $c,r\in\N^{+}$ we define the following symbols related to
-  $r \times c$ Lights Out layout.
+Once the buttons in the first row are pressed, options are forced, all the way
+down to the last row. This sets up a simpler linear equation. In the language of
+\cite{martin01}.
 
-  An {\it $r\times c$ light pattern} is an $r\times c$ matrix
-  with entries in $\GF_q$. The zero-pattern is the all-zeroes
-  matrix, indicated by $O$; it corresponds to the situation
-  where no lights are lit (on a $r\times c$ board).
-  The set of all $r\times c$ light patterns is denoted by $\Lp_{r,c}$.
+\[
+Bp_{1}=-chase(s)
+\]
 
-  A {\it $r\times c$ press pattern $p$} is also an $r\times c$ matrix
-  with entries in $\GF_q$; it indicates which buttons to press. The
-  button at position $i, j$ of the board will be pressed $p_{i,j}$
-  times. $\Pp_{r,c}$ is the set of all such press patterns.
+Here $B$ is a $5\times 5$ matrix. $p_{1}$ are the first five components of the
+buttons to press, i.e. the first row. And $chase(s)$ is the effect of chasing
+the lights to the last row.
 
-  For every $p\in\Pp_{r,c}$ there exist a map $\phi_{p,r,c} : \Lp_{r,c}
-  \rightarrow \Lp_{r,c}$ that describes the effect of pressing $p$ on
-  a light pattern $\ell$.
+This allows a solution that can be committed to memory, which one of the authors
+has done for the standard Lights out puzzle. 
 
-  The map $P_{r,c} : \Pp_{r,c} \rightarrow \Lp_{r,c}$ is defined by
-  applying the press pattern $p$ to the zero pattern. I.e.
-  $p \mapsto \phi_{p,r,c}(O)$.
-\end{definition}
+In \cite{leach17} this method chasing the lights is extended to other
+rectangular board shapes. They show that analyzing a $c \times r$ Lights Out
+board one needs is interested in the upper left $c \times c$ sub-matrix of
+$W^{r}$ where $W$ describes the effect of one step in chasing the lights.
+
+It is in this light that the authors made their observations.
