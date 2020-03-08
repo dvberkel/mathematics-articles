@@ -262,13 +262,18 @@ This little fact will helps us establishing the proof of observation
   Note that
   $W_{c}^{r-1} = \left(\begin{smallmatrix} T_{r-1} & T_{r-2} \\-T_{r-2} & -T_{r-3} \\\end{smallmatrix}\right)$
   and
-  $W_{c}^{r+1} = \left(\begin{smallmatrix} T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$,
+  $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$,
   hence both
   \begin{itemize}
     \item $\dim\Ker P_{r-1,c} = \dim\Ker T_{r-1} = 0$,
-    \item $\dim\Ker P_{r+1,c} = \dim\Ker T_{r-1} = 0$.
+    \item $\dim\Ker P_{r+1,c} = \dim\Ker -T_{r-1} = 0$.
   \end{itemize}
 \end{proof}
+
+\begin{corollary}
+  If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
+  $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$
+\end{corollary}
 
 In proving our observation \ref{observation.surround} we have learned that the
 structure of the corresponding matrix power is particular simple. This fact will
