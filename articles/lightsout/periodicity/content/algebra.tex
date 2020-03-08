@@ -270,7 +270,7 @@ This little fact will helps us establishing the proof of observation
   \end{itemize}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{block-diagonal}
   If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
   $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$
 \end{corollary}
@@ -360,77 +360,76 @@ corresponds to rotating the four cardinal sub-matrices through 180 degrees.
 This fact will be the linchpin in the proof of observation
 \ref{observation.palindromic}.
 
-\begin{theorem}
+\begin{lemma}
+  If for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$.
+
+  \[
+  W_{c}^{r+i} = \left(\begin{array}{cc} QT_{i} & QT_{i-1} \\ -QT_{i-1} & -QT_{r-2} \\\end{array}\right)
+  \]
+
+  and
+
+  \[
+  W_{c}^{r-i} = \left(\begin{array}{cc} -QT_{i-2} & -QT_{i-1} \\ QT_{i-1} & QT_{i-2} \\\end{array}\right)
+  \]
+\end{lemma}
+
+\begin{proof}
+  By direct calculation and the structure lemma we find that
+
+  \[
+  W_{c}^{r+i}
+  =
+  W_{c}^{r}W_{c}^{i}
+  =
+  \left(
+  \begin{array}{cc}
+    Q & O \\
+    O & Q \\
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{cc}
+     T_{i} &  T_{i-1}  \\
+    -T_{i-1} & -T_{i-2} \\
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{cc}
+     QT_{i} &  QT_{i-1}  \\
+    -QT_{i-1} & -QT_{i-2} \\
+  \end{array}
+  \right)
+  \]
+
+  Furthermore, with $C=\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
+  we have, by the preceding lemma,
+  $CW_{c}^{r-i}C^{-1}=CW_{c}^{r}C^{-1}CW^{-i}C^{-1}=W_{c}^{r}W_{c}^{i}=W_{c}^{r+i}$
+  which we set out to prove.
+\end{proof}
+
+\begin{theorem}[Observation \ref{observation.palindromic}]
   The sequence $\left(\dim\Ker P_{r,c}\right)_{r\in\N}$
   is almost palindromic.
 \end{theorem}
 
 \begin{proof}
-  We will be studing the doubly-infinite sequence
-  $(W_{c}^{z})_{z\in\Z}$.
+  Let $q\in\N$ such that $\dim\Ker P_{r,c}$ is maximal. By \ref{block-diagonal} we have
+  $W^{q+1}=\left(\begin{smallmatrix} -T_{q-1} & O \\ O & -T_{q-1} \\\end{smallmatrix}\right)$.
+  By the preceding lemma $W_{c}^{q+1+i} = \left(\begin{array}{cc} -T_{q-1}T_{i} & -T_{q-1}T_{i-1} \\ T_{q-1}T_{i-1} & T_{q-1}T_{i-2} \\\end{array}\right)$
+  and $W_{c}^{q+1-i} = \left(\begin{array}{cc} -T_{q-1}T_{i-2} & T_{q-1}T_{i-1} \\ -T_{q-1}T_{i-1} & -T_{q-1}T_{i} \\\end{array}\right)$
 
-  By the structure lemma we have, for every $r\in\N$,
+  Hence $W_{c}^{q+1-(i+2)}=\left(\begin{array}{cc} -T_{q-1}T_{i} & T_{q-1}T_{i+1} \\ -T_{q-1}T_{i+1} & T_{q-1}T_{i+2} \\\end{array}\right)$
+
+  Therefore
+
   \[
-  W_{c}^{r}
-  =
-  \left(
-  \begin{array}{cc}
-     T_{r} &  T_{r-1}  \\
-    -T_{r-1} & -T_{r-2} \\
-  \end{array}
-  \right)
+  \dim\Ker P_{q+1+i,c} =
+  \dim\Ker -T_{q-1}T_{i} =
+  \dim\Ker P_{q+1-(i+2),c} = 
+  \dim\Ker P_{q-1-i,c} = 
   \]
 
-  and by the preceding corollary $W_{c}^{-r}$ equals
-  \[
-  \left(
-  \begin{array}{cc}
-    O & I \\
-    I & O \\
-  \end{array}
-  \right)
-  \cdot
-  \left(
-  \begin{array}{cc}
-     T_{r} &  T_{r-1}  \\
-    -T_{r-1} & -T_{r-2} \\
-  \end{array}
-  \right)
-  \cdot
-  \left(
-  \begin{array}{cc}
-    O & I \\
-    I & O \\
-  \end{array}
-  \right)
-  =
-  \left(
-  \begin{array}{cc}
-    -T_{r-2}  & -T_{r-1} \\
-     T_{r-1} & T_{r}     \\
-  \end{array}
-  \right);
-  \]
-
-  thus for all $r\in\N$
-  \[
-  W_{c}^{-(r+2)}
-  =
-  \left(
-  \begin{array}{cc}
-    -T_{r}  & -T_{r+1} \\
-     T_{r+1} & T_{r+2} \\
-  \end{array}
-  \right).
-  \]
-
-  Hence
-  \[
-  \dim\Ker P_{r,c} =
-  \dim\Ker T_{r} =
-  \dim\Ker(-T_{r}) =
-  \dim\Ker P_{-(r+2),c}.
-  \]
-
-  This proves the theorem.
+  Which shows that start and end are reflected.
 \end{proof}
