@@ -24,3 +24,13 @@ latex $name
 latex $name
 dvips $name.dvi -o $name.ps
 ps2pdf $name.ps
+
+# publish to the web
+output=../../../docs/lights_out
+if [ -d $output ]
+then
+    echo "publishing"
+    cp $name.pdf $output
+else
+    echo "$output"
+fi
