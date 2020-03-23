@@ -364,7 +364,7 @@ This fact will be the linchpin in the proof of observation
   If for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$.
 
   \[
-  W_{c}^{r+i} = \left(\begin{array}{cc} QT_{i} & QT_{i-1} \\ -QT_{i-1} & -QT_{r-2} \\\end{array}\right)
+  W_{c}^{r+i} = \left(\begin{array}{cc} QT_{i} & QT_{i-1} \\ -QT_{i-1} & -QT_{i-2} \\\end{array}\right)
   \]
 
   and
@@ -407,6 +407,48 @@ This fact will be the linchpin in the proof of observation
   we have, by the preceding lemma,
   $CW_{c}^{r-i}C^{-1}=CW_{c}^{r}C^{-1}CW^{-i}C^{-1}=W_{c}^{r}W_{c}^{i}=W_{c}^{r+i}$
   which we set out to prove.
+\end{proof}
+
+We now come to our promise about the period of the dimension of kernels the
+kernels and the period of $W$. let $q$ be the smallest number rows that has a
+maximal kernel dimension and let $d = q+1$. The period of $W$ will be $p$.
+
+\begin{lemma}
+  Either $p=d$ or $p=2d$.
+\end{lemma}
+
+\begin{proof}
+  If $p=d$ we are finished, so assume it is not. We will show that $p=2d$ in
+  that case.
+
+  By the preceding lemma we that the lower right $c\times c$ sub-matrix of
+  $W_{c}^{d-i}$ equals the upper left $c\times c$ sub-matrix of $W_{c}^{d+i}$
+  for all $i$. In particular for $i=d$. The lower right sub-matrix of
+  $W_{c}^{d-d} = W_{c}^{0} = I$ is the $c\times c$ identity matrix.
+
+  Furthermore, since $W^{d}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
+  for certain matrix $Q$, we have
+
+  \[
+  W_{c}^{2d}
+  =
+  \left(
+  \begin{array}{cc}
+    Q & O \\
+    O & Q \\
+  \end{array}
+  \right)^{2}
+  =
+  \left(
+  \begin{array}{cc}
+    Q^{2} & O \\
+    O & Q^{2} \\
+  \end{array}
+  \right)
+  \]
+
+  Hence, $Q^{2}$ is equal to the $c\times c$ identity matrix, therefore $W^{2d}$
+  is the identity matrix, and the period of $(W_{c}^{r})_{r\in\N}$ is $2d$.
 \end{proof}
 
 \begin{theorem}[Observation \ref{observation.palindromic}]
