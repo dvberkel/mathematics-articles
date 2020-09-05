@@ -201,7 +201,7 @@ number of columns $c$ there is a kernel with that dimension.
   =
   \dim\Ker T_{-1}
   =
-  \dim O
+  \dim\Ker O
   = c
   \]
 \end{proof}
@@ -457,21 +457,50 @@ maximal kernel dimension and let $d = q+1$. The period of $W$ will be $p$.
 \end{theorem}
 
 \begin{proof}
-  Let $q\in\N$ such that $\dim\Ker P_{r,c}$ is maximal. By \ref{block-diagonal} we have
-  $W^{q+1}=\left(\begin{smallmatrix} -T_{q-1} & O \\ O & -T_{q-1} \\\end{smallmatrix}\right)$.
-  By the preceding lemma $W_{c}^{q+1+i} = \left(\begin{array}{cc} -T_{q-1}T_{i} & -T_{q-1}T_{i-1} \\ T_{q-1}T_{i-1} & T_{q-1}T_{i-2} \\\end{array}\right)$
-  and $W_{c}^{q+1-i} = \left(\begin{array}{cc} -T_{q-1}T_{i-2} & T_{q-1}T_{i-1} \\ -T_{q-1}T_{i-1} & -T_{q-1}T_{i} \\\end{array}\right)$
+  let $d$ be such that $W^d$ has a upperleft sub matrix $O$.
 
-  Hence $W_{c}^{q+1-(i+2)}=\left(\begin{array}{cc} -T_{q-1}T_{i} & T_{q-1}T_{i+1} \\ -T_{q-1}T_{i+1} & T_{q-1}T_{i+2} \\\end{array}\right)$
-
-  Therefore
+  A \emph{press vector} is a $2\times c$ vector with the last $c$ components zero, an \emph{unlit vector} is a $2\times c$ vector with the first $c$ components 0. Notice that for any press vector $v$
 
   \[
-  \dim\Ker P_{q+1+i,c} =
-  \dim\Ker -T_{q-1}T_{i} =
-  \dim\Ker P_{q+1-(i+2),c} = 
-  \dim\Ker P_{q-1-i,c} = 
+    W^d v
   \]
 
-  Which shows that start and end are reflected.
+  is an unlit vector.
+
+  Choose $m,n\in\N$ such that $m + 1 + n = d$. We will show that for each press vector $v$ for which $W^m v$ is unlit, there exist a press vector $v'$ such that $W^n v'$ is unlit.
+  This shows that $\dim\Ker T_{m} \leq \dim\Ker T_{n}$. Since the argument is symmetric in $m$ and $n$ we have $\dim\Ker T_{m} = \dim\Ker T_{n}$.
+
+  Let $v$ be a press vector such that $W^{m} v$ is unlit. In particular $W^{m} v = u$ with $u := (0,0,\ldots, 0, u_{1}, u_{2}, \ldots, u_{c})^t$.
+
+  Define $p := W u$. We will show that $p$ is a press vector.
+
+  \[
+    W u = \left(
+    \begin{array}{cc}
+      -E_{c} & I \\
+      -I    & O \\
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{c}
+      O  \\
+      u' \\
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{c}
+      u' \\
+      O  \\
+    \end{array}
+    \right)
+  \]
+
+  Since for any press vector $w$ we have that $W^{d} w = O$, in particular we have
+
+  \[
+  O = W^{d} v = W^{n} W W^{m} v = W^{n} W u = W^{m} p
+  \]
+
+  which shows that for each press vector that $W^{m}$ unlits, there is a press vector that $W^{n}$ unlits.
 \end{proof}
