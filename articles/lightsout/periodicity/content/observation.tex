@@ -1,21 +1,22 @@
 \section{Observations}
 In discovering the theorems of \cite{martin01} and \cite{leach17} for
 themselves, the authors studied the table \ref{kernels}, and its variants,
-extensively. To see more entries of the table see \url{http://dvberkel.github.io/mathematics-articles/lights_out/periodicity.html}.
+extensively. To see more entries of the table goto the website for this
+article\footnote{\url{http://dvberkel.github.io/mathematics-articles/lights_out/periodicity.html}}.
 
 \begin{table}
   \begin{center}
-  \begin{tabular}{|c|cccccccccccc|}
-    \hline
-    & \phantom{0}0 & \phantom{0}1 & \phantom{0}2 & \phantom{0}3 & \phantom{0}4 & \phantom{0}5 & \phantom{0}6 & \phantom{0}7 & \phantom{0}8 & \phantom{0}9 & 10 & 11 \\
-    \hline
-    \hline
-    1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
-    2 & 0 & 1 & 0 & 2 & 0 & 1 & 0 & 2 & 0 & 1 & 0 & 2 \\
-    3 & 0 & 0 & 2 & 0 & 0 & 3 & 0 & 0 & 2 & 0 & 0 & 3 \\
-    4 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 4 & 0 & 0 \\
-    \hline
-  \end{tabular}
+    \begin{tabular}{|c|cccccccccccc|}
+      \hline
+        & \phantom{0}0 & \phantom{0}1 & \phantom{0}2 & \phantom{0}3 & \phantom{0}4 & \phantom{0}5 & \phantom{0}6 & \phantom{0}7 & \phantom{0}8 & \phantom{0}9 & 10 & 11 \\
+      \hline
+      \hline
+      1 & 0            & 0            & 1            & 0            & 0            & 1            & 0            & 0            & 1            & 0            & 0  & 1  \\
+      2 & 0            & 1            & 0            & 2            & 0            & 1            & 0            & 2            & 0            & 1            & 0  & 2  \\
+      3 & 0            & 0            & 2            & 0            & 0            & 3            & 0            & 0            & 2            & 0            & 0  & 3  \\
+      4 & 0            & 0            & 0            & 0            & 4            & 0            & 0            & 0            & 0            & 4            & 0  & 0  \\
+      \hline
+    \end{tabular}
   \end{center}
   \caption{Dimension of Kernels}\label{kernels}
 \end{table}
@@ -23,10 +24,23 @@ extensively. To see more entries of the table see \url{http://dvberkel.github.io
 During our studies we made the following observations. For each row
 
 \begin{enumerate}
-\item \label{observation.periodic} The sequence is periodic.
-\item \label{observation.maximal} There is a kernel of maximal dimension.
-\item \label{observation.period} The period starts after the maximal dimension.
-\item \label{observation.surround} Before and after the maximal dimension
-  the dimension is $0$.
-\item \label{observation.palindromic} The sequence is almost palindromic.
+  \item \label{observation.periodic} The sequence is purely periodic.
+  \item \label{observation.maximal} There is a kernel of maximal dimension.
+  \item \label{observation.period} The period starts after the maximal dimension.
+  \item \label{observation.consecutive} The sum of two consecutive dimensions is less than or equal to the maximal dimension.
+  \item \label{observation.palindromic} The sequence is almost palindromic.
 \end{enumerate}
+
+We will explain each observation with the aid of the above table.
+Observation \ref{obsevation.periodic} pertains that for each number of columns, the sequence of dimensions of kernels
+of $c\times r$ Lights Out puzzles repeats itself eventually, and when it repeats it does so from the start.
+
+A kernel of maximal dimension is when the kernel is the entire press space. In other words, in the sequence for the number of columns $c$,
+there is an entry of precisely $c$. Furthermore, the sequence repeats itself when this happens.
+
+For observation \ref{observation.palindromic}, take a look at the third row of the above table. The sequence up until the value 3, i.e. $0, 0, 2, 0, 0$ is palindromic.
+It is the same read from left to right as from right to left.
+
+
+
+
