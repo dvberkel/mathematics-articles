@@ -1,0 +1,62 @@
+\section{Definition}
+In this section we will define some terms that we will use throughout the article.
+
+In this article we are exploring rectangular Lights Out. A $(n, c, r)$ Lights Out puzzle
+is a matrix $M$ with $c\in\N$ columns and $r\in\N$ rows with entries over $\Z/n\Z$. The space
+of all $(n, c, r)$ puzzles is called $\Lp_{(n,c,r)}$.
+
+For a each $\Lp_{(n,c,r)}$ and for each $(i, j)$ with $1\leq i \leq r$ and $1\leq j \leq c$
+there is a basic press function $p_{(i,j)}: \Lp_{(n,c,r)} \rightarrow \Lp_{(n,c,r)}$ mapping
+
+\[
+    \left(p_{(i,j)}(M)\right)_{(u,v)} :=
+    \left\{
+    \begin{array}{l@{\quad:\quad}l}
+        M_{(u,v)} + 1 & \operatorname{d}\left((i,j), (u,v)\right) \leq 1 \\
+        M_{(u,v)} & \text{otherwise}
+    \end{array}
+    \right.
+\]
+
+where $\operatorname{d}$ is the \emph{Manhattan distance}. The set of all basic presses is called $B$.
+
+A press sequence is a finite sequence of basic presses. The set of all press sequences is called $P$.
+$P$ together with concatenation of sequences makes a monoid with the empty sequence as identity element.
+
+We will define a fingerprint function $I: P \rightarrow (\Z/n\Z)^{B}$ that count how many times a basic press
+is present in the sequence, modulo $n$. So for $\overline{m}:={0, 1, \ldots, m-1}$ we have
+
+\[
+    I\left((q_t)_{t\in\overline{m}}\right)NL
+    =
+    p_{(i,j)} \mapsto \overline{\sum_{t\in\overline{m}}1_{(i,j)}(q_{t})}
+\]
+
+where $1_{(i,j)}(q)$ is $1$ when $q=p_{(i,j)}$ and zero otherwise. Notice that $I(u\circ v) = I(u) + I(v)$ and $I(\epsilon) = O$.
+
+Now we will define a relation $~$ over $P$. $u ~ v$ if and only if $I(u) = I(v)$. With some thought one
+can see that $~$ is an equivalence relation. The equivalence class of $u\in P$ will be denoted by $[u]$
+and wil be called a \emph{press pattern}.
+The set of all press patterns will be denoted by $\Pp$.
+
+We will define the following binary operation on $\Pp$: $[u] + [v] = [u\circ v]$. Notice that for
+$u_{0}, u_{1}, v_{0}, v_{1}\in\Pp$ with $[u_{0}] = [u_{1}]$ and $[v_{0}] = [v_{1}]$ we have.
+
+\[
+    [u_{0}\circ v_{0}] = 
+    \{w\in P|
+    I(w)=I(u_{0}\circ v_{0}) = I(u_{0})+I(v_{0}) = I(u_{1})+I(v_{1}) = I(u_{1}\circ v_{1})
+    \} =
+    [u_{1}\circ v_{1}]
+\]
+
+which show that the addition is well defined. Since $I(u) + I(v) = I(v) + I(u)$
+$\left(\Pp, +\right)$ is an abelian group.
+
+If we define scaliar multiplication with $r\in\Z/n/Z$ as
+
+\[
+    r[u] = [\underbrace{u\circ u\circ\ldots u}_{r\text{times}}]
+\]
+
+We turn $\Pp$ into a free $\Z/n/Z$-module.
