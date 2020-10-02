@@ -23,19 +23,29 @@ where $\operatorname{d}$ is the \emph{Manhattan distance}. The set of all basic 
 A press sequence is a finite sequence of basic presses. The set of all press sequences is called $P$.
 $P$ together with concatenation of sequences makes a monoid with the empty sequence as identity element.
 
+The effect $E$ of a press sequence is an mapping on $\Lp_{(n,c,r)}$ that extends basic presses.
+I.e. the effect of the empty sequence is the identity map and for a press sequence $\left(q_{t})_{t\in\overline{m}}$
+with $\overline{m}:=\{0, 1, \ldots, m-1\}$ 
+
+\[
+    E\left(\left(q_{t})_{t\in\overline{m}}\right)\right)
+    =
+    E\left(\left(q_{t+1})_{t\in\overline{m-1}}\right)\right) \circ q_{0}
+\]
+
 We will define a fingerprint function $I: P \rightarrow (\Z/n\Z)^{B}$ that count how many times a basic press
 is present in the sequence, modulo $n$. So for $\overline{m}:={0, 1, \ldots, m-1}$ we have
 
 \[
-    I\left((q_t)_{t\in\overline{m}}\right)NL
+    I\left((q_t)_{t\in\overline{m}}\right)
     =
     p_{(i,j)} \mapsto \overline{\sum_{t\in\overline{m}}1_{(i,j)}(q_{t})}
 \]
 
 where $1_{(i,j)}(q)$ is $1$ when $q=p_{(i,j)}$ and zero otherwise. Notice that $I(u\circ v) = I(u) + I(v)$ and $I(\epsilon) = O$.
 
-Now we will define a relation $~$ over $P$. $u ~ v$ if and only if $I(u) = I(v)$. With some thought one
-can see that $~$ is an equivalence relation. The equivalence class of $u\in P$ will be denoted by $[u]$
+Now we will define a relation $\sim$ over $P$. $u \sim v$ if and only if $I(u) = I(v)$. With some thought one
+can see that $\sim$ is an equivalence relation. The equivalence class of $u\in P$ will be denoted by $[u]$
 and wil be called a \emph{press pattern}.
 The set of all press patterns will be denoted by $\Pp$.
 
@@ -53,10 +63,12 @@ $u_{0}, u_{1}, v_{0}, v_{1}\in\Pp$ with $[u_{0}] = [u_{1}]$ and $[v_{0}] = [v_{1
 which show that the addition is well defined. Since $I(u) + I(v) = I(v) + I(u)$
 $\left(\Pp, +\right)$ is an abelian group.
 
-If we define scaliar multiplication with $r\in\Z/n/Z$ as
+If we define scalar multiplication with $r\in\Z/n/Z$ as
 
 \[
     r[u] = [\underbrace{u\circ u\circ\ldots u}_{r\text{times}}]
 \]
 
 We turn $\Pp$ into a free $\Z/n/Z$-module.
+
+We will construct a linear map
