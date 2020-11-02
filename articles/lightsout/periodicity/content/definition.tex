@@ -13,7 +13,7 @@ there is a basic press function $p_{(i,j)}: \Lp_{(n,c,r)} \rightarrow \Lp_{(n,c,
     \left\{
     \begin{array}{l@{\quad:\quad}l}
         M_{(u,v)} + 1 & \operatorname{d}\left((i,j), (u,v)\right) \leq 1 \\
-        M_{(u,v)} & \text{otherwise}
+        M_{(u,v)}     & \text{otherwise}
     \end{array}
     \right.
 \]
@@ -24,8 +24,8 @@ A press sequence is a finite sequence of basic presses. The set of all press seq
 $P$ together with concatenation of sequences makes a monoid with the empty sequence as identity element.
 
 The effect $E$ of a press sequence is an mapping on $\Lp_{(n,c,r)}$ that extends basic presses.
-I.e. the effect of the empty sequence is the identity map and for a press sequence $\left(q_{t})_{t\in\overline{m}}$
-with $\overline{m}:=\{0, 1, \ldots, m-1\}$ 
+I.e. the effect of the empty sequence is the identity map and for a press sequence $\left(q_{t}\right)_{t\in\overline{m}}$
+with $\overline{m}:=\{0, 1, \ldots, m-1\}$
 
 \[
     E\left(\left(q_{t})_{t\in\overline{m}}\right)\right)
@@ -33,27 +33,49 @@ with $\overline{m}:=\{0, 1, \ldots, m-1\}$
     E\left(\left(q_{t+1})_{t\in\overline{m-1}}\right)\right) \circ q_{0}
 \]
 
-We will define a fingerprint function $I: P \rightarrow (\Z/n\Z)^{B}$ that count how many times a basic press
-is present in the sequence, modulo $n$. So for $\overline{m}:={0, 1, \ldots, m-1}$ we have
+For each press sequence $q:=\left(q_{t}\right)_{t\in\overline{m}}$ we define a count function $N: P \rightarrow \N^B$ that counts the number of times that a basic press is present.
 
 \[
-    I\left((q_t)_{t\in\overline{m}}\right)
+    N_{q}(p_{(i,j)}) = \sum_{t\in\overline{m}} 1_{(i,j)}(q_{t})
+\]
+where $1_{(i,j)}(q)$ is $1$ when $q=p_{(i,j)}$ and zero otherwise. We will write the application of $N$ to press sequence $q$ as $N_{q}$.
+
+With this count we will define a fingerprint function $I: P \rightarrow (\Z/n\Z)^{B}$ that count how many times a basic press
+is present in the sequence, modulo $n$. So for $\overline{m}:=\{0, 1, \ldots, m-1\}$ we have
+
+\[
+    I\left(q\right)
     =
-    p_{(i,j)} \mapsto \overline{\sum_{t\in\overline{m}}1_{(i,j)}(q_{t})}
+    p_{(i,j)} \mapsto \overline{N_{q}(p_{(i,j)})}
 \]
 
-where $1_{(i,j)}(q)$ is $1$ when $q=p_{(i,j)}$ and zero otherwise. Notice that $I(u\circ v) = I(u) + I(v)$ and $I(\epsilon) = O$.
+Notice that $I(u\circ v) = I(u) + I(v)$ and $I(\epsilon) = O$. Again, we will write $I_{u}$ for the application $I(u)$.
 
 Now we will define a relation $\sim$ over $P$. $u \sim v$ if and only if $I(u) = I(v)$. With some thought one
 can see that $\sim$ is an equivalence relation. The equivalence class of $u\in P$ will be denoted by $[u]$
 and wil be called a \emph{press pattern}.
 The set of all press patterns will be denoted by $\Pp$.
 
+Note that for $[s],[t]\in\Pp$ with $[s]=[t]$ we have
+
+\[
+    E(s) M = E(t) M
+\]
+
+since 
+
+\[
+    \left(E(s) M\right)_{(u,v)}
+    = M_{(u,v)} + \sum_{d((i,j),(u,v))\leq 1}I_{s}(p_{(i,j)})
+    = M_{(u,v)} + \sum_{d((i,j),(u,v))\leq 1}I_{t}(p_{(i,j)})
+    = \left(E(t) M\right)_{(u,v)}
+ \]
+
 We will define the following binary operation on $\Pp$: $[u] + [v] = [u\circ v]$. Notice that for
 $u_{0}, u_{1}, v_{0}, v_{1}\in\Pp$ with $[u_{0}] = [u_{1}]$ and $[v_{0}] = [v_{1}]$ we have.
 
 \[
-    [u_{0}\circ v_{0}] = 
+    [u_{0}\circ v_{0}] =
     \{w\in P|
     I(w)=I(u_{0}\circ v_{0}) = I(u_{0})+I(v_{0}) = I(u_{1})+I(v_{1}) = I(u_{1}\circ v_{1})
     \} =
@@ -71,4 +93,40 @@ If we define scalar multiplication with $r\in\Z/n/Z$ as
 
 We turn $\Pp$ into a free $\Z/n/Z$-module.
 
-We will construct a linear map
+We will construct a map $\Ep$ from $\Pp \rightarrow \Lp$ with $[u] \mapsto E(u) O$. 
+Notice that $\Ep(u\circ v) = \Ep(u)(\Ep(v))$ which makes $\Ep$ a linear transformation.
+
+Solving a $s\in\Lp$ amounts to solving for $u\in\Pp$ the linear equation
+
+\[
+\Ep(u) = -s
+\]
+
+Next we consider an order $\leq$ on $B$, the basic presses. For $p_{(i,j)}, p_{(u,v)}\in B$
+we have $p_{(i,j)}\leq p_{(u,v)}$ if and only if $j \lt v$ or when $j = v$ then $i \leq j$.
+This ordering amounts to ordering the basic pressed per row from top to bottom and for each row
+from left to right.
+
+A press sequence $q:=(q_{t})_{t\in\overline{m}}\in P$ is called a \emph{standard} press sequence when
+$q_{i}\leq q_{j}$ whenever $i \leq j$. For each press pattern $P\in\Pp$ there is a unique standard 
+press sequence $p\in P$ such that $P = [p]$.
+A press sequence is \emph{fertile} if it only contains basic presses with a row index of 0.
+
+We will turn to chasing the light. For each light pattern $L\in\Lp$ we define a press pattern
+$chase(L)$. We create a sequence of standard press patterns. $z_{0} := \epsilon$, the empty
+press pattern. $z_{n+1} := z_{n} \circ p_{(i,j+1)}$ where $(i,j)$ is the smallest non-zero entry
+in $L+\Ep(z_{n})$. $chase(L)$ is the press pattern when the press sequence does not grow anymore.
+
+Chasing amounts to finding a fertile press sequence $p\in P$ such that
+
+\[
+chase([p]) = -chase(L)
+\]
+
+$chase_{(n,c,r)}$ is a linear transformation.
+
+\begin{definition}
+    For a $(n,c,r)$ Light Out puzzle we call $C_{(n,c,r)} := \dimension \Ker chase_{(n,c,r)}$
+\end{definition}
+
+When $n$ and $c$ are clear from context we will write $C_{r}$ for $C_{(n,c,r)}$.
