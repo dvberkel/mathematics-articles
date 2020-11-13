@@ -3,7 +3,7 @@ We will formalize the process of chasing down the lights and prove all of our
 observations. To begin we will introduce a matrix of some interest.
 
 For all $c\in\N$ define the $2c\times 2c$ matrix $W_{c}$ with entries in
-$\GF(q)$ by
+$\Z/n\Z$ by
 \[
 W_{c} := \left(
 \begin{array}{cc}
@@ -30,7 +30,7 @@ E_{4} := \left(
 \]
 
 The reason we are looking at $W_{c}$ is that its powers tell us something about
-the effect of chasing down the lights. In particular, if we have an $r \times c$
+the effect of chasing down the lights. In particular, if we have an $(n, c, r)$
 lights out puzzle, the $c \times c$ upper left sub-matrix of $W_{c}^{r}$ is
 exactly the process of gathering the lights.
 
@@ -70,12 +70,12 @@ is periodic. This also proves our observation \ref{observation.periodic}, but we
 will have some more to say about that.
 
 \begin{theorem}
-  The sequence $\left(W_{c}^{n}\right)_{n\in\N}$ is purely periodic.
+  The sequence $\left(W_{c}^{r}\right)_{r\in\N}$ is purely periodic.
 \end{theorem}
 
 \begin{proof}
   There are only finitely many different square matrices of size $2c$ over
-  $\GF(q)$. So the sequence $\left(W_{c}^{n}\right)_{n\in\N}$ must
+  $\Z/n\Z$. So the sequence $\left(W_{c}^{r}\right)_{r\in\N}$ must
   become periodic. By the preceding lemma $W_{c}$ is invertible so the
   sequence is periodic from the start.
 \end{proof}
@@ -86,33 +86,33 @@ structure lemma.
 
 \begin{lemma}[structure]
   There exists a sequence of $c \times c$ matrices
-  $\left(T_{n}\right)_{n\in\N}$ such that
+  $\left(T_{r}\right)_{r\in\N}$ such that
   \[
-  W_{c}^{n}
+  W_{c}^{r}
   =
   \left(
   \begin{array}{cc}
-     T_{n} &  T_{n-1} \\
-    -T_{n-1} & -T_{n-2}   \\
+     T_{r} &  T_{r-1} \\
+    -T_{r-1} & -T_{r-2}   \\
   \end{array}
   \right)
   \]
-  for all $k\in\N$.
+  for all $r\in\N$.
 \end{lemma}
 
 \begin{proof}
   Define $T_{0} := I$, and for convenience $T_{-1} := O$ and
-  $T_{n+1} := -E \cdot T_{n} - T_{n-1}$ for all $n\in\N$. So
+  $T_{r+1} := -E \cdot T_{r} - T_{r-1}$ for all $r\in\N$. So
   $T_{1} = -E \cdot I - O = -E$. 
 
-  A number $n\in\N$ is called strong if and only if
+  A number $r\in\N$ is called strong if and only if
   \[
-  W_{c}^{n}
+  W_{c}^{r}
   =
   \left(
   \begin{array}{cc}
-     T_{n} &  T_{n-1}  \\
-    -T_{n-1} & -T_{n-2} \\
+     T_{r} &  T_{r-1}  \\
+    -T_{r-1} & -T_{r-2} \\
   \end{array}
   \right)
   \]
@@ -164,24 +164,24 @@ With the structure lemma under our belt we can prove our first observation, i.e.
 the sequence of the dimension of kernels is periodic.
 
 \begin{proposition}[Observation \ref{observation.periodic}]
-  The sequence $\left(\dim \Ker P_{r,c}\right)_{r\in\N}$ is periodic.
+  The sequence $\left(C_{(n,c,r)}\right)_{r\in\N}$ is periodic.
 \end{proposition}
 
 \begin{proof}
   By the structure lemma, for all $r\in\N$,
   \[
-  \dim\Ker P_{r,c}
+  C_{(n,c,r)}
   =
   \dim\Ker T_{r}
   \]
 
   By the periodicity of $(W_{c}^{r})_{r\in\N}$ we have the
-  periodicity of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$.
+  periodicity of $\left(C_{(n,c,r)}\right)_{r\in\N}$.
 \end{proof}
 
-It could be the case that the period of $\left(\dim\Ker(P_{r,c}\right)_{r\in\N}$
-is a divisor of the period of $(W_{c}^{r})_{r\in\N}$. In fact, these periods do
-not coincide. There is a relation which we will see shortly.
+It could be the case that the period of $\left(C_{(n,c,r)}\right)_{r\in\N}$
+is a divisor of the period of $(W_{c}^{r})_{r\in\N}$. There is a relation which 
+we will see shortly.
 
 Next on our agenda is our observation \ref{observation.maximal}. I.e. for each
 number of columns $c$ there is a kernel with that dimension.
@@ -197,7 +197,7 @@ number of columns $c$ there is a kernel with that dimension.
   thus $W_{c}^{p-1} = W_{c}^{-1} \cdot W_{c}^{p} = W_{c}^{-1}$.
   Furthermore
   \[
-  \dim\Ker P_{p-1,c}
+  C_{(n,c,p)}
   =
   \dim\Ker T_{-1}
   =
@@ -208,10 +208,10 @@ number of columns $c$ there is a kernel with that dimension.
 
 Before we will dive deeper in the question if the period of both sequences
 coincide, we will take a closer look at observation \ref{observation.surround}.
-For this we need to know the determinant of $W_{c}^{n}$ for all $n\in\N$.
+For this we need to know the determinant of $W_{r}^{n}$ for all $r\in\N$.
 
 \begin{lemma}
-  $\det(W_{c}^{n}) = 1$ for all $n\in\N$.
+  $\det(W_{c}^{r}) = 1$ for all $r\in\N$.
 \end{lemma}
 
 \begin{proof}
@@ -230,22 +230,22 @@ For this we need to know the determinant of $W_{c}^{n}$ for all $n\in\N$.
   1
   \]
   The lemma follows by multiplicativity of the determinant and
-  by induction on $n$.
+  by induction on $r$.
 \end{proof}
 
 This little fact will helps us establishing the proof of observation
 \ref{observation.surround}.
 
 \begin{theorem}[Observation \ref{observation.surround}]
-  If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
+  If for some $r\in\N$ we have $C_{n,c,r} = c$ then
   \begin{itemize}
-    \item $\dim\Ker P_{r-1,c} = 0$
-    \item $\dim\Ker P_{r+1,c} = 0$
+    \item $C_{n,c,r-1} = 0$
+    \item $C_{n,c,r+1} = 0$
   \end{itemize}
 \end{theorem}
 
 \begin{proof}
-  Let $r\in\N$ be such that $\dim\Ker P_{r,c} = c$; then
+  Let $r\in\N$ be such that $C_{(n,c,r)} = c$; then
   \[
   W_{c}^{r}
   =
@@ -265,21 +265,21 @@ This little fact will helps us establishing the proof of observation
   $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$,
   hence both
   \begin{itemize}
-    \item $\dim\Ker P_{r-1,c} = \dim\Ker T_{r-1} = 0$,
-    \item $\dim\Ker P_{r+1,c} = \dim\Ker -T_{r-1} = 0$.
+    \item $C_{(n,c,r-1)} = \dim\Ker T_{r-1} = 0$,
+    \item $C_{(n,c,r+1)} = \dim\Ker -T_{r-1} = 0$.
   \end{itemize}
 \end{proof}
 
 \begin{corollary}\label{block-diagonal}
-  If for some $r\in\N$ we have $\dim\Ker P_{r,c} = c$ then
+  If for some $r\in\N$ we have $C_{(n,c,r)} = c$ then
   $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$
 \end{corollary}
 
 In proving our observation \ref{observation.surround} we have learned that the
 structure of the corresponding matrix power is particular simple. This fact will
 be instrumental in the relation between the period of
-$\left(W_{c}^{n}\right)_{n\in\N}$ and that of
-$\left(\dim\Ker P_{r,c}\right)_{r\in\N}$.
+$\left(W_{c}^{r}\right)_{r\in\N}$ and that of
+$\left(C_{(n,c,r)}\right)_{r\in\N}$.
 
 But first we will see that $W_{c}$ and it's inverse are conjugates.
 
@@ -289,11 +289,11 @@ But first we will see that $W_{c}$ and it's inverse are conjugates.
 
 \begin{proof}
   We will conjugate $W=W_{c}$ by
-  $C := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$,
+  $D := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$,
   which is its own inverse,
   \[
   \begin{aligned}
-  C \cdot W \cdot C^{-1}
+  D \cdot W \cdot D^{-1}
   & =
   \left(
   \begin{array}{cc}
@@ -343,9 +343,9 @@ But first we will see that $W_{c}$ and it's inverse are conjugates.
 \end{proof}
 
 \begin{corollary}
-  $W_{c}^{-n} =
+  $W_{c}^{-r} =
   \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)
-  W_{c}^{n}
+  W_{c}^{r}
   \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
 \end{corollary}
 
@@ -452,7 +452,7 @@ maximal kernel dimension and let $d = q+1$. The period of $W$ will be $p$.
 \end{proof}
 
 \begin{theorem}[Observation \ref{observation.palindromic}]
-  The sequence $\left(\dim\Ker P_{r,c}\right)_{r\in\N}$
+  The sequence $\left(C_{(n,c,r)}\right)_{r\in\N}$
   is almost palindromic.
 \end{theorem}
 
