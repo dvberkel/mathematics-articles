@@ -207,45 +207,115 @@ number of columns $c$ there is a kernel with that dimension.
 \end{proof}
 
 Before we will dive deeper in the question if the period of both sequences
-coincide, we will take a closer look at observation \ref{observation.surround}.
-For this we need to know the determinant of $W_{r}^{n}$ for all $r\in\N$.
+coincide, we will take a closer look at observation \ref{observation.consecutive}.
 
-\begin{lemma}
-  $\det(W_{c}^{r}) = 1$ for all $r\in\N$.
-\end{lemma}
+\begin{theorem}[Observation \ref{observation.consecutive}]
+  For all $i\in\N$ the following inequality holds
+  \[C_{(n, c, i)} + C_{(n, c, i+1)} \leq c\]
+\end{theorem}
 
 \begin{proof}
-  Note that $\det(W_{c}^{0}) = \det(I) = 1$ and
+  Assume to the contrary that there is a $k\in\N$ such that $C_{(n, c, k)} + C_{(n, c, k+1)} > c$.
+
+  Let $U := \Ker\chase_{(n, c, k)}$ and let $u_{1}, \ldots, u_{m}$ be a basis for $U$, with $m := C_{(n, c, k)}$.
+  In similar fashion let $V := \Ker\chase_{(n, c, k)}$ with basis $v_{1}, \ldots, v_{n}$ and $n := C_{(n, c, k+1)}$. In particular
+  the basis for $U$ and $V$ are both linear independent.
+
+  Now, because each basis for a $\Z/n\Z$-module has the same rank, and the rank of $\Ep$ is $c$ (See \cite{roman07}), the set of combined vector is linear dependent.
+  I.e. there are $s_i$ and $t_i$ not all zero such that
   \[
-  \det(W_{c}) = \det
-  \left(
-  \begin{array}{cc}
-    -E & I \\
-    -I & O \\
-  \end{array}
-  \right)
-  =
-  \det(-E) \cdot \det(O) - \det(-I) \cdot \det(I)
-  =
-  1
+    s_{1} u_{1} + s_{2} u_{2} + \cdots + s_{m} u_{m} + t_{1} v_{1} + \cdots + t_{n} v_{n} = 0 
   \]
-  The lemma follows by multiplicativity of the determinant and
-  by induction on $r$.
+
+  Because the $u_{i}$ and $v_{i}$ are linear independent there exist a non-zero $p \in U \cap V$. Hence
+
+  \[
+    W^{k} p =
+    \left(
+    \begin{array}{c}
+      O  \\
+      w \\
+    \end{array}
+    \right)
+  \]
+
+  and
+
+  \[
+    W^{k+1} p =
+    \left(
+    \begin{array}{c}
+      O  \\
+      w' \\
+    \end{array}
+    \right)
+  \]
+
+  but
+
+  \[
+    \left(
+    \begin{array}{c}
+      O  \\
+      w' \\
+    \end{array}
+    \right)
+    =
+    W^{k+1} p
+    =
+    W W^{k} p
+    =
+    W 
+    \left(
+    \begin{array}{c}
+      O \\
+      w \\
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{c}
+      w \\
+      O \\
+    \end{array}
+    \right)
+  \]
+
+  So $W^{k} p = O$, which contradicts the fact that $W$ is invertable.
 \end{proof}
 
-This little fact will helps us establishing the proof of observation
-\ref{observation.surround}.
+This little fact will helps us establishing the proof of the following fact
 
-\begin{theorem}[Observation \ref{observation.surround}]
+\begin{corollary}
   If for some $r\in\N$ we have $C_{n,c,r} = c$ then
   \begin{itemize}
     \item $C_{n,c,r-1} = 0$
     \item $C_{n,c,r+1} = 0$
   \end{itemize}
-\end{theorem}
+\end{corollary}
 
 \begin{proof}
-  Let $r\in\N$ be such that $C_{(n,c,r)} = c$; then
+  If for some $r\in\N$ we have $C_{(n,c,r)} = c$, then both
+
+  \[
+    C_{(n, c, r-1)} \leq c - C_{(n,c,r)} = c - c = 0
+  \]
+
+  and
+
+  \[
+    C_{(n, c, r+1)} \leq c - C_{(n,c,r)} = c - c = 0
+  \]
+\end{proof}
+
+\begin{lemma}\label{block-diagonal}
+  If for some $r\in\N$ we have $C_{(n,c,r)} = c$ then
+  $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$
+\end{lemma}
+
+\begin{proof}
+  If for some $r\in\N$ we have $C_{(n,c,r)} = c$; then
+
   \[
   W_{c}^{r}
   =
@@ -256,26 +326,12 @@ This little fact will helps us establishing the proof of observation
   \end{array}
   \right)
   \]
-  and $1 = \det W_{c}^{r} = (\det T_{r-1})^{2}$, so $T_{r-1}$ is
-  invertible.
 
-  Note that
-  $W_{c}^{r-1} = \left(\begin{smallmatrix} T_{r-1} & T_{r-2} \\-T_{r-2} & -T_{r-3} \\\end{smallmatrix}\right)$
-  and
+  By direct multiplication we note that
   $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$,
-  hence both
-  \begin{itemize}
-    \item $C_{(n,c,r-1)} = \dim\Ker T_{r-1} = 0$,
-    \item $C_{(n,c,r+1)} = \dim\Ker -T_{r-1} = 0$.
-  \end{itemize}
 \end{proof}
 
-\begin{corollary}\label{block-diagonal}
-  If for some $r\in\N$ we have $C_{(n,c,r)} = c$ then
-  $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\ O & -T_{r-1} \\\end{smallmatrix}\right)$
-\end{corollary}
-
-In proving our observation \ref{observation.surround} we have learned that the
+In proving our lemma \ref{block-diagonall} we have learned that the
 structure of the corresponding matrix power is particular simple. This fact will
 be instrumental in the relation between the period of
 $\left(W_{c}^{r}\right)_{r\in\N}$ and that of
@@ -360,7 +416,7 @@ corresponds to rotating the four cardinal sub-matrices through 180 degrees.
 This fact will be the linchpin in the proof of observation
 \ref{observation.palindromic}.
 
-\begin{lemma}
+\begin{lemma}\label{mirror}
   If for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$.
 
   \[
@@ -494,13 +550,24 @@ maximal kernel dimension and let $d = q+1$. The period of $W$ will be $p$.
       O  \\
     \end{array}
     \right)
-  \]
+  \]k
 
   Since for any press vector $w$ we have that $W^{d} w = O$, in particular we have
 
   \[
-  O = W^{d} v = W^{n} W W^{m} v = W^{n} W u = W^{m} p
+  O = W^{d} v = W^{n} W W^{m} v = W^{n} W u = W^{n} p
   \]
 
   which shows that for each press vector that $W^{m}$ unlits, there is a press vector that $W^{n}$ unlits.
+\end{proof}
+
+Now everything is in play to prove \ref{observation.period}
+
+\begin{theorem}[Observation \ref{observation.period}]
+  The period of $(C_{(n, c, r)})_{r\in\N}$ starts after the maximal dimension.
+\end{theorem}
+
+\begin{proof}
+By lemma \ref{block-diagonal} the power of $W$ has a block diagonal structure. By lemma \ref{mirror} the sequence of dimensions
+is shifted mirror image. Together with the fact that the sequence is almost palindromic from the previous theorem, we have our proof.
 \end{proof}

@@ -113,20 +113,20 @@ press sequence $p\in P$ such that $P = [p]$.
 A press sequence is \emph{fertile} if it only contains basic presses with a row index of 0.
 
 We will turn to chasing the light. For each light pattern $L\in\Lp$ we define a press pattern
-$chase(L)$. We create a sequence of standard press patterns. $z_{0} := \epsilon$, the empty
+$\chase(L)$. We create a sequence of standard press patterns. $z_{0} := \epsilon$, the empty
 press pattern. $z_{n+1} := z_{n} \circ p_{(i,j+1)}$ where $(i,j)$ is the smallest non-zero entry
-in $L+\Ep(z_{n})$. $chase(L)$ is the press pattern when the press sequence does not grow anymore.
+in $L+\Ep(z_{n})$. $\chase(L)$ is the press pattern when the press sequence does not grow anymore.
 
 Chasing amounts to finding a fertile press sequence $p\in P$ such that
 
 \[
-chase([p]) = -chase(L)
+\chase([p]) = -\chase(L)
 \]
 
 $chase_{(n,c,r)}$ is a linear transformation.
 
 \begin{definition}
-    For a $(n,c,r)$ Light Out puzzle we call $C_{(n,c,r)} := \dimension \Ker chase_{(n,c,r)}$
+    For a $(n,c,r)$ Light Out puzzle we call $C_{(n,c,r)} := \dimension \Ker \chase_{(n,c,r)}$
 \end{definition}
 
 When $n$ and $c$ are clear from context we will write $C_{r}$ for $C_{(n,c,r)}$.
