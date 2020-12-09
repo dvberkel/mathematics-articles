@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+# This README file instructs how to build periodicity.
+#
+# The following instructions build periodicity. It can be run with the following
+# command:
+# 	bash README
+
+name=np-complete
+
+for dir in content lib image
+do
+	if [ -f $dir/README ]
+	then
+		cd $dir
+		bash README
+		cd ..
+	fi
+done
+
+latex $name
+bibtex $name
+latex $name
+latex $name
+dvips $name.dvi -o $name.ps
+ps2pdf $name.ps
