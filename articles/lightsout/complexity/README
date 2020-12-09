@@ -1,12 +1,12 @@
 #! /usr/bin/env bash
 
-# This README file instructs how to build periodicity.
+# This README file instructs how to build complexity.
 #
-# The following instructions build periodicity. It can be run with the following
+# The following instructions build complexity. It can be run with the following
 # command:
 # 	bash README
 
-name=np-complete
+name=complexity
 
 for dir in content lib image
 do
