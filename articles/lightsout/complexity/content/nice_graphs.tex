@@ -1,0 +1,30 @@
+\section{Nice Graphs}
+We call a graph $G:=(V, E)$ \emph{nice} if and only if it has the following properties
+
+\begin{enumerate}
+    \item \emph{reflexive} there is an self-edge for each vertex of $G$
+    \item \emph{symmetric} if $(u,v)\in E$ then also $(v,u)\in E$
+    \item \emph{equal weight} Each edge has the same weight.
+\end{enumerate}
+
+Without the loss of generality, for nice graphs we can set the weights to 1.
+
+\begin{proof}[TODO talk about equivalent problems]
+    There is an \emph{equivalent} problem with weights 1 for each nice graph.
+\end{proof}
+
+\begin{theorem}
+    For a nice graph $G$ we have
+
+    a solution for the restricted Lights Out problem on G exists if and only if a solution to the standard Lights Out problem on G exists.
+\end{theorem}
+
+\begin{proof}[TODO expand proof]
+    from restricted to standard trivial.
+
+    From trivial to restricted. Each standard solution can be lifted to restricted. Induction on solution length and the observation that there is a lit button nearby. 
+\end{proof}
+
+\begin{corollary}
+    The complexity for the existance and solution restricted Lights Out problem on nice graphs is the same for standard Lights Out problem on such graph.
+\end{corollary}
