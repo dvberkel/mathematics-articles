@@ -1,0 +1,8 @@
+digraph B {
+    rankdir="LR"
+    node [shape=none]
+    reservoir [shape=circle,label="B"]
+    input -> reservoir
+    reservoir -> reservoir
+    reservoir -> output
+}

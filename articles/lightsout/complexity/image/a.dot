@@ -1,0 +1,13 @@
+digraph A {
+    rankdir="LR"
+    node [shape=circle]
+    source [label="A"]
+    kill [label="K"]
+    output [shape=none]
+    source -> output
+    subgraph {
+        rank="same" kill,source
+        kill -> kill
+        kill -> source
+    }
+}

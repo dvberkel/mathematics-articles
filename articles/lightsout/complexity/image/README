@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+# This README file instructs how to build the images in this directory.
+#
+# The following instructions build the images. It can be run with the following
+# command:
+# 	bash README
+
+for f in *.dot
+do
+    dot -Tps -O $f
+done

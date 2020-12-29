@@ -1,0 +1,6 @@
+digraph C {
+    rankdir="LR"
+    input [shape=none]
+    sink [shape=circle,label="C"]
+    input -> sink
+}
