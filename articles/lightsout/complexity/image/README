@@ -8,5 +8,5 @@
 
 for f in *.dot
 do
-    dot -Tps $f | ps2eps > "$(basename $f .dot).eps"
+    dot -Tpdf $f -O
 done

@@ -1,0 +1,38 @@
+digraph p3 {
+    rankdir="LR"
+    node [shape=circle]
+    subgraph A {
+        rankdir="LR"
+        clock [label="A"]
+        kill [label="K"]
+        clock -> register1
+        subgraph {
+            rank="same" kill,clock
+            kill -> kill
+            kill -> clock
+        }
+    }
+
+    subgraph B1 {
+        rankdir="LR"
+        register1 [label="B1"]
+        register1 -> register2
+    }
+
+    subgraph B2 {
+        rankdir="LR"
+        register2 [label="B2"]
+        register2 -> register3
+    }
+
+    subgraph B3 {
+        rankdir="LR"
+        register3 [label="B3"]
+        register3 -> carry
+    }
+
+    subgraph C {
+        rankdir="LR"
+        carry [label="C"]
+    }
+}
