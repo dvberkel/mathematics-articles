@@ -19,6 +19,11 @@ Without the loss of generality, for nice graphs we can set the weights to 1.
     For every lit button $b\in L$ there is a button $s\in S$ within $d(b,s) \leq 1$. 
 \end{lemma}
 
+\begin{proof}
+    Assume the contrary. I.e. All buttons in the solution have a distance greater then 1 to all lit buttons of $L$. Since the effect of pressing a button has reach 1, no lit button in $L$ will change when pressing any $s\in S$.
+    Contrary to $S$ being a solution.
+\end{proof}
+
 \begin{lemma}\label{restricted-solution}
     Given a nice graph $G$
 
