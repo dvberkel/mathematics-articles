@@ -1,0 +1,6 @@
+digraph NotReflexive {
+    rankdir="LR"
+    node [shape=circle]
+    a -> b
+    b -> a
+}

@@ -24,6 +24,10 @@ Without the loss of generality, for nice graphs we can set the weights to 1.
     Contrary to $S$ being a solution.
 \end{proof}
 
+\begin{remark}
+    Something more general is true. $G$ does not have to be a nice graph.
+\end{remark}
+
 \begin{lemma}\label{restricted-solution}
     Given a nice graph $G$
 
@@ -86,3 +90,14 @@ Without the loss of generality, for nice graphs we can set the weights to 1.
     The result for the restricted solution problem follows from theorem \ref{standard-complexity} a solutions to the standard problem can be found in polynomial time.
     By lemma \ref{restricted-solution} and corollary \ref{restricted-bound} it can be transformed in polynomial time to a solution for the restricted problem.
 \end{proof}
+
+In general, when our graph is not nice we loose the property that the solutions to the lit problem are equivalent to the standard problem.
+
+\begin{figure}\label{figure:not-nice-counter-examples}
+  \mbox{
+    \subfigure[Not reflexive]{\includegraphics[width=0.30\textwidth]{image/not-reflexive.dot.pdf}}\label{counter-example:not-reflexive}
+    \subfigure[Not Symmetric]{\includegraphics[width=0.30\textwidth]{image/not-symmetric.dot.pdf}}\label{counter-example:not-symmetric}
+    \subfigure[Not same Weight]{\includegraphics[width=0.30\textwidth]{image/c.dot.pdf}}\label{counter-example:not-same-weight}
+   }
+  \caption{Counter examples}
+\end{figure}
