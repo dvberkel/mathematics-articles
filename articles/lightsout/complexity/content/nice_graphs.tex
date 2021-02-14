@@ -101,3 +101,10 @@ In general, when our graph is not nice we loose the property that the solutions 
    }
   \caption{Counter examples}
 \end{figure}
+
+\begin{remark}
+    For the not reflexive counter example we have an $\state(a) = 0$ and $\state(b) = 1$. A standard solution is to press $a$, which can be achieved in lit problem.
+    Pressing the only lit button results in $\state(a) = 1$, pressing any button in this state transforms back to the original or similar state.
+
+    For the not symmetric case with only $\state(b) = 1$ and the rest is off, we have a solution by pressing $c, d, e, a$. Since neither of $c$, $d$, or $e$ is lit, and will never be lit this solution can not be transfered from the standard problem to the lit problem.
+\end{remark}
