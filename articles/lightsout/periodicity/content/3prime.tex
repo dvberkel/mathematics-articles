@@ -1,0 +1,395 @@
+\section{Prime colours}\label{sec:prime}
+With the Structure Lemma under our belt we are in a position
+to prove the observations we started out with. In fact, we
+can prove these observations in a generalized setting, but
+only for the case where the number of colours $n$ is a
+prime number. The case of a composite number of colours
+requires somewhat more care, and is treated in the next section.
+
+So, throughout this section we will assume that the
+number of colours $n$ is prime; the importance
+of this is that then $\znz$ is a finite field of $n$
+elements, which we will denote by $\FF_n$. In this case
+we can reformulate Corollary \ref{cor:numbers}.
+
+\begin{corollary}\label{cor:prime}
+For a prime number $n$ the number of solvable initial
+configurations of $\Lp(r,c,n)$ will be $n^{r\cdot c-d}$, each
+allowing $n^d$ different solutions, where $d=d(r,c)$ is
+	$\dim\Ker T_{c,r}$.
+\end{corollary}
+%
+The kernel dimensions $d(r,c)$ appeared in Table \ref{tab:n2} for $n=2$.
+Table \ref{tab:n3} similarly lists these dimensions for Lights Out
+with $n=3$ colours, for small values of $r, c$.
+
+\begin{table}\label{tab:n3}
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|cccccccccccccccc|c|}
+\hline
+$r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 &11 &12 &13 &14 &15 &$\ell$
+\\
+\hline
+\hline
+ 0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &1\\
+ 1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &3\\
+ 2 &0 &1 &1 &1 &0 &2 &0 &1 &1 &1 &0 &2 &0 &1 &1 &1 &6\\
+ 3 &0 &0 &1 &0 &2 &1 &0 &0 &1 &2 &0 &1 &0 &0 &3 &0 &15\\
+ 4 &0 &0 &0 &2 &2 &0 &0 &2 &0 &2 &0 &2 &0 &0 &2 &2 &20\\
+ 5 &0 &1 &2 &1 &0 &3 &0 &1 &4 &1 &0 &3 &0 &1 &2 &1 &18\\
+ 6 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &3 &3 &0 &0 &182\\
+ 7 &0 &0 &1 &0 &2 &1 &0 &0 &1 &2 &0 &1 &0 &0 &3 &0 &120\\
+ 8 &0 &1 &1 &1 &0 &4 &0 &1 &4 &1 &0 &4 &0 &1 &1 &1 &18\\
+ 9 &0 &0 &1 &2 &2 &1 &0 &2 &1 &2 &0 &3 &0 &0 &3 &2 &2460\\
+10 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &122\\
+11 &0 &1 &2 &1 &2 &3 &0 &1 &4 &3 &0 &3 &0 &1 &8 &1 &90\\
+12 &0 &0 &0 &0 &0 &0 &3 &0 &0 &0 &0 &0 &6 &6 &0 &0 &182\\
+13 &0 &0 &1 &0 &0 &1 &3 &0 &1 &0 &0 &1 &6 &6 &1 &0 &546\\
+14 &0 &1 &1 &3 &2 &2 &0 &3 &1 &3 &0 &8 &0 &1 &7 &3 &60\\
+15 &0 &0 &1 &0 &2 &1 &0 &0 &1 &2 &0 &1 &0 &0 &3 &0 &9840\\
+16 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &672605\\
+17 &0 &1 &2 &1 &0 &5 &0 &1 &8 &1 &0 &5 &0 &1 &2 &1 &54\\
+18 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &5097638\\
+19 &0 &0 &1 &2 &4 &1 &0 &2 &1 &4 &0 &3 &0 &0 &5 &2 &2460\\
+20 &0 &1 &1 &1 &0 &2 &0 &1 &1 &1 &0 &2 &3 &4 &1 &1 &546\\
+21 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &44286\\
+22 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &88573\\
+23 &0 &1 &2 &1 &2 &3 &0 &1 &4 &3 &0 &3 &0 &1 &8 &1 &360\\
+24 &0 &0 &0 &2 &2 &0 &0 &2 &0 &2 &0 &2 &0 &0 &2 &2 &174339220\\
+25 &0 &0 &1 &0 &0 &1 &3 &0 &1 &0 &0 &1 &6 &6 &1 &0 &546\\
+26 &0 &1 &1 &1 &0 &4 &0 &1 &4 &1 &0 &4 &0 &1 &1 &1 &54\\
+27 &0 &0 &1 &0 &2 &1 &3 &0 &1 &2 &0 &1 &6 &6 &3 &0 &199290\\
+28 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &5719198113740\\
+29 &0 &1 &2 &3 &2 &3 &0 &3 &4 &3 &0 &9 &0 &1 &8 &3 &7380\\
+30 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &51472783023662\\
+31 &0 &0 &1 &0 &2 &1 &0 &0 &1 &2 &0 &1 &0 &0 &3 &0 &64570080\\
+32 &0 &1 &1 &1 &0 &2 &0 &1 &1 &1 &0 &2 &0 &1 &1 &1 &366\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\caption{Dimension of kernels, and length of period $\ell$ for $n=3$}
+\end{table}
+
+\begin{proposition}[Observation 1]
+Sequence $\left(d_{c}(r)\right)_{r\in\N}$ is purely periodic.
+\end{proposition}
+
+\begin{proof}
+By the Structure Lemma, Corollary \ref{cor:prime},
+the number of different solutions is determined by 
+$\dim\Ker T_{c,r}$.
+  The periodicity of $(W_{c}^{r})_{r\in\N}$ immediately implies that
+  periodicity of $(T_{c,r})_{r\in\N}$.
+\end{proof}
+Note that the Proposition does not mention the {\it size} of either the period
+of the sequence $(W_{c}^{r})_{r\in\N}$ or that of $(T_{r})_{r\in\N}$
+and hence of $\left(d_{c}(r)\right)_{r\in\N}$ yet. But it is clear that
+the period of $\left(d_{c}(r)\right)_{r\in\N}$
+will be a divisor of the period of $(W_{c}^{r})_{r\in\N}$. 
+We will clarify the situation shortly.
+
+Next on our agenda is our Observation 2, i.e., for
+every number of rows there will be a kernel of maximal dimension.
+
+\begin{lemma}[Observation 2]\label{lem:max}
+% There is a kernel of maximal dimension.
+For any given number of columns $c$ there will be be a number of rows $r$
+such that $d_c(r)=c$.
+\end{lemma}
+
+\begin{proof}
+  We will be using the notation as defined by the Structure Lemma.
+
+  There exists $p\in\N$ such that $W_{c}^{p} = I$.
+  Then $W_{c}^{p-1} = W_{c}^{-1} \cdot W_{c}^{p} = W_{c}^{-1}$.
+  Hence,
+  \[
+  d_{c}(p)
+  =
+  \dim\Ker T_{-1}
+  =
+  \dim\Ker O
+  = c.
+  \]
+\end{proof}
+Before we investigate the period lengths further,
+we will take a closer look at Observation 4.
+
+\begin{theorem}[Observation 4]\label{thm:consec}
+  For all $i\in\N$ the following inequality holds:
+  \[d_{c}(i) + d_{c}(i+1) \leq c.\]
+\end{theorem}
+\begin{proof}
+  Assume, to the contrary, that $d_{c}(k) + d_{c}(k+1) > c$ for some $k\in\N$.
+
+  This means that there exist $m=d_{c}(k)$ independent press vectors
+  $q^{(1)}, q^{(2)}, \ldots, q^{(m)}$ in the kernel of $T_k$ and
+  $n = d_{c}(k+1)$ independent press vectors
+  $r^{(1)}, r^{(2)}, \ldots, r^{(n)}$ in the kernel of $T_{k+1}$.
+  Since $m+n>c$ there must be a non-trivial press vector $p$ in the intersection
+  of both kernels. Then $(p\oplus o)\cdot W_c^{k} = o\oplus w$ for
+  some vector $w$, and $(p\oplus o)\cdot W_c^{k+1}=o\oplus w'$ for some $w'$.
+  But 
+  \[ o\oplus w'=(p\oplus o)\cdot W_c^{k+1}=(p\oplus o)\cdot W_c^{k}\cdot W_c=(o\oplus w)\cdot W_c=
+   w\oplus o\]
+  and thus $w=o=w'$ and $p\oplus o$ is a non-trivial vector in the kernel
+  of $W_c^k$, which contradicts the invertibility of $W_c$.
+\end{proof}
+
+\begin{corollary}\label{cor:max}
+  If for some $r\in\N$ we have $d_{c}(r) = c$ then
+  \begin{itemize}
+    \item $d_{c}(r-1) = d_{c}(r+1) = 0$, and
+    \item $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\
+                                  O & -T_{r-1} \\\end{smallmatrix}\right)$.
+  \end{itemize}
+\end{corollary}
+
+\begin{proof}
+The first part is immediate by Theorem \ref{thm:consec}.
+
+For the second statement, observe that $d_c(r)=c$ can only happen
+when $T_r=O$, so
+  $$W_{c}^{r+1} = W_c\cdot W_c^r=
+\left(\begin{matrix} -E_{c} & I_c \\ -I_{c} & O_c \\\end{matrix}\right)\cdot
+\left(\begin{matrix} O & T_{r-1} \\ -T_{r-1} & -T_{r-2} \\\end{matrix}\right)=
+\left(\begin{matrix} -T_{r-1} & O_c \\ O_c & -T_{r-1} \\\end{matrix}
+\right).$$
+\end{proof}
+In proving our Corollary \ref{cor:max} we have learned that the
+structure of the corresponding matrix power is particularly simple. 
+This fact will
+be instrumental in the relation between the period of
+$\left(W_{c}^{r}\right)_{r\in\N}$ and that of
+$\left(d_{c}(r)\right)_{r\in\N}$.
+
+Note that conjugating any $2c\times 2c$ matrix $M=
+\left(\begin{smallmatrix} A & B \\ C & D \\\end{smallmatrix}\right)$ by
+$Z=\left(\begin{smallmatrix} O_c & I_c \\ I_c & O_c \\\end{smallmatrix}\right)$ 
+corresponds to rotating the four main sub-matrices:
+\begin{equation}\label{eq:rotate}
+Z\cdot M\cdot Z^{-1}=\left(\begin{matrix} O_c & I_c \\ I_c & O_c \\\end{matrix}\right)
+\cdot
+\left(\begin{matrix} A & B \\ C & D \\\end{matrix}\right)
+\cdot
+\left(\begin{matrix} O_c & I_c \\ I_c & O_c \\\end{matrix}\right)
+=
+\left(\begin{matrix} D & C \\ B & A \\\end{matrix}\right).\end{equation}
+This fact will be the linchpin in the proof of Observation 5.
+
+But first we will see that $W_{c}$ and its inverse are conjugates.
+\begin{lemma}
+  $W_{c}^r$ and $W_{c}^{-r}$ are conjugate, for all $r\geq 1$.
+\end{lemma}
+
+\begin{proof}
+  Omitting the subscripts $c$, we conjugate $W$ by
+  $Z := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$,
+  which is its own inverse:
+  \[
+  \begin{aligned}
+  Z \cdot W \cdot Z^{-1}
+  & =
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    -E & I \\
+    -I & O \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right)\\
+  & =
+  \left(
+  \begin{array}{cc}
+    -I & O \\
+    -E & I \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O & I \\
+    I & O \\
+  \end{array}
+  \right) 
+   =
+  \left(
+  \begin{array}{cc}
+    O & -I \\
+    I & -E \\
+  \end{array}
+  \right) 
+   =
+  W^{-1}
+  \end{aligned}
+  \]
+from which the general result follows immediately by taking $r$-th powers.
+\end{proof}
+
+\begin{lemma}\label{mirror}
+  If for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$
+  \[
+  W_{c}^{r+i} = \left(\begin{array}{cc} QT_{i} & QT_{i-1} \\ -QT_{i-1} & -QT_{i-2} \\\end{array}\right)
+  \]
+
+  and
+
+  \[
+  W_{c}^{r-i} = \left(\begin{array}{cc} -QT_{i-2} & -QT_{i-1} \\ QT_{i-1} & QT_{i} \\\end{array}\right)
+  \]
+\end{lemma}
+
+\begin{proof}
+  By direct calculation and the Structure Lemma we find for $W_{c}^{r+i}$
+  \[
+% W_{c}^{r+i}
+% =
+  W_{c}^{r}W_{c}^{i}
+  =
+  \left(
+  \begin{array}{cc}
+    Q & O \\
+    O & Q \\
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{cc}
+     T_{i} &  T_{i-1}  \\
+    -T_{i-1} & -T_{i-2} \\
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{cc}
+     QT_{i} &  QT_{i-1}  \\
+    -QT_{i-1} & -QT_{i-2} \\
+  \end{array}
+  \right)
+  \]
+  Furthermore, with $Z=\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
+  we have, by the preceding lemma,
+  \[Z\cdot W_{c}^{r-i}\cdot Z^{-1}=Z\cdot W_{c}^{r}\cdot Z^{-1}\cdot Z\cdot W^{-i}\cdot Z^{-1}=W_{c}^{r}\cdot W_{c}^{i}=W_{c}^{r+i}\]
+  which, combined with Equation \ref{eq:rotate}, yields what we set out to prove.
+\end{proof}
+We now get to the relation between the order $p$ of $W$ and the period of
+$d_c$. Let $r_0$ be the smallest positive $r$ for which the maximal
+dimension of the kernel occurs (which exists, according to Lemma
+\ref{lem:max}); so $d_c(r_0)=c$.
+\begin{lemma}\label{lem:half}
+  Either $p=r_0+1$ or $p=2(r_0+1)$.
+\end{lemma}
+
+\begin{proof}
+  Let us write $q=r_0+1$ in this proof.
+
+  If $p=q$ we are finished, so assume it is not. We will show that $p=2q$ in
+  that case.
+
+  By Corollary \ref{cor:max} we know that 
+  $W^{q}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
+  for a certain matrix $Q$, and by the preceding lemma, for all $i\geq 1$,
+  the lower right $c\times c$ sub-matrix of
+  $W_{c}^{q-i}$ equals the upper left $c\times c$ sub-matrix of $W_{c}^{q+i}$
+  for all $i$. In particular, with $i=q$ we obtain that
+  the lower right sub-matrix of
+  $W_{c}^{q-q} = W_{c}^{0} = I_c$, the $c\times c$ identity matrix.
+  Now
+  \[
+  W_{c}^{2q}
+  =
+  \left(
+  \begin{array}{cc}
+    Q & O \\
+    O & Q \\
+  \end{array}
+  \right)^{2}
+  =
+  \left(
+  \begin{array}{cc}
+    Q^{2} & O \\
+    O & Q^{2} \\
+  \end{array}
+  \right)
+  \]
+  so $Q^{2}=I_c$ and $W^{2q}=I$: the order of $W$ equals $2q$.
+  is the identity matrix, and the period of $(W_{c}^{r})_{r\in\N}$ is $2d$.
+\end{proof}
+
+\begin{theorem}[Observation 5]
+  The sequence $\left(d_{c}(r)\right)_{r\in\N}$
+  is almost palindromic.
+\end{theorem}
+
+\begin{proof}
+  Let $d$ be such that $W^d$ has a upper left sub-matrix $O$.
+
+  A \emph{press vector} is a $2\times c$ vector with the last $c$ components zero, an \emph{unlit vector} is a $2\times c$ vector with the first $c$ components 0. Notice that for any press vector $v$
+
+  \[
+    v\cdot W^d
+  \]
+
+  is an unlit vector.
+
+  Choose $m,n\in\N$ such that $m + 1 + n = d$. We will show that for each press vector $v$ for which $v\cdot W^m$ is unlit, there exist a press vector $v'$ such that $v'\cdot W^n$ is unlit.
+  This shows that $\dim\Ker T_{m} \leq \dim\Ker T_{n}$. Since the argument is symmetric in $m$ and $n$ we have $\dim\Ker T_{m} = \dim\Ker T_{n}$.
+
+	Let $v$ be a press vector such that $v\cdot W^{m}$ is unlit. In particular $v\cdot W^{m} = u$ with $u := (0,0,\ldots, 0)\oplus (u_{1}, u_{2}, \ldots, u_{c})$.
+
+  Define $p := u\cdot W$. We will show that $p$ is a press vector.
+
+  \[
+    u\cdot W = \left(
+    \begin{array}{cc}
+      -E_{c} & I \\
+      -I    & O \\
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{c}
+      O  \\
+      u' \\
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{c}
+      u' \\
+      O  \\
+    \end{array}
+    \right)
+  \]
+
+  Since for any press vector $w$ we have that $w\cdot W^{d} = O$, in particular we have
+
+  \[
+  O = v\cdot W^{d} = v\cdot W^{n} W W^{m} = u\cdot W^{n} W = p\cdot W^{n}
+  \]
+
+  which shows that for each press vector that $W^{m}$ unlits, there is a press vector that $W^{n}$ unlits.
+\end{proof}
+
+Now everything is in play to prove Observation 4.
+
+\begin{theorem}[Observation 4]
+	The period of $(d_{c}(r))_{r\in\N}$ starts after the maximal dimension.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{cor:max} the power of $W$ has a block diagonal structure. By Lemma \ref{mirror} the sequence of dimensions
+is shifted mirror image. Together with the fact that the sequence is almost palindromic from the previous theorem, we have our proof.
+\end{proof}

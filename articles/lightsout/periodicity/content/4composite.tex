@@ -1,0 +1,316 @@
+\section{Composite colours}\label{sec:comp}
+In this section we will assume that the number of colours $n$
+will be a composite number. Trouble is then caused by the fact
+that $\znz$ is a commutative ring that contains zero divisors,
+so it will not be field. That means that the linear algebra we
+want to do is not taking place in a vector space, but rather
+in the module $(\znz)^c$.
+
+The results (and proofs) from Section \ref{sec:algebra} still hold:
+the matrix $W_c\in\Mat_{r,c}(\znz)$ is invertible, and its
+powers form a purely periodic sequence, the four blocks of which
+are given by the simple recurrence given by the Structure Lemma.
+
+The complications arise when we try to explicitly compute
+the numbers of solvable configurations (and the number of
+different solutions in each case) as given by Corollary \ref{cor:numbers}.
+This is due to the extra care the notions of `independence'
+and `basis' require in this case: it is, for example, not true that
+in any set of dependent vectors one one of them will be a linear combination
+of the others (in particular, 2 dependent vectors are not
+necessarily multiples of each other),
+and neither is it true that vectors in $(\znz)^c$ can only span
+subspaces of $n^k$ vectors, for some $k$ with $0\leq k\leq c$.
+
+What is still true, however, is the following alternative for
+the Dimension Theorem, which implies that for a $k\times k$
+matrix $M$ over a field the sum of the dimension of the kernel
+of $M$ and its (row) rank are $k$:
+the number of elements $K_M$ in $(\znz)^c$ that are in the kernel
+of $M$ and the number of elements $R_M$ $(\znz)^c$ that are in the 
+span of the rows of $M$ are related by $K_M\cdot R_M=2^c$.
+This holds (as in the case where $\znz$ is field) because
+the equivalence relation $x\tilde y\iff xM=yM$ partitions
+$(\znz)^c$ into cosets of size $M$ of elements
+with the same image.
+
+As a consequence, the observations from the Introduction do not
+generally hold in this case. Nonetheless, the following still holds.
+
+\begin{theorem}
+For a fixed number of colours $n$ and a fixed number of columns $c$,
+the number of solvable boards in $\Lp(n, c, r)$ forms a purely periodic
+sequence (as a function of the number of rows $r$), and so does the
+number of different solutions for each of these solvable boards.
+The common period of these sequences is a divisor of the period of the sequence
+of powers $W_c^r$ of $W_c\in\Mat_{r,c}(\znz)$.
+\end{theorem}
+
+\begin{proof}
+This is an immediate consequence of Corollary \ref{cor:numbers},
+Theorem \ref{thm:Wperiod}, and Lemma \ref{lem_struc} and the remarks
+above.
+\end{proof}
+
+\begin{table}\label{tab:n4}
+  \begin{center}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|cccccccccccccccc|c|}
+      \hline
+$r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 &11 &12 &13 &14  &$\ell$
+\\
+      \hline
+$1$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$3$ \\
+%$2$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$16$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$8$ \\
+$2$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$2^4$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$8$ \\
+%$3$ &$1$ &$1$ &$8$ &$1$ &$1$ &$64$ &$1$ &$1$ &$8$ &$1$ &$1$ &$64$ &$1$ &$1$ &$8$ &$6$ \\
+$3$ &$1$ &$1$ &$2^3$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$2^3$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$2^3$ &$6$ \\
+%$4$ &$1$ &$1$ &$1$ &$1$ &$64$ &$1$ &$1$ &$1$ &$1$ &$256$ &$1$ &$1$ &$1$ &$1$ &$64$ &$10$ \\
+$4$ &$1$ &$1$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$1$ &$1$ &$2^8$ &$1$ &$1$ &$1$ &$1$ &$2^6$ &$10$ \\
+%$5$ &$1$ &$4$ &$4$ &$64$ &$1$ &$16$ &$1$ &$128$ &$4$ &$4$ &$1$ &$256$ &$1$ &$4$ &$4$ &$48$ \\
+$5$ &$1$ &$2^2$ &$2^2$ &$2^6$ &$1$ &$2^4$ &$1$ &$2^7$ &$2^2$ &$2^2$ &$1$ &$2^8$ &$1$ &$2^2$ &$2^2$ &$48$ \\
+%$6$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$512$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$18$ \\
+$6$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$2^9$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$18$ \\
+%$7$ &$1$ &$1$ &$16$ &$1$ &$1$ &$128$ &$1$ &$1$ &$16$ &$1$ &$1$ &$8192$ &$1$ &$1$ &$16$ &$24$ \\
+$7$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^7$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^{13}$ &$1$ &$1$ &$2^4$ &$24$ \\
+%$8$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$512$ &$16$ &$1$ &$4$ &$1$ &$8$ &$1$ &$16384$ &$1$ &$56$ \\
+$8$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$2^9$ &$2^4$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^{14}$ &$1$ &$56$ \\
+%$9$ &$1$ &$1$ &$4$ &$1$ &$256$ &$4$ &$1$ &$1$ &$4$ &$4096$ &$1$ &$4$ &$1$ &$1$ &$1024$ &$60$ \\
+$9$ &$1$ &$1$ &$2^2$ &$1$ &$2^8$ &$2^2$ &$1$ &$1$ &$2^2$ &$2^{12}$ &$1$ &$2^2$ &$1$ &$1$ &$2^{10}$ &$60$ \\
+%$10$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$62$ \\
+$10$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$62$ \\
+%$11$ &$1$ &$4$ &$8$ &$64$ &$1$ &$256$ &$1$ &$8192$ &$8$ &$4$ &$1$ &$4096$ &$1$ &$4$ &$8$ &$96$ \\
+$11$ &$1$ &$2^2$ &$2^3$ &$2^6$ &$1$ &$2^8$ &$1$ &$2^{13}$ &$2^3$ &$2^2$ &$1$ &$2^{12}$ &$1$ &$2^2$ &$2^3$ &$96$ \\
+%$12$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$126$ \\
+$12$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$126$ \\
+%$13$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$16384$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$36$ \\
+$13$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^{14}$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$36$ \\
+%$14$ &$1$ &$4$ &$1$ &$8$ &$64$ &$4$ &$1$ &$16$ &$1$ &$1024$ &$1$ &$8$ &$1$ &$4$ &$64$ &$680$ \\
+$14$ &$1$ &$2^2$ &$1$ &$2^3$ &$2^6$ &$2^2$ &$1$ &$2^4$ &$1$ &$2^{10}$ &$1$ &$2^3$ &$1$ &$2^2$ &$2^6$ &$680$ \\
+%$15$ &$1$ &$1$ &$16$ &$1$ &$1$ &$256$ &$1$ &$1$ &$16$ &$1$ &$1$ &$32768$ &$1$ &$1$ &$16$ &$48$ \\
+$15$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^8$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^{15}$ &$1$ &$1$ &$2^4$ &$48$ \\
+%$16$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$4096$ &$510$ \\
+$16$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$2^{12}$ &$510$ \\
+%$17$ &$1$ &$4$ &$4$ &$64$ &$1$ &$16$ &$4096$ &$128$ &$4$ &$4$ &$1$ &$256$ &$1$ &$1048576$ &$4$ &$336$ \\
+$17$ &$1$ &$2^2$ &$2^2$ &$2^6$ &$1$ &$2^4$ &$2^{12}$ &$2^7$ &$2^2$ &$2^2$ &$1$ &$2^8$ &$1$ &$2^{20}$ &$2^2$ &$336$ \\
+%$18$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1026$ \\
+$18$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1026$ \\
+%$19$ &$1$ &$1$ &$8$ &$1$ &$256$ &$64$ &$1$ &$1$ &$8$ &$65536$ &$1$ &$64$ &$1$ &$1$ &$2048$ &$120$ \\
+$19$ &$1$ &$1$ &$2^3$ &$1$ &$2^8$ &$2^6$ &$1$ &$1$ &$2^3$ &$2^{16}$ &$1$ &$2^6$ &$1$ &$1$ &$2^{11}$ &$120$ \\
+%$20$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$16$ &$512$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$4680$ \\
+$20$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$2^4$ &$2^9$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$4680$ \\
+%$21$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$372$ \\
+$21$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$372$ \\
+%$22$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$4094$ \\
+$22$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$4094$ \\
+%$23$ &$1$ &$4$ &$16$ &$64$ &$1$ &$512$ &$1$ &$16384$ &$16$ &$4$ &$1$ &$524288$ &$1$ &$4$ &$16$ &$192$ \\
+$23$ &$1$ &$2^2$ &$2^4$ &$2^6$ &$1$ &$2^9$ &$1$ &$2^{14}$ &$2^4$ &$2^2$ &$1$ &$2^{19}$ &$1$ &$2^2$ &$2^4$ &$192$ \\
+%$24$ &$1$ &$1$ &$1$ &$1$ &$64$ &$1$ &$1$ &$1$ &$1$ &$256$ &$1$ &$1$ &$1$ &$1$ &$64$ &$2050$ \\
+$24$ &$1$ &$1$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$1$ &$1$ &$2^8$ &$1$ &$1$ &$1$ &$1$ &$2^6$ &$2050$ \\
+%$25$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$1$ &$1$ &$4$ &$252$ \\
+$25$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$1$ &$1$ &$2^2$ &$252$ \\
+%$26$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$512$ &$16$ &$1$ &$4$ &$1$ &$8$ &$1$ &$16384$ &$1$ &$4088$ \\
+$26$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$2^9$ &$2^4$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^{14}$ &$1$ &$4088$ \\
+%$27$ &$1$ &$1$ &$8$ &$1$ &$1$ &$64$ &$1$ &$1$ &$32768$ &$1$ &$1$ &$64$ &$1$ &$1$ &$8$ &$72$ \\
+$27$ &$1$ &$1$ &$2^3$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$2^{15}$ &$1$ &$1$ &$2^6$ &$1$ &$1$ &$2^3$ &$72$ \\
+%$28$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$6554$ \\
+$28$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$6554$ \\
+%$29$ &$1$ &$4$ &$4$ &$64$ &$256$ &$16$ &$1$ &$128$ &$4$ &$16384$ &$1$ &$256$ &$1$ &$4$ &$1024$ &$4080$ \\
+$29$ &$1$ &$2^2$ &$2^2$ &$2^6$ &$2^8$ &$2^4$ &$1$ &$2^7$ &$2^2$ &$2^{14}$ &$1$ &$2^8$ &$1$ &$2^2$ &$2^{10}$ &$4080$ \\
+%$30$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$32768$ &$1$ &$1$ &$1$ &$1$ &$682$ \\
+$30$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$2^{15}$ &$1$ &$1$ &$1$ &$1$ &$682$ \\
+%$31$ &$1$ &$1$ &$16$ &$1$ &$1$ &$256$ &$1$ &$1$ &$16$ &$1$ &$1$ &$65536$ &$1$ &$1$ &$16$ &$96$ \\
+$31$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^8$ &$1$ &$1$ &$2^4$ &$1$ &$1$ &$2^{16}$ &$1$ &$1$ &$2^4$ &$96$ \\
+%$32$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$16$ &$1$ &$4$ &$1$ &$8$ &$1$ &$4$ &$1$ &$8184$ \\
+$32$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$2^4$ &$1$ &$2^2$ &$1$ &$2^3$ &$1$ &$2^2$ &$1$ &$8184$ \\
+
+      \hline
+      \hline
+    \end{tabular}
+    \end{adjustbox}
+  \end{center}
+  \caption{Size of kernels and period $\ell$ for $n=4$}
+\end{table}
+
+{\tiny\rm
+
+\begin{table}\label{tab:n6}
+  \begin{center}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|cccccccccccc|c|}
+      \hline
+$r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 % &11 &12 &13 &14 &15 
+&$\ell$
+\\
+      \hline
+      \hline
+	    0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &1 &1 &1 &1\\
+%1 &1 &1 &6 &1 &1 &6 &1 &1 &6 &1 &1 &3\\
+1 &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &3\\
+%2 &1 &6 &3 &12 &1 &18 &1 &12 &3 &6 &1 &12\\
+2 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3$ &$1$ &$2\cdot 3^{2}$ &$1$ &$2^{2}\cdot 3$ &$3$ &$2\cdot 3$ &$1$ &12\\
+%3 &1 &1 &12 &1 &9 &24 &1 &1 &12 &9 &1 &30\\
+3 &$1$ &$1$ &$2^{2}\cdot 3$ &$1$ &$3^{2}$ &$2^{3}\cdot 3$ &$1$ &$1$ &$2^{2}\cdot 3$ &$3^{2}$ &$1$ &30\\
+%4 &1 &1 &1 &9 &144 &1 &1 &9 &1 &144 &1 &20\\
+4 &$1$ &$1$ &$1$ &$3^{2}$ &$2^{4}\cdot 3^{2}$ &$1$ &$1$ &$3^{2}$ &$1$ &$2^{4}\cdot 3^{2}$ &$1$ &20\\
+%5 &1 &6 &18 &24 &1 &108 &1 &48 &162 &6 &1 &72\\
+5 &$1$ &$2\cdot 3$ &$2\cdot 3^{2}$ &$2^{3}\cdot 3$ &$1$ &$2^{2}\cdot 3^{3}$ &$1$ &$2^{4}\cdot 3$ &$2\cdot 3^{4}$ &$2\cdot 3$ &$1$ &72\\
+%6 &1 &1 &1 &1 &1 &1 &1 &1 &64 &1 &1 &1638\\
+6 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$2^{6}$ &$1$ &$1$ &1638\\
+%7 &1 &1 &12 &1 &9 &48 &1 &1 &12 &9 &1 &120\\
+7 &$1$ &$1$ &$2^{2}\cdot 3$ &$1$ &$3^{2}$ &$2^{4}\cdot 3$ &$1$ &$1$ &$2^{2}\cdot 3$ &$3^{2}$ &$1$ &120\\
+%8 &1 &6 &3 &12 &1 &162 &64 &12 &81 &6 &1 &252\\
+8 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3$ &$1$ &$2\cdot 3^{4}$ &$2^{6}$ &$2^{2}\cdot 3$ &$3^{4}$ &$2\cdot 3$ &$1$ &252\\
+%9 &1 &1 &6 &9 &144 &6 &1 &9 &6 &2304 &1 &2460\\
+9 &$1$ &$1$ &$2\cdot 3$ &$3^{2}$ &$2^{4}\cdot 3^{2}$ &$2\cdot 3$ &$1$ &$3^{2}$ &$2\cdot 3$ &$2^{8}\cdot 3^{2}$ &$1$ &2460\\
+%10 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &3782\\
+10 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &3782\\
+%11 &1 &6 &36 &24 &9 &432 &1 &384 &324 &54 &1 &720\\
+11 &$1$ &$2\cdot 3$ &$2^{2}\cdot 3^{2}$ &$2^{3}\cdot 3$ &$3^{2}$ &$2^{4}\cdot 3^{3}$ &$1$ &$2^{7}\cdot 3$ &$2^{2}\cdot 3^{4}$ &$2\cdot 3^{3}$ &$1$ &720\\
+%12 &1 &1 &1 &1 &1 &1 &27 &1 &1 &1 &1 &1638\\
+12 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$3^{3}$ &$1$ &$1$ &$1$ &$1$ &1638\\
+%13 &1 &1 &6 &1 &1 &6 &27 &1 &384 &1 &1 &1638\\
+13 &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$3^{3}$ &$1$ &$2^{7}\cdot 3$ &$1$ &$1$ &1638\\
+%14 &1 &6 &3 &108 &144 &18 &1 &108 &3 &864 &1 &1020\\
+14 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3^{3}$ &$2^{4}\cdot 3^{2}$ &$2\cdot 3^{2}$ &$1$ &$2^{2}\cdot 3^{3}$ &$3$ &$2^{5}\cdot 3^{3}$ &$1$ &1020\\
+%15 &1 &1 &12 &1 &9 &48 &1 &1 &12 &9 &1 &9840\\
+15 &$1$ &$1$ &$2^{2}\cdot 3$ &$1$ &$3^{2}$ &$2^{4}\cdot 3$ &$1$ &$1$ &$2^{2}\cdot 3$ &$3^{2}$ &$1$ &9840\\
+%16 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &2017815\\
+16 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &2017815\\
+%17 &1 &6 &18 &24 &1 &972 &64 &48 &13122 &6 &1 &1512\\
+17 &$1$ &$2\cdot 3$ &$2\cdot 3^{2}$ &$2^{3}\cdot 3$ &$1$ &$2^{2}\cdot 3^{5}$ &$2^{6}$ &$2^{4}\cdot 3$ &$2\cdot 3^{8}$ &$2\cdot 3$ &$1$ &1512\\
+%18 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &2615088294\\
+18 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &2615088294\\
+%19 &1 &1 &12 &9 &1296 &24 &1 &9 &12 &20736 &1 &2460\\
+19 &$1$ &$1$ &$2^{2}\cdot 3$ &$3^{2}$ &$2^{4}\cdot 3^{4}$ &$2^{3}\cdot 3$ &$1$ &$3^{2}$ &$2^{2}\cdot 3$ &$2^{8}\cdot 3^{4}$ &$1$ &2460\\
+%20 &1 &6 &3 &12 &1 &18 &1 &12 &192 &6 &1 &16380\\
+20 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3$ &$1$ &$2\cdot 3^{2}$ &$1$ &$2^{2}\cdot 3$ &$2^{6}\cdot 3$ &$2\cdot 3$ &$1$ &16380\\
+%21 &1 &1 &6 &1 &1 &6 &1 &1 &6 &1 &1 &1372866\\
+21 &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &1372866\\
+%22 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &7882997\\
+22 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &7882997\\
+%23 &1 &6 &36 &24 &9 &864 &1 &384 &324 &54 &1 &1440\\
+23 &$1$ &$2\cdot 3$ &$2^{2}\cdot 3^{2}$ &$2^{3}\cdot 3$ &$3^{2}$ &$2^{5}\cdot 3^{3}$ &$1$ &$2^{7}\cdot 3$ &$2^{2}\cdot 3^{4}$ &$2\cdot 3^{3}$ &$1$ &1440\\
+%24 &1 &1 &1 &9 &144 &1 &1 &9 &1 &144 &1 &35739540100\\
+24 &$1$ &$1$ &$1$ &$3^{2}$ &$2^{4}\cdot 3^{2}$ &$1$ &$1$ &$3^{2}$ &$1$ &$2^{4}\cdot 3^{2}$ &$1$ &35739540100\\
+%25 &1 &1 &6 &1 &1 &6 &27 &1 &6 &1 &1 &1638\\
+25 &$1$ &$1$ &$2\cdot 3$ &$1$ &$1$ &$2\cdot 3$ &$3^{3}$ &$1$ &$2\cdot 3$ &$1$ &$1$ &1638\\
+%26 &1 &6 &3 &12 &1 &162 &64 &12 &81 &6 &1 &55188\\
+26 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3$ &$1$ &$2\cdot 3^{4}$ &$2^{6}$ &$2^{2}\cdot 3$ &$3^{4}$ &$2\cdot 3$ &$1$ &55188\\
+%27 &1 &1 &12 &1 &9 &24 &27 &1 &768 &9 &1 &1195740\\
+27 &$1$ &$1$ &$2^{2}\cdot 3$ &$1$ &$3^{2}$ &$2^{3}\cdot 3$ &$3^{3}$ &$1$ &$2^{8}\cdot 3$ &$3^{2}$ &$1$ &1195740\\
+%28 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &646269386852620\\
+28 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &646269386852620\\
+%29 &1 &6 &18 &216 &144 &108 &1 &432 &162 &13824 &1 &250920\\
+29 &$1$ &$2\cdot 3$ &$2\cdot 3^{2}$ &$2^{3}\cdot 3^{3}$ &$2^{4}\cdot 3^{2}$ &$2^{2}\cdot 3^{3}$ &$1$ &$2^{4}\cdot 3^{3}$ &$2\cdot 3^{4}$ &$2^{9}\cdot 3^{3}$ &$1$ &250920\\
+%30 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1 &1024 &51472783023662\\
+30 &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$1$ &$2^{10}$&51472783023662\\
+%31 &1 &1 &12 &1 &9 &48 &1 &1 &12 &9 &1 &64570080\\
+31 &$1$ &$1$ &$2^{2}\cdot 3$ &$1$ &$3^{2}$ &$2^{4}\cdot 3$ &$1$ &$1$ &$2^{2}\cdot 3$ &$3^{2}$ &$1$ &64570080\\
+%32 &1 &6 &3 &12 &1 &18 &1 &12 &3 &6 &1 &249612\\
+32 &$1$ &$2\cdot 3$ &$3$ &$2^{2}\cdot 3$ &$1$ &$2\cdot 3^{2}$ &$1$ &$2^{2}\cdot 3$ &$3$ &$2\cdot 3$ &$1$ &249612\\
+      \hline
+    \end{tabular}
+    \end{adjustbox}
+  \end{center}
+  \caption{Size of kernels and period $\ell$ for $n=6$}
+\end{table}
+
+}
+\begin{example}
+In Tables \ref{tab:n4} and \ref{tab:n6} we list a small part of the
+sequences over $\Z/4\Z$ and $\Z/6\Z$. Let us consider the
+entry for $c=5$ in the latter table in more detail.
+
+The matrix $W_5$ has order $72$ in this case (as the rightmost entry
+in row $r=5$ in Table \ref{tab:n6} indicates). For an $r\times 5$
+board, the information we are looking for is provided by the
+$5\times 5$ matrix $T_r$, which is the upper left submatrix of $W_5^r$.
+If we computer the numbers of elements of the kernel of $T_r$ as a
+function of $r$, for $0\leq r\leq 71$, we find the following
+sequence (the initial segment
+of which corresponds with the column $c=5$ of the table):
+$1$, $6$, $18$, $24$, $1$, $108$, $1$, $48$, $162$, $6$, $1$, $432$, $1$, $6$, $18$, $48$, $1$, $972$, $1$, $24$, $18$, $
+6$, $1$, $864$, $1$, $6$, $162$, $24$, $1$, $108$, $1$, $48$, $18$, $6$, $1$, $3888$, $1$, $6$, $18$, $48$, $1$, $108$, $
+1$, $24$, $162$, $6$, $1$, $864$, $1$, $6$, $18$, $24$, $1$, $972$, $1$, $48$, $18$, $6$, $1$, $432$, $1$, $6$, $162$, $
+48$, $1$, $108$, $1$, $24$, $18$, $6$, $1$, $7776$.
+Note that$, $indeed$, $for $r=71$ we find $6^5$ elements in the kernel
+for the first time: $T_{71}$ is the zero-matrix.
+
+We take a closer look at the case $r=5$, so the $5\times 5$ board.
+The full matrix $W_5^5$, of which $T_5$ is the upper left block)
+equals
+$$W_5^5=W_{c} := \left(
+\begin{array}{cccccccccc}
+4&5&5&2&1&4&0&0&4&1\\
+5&3&1&0&2&0&4&4&1&4\\
+5&1&4&1&5&0&4&5&4&0\\
+2&0&1&3&5&4&1&4&4&0\\
+1&2&5&5&4&1&4&0&0&4\\
+2&0&0&2&5&2&3&3&1&0\\
+0&2&2&5&2&3&5&4&3&1\\
+0&2&1&2&0&3&4&5&4&3\\
+2&5&2&2&0&1&3&4&5&3\\
+5&2&0&0&2&0&1&3&3&2\\
+\end{array}
+\right)$$
+and a small computation shows that the kernel of $T_5$
+is generated by the following 3 independent vectors over $\Z/6\Z$:
+$$(1, 0, 1, 0, 3), (0, 1, 1, 5, 4), (0, 0, 2, 0, 2).$$
+Note that the third of these only spans a submodule of size $3$,
+whence the kernel consists of $6^2\cdot 3$ instead of $6^3$
+elements. This vector correpsonds to the following
+pressing pattern in the kernel:
+$$W_5^5=W_{c} := \left(
+\begin{array}{cccccccccc}
+0&0&2&0&2\\
+0&4&4&2&4\\
+2&4&0&2&4\\
+0&2&2&4&2\\
+2&4&4&2&2\\,
+\end{array}
+\right)$$
+The total number of light patterns that can be created from
+a totally unlit board (or equivalently, the number of different
+light patterns that can be turned off completely) equals 
+$\frac{6^{25}}{6^2\cdot 3}=$.
+\end{example}
+\section{Periods}
+Finally, in this section, we explain how the periods in our table were
+computed. Neither computing the powers of $W_c$ nor the recursion for
+$T_{c,r}$ will sufficiently efficient to be able to determine
+the periods we want; however, using Theorem \ref{thm:Wperiod} and Lemma
+\ref{lem:half} we will be able to determine the length of the period
+(but not the values in it) if we can compute the order of the matrix $W_c$.
+It turns out that $W_c$ is a symplectic matrix, and the order of
+the group of all $2c\times 2c$ symplectic matrices over the finite field
+$\FF_p$ can be found in many textbooks; for symplectic matrices over
+$\znz$ generally, it took some effort to find the following
+formula in \cite{newman72}, p.~136.
+\begin{theorem}\label{thm:newman}
+The order of the group of $2c\times 2c$ symplectic matrices over $\znz$
+equals
+$$G(c,n)=n^{2c^2+c}\cdot\prod_{p\vert c\atop {p\ {\rm prime}}}\cdot\prod_{k=1}^c \left(1-\frac{1}{p^{2k}}\right).$$
+\end{theorem}
+Clearly, the order of $W_c$ over $\znz$ is a divisor of the group
+order given by the theorem. The group order $G(c,n)$  grows quickly with $c$,
+and the order of $W_c$ is usually much smaller. Fortunately, the
+group order is highly composite, as a product of reasonably small
+primes and this enabled us to compute the order of $W_c$ from the
+factorization of $G(c, n)$ using a standard technique, finding the true
+power of any prime dividing $G(c,n)$ in the order of $W_c$ by
+the fast exponentiation of $W_c$.
+\begin{example}
+As an example, look at $n=6$ and $c=16$; then $G(c,n)$ is a 411 decimal
+digit number with prime factorization
+$$2^{319} \cdot 3^{278} \cdot 5^{18} \cdot 7^{10} \cdot 11^9
+ \cdot 13^7 \cdot 17^6 \cdot 19^2 \cdot 23^2 \cdot 29^2 \cdot 31^4 \cdot 37 \cdot 41^5 \cdot 43^2 \cdot 61^3 \cdot 67 \cdot 73^3 \cdot 89 \cdot$$
+$$113\cdot 127^2 \cdot 151 \cdot 193^2 \cdot 241 \cdot 257^2 \cdot 271 \cdot 331 \cdot 547^2 \cdot 661 \cdot 683 \cdot 757 \cdot 1093^2 \cdot 1181 \cdot$$
+$$ 2731 \cdot 3851 \cdot 4561 \cdot 6481 \cdot 8191 \cdot 16493 \cdot 65537 \cdot 398581 \cdot 797161 \cdot 21523361,$$
+while the order of $W_{16}$ equals
+$$5230176588=2^2 \cdot 3^3 \cdot 7 \cdot 13 \cdot 19 \cdot 37 \cdot 757.$$
+In this case it is just doable to compute the numbers that make up
+the full period (which turns out to be half the order of $W_{16}$).
+
+$q=6$, $c=18$ niet meer de perioden
+\end{example}

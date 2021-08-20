@@ -1,0 +1,172 @@
+\section{Matrices}\label{sec:def}
+%\subsection*{Definitions}
+We will be exploring {\it rectangular Lights Out with
+$n$ colours} $\Lp(r, c, n)$: the game will consist of an $r\times c$ rectangular
+layout (so $r$ rows and $c$ columns) of buttons that can each be
+in one of $n$ different states. These states will often be referred to
+as {\it colours}, and will be identified with elements
+of $\Z/n\Z$. 
+The zero-state of a button means that its light is turned off.
+Pressing any of the buttons will change the state
+of the button itself as well as that of any of its neighbouring buttons
+by adding 1 modulo $n$. 
+Neighbouring buttons are buttons
+immediately next to, above it or below it; so there are at most 4
+of them (and fewer on the edges).
+The standard Lights Out game described in the Introduction
+corresponds to $\Lp(5,5,2)$.
+
+\begin{remark}
+There are two other generalization we like to mention here that will not be
+dicussed further here. In some variants of the game the effect of pressing some
+button is different: the states of adjacent buttons may be affected by adding
+other values, or the neighbouring relation may be given by a more general
+graph than this rectangular one. In another variant of the game one is
+only allowed to press buttons that are lit, i.e., that are in a state
+different from zero. The latter requirement drastically alters the
+game, as the order in which buttons are pressed will be of importance then!
+\end{remark}
+%
+An instance of the $\Lp(r, c, n)$ Lights Out puzzle now consists
+of an $r\times c$ matrix $M$ with entries from $\Z/n\Z$, and the goal
+is to reach the state where all lights are off, by a sequence of button
+presses.
+
+The effect on $M$ of pressing the single button at position $i, j$
+(with $1\leq i \leq r$ and $1\leq j \leq c$) is given by
+$$\pi_{i,j}: M\mapsto M+P_{i, j},$$
+and is called a {\it basic press}.
+Here the matrix $P_{i,j}$ has the same size as $M$, and is
+defined by
+\[
+    P_{i,j}{(u,v)} :=
+    \left\{
+    \begin{array}{l@{\quad:\quad}l}
+        1 & \text{if} \operatorname{d}\left((i,j), (u,v)\right) \leq 1 \\
+        0 & \text{otherwise}
+    \end{array}
+    \right.
+\]
+where $\operatorname{d}$ is the \emph{Manhattan distance} between 
+positions $(i,j)$ and $(u,v)$.
+Put differently, when pushing the button at position $(i, j)$ the effect will
+be to add matrix $P_{i,j}$ to $M$, where $P_{i,j}$ is the $r\times c$ matrix
+with $1\in\Z/n\Z$ at position $i, j$ and its immediate neighbours.
+
+A {\it press pattern} could be thought of as a succession of 
+basic presses; however, it will be clear that order in which the
+basic presses are executed in the press pattern is irelevant, and since 
+repeating a particular basic press $n$ times will have no effect,
+we may identify such a press pattern also by an element 
+$\Pi\in\Mat_{r,c}(\Z/n\Z)$:
+matrix element $\Pi_{i,j}\in\Z/n\Z$ simply indicates how often the button
+at position $i, j$ will be pressed. The {\it effect} of $\Pi$ on the initial
+puzzle $M$ will be:
+$$\Pi:M\mapsto M+\sum_{j=1}^r\sum_{i=1}^c \Pi_{i, j}P_{i, j}.$$
+We will call $E=E(\Pi)=\sum_{j=1}^r\sum_{i=1}^c \Pi_{i, j}P_{i, j}$ the
+{\it effect-matrix} of press pattern $\Pi$, and thus
+$\Pi(M)=M+E$.
+
+Note that we now have three different interpretations of elements
+of $\Mat_{r,c}(\Z/n\Z)$: a light pattern $L$ gives the states (colours)
+of the buttons in the display; a press pattern $\Pi$ indicates which buttons
+will be pressed (and how often), and an effect matrix $E$ records
+the change to $L$ if applying $\Pi$:
+$\Pi(L)=L+E$.
+
+The composition of two press patterns 
+corresponds to the sum of the matrices $\Pi+\Pi'$, and this makes 
+the set of all press patterns $\cal P$ into a monoid,
+in which the identity element corresponds to the zero matrix.
+It is also clear from the definition that $E(\Pi+\Pi')=E(\Pi)+E(\Pi')$.
+\subsection*{Chasing}
+We will now more formally describe the operation of {\it chasing}
+a light pattern $L$ on any rectangular board, with any number
+of colours. It consists of two steps.
+
+In the first step a press pattern $\Pi$ is found,
+with corresponding effect matrix $E$, such that applying
+$\Pi$ to $L$ results in a light pattern $\chase(L)$ that has the property
+that $\chase(L)_{i,j}=0$ for entries with $i<r$; in other words, 
+for matrix $L+E$ only entries on the bottom row can be non-zero.
+The matrix $\Pi$ is constructed 
+row-by-row: the first row will be zero. The second row of the press pattern
+$\Pi$ is chosen in such a way that the lights on the first row of $L$
+will all be turned off; that is, $\Pi_{2,j}=n-L_{1,j}$ for $1\leq j\leq c$,
+meaning that we press the button below any button in the first row exactly so many
+times that the button in the first row will be turned off. The first row
+of the effect matrix $E$ will thus precisely be $(n-L_{1,1}, n-L_{1,2},\ldots,
+n-L_{1,c})$, as required. Now the complications start, as the second row
+of the press pattern will also affect the second and third rows of $E$.
+The third row will become a copy of the first row, but to compute the
+second row of $E$ we need to determine the effect of any row of button presses
+$(p_1, p_2, \ldots, p_c)$. Pressing the first button $p_1$ times adds $p_1$
+to both the first and the second light in that row (hence to the row of $E$),
+pressing the second button $p_2$ times adds $p_2$ to the first, second and third
+light, and so on. In summary, the effect on a row of applying the press pattern
+$(p_1, p_2, \ldots, p_c)$ to that row
+is given by the matrix multiplication
+$$(p_1, p_2, \ldots, p_c)\cdot
+\begin{pmatrix}
+1&1&0&0&\cdots&0&0&0&0\\
+1&1&1&0&\cdots&0&0&0&0\\
+0&1&1&1&\cdots&0&0&0&0\\
+\vdots&\vdots&\vdots&\vdots&\cdots&\vdots&\vdots&\vdots\\
+0&0&0&0&\cdots&1&1&1&0\\
+0&0&0&0&\cdots&0&1&1&1\\
+0&0&0&0&\cdots&0&0&1&1
+\end{pmatrix}$$
+where we will call the $c\times c$ matrix on the right $E_c$: it
+has ones only on, directly above, and directly below the main diagonal.
+We use matrix multiplication on the right, because vectors will then be
+written on the left as row vectors, with obvious typographical advantages.
+Once we have changed the second and third rows of $E$, we replace $L$
+by $L+E$, a new light pattern where all lights in the first row are
+turned off. Next we determine the third row of $\Pi$, in such a way that
+that also the lights in the second row of the new light pattern will
+be turned off, adapt the effect matrix $E$ accordingly (rows 2, 3, and 4
+will be modified) and change the light pattern also. This is
+repeated, until by changing the bottom row of $\Pi$ also the penultimate
+row of lights in $L$ is turned off completely. The resulting
+light pattern $\chase(L)$ is thus uniquely determined, and it is
+completely described by the bottom row $b=(b_1, b_2, \cdots, b_c)$, as
+all other entries are zero.
+
+For the second step of solving a given Lights Out problem
+$L$, a press pattern solution $S$ to the matrix
+equation $S\cdot E_c=-\chase(L)$ is needed:
+the effect of first applying the press pattern
+$\Pi$ found above and then the press pattern $S$ then turns all the lights off.
+Two questions clearly remain: does such solution $S$ exist, and how
+to find it in case the answer is affirmative?
+
+From a theoretical point of view
+both questions are answered simultaneously by observing that
+any light pattern for which only bottom row lights are turned on
+can be obtained from a board where all lights are initially turned off
+by just chasing a light pattern created from some
+press pattern involving only buttons on the first row.
+Since all operations involved are linear, the only bottom row patterns
+that can be obtained are the $\Z/n\Z$-linear combinations of the
+bottom rows $a^{(1)}, a^{(2)}, \ldots, a^{(c)}$, where $a^{(i)}$ is the result of
+chasing the light pattern that is the effect of only pressing the $i$-th
+button on the first row once. A solution $S$ only exists when
+when $-\chase(L)=-(b_1, b_2, \ldots, b_c)$ is a linear combination
+of the vectors $a^{(i)}$:
+$$-(b_1, b_2, \ldots, b_c)=\lambda_1a^{(1)}+\lambda_2a^{(2)}+\cdots+\lambda_ca^{(c)}.$$
+For the practical puzzler, the solution can be found if the vectors $a^{(i)}$
+are memorized, the coefficients $\lambda_i$ can be determined by a calculation
+from the top of one's head, and then the solution is found
+by chasing the result of applying the press pattern 
+$(\lambda_1, \lambda_2, \ldots, \lambda_c)$ to the first row.
+
+%\begin{example}
+%	Maybe show how to find $a^{(3)}$ in standard game?
+%\end{example}
+
+On the other hand, this also implies that the only press patterns
+that do not change the state of the board, are those that combine
+a press pattern on the first row by a press pattern on all subsequent
+rows that correspond to chasing the lights to a bottom row without any
+lights on.
+

@@ -1,0 +1,216 @@
+\section{Periodicity}\label{sec:algebra}
+In this section we reformulate the second stage of
+the chasing operation in terms of matrix multiplication.
+This will enable us to prove our observations in the Introduction.
+
+Using the square $c\times c$ matrix $E_c$ from the previous
+section, we define the $2c\times 2c$ matrix $W_{c}$ with entries in
+$\Z/n\Z$ by
+\[
+W_{c} := \left(
+\begin{array}{cc}
+  -E_{c} & I_{c} \\
+  -I_{c} & O_{c} \\
+\end{array}
+\right)
+\]
+where $O_c$ and $I_c$ are the $c\times c$ zero and
+identity matrix.
+
+Consider the row vector $p\oplus o=(p_1, p_2, \ldots, p_c, 0, 0, \ldots, 0)$
+of length $2c$ and the result $r=(p\oplus o)\cdot W_c$: it will be clear that
+$$r=(e_1, e_2, \ldots, e_c, p_1, p_2, \ldots, p_c),$$
+by the considerations of the previous section:
+here, by definition of $W_c$,
+$(e_1, e_2, \ldots, e_c)$ is the effect of
+the press pattern $p=(p_1, p_2, \ldots, p_c)$. Thus, we can
+interpret the result of multiplying $p\oplus o$ by $W_c$
+as $e\oplus p$: the first half is the effect on the first
+row of applying the press pattern $p$, the second half is the
+effect on the second row.
+
+Suppose we now multiply this result by $W_c$ again:
+$$(e\oplus p)\cdot W_c=(eE_c+pI_c)\oplus (eI_c+pO_c)=(eE_c+p)\oplus e.$$
+The resulting vector also has an obvious interpretation:
+the first half, $eE_c+p$, is precisely the effect on
+the second row of chasing the first row, while the
+second half, $e$, is the effect of this on the third row.
+
+Repeating this we find the following result.
+
+\begin{lemma}
+For $k\geq 1$ and for any vector
+$(p_1, p_2, \ldots, p_c)\in (\Z/n\Z)^c$ it holds that
+$$(p_1, p_2, \ldots, p_c)\oplus (0, 0, \ldots,0)\cdot W_c^k=e_k\oplus e_{k+1},$$
+where $e_k$ is the $k$-th row of chasing the effect of applying
+press pattern $(p_1, p_2, \ldots, p_c)$ to the first row of a
+rectangular Lights Out display of $c$ columns.
+\end{lemma}
+Note that we did not specify the number of rows $r$ in the rectangular
+display: %the result only makes sense if $k<r$, but 
+one may think of a display with $c$ columns and an arbitrary number
+of rows.
+
+%\[
+%E_{4} := \left(
+%\begin{array}{cccc}
+%  1 & 1 & 0 & 0 \\
+%  1 & 1 & 1 & 0 \\
+%  0 & 1 & 1 & 1 \\
+%  0 & 0 & 1 & 1 \\
+%\end{array}
+%\right)
+%\]
+
+The reason we are looking at $W_{c}$ is that its powers tell us something about
+the effect of chasing down the lights. In particular, if we have an $(r, c, n)$
+Lights Out puzzle, the $c \times c$ upper left sub-matrix of
+$W_{c}^{r}$ describes exactly the process of gathering the lights
+to the last row.
+
+It is important to relate this result to what we were attempting
+to achieve by chasing in the previous section. Suppose we have an
+$r\times c$ rectangular board; we concluded that we could solve
+a given Lights Out problem $L$ if we could find a press pattern for
+the first row that when chased to the bottom row would give
+$-\chase(L)=-b=-(b_1, b_2, \ldots, b_c)$, and that if such a solution
+exists, the number of different solutions equals the number of
+press patterns for the first row that would be chased to the zero
+row at the bottom. In terms of the Lemma this means: a solution {\it exists}
+if we can find a vector $p$ of length $c$ such that $(p\oplus o)\cdot W_c^r=
+(-b)\oplus x$, where $x$ can be any vector in $(\Z/n\Z)^c$, and the
+{\it number of solutions} equals the number of different vectors $p$
+for which $(p\oplus o)\cdot W_c^r=o\oplus y$, with $y$ arbitrary.
+
+This is summarized as follows. Here
+$T_{c, r}$ is the $c\times c$ top left
+sub-matrix of the power $W_c^r$ of
+the $2c\times 2c$ matrix $W_c$ 
+defined above.
+\begin{corollary}\label{cor:numbers}
+For any $r\times c$ rectangular board for Lights Out with
+$n$ colours, the number of solvable initial configurations
+equals the number of different vectors in the row space
+of $T_{c, r}$ and each of these admits a number of solutions
+that equals the number of vectors in the kernel of $T_{c, r}$.
+\end{corollary}
+%
+The first interesting fact we prove is that $W_{c}\in\Mat_{r,c}(\znz)$
+is invertible.
+
+\begin{lemma}
+  $W_{c}$ is invertible for all $c\in\N$.
+\end{lemma}
+
+\begin{proof}
+  \[
+  \left(
+  \begin{array}{cc}
+    -E_c & I_c \\
+    -I_c & O_c \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+    O_c & -I_c  \\
+    I_c & -E_c \\
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{cc}
+    I_c & O_c \\
+    O_c & I_c \\
+  \end{array}
+  \right)
+  \]
+\end{proof}
+%
+A consequence of the invertibility of $W_{c}$ is that the sequence of its powers
+is periodic, as we will see. It is also useful to relate this to the
+(multiplicative) {\it order} $\ord(W_c)$ of $W_c$,
+which is by definition the smallest
+positive integer $k$ such that $W_c^k=I_c$.
+
+\begin{theorem}\label{thm:Wperiod}
+The sequence of matrices $\left(W_{c}^{r}\right)_{r\in\N}$ is purely periodic, with
+period length $\ord W_c$.
+\end{theorem}
+
+\begin{proof}
+  There are only finitely many different square matrices of size $2c$ over
+  $\Z/n\Z$. So the sequence $\left(W_{c}^{r}\right)_{r\in\N}$ must
+  become periodic. By the preceding lemma $W_{c}$ is invertible so the
+  sequence is periodic from the start. If the period starts with $W_c$, it
+  must end with $I_c$; on the other hand, if for some $j>0$ but smaller than
+  the period length we have $W_c^j=I_c$ then the sequence would repeat from
+there on, a contradiction with the definition of period.
+\end{proof}
+%
+As mentioned in \cite{leach17} there is a relation between the images of chasing
+the lights and Fibonacci polynomials. We find that relation reflected in our
+Structure Lemma. Note that $T_r$ in this Lemma coincides with
+$T_{c,r}$ in Corollary \ref{cor:numbers}.
+
+%For this we define, for every positive integer $c$, recursively
+%the $c\times c$-matrices $T_j$ over $\Z/n\Z$ for $j\geq -1$ by 
+%$$T_{-1}=O_c, T_0=I_c \quad\textrm{and}\quad T_{j+1} := -E_c \cdot T_{j} - T_{j-1}.$$
+
+\begin{lemma}[Structure Lemma]\label{lem_struc}
+  For all $c\in\N$ and for all $r\in\N$:
+  \[
+  W_{c}^{r}
+  =
+  \left(
+  \begin{array}{cc}
+     T_{r} &  T_{r-1} \\
+    -T_{r-1} & -T_{r-2}   \\
+  \end{array}
+  \right),
+  \]
+  where the $c\times c$-matrices $T_j$ over $\Z/n\Z$ are defined for
+$j\geq -1$ by the recursion $T_{-1}=O_c$, $T_0=I_c$ and $T_{j+1} := -E_c \cdot T_{j} - T_{j-1}.$
+\end{lemma}
+
+\begin{proof}
+By definition,
+$W_{c}= \left(\begin{smallmatrix} -E_c & I_c \\ -I_c & O_c \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} T_{1} & T_{0} \\ -T_{0} & -T_{-1} \\\end{smallmatrix}\right)$, as required.
+
+The result now follows by induction on the exponent $j$:
+  \[
+  \begin{aligned}
+  W_{c}^{j+1}
+  & = W_{c} \cdot W_{c}^{j} 
+  =
+  \left(
+  \begin{array}{cc}
+    -E_c & I_c \\
+    -I_c & O_c \\
+  \end{array}
+  \right)
+  \cdot
+  \left(
+  \begin{array}{cc}
+     T_{j} &  T_{j-1}  \\
+    -T_{j-1} & -T_{j-2} \\
+  \end{array}
+  \right) \\
+  & =
+  \left(
+  \begin{array}{cc}
+    -E_c \cdot T_{j} - T_{j-1} & -E_c \cdot T_{j-1} - T_{j-2} \\
+    -T_{j}                  & -T_{j-1}                  \\
+  \end{array}
+  \right) 
+  =
+  \left(
+  \begin{array}{cc}
+     T_{j+1} &  T_{j} \\
+    -T_{j} & -T_{j-1} \\
+  \end{array}
+  \right). \\
+  \end{aligned}
+  \]
+\end{proof}
+%

@@ -1,0 +1,247 @@
+\section*{Introduction}\label{sec:intro}
+Lights Out is a handheld electronic puzzle game produced by Tiger Electronics in
+the 1990s. It consists of a square grid of 25 buttons that also act as lights.
+Each light has two states: on and off.  Pressing a button has the effect of
+changing the state of the light of the button itself as well as that of each of
+its four possible direct neighbours to the left, right, above, and below.
+The object of the game is to turn off all the lights (from some initial
+configuration) by pressing a series of buttons.
+
+The main goal of this paper is to analyze the number of
+solutions of the game and certain generalizations.
+The generalizations concern the size of the board (we consider
+rectangular boards of any size $r\times c$), and the number of colours:
+besides the off-state we will allow not just one on-state,
+but any positive number of different on-states (the different
+colours). Pressing a button repeatedly will change the state
+of the button (and its neighbours) in a fixed, cyclic order.
+We denote the number of states by $n\geq 2$; the case $n=2$
+is that of the original game.
+The number of solutions we study refers to both the number of
+initial states of a board that can be solved, and to the number
+of different solutions for such cases.
+
+By previous work it was clear (as we will explain in
+Section \ref{sec:algebra}) that the numbers we are looking for
+are the numbers of elements of certain linear spaces determined
+by a matrix associated with the game. The results in this paper
+were inspired by certain observations we made when inspecting
+tables like the one shown here as Table \ref{kernels}.
+The table encodes part of all the information we search for
+in the case of rectangular boards of up to 15 columns and
+32 rows with lights that can either be on or off, as in the
+original Lights Out game (with 5 columns and 5 rows).
+
+Each entry $d=d(r, c)$ signifies the dimension of a vector
+space over $\FF_2$ (the 2 coming from the number of states $n$)
+containing a number of vectors ($2^d$) corresponding to
+the number of different solutions for any solvable initial board
+of size $r\times c$.
+Moreover, the number of different states for an $r\times c$ board
+that are solvable, equals $2^{r\cdot c-d}$, as we will soon see.
+Thus, the number $d(5,5)=2$ in the table indicates that for
+the original Lights Out game $2^{5\cdot 5-2}=2^{23}$ (out of the $2^{25}$)
+possible initial configurations are solvable,
+and for each of these there will be $2^2=4$ different ways
+to solve it.
+Note that zeroes in the table occur precisely when 
+every configuration of lights on the $r\times c$ board can be
+turned off, in a unique way.
+
+The main new results in this paper concern the regular
+patterns in this table and similar versions for larger $n$,
+where the situation is slightly trickier if $n$ is a composite
+integer. Our initial observations for Table \ref{kernels}
+(extended in both directions) can be summarized as follows.
+
+For $c\geq 0$, consider the column $d_c(r)$ of non-negative
+integers $d(r, c)$ for boards with a fixed number of columns $c$
+and $r=0,1,2,3,\ldots$ rows.
+By symmetry, the $c$-th row coincides
+with the $c$-th column, so the properties we list here also
+apply to the rows. We find:
+%\footnote{To see more entries of the table go to the website for this paper,
+%\url{http://dvberkel.github.io/mathematics-articles/lights_out/periodicity.html}}.
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{|c|cccccccccccccccc|c|}
+      \hline
+$r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 &11 &12 &13 &14 &15 &$\ell$\\
+      \hline
+      \hline
+0&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &1\\
+1&0  &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &3\\
+2&0  &1 &0 &2 &0 &1 &0 &2 &0 &1 &0 &2 &0 &1 &0 &2 &4\\
+3&0  &0 &2 &0 &0 &3 &0 &0 &2 &0 &0 &3 &0 &0 &2 &0 &6\\
+4&0  &0 &0 &0 &4 &0 &0 &0 &0 &4 &0 &0 &0 &0 &4 &0 &5\\
+5&0  &1 &1 &3 &0 &2 &0 &4 &1 &1 &0 &4 &0 &1 &1 &4 &24\\
+6&0  &0 &0 &0 &0 &0 &0 &0 &6 &0 &0 &0 &0 &0 &0 &0 &9\\
+7&0  &0 &2 &0 &0 &4 &0 &0 &2 &0 &0 &7 &0 &0 &2 &0 &12\\
+8&0  &1 &0 &2 &0 &1 &6 &2 &0 &1 &0 &2 &0 &7 &0 &2 &28\\
+9&0  &0 &1 &0 &4 &1 &0 &0 &1 &8 &0 &1 &0 &0 &5 &0 &30\\
+10&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &31\\
+11&0  &1 &2 &3 &0 &4 &0 &7 &2 &1 &0 &6 &0 &1 &2 &8 &48\\
+12&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &63\\
+13&0  &0 &1 &0 &0 &1 &0 &0 &7 &0 &0 &1 &0 &0 &1 &0 &18\\
+14&0  &1 &0 &2 &4 &1 &0 &2 &0 &5 &0 &2 &0 &1 &4 &2 &340\\
+15&0  &0 &2 &0 &0 &4 &0 &0 &2 &0 &0 &8 &0 &0 &2 &0 &24\\
+16&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &8 &0 &255\\
+17&0  &1 &1 &3 &0 &2 &6 &4 &1 &1 &0 &4 &0 &13 &1 &4 &168\\
+18&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &513\\
+19&0  &0 &2 &0 &4 &3 &0 &0 &2 &8 &0 &3 &0 &0 &6 &0 &60\\
+20&0  &1 &0 &2 &0 &1 &0 &2 &6 &1 &0 &2 &0 &1 &0 &2 &2340\\
+21&0  &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &186\\
+22&0  &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &2047\\
+23&0  &1 &2 &3 &0 &5 &0 &7 &2 &1 &0 &10 &0 &1 &2 &15 &96\\
+24&0  &0 &0 &0 &4 &0 &0 &0 &0 &4 &0 &0 &0 &0 &4 &0 &1025\\
+25&0  &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &0 &1 &0 &126\\
+26 &0 &1 &0 &2 &0 &1 &6 &2 &0 &1 &0 &2 &0 &7 &0 &2 &2044\\
+27 &0 &0 &2 &0 &0 &3 &0 &0 &8 &0 &0 &3 &0 &0 &2 &0 &36\\
+28 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &3277\\
+29 &0 &1 &1 &3 &4 &2 &0 &4 &1 &9 &0 &4 &0 &1 &5 &4 &2040\\
+30 &0 &0 &0 &0 &0 &0 &0 &0 &0 &0 &10 &0 &0 &0 &0 &0 &341\\ 
+31 &0 &0 &2 &0 &0 &4 &0 &0 &2 &0 &0 &8 &0 &0 &2 &0 &48\\
+32 &0 &1 &0 &2 &0 &1 &0 &2 &0 &1 &0 &2 &0 &1 &0 &2 &4092\\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Dimension of kernels, and length of period $\ell$}\label{kernels}
+  \label{tab:n2}
+\end{table}
+
+\begin{itemize}
+\item{\bf Observation 1.}
+The sequence $d_c$ is purely periodic. %, for every $c\geq 0$.
+\item{\bf Observation 2.}
+There exists a number of rows $r$ where $d_c$ is maximal:
+$\exists r\geq 1:\ d_c(r)=c$; by $r_0$ we will denote the
+smallest such positive $r$.
+\item{\bf Observation 3.}
+The period length $\ell$ of $d_c$ equals $r_0+1$.
+\item{\bf Observation 4.}
+The sum of two consecutive kernel dimensions 
+is less than or equal to the maximal dimension:
+$$\forall r\geq0:\ d_c(r)+d_c(r+1)\leq c.$$
+\item{\bf Observation 5.}
+The period of $d_c$ is almost palindromic:
+$$d_c(0), d_c(1), \ldots, d_c(r_0-1)$$
+is a palindrome of length $r_0$, and $d_c(r_0)=c$ completes the period.
+\end{itemize}
+\noindent
+Looking, for example, at
+the column of the table with $c=5$, which contains
+the standard $5\times 5$ lay out, it begins like this:
+$$0,1,1,3,0,2,0,4,1,1,0,4,0,1,1,4,0,2,0,3,1,1,0,5,\ldots$$
+and repeats from the beginning after the first `$5$' occurs, which
+happens for $r_0=23$. The length of the period, $r_0+1$,
+is listed in the final column of the table.
+The sequence up until the value 5 is palindromic 
+(it reads the same from left to right as from right to left).
+
+The fact that in a column consecutive entries sum to less than the
+maximal dimension is Observation 4. It implies
+that the penultimate value in the period (the last value of the
+palindrome) is always 0, as must be the first.
+
+The variants of Lights Out have a considerable history of
+being studied by mathematicians. In \cite{anderson98}, and before that in
+\cite{pelletier87}, methods from linear algebra are used to solve Lights
+Out systematically.
+The first approach is to number the buttons from 1 to 25 and to identify
+the state of the board by a row {\it state vector} $s$ of zeroes and ones
+(with $s_i=1$ just for those lights that are lit). This state vector can be
+interpreted as an element $s\in\FF_2^{25}$.
+Any series of buttons to be pressed will also be coded as the (row) 
+{\it press vector} $p\in\FF_2^{25}$,
+where $p_i=1$ if the $i$-the button is to be pressed, and 0 otherwise.
+The effect of pressing button $i$ can then be encoded as a row vector
+$a_i\in\FF_2^{25}$, having $1$ precisely at the positions of button $i$
+and its four (or fewer) direct neighbours: pressing button $i$ then
+results in adding the {\it effect vector} $a_i$ to the state vector. Thus the state
+arrived at from the 0 state (with no lights on) using the press
+pattern $p$ will be $p\cdot A$, where $A$ is the $25\times 25$ 
+symmetric matrix over $\FF_2$ having $a_i$ as its $i$-th row.
+Since $v=-v$ for any vector over $\FF_2$, it will be clear
+that the press pattern $p$ needed to turn all lights out
+from a given initial state vector $s$ can be found as a
+solution to the vector-matrix equation $p\cdot A=-s=s$.
+
+Solving this equation by hand is hardly feasible, but the equation does give
+insight into the solvability question: it turns out that the rank
+of $A$ is 23, so the kernel has dimension 2. Hence, for example,
+$2^{23}$ out of the $2^{25}$ possible state configurations are solvable,
+and for each of these there will be $2^2=4$ different solutions $p$.
+
+A more practical solution is given in \cite{martin01}, where a technique
+known as gathering or \emph{chasing the lights} is introduced.
+Since the order in which buttons are pressed is of no importance,
+we may choose to do so row by row of the board (starting from the top), from
+left to right. To turn the lights in a given configuration $s$ off,
+one might start by turning off the lights in the first row by
+pressing those buttons in the second row directly below lit lights
+of the first row. 
+
+In Figure \ref{chasing}, for example, some lights are initially
+lit (indicated by gray).  There is only one way to turn off the
+lit lights of the first row by pressing buttons
+in the second row,
+namely, to press each button directly below
+a lit button (the ones in row 2 marked with $\times$).
+
+\begin{figure}
+  \mbox{
+    \subfigure[Window of first two rows\label{first_row_pressed}]{\epsfig{figure=image/windowing01.ps,width=.40\textwidth}}
+    \subfigure[Next window\label{second_row_pressed}]{\epsfig{figure=image/windowing02.ps,width=.40\textwidth}}
+  }
+  \caption{Chasing the lights}
+  \label{chasing}
+\end{figure}
+
+Then turn off any remaining lights in the second
+row by pressing the proper buttons of the third row, and so on. 
+In the end only some buttons in the fifth (or bottom) row will
+be on. We have chased the lit buttons in the first row down to the
+last row.
+
+
+To turn off any remaining lights in the last row, we attempt to
+create a light pattern $t$ on the empty board by only pressing buttons
+in the first row, with the property that chasing that pattern results
+in exactly the same light pattern in the last row. Creating and chasing
+$t$  after chasing $s$ would then result in duplicating the bottom
+row, which means it will also become unlit.
+
+The task for any person who (like the first author) would
+like to be able to turn a given light pattern off (when
+possible) is to memorize the (small table of) results of chasing the independent
+patterns that can be created on the first row, and to combine those
+in his or her head to the bottom row pattern obtained by chasing
+the initial configuration.
+
+In \cite{leach17} this method chasing the lights is extended to general
+rectangular board shapes.  It is shown there, as we will explain further
+in Section
+\ref{sec:algebra}, that for analyzing an $r \times c$ Lights Out
+board one is interested in the upper left $c \times c$ sub-matrix of
+$W^{r}$, where $W$ describes the effect of one step in chasing the lights.
+As a consequence, both the number of configurations ($2^{rs-d}$)
+for which a solution to the Lights Out problem exists and the number
+of different solutions once it is solvable ($2^d$), are determined
+by the dimension $d$ of a linear subspace of some $\FF_2$-vector space
+(the kernel of the submatrix of $W^r$ referred to above); it is this number
+that is given in Table \ref{tab:n2}.
+
+In Section \ref{sec:def}  we will describe chasing and the matrices involved
+in detail, because this is the context in which we made
+the above observations about the `kernel dimensions for
+Lights Out on a rectangular board'. As we saw above for the $5\times 5$
+board, we are interested in the dimension of 
+the null-space (or kernel) of some matrix.
+
+In Section \ref{sec:prime} we will prove the observations we made,
+not just for 2 colours, but any {\it prime} number of colours.
+In Section \ref{sec:comp} we deal with the complications arising
+when the number of colours $n$ is a {\it composite} number.
+
+
