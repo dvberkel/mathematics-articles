@@ -154,15 +154,27 @@ button on the first row once. A solution $S$ only exists when
 when $-\chase(L)=-(b_1, b_2, \ldots, b_c)$ is a linear combination
 of the vectors $a^{(i)}$:
 $$-(b_1, b_2, \ldots, b_c)=\lambda_1a^{(1)}+\lambda_2a^{(2)}+\cdots+\lambda_ca^{(c)}.$$
-For the practical puzzler, the solution can be found if the vectors $a^{(i)}$
-are memorized, the coefficients $\lambda_i$ can be determined by a calculation
-from the top of one's head, and then the solution is found
+For the practical puzzler, the solution can be found by memorizing how the $\lambda_{i}$ depend on the $b_{i}$,
+a calculation that can be performed from the top of one's head, and then the solution is found
 by chasing the result of applying the press pattern 
 $(\lambda_1, \lambda_2, \ldots, \lambda_c)$ to the first row.
 
-%\begin{example}
-%	Maybe show how to find $a^{(3)}$ in standard game?
-%\end{example}
+For example, the table below can be used to determine the $\lambda_{i}$ for the standard lightsout. Since the kernel is of dimension 2, one only has to look at the first three buttons
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      \hline
+$\lambda_1$ & $b_1 + b_2$\\
+$\lambda_2$ & $b_1 + b_2 + b_3$\\
+$\lambda_3$ & $b_2 + b_3$\\
+        \hline
+    \end{tabular}
+  \end{center}
+  \caption{A solution determined from the chased light pattern in standard lights out.}
+  \label{tab:solution}
+\end{table}
 
 On the other hand, this also implies that the only press patterns
 that do not change the state of the board, are those that combine

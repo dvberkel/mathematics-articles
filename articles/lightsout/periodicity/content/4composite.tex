@@ -28,9 +28,9 @@ matrix $M$ over a field the sum of the dimension of the kernel
 of $M$ and its (row) rank are $k$:
 the number of elements $K_M$ in $(\znz)^c$ that are in the kernel
 of $M$ and the number of elements $R_M$ $(\znz)^c$ that are in the 
-span of the rows of $M$ are related by $K_M\cdot R_M=2^c$.
+span of the rows of $M$ are related by $K_M\cdot R_M=n^c$.
 This holds (as in the case where $\znz$ is field) because
-the equivalence relation $x\tilde y\iff xM=yM$ partitions
+the equivalence relation $x \sim y\iff xM=yM$ partitions
 $(\znz)^c$ into cosets of size $M$ of elements
 with the same image.
 
@@ -240,7 +240,7 @@ for the first time: $T_{71}$ is the zero-matrix.
 We take a closer look at the case $r=5$, so the $5\times 5$ board.
 The full matrix $W_5^5$, of which $T_5$ is the upper left block)
 equals
-$$W_5^5=W_{c} := \left(
+$$T_5 := \left(
 \begin{array}{cccccccccc}
 4&5&5&2&1&4&0&0&4&1\\
 5&3&1&0&2&0&4&4&1&4\\
@@ -261,19 +261,19 @@ Note that the third of these only spans a submodule of size $3$,
 whence the kernel consists of $6^2\cdot 3$ instead of $6^3$
 elements. This vector correpsonds to the following
 pressing pattern in the kernel:
-$$W_5^5=W_{c} := \left(
+$$\left(
 \begin{array}{cccccccccc}
 0&0&2&0&2\\
 0&4&4&2&4\\
 2&4&0&2&4\\
 0&2&2&4&2\\
-2&4&4&2&2\\,
+2&4&4&2&2\\
 \end{array}
 \right)$$
 The total number of light patterns that can be created from
 a totally unlit board (or equivalently, the number of different
 light patterns that can be turned off completely) equals 
-$\frac{6^{25}}{6^2\cdot 3}=$.
+$\frac{6^{25}}{6^2\cdot 3}=263243407684534272$.
 \end{example}
 \section{Periods}
 Finally, in this section, we explain how the periods in our table were

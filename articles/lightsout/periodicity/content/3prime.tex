@@ -133,7 +133,7 @@ we will take a closer look at Observation 4.
   some vector $w$, and $(p\oplus o)\cdot W_c^{k+1}=o\oplus w'$ for some $w'$.
   But 
   \[ o\oplus w'=(p\oplus o)\cdot W_c^{k+1}=(p\oplus o)\cdot W_c^{k}\cdot W_c=(o\oplus w)\cdot W_c=
-   w\oplus o\]
+   -w\oplus o\]
   and thus $w=o=w'$ and $p\oplus o$ is a non-trivial vector in the kernel
   of $W_c^k$, which contradicts the invertibility of $W_c$.
 \end{proof}
@@ -154,7 +154,7 @@ For the second statement, observe that $d_c(r)=c$ can only happen
 when $T_r=O$, so
   $$W_{c}^{r+1} = W_c\cdot W_c^r=
 \left(\begin{matrix} -E_{c} & I_c \\ -I_{c} & O_c \\\end{matrix}\right)\cdot
-\left(\begin{matrix} O & T_{r-1} \\ -T_{r-1} & -T_{r-2} \\\end{matrix}\right)=
+\left(\begin{matrix} O_c & T_{r-1} \\ -T_{r-1} & -T_{r-2} \\\end{matrix}\right)=
 \left(\begin{matrix} -T_{r-1} & O_c \\ O_c & -T_{r-1} \\\end{matrix}
 \right).$$
 \end{proof}
