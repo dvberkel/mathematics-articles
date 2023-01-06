@@ -154,14 +154,17 @@ button on the first row once. A solution $S$ only exists when
 when $-\chase(L)=-(b_1, b_2, \ldots, b_c)$ is a linear combination
 of the vectors $a^{(i)}$:
 $$-(b_1, b_2, \ldots, b_c)=\lambda_1a^{(1)}+\lambda_2a^{(2)}+\cdots+\lambda_ca^{(c)}.$$
-For the practical puzzler, the solution can be found by memorizing how the $\lambda_{i}$ depend on the $b_{i}$,
-a calculation that can be performed from the top of one's head, and then the solution is found
-by chasing the result of applying the press pattern 
+
+For the practical puzzler, a solution can be found by the following means. First one has
+to determine how the $\lambda_{i}$ depend on the $b_{i}$, which can be done by calculating the inverse.
+The inverse calculation is not that difficult and can be memorized for standard Lights Out.
+This allow one to performed the calculation from the top of one's head.
+A solutions is reached by chasing the result of applying the press pattern 
 $(\lambda_1, \lambda_2, \ldots, \lambda_c)$ to the first row.
 
-For example, the table below can be used to determine the $\lambda_{i}$ for the standard Lights Out. Since the kernel is of dimension 2, one only has to look at the first three buttons
+For example, table \ref{tab:solution_standard} can be used to determine the $\lambda_{i}$ for the standard Lights Out. Since the kernel is of dimension 2, one only has to look at the first three buttons
 
-\begin{table}
+\begin{table}\label{tab:solution_standard}
   \begin{center}
     \begin{tabular}{|c|c|}
       \hline
