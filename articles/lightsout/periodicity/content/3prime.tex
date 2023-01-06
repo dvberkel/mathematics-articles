@@ -110,7 +110,7 @@ such that $d_c(r)=c$.
   =
   \dim\Ker T_{-1}
   =
-  \dim\Ker O
+  \dim\Ker O_{c}
   = c.
   \]
 \end{proof}
@@ -124,11 +124,11 @@ we will take a closer look at Observation 4.
 \begin{proof}
   Assume, to the contrary, that $d_{c}(k) + d_{c}(k+1) > c$ for some $k\in\N$.
 
-  This means that there exist $m=d_{c}(k)$ independent press vectors
+  This means that there exist $s=d_{c}(k)$ independent press vectors
   $q^{(1)}, q^{(2)}, \ldots, q^{(m)}$ in the kernel of $T_k$ and
-  $n = d_{c}(k+1)$ independent press vectors
+  $t = d_{c}(k+1)$ independent press vectors
   $r^{(1)}, r^{(2)}, \ldots, r^{(n)}$ in the kernel of $T_{k+1}$.
-  Since $m+n>c$ there must be a non-trivial press vector $p$ in the intersection
+  Since $s+t>c$ there must be a non-trivial press vector $p$ in the intersection
   of both kernels. Then $(p\oplus o)\cdot W_c^{k} = o\oplus w$ for
   some vector $w$, and $(p\oplus o)\cdot W_c^{k+1}=o\oplus w'$ for some $w'$.
   But 
@@ -305,8 +305,8 @@ dimension of the kernel occurs (which exists, according to Lemma
   the lower right $c\times c$ sub-matrix of
   $W_{c}^{q-i}$ equals the upper left $c\times c$ sub-matrix of $W_{c}^{q+i}$
   for all $i$. In particular, with $i=q$ we obtain that
-  the lower right sub-matrix of
-  $W_{c}^{q-q} = W_{c}^{0} = I_c$, the $c\times c$ identity matrix.
+  the upper left sub-matrix of $W_{c}^{q+q}$ is the lower right sub-matrix of
+  $W_{c}^{q-q} = W_{c}^{0} = I_{c}$, the $c\times c$ identity matrix.
   Now
   \[
   W_{c}^{2q}
@@ -325,7 +325,9 @@ dimension of the kernel occurs (which exists, according to Lemma
   \end{array}
   \right)
   \]
-  so $Q^{2}=I_c$ and $W^{2q}=I$: the order of $W$ equals $2q$.
+  so $Q^{2}=I_{c}$ and $W^{2q}=I_{2c}$
+  
+  Since we assumed thatHence the order of $W$ equals $2q$.
   is the identity matrix, and the period of $(W_{c}^{r})_{r\in\N}$ is $2d$.
 \end{proof}
 

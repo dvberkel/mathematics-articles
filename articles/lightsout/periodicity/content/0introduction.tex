@@ -25,7 +25,7 @@ By previous work it was clear (as we will explain in
 Section \ref{sec:algebra}) that the numbers we are looking for
 are the numbers of elements of certain linear spaces determined
 by a matrix associated with the game. The results in this paper
-were inspired by certain observations we made when inspecting
+were inspired by observations we made when inspecting
 tables like the one shown here as Table \ref{kernels}.
 The table encodes part of all the information we search for
 in the case of rectangular boards of up to 15 columns and
@@ -38,7 +38,7 @@ containing a number of vectors ($2^d$) corresponding to
 the number of different solutions for any solvable initial board
 of size $r\times c$.
 Moreover, the number of different states for an $r\times c$ board
-that are solvable, equals $2^{r\cdot c-d}$, as we will soon see.
+that are solvable equals $2^{r\cdot c-d}$, as we will soon see.
 Thus, the number $d(5,5)=2$ in the table indicates that for
 the original Lights Out game $2^{5\cdot 5-2}=2^{23}$ (out of the $2^{25}$)
 possible initial configurations are solvable,
@@ -114,7 +114,7 @@ $r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 &11 &12 &13 &14 &15 &$\ell$
 \item{\bf Observation 1.}
 The sequence $d_c$ is purely periodic. %, for every $c\geq 0$.
 \item{\bf Observation 2.}
-There exists a number of rows $r$ where $d_c$ is maximal:
+There exists a number of rows $r$ where $d_c$ attains the maximal value $c$:
 $\exists r\geq 1:\ d_c(r)=c$; by $r_0$ we will denote the
 smallest such positive $r$.
 \item{\bf Observation 3.}
@@ -139,11 +139,12 @@ is listed in the final column of the table.
 The sequence up until the value 5 is palindromic 
 (it reads the same from left to right as from right to left).
 
-The fact that in a column consecutive entries sum to less than the
+The fact that in a column consecutive entries sum to at most the
 maximal dimension is Observation 4. It implies
 that the penultimate value in the period (the last value of the
 palindrome) is always 0, as must be the first.
 
+\subsection{Prior work}
 The variants of Lights Out have a considerable history of
 being studied by mathematicians. In \cite{anderson98}, and before that in
 \cite{pelletier87}, methods from linear algebra are used to solve Lights
