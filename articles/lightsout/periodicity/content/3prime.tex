@@ -300,7 +300,7 @@ dimension of the kernel occurs (which exists, according to Lemma
   that case.
 
   By Corollary \ref{cor:max} we know that 
-  $W^{q}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
+  $W_{c}^{q}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
   for a certain matrix $Q$, and by the preceding lemma, for all $i\geq 1$,
   the lower right $c\times c$ sub-matrix of
   $W_{c}^{q-i}$ equals the upper left $c\times c$ sub-matrix of $W_{c}^{q+i}$
@@ -327,8 +327,7 @@ dimension of the kernel occurs (which exists, according to Lemma
   \]
   so $Q^{2}=I_{c}$ and $W^{2q}=I_{2c}$
   
-  Since we assumed thatHence the order of $W$ equals $2q$.
-  is the identity matrix, and the period of $(W_{c}^{r})_{r\in\N}$ is $2d$.
+  Hence the order of $W_{c}$, and therefore the period of $(W_{c}^{r})_{r\in\N}$, is $2q$.
 \end{proof}
 
 \begin{theorem}[Observation 5]
@@ -337,52 +336,36 @@ dimension of the kernel occurs (which exists, according to Lemma
 \end{theorem}
 
 \begin{proof}
-  Let $d$ be such that $W^d$ has a upper left sub-matrix $O$.
-
-  A \emph{press vector} is a $2\times c$ vector with the last $c$ components zero, an \emph{unlit vector} is a $2\times c$ vector with the first $c$ components 0. Notice that for any press vector $v$
+  The upperleft $c\times c$ sub-matrix of $W^{r_{0}}$ is $O_{c}$. Hence, for any vector $p\oplus o$
 
   \[
-    v\cdot W^d
+    (p\oplus o)\cdot W = o\oplus y
   \]
 
-  is an unlit vector.
+  With $y$ arbitrary.
 
-  Choose $m,n\in\N$ such that $m + 1 + n = d$. We will show that for each press vector $v$ for which $v\cdot W^m$ is unlit, there exist a press vector $v'$ such that $v'\cdot W^n$ is unlit.
+  Choose $m,n\in\N$ such that $m + 1 + n = r_{0}$. We will show that for each vector $p\oplus o$ for which $(p\oplus o)\cdot W^m = o\oplus y$, there exist a press vector $p'\oplus o$ such that $(p'\oplus o)\cdot W^n = o\oplus y'$, with $y$ and $y'$ arbitrary.
   This shows that $\dim\Ker T_{m} \leq \dim\Ker T_{n}$. Since the argument is symmetric in $m$ and $n$ we have $\dim\Ker T_{m} = \dim\Ker T_{n}$.
 
-	Let $v$ be a press vector such that $v\cdot W^{m}$ is unlit. In particular $v\cdot W^{m} = u$ with $u := (0,0,\ldots, 0)\oplus (u_{1}, u_{2}, \ldots, u_{c})$.
-
-  Define $p := u\cdot W$. We will show that $p$ is a press vector.
+	Choose $p\oplus o$ such that $(p\oplus o)\cdot W^{m} = o\oplus u$. Define $v := (o\oplus u)\cdot W$. We will show that $v$ can be decomposed as $p'\oplus o$.
 
   \[
-    u\cdot W = \left(
+    v\cdot W = (o\oplus u)\left(
     \begin{array}{cc}
       -E_{c} & I \\
       -I    & O \\
     \end{array}
     \right)
-    \left(
-    \begin{array}{c}
-      O  \\
-      u' \\
-    \end{array}
-    \right)
-    =
-    \left(
-    \begin{array}{c}
-      u' \\
-      O  \\
-    \end{array}
-    \right)
+    =(-u\oplus o)
   \]
-
-  Since for any press vector $w$ we have that $w\cdot W^{d} = O$, in particular we have
+  
+  Define $p' := -u$. Since for any vector $w$ we have that $w\cdot W_{c}^{r_0} = o\oplus y$ with $y$ arbitrary, in particular we have
 
   \[
-  O = v\cdot W^{d} = v\cdot W^{n} W W^{m} = u\cdot W^{n} W = p\cdot W^{n}
+  o\oplus y = (p\oplus o)\cdot W^{d} = (p\oplus o)\cdot W^{m} W W^{n} = (o\oplus u)\cdot W W^{n} = (p'\oplus o)\cdot W^{n}
   \]
 
-  which shows that for each press vector that $W^{m}$ unlits, there is a press vector that $W^{n}$ unlits.
+  which shows that for each press vector in the kernel of $W^{m}$, there is a press vector in the kernel of $W^{n}$.
 \end{proof}
 
 Now everything is in play to prove Observation 4.
