@@ -9,8 +9,8 @@ $\Z/n\Z$ by
 \[
 W_{c} := \left(
 \begin{array}{cc}
-  -E_{c} & I_{c} \\
-  -I_{c} & O_{c} \\
+  -E_{c} & -I_{c} \\
+   I_{c} &  O_{c} \\
 \end{array}
 \right)
 \]
@@ -19,20 +19,20 @@ identity matrix.
 
 Consider the row vector $p\oplus o=(p_1, p_2, \ldots, p_c, 0, 0, \ldots, 0)$
 of length $2c$ and the result $r=(p\oplus o)\cdot W_c$: it will be clear that
-$$r=(e_1, e_2, \ldots, e_c, p_1, p_2, \ldots, p_c),$$
+$$r=(e_1, e_2, \ldots, e_c, -p_1, -p_2, \ldots, -p_c),$$
 by the considerations of the previous section:
 here, by definition of $W_c$,
 $(e_1, e_2, \ldots, e_c)$ is the effect of
 the press pattern $p=(p_1, p_2, \ldots, p_c)$. Thus, we can
 interpret the result of multiplying $p\oplus o$ by $W_c$
-as $e\oplus p$: the first half is the effect on the first
+as $e\oplus -p$: the first half is the effect on the first
 row of applying the press pattern $p$, the second half is the
 effect on the second row.
 
 Suppose we now multiply this result by $W_c$ again:
-$$(e\oplus p)\cdot W_c=(eE_c+pI_c)\oplus (eI_c+pO_c)=(eE_c+p)\oplus e.$$
+$$(e\oplus -p)\cdot W_c=(eE_c-pI_c)\oplus (-eI_c-pO_c)=(eE_c-p)\oplus -e.$$
 The resulting vector also has an obvious interpretation:
-the first half, $eE_c+p$, is precisely the effect on
+the first half, $eE_c-p$, is precisely the effect on
 the second row of chasing the first row, while the
 second half, $e$, is the effect of this on the third row.
 
@@ -106,15 +106,15 @@ is invertible.
   \[
   \left(
   \begin{array}{cc}
-    -E_c & I_c \\
-    -I_c & O_c \\
+    -E_c & -I_c \\
+     I_c &  O_c \\
   \end{array}
   \right)
   \cdot
   \left(
   \begin{array}{cc}
-    O_c & -I_c  \\
-    I_c & -E_c \\
+     O_c &  I_c  \\
+    -I_c & -E_c \\
   \end{array}
   \right)
   =
@@ -164,52 +164,52 @@ $T_{c,r}$ in Corollary \ref{cor:numbers}.
   =
   \left(
   \begin{array}{cc}
-     T_{r} &  T_{r-1} \\
-    -T_{r-1} & -T_{r-2}   \\
+    T_{r}   & -T_{r-1} \\
+    T_{r-1} & -T_{r-2} \\
   \end{array}
   \right),
   \]
   where the $c\times c$-matrices $T_j$ over $\Z/n\Z$ are defined for
-$j\geq -1$ by the recursion $T_{-1}=O_c$, $T_0=I_c$ and $T_{j+1} := -E_c \cdot T_{j} - T_{j-1}.$
+$j\geq -1$ by the recursion $T_{-1}=O_c$, $T_0=I_c$ and $T_{j+1} := -T_{j}\cdot E_{c} - T_{j-1}.$
 \end{lemma}
 
 \begin{proof}
 By definition,
-$W_{c}= \left(\begin{smallmatrix} -E_c & I_c \\ -I_c & O_c \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} T_{1} & T_{0} \\ -T_{0} & -T_{-1} \\\end{smallmatrix}\right)$, as required.
+$W_{c}= \left(\begin{smallmatrix} -E_c & -I_c \\ I_c & O_c \\\end{smallmatrix}\right) = \left(\begin{smallmatrix} T_{1} & -T_{0} \\ T_{0} & -T_{-1} \\\end{smallmatrix}\right)$, as required.
 
 The result now follows by induction on the exponent $j$:
   \[
   \begin{aligned}
   W_{c}^{j+1}
-  & = W_{c} \cdot W_{c}^{j} 
+  & = W_{c}^{j} \cdot W_{c}
   =
   \left(
   \begin{array}{cc}
-    -E_c & I_c \\
-    -I_c & O_c \\
+    T_{j}   & -T_{j-1} \\
+    T_{j-1} & -T_{j-2} \\
   \end{array}
   \right)
   \cdot
   \left(
   \begin{array}{cc}
-     T_{j} &  T_{j-1}  \\
-    -T_{j-1} & -T_{j-2} \\
+    -E_{c} & -I_{c} \\
+     I_{c} &  O_{c} \\
   \end{array}
-  \right) \\
+  \right)\\
   & =
   \left(
   \begin{array}{cc}
-    -E_c \cdot T_{j} - T_{j-1} & -E_c \cdot T_{j-1} - T_{j-2} \\
-    -T_{j}                  & -T_{j-1}                  \\
+    -T_{j}  \cdot E_{c} - T_{j-1} & -T_{j}   \\
+    -T_{j-1}\cdot E_{c} - T_{j-2} & -T_{j-1} \\
   \end{array}
   \right) 
   =
   \left(
   \begin{array}{cc}
-     T_{j+1} &  T_{j} \\
-    -T_{j} & -T_{j-1} \\
+     T_{j+1} & -T_{j}   \\
+     T_{j}   & -T_{j-1} \\
   \end{array}
-  \right). \\
+  \right) \\
   \end{aligned}
   \]
 \end{proof}
