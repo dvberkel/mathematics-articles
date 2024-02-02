@@ -22,3 +22,13 @@ pdflatex $name
 bibtex $name
 pdflatex $name
 pdflatex $name
+
+# publish to the web
+output=../../../docs/lights_out
+if [ -d $output ]
+then
+    echo "publishing"
+    cp $name.pdf $output
+else
+    echo "$output"
+fi
