@@ -80,8 +80,8 @@ Sequence $\left(d_{c}(r)\right)_{r\in\N}$ is purely periodic.
 By the Structure Lemma, Corollary \ref{cor:prime},
 the number of different solutions is determined by 
 $\dim\Ker T_{c,r}$.
-  The periodicity of $(W_{c}^{r})_{r\in\N}$ immediately implies that
-  periodicity of $(T_{c,r})_{r\in\N}$.
+  Since $(W_{c}^{r})_{r\in\N}$ is purely periodic, so is
+  $(T_{c,r})_{r\in\N}$.
 \end{proof}
 Note that the Proposition does not mention the {\it size} of either the period
 of the sequence $(W_{c}^{r})_{r\in\N}$ or that of $(T_{r})_{r\in\N}$
@@ -110,296 +110,327 @@ such that $d_c(r)=c$.
   =
   \dim\Ker T_{-1}
   =
-  \dim\Ker O_{c}
+  \dim\Ker O_c
   = c.
   \]
 \end{proof}
+By $r_0$ we will denote be the smallest positive $r$ for which the maximal
+dimension of the kernel occurs.
 Before we investigate the period lengths further,
 we will take a closer look at Observation 4.
 
 \begin{theorem}[Observation 4]\label{thm:consec}
-  For all $i\in\N$ the following inequality holds:
-  \[d_{c}(i) + d_{c}(i+1) \leq c.\]
+  For all $r\in\N$ the following inequality holds:
+  \[d_{c}(r) + d_{c}(r+1) \leq c.\]
 \end{theorem}
 \begin{proof}
   Assume, to the contrary, that $d_{c}(k) + d_{c}(k+1) > c$ for some $k\in\N$.
 
-  This means that there exist $s=d_{c}(k)$ independent press vectors
-  $q^{(1)}, q^{(2)}, \ldots, q^{(m)}$ in the kernel of $T_k$ and
-  $t = d_{c}(k+1)$ independent press vectors
-  $r^{(1)}, r^{(2)}, \ldots, r^{(n)}$ in the kernel of $T_{k+1}$.
-  Since $s+t>c$ there must be a non-trivial press vector $p$ in the intersection
+  This means that there exist $m=d_{c}(k)$ independent press vectors
+  %$q^{(1)}, q^{(2)}, \ldots, q^{(m)}$ 
+  in the kernel of $T_k$ and
+  $n = d_{c}(k+1)$ independent press vectors
+  %$r^{(1)}, r^{(2)}, \ldots, r^{(n)}$ 
+  in the kernel of $T_{k+1}$.
+  Since $m+n>c$ there must be a non-trivial press vector $p$ in the intersection
   of both kernels. Then $(p\oplus o)\cdot W_c^{k} = o\oplus w$ for
   some vector $w$, and $(p\oplus o)\cdot W_c^{k+1}=o\oplus w'$ for some $w'$.
   But 
-  \[
-    o\oplus w'=(p\oplus o)\cdot W_c^{k+1}=(p\oplus o)\cdot W_c^{k}\cdot W_c=(o\oplus w)\cdot W_c=w\oplus o
-  \]
+  \[ o\oplus w'=(p\oplus o)\cdot W_c^{k+1}=(p\oplus o)\cdot W_c^{k}\cdot W_c=(o\oplus w)\cdot W_c=
+   w\oplus o\]
   and thus $w=o=w'$ and $p\oplus o$ is a non-trivial vector in the kernel
   of $W_c^k$, which contradicts the invertibility of $W_c$.
 \end{proof}
 
 \begin{corollary}\label{cor:max}
-  If for some $r\in\N$ we have $d_{c}(r) = c$ then
+  If for some $r\geq 1$ we have $d_{c}(r) = c$ then
   \begin{itemize}
     \item $d_{c}(r-1) = d_{c}(r+1) = 0$, and
-    \item $W_{c}^{r+1} = \left(\begin{smallmatrix} -T_{r-1} & O \\
-                                  O & -T_{r-1} \\\end{smallmatrix}\right)$.
+    \item $W_{c}^{r+1} = \left(\begin{matrix} -T_{r-1} & O_c \\
+                                  O_c & -T_{r-1} \\\end{matrix}\right)$.
   \end{itemize}
+	In particular: $d_c(r_0-1)=d_c(r_0+1)=0$.
 \end{corollary}
 
 \begin{proof}
 The first part is immediate by Theorem \ref{thm:consec}.
 
 For the second statement, observe that $d_c(r)=c$ can only happen
-when $T_r=O$, so
-\[W_{c}^{r+1} = W_{c}^{r}\cdot W_{c}=
-\left(\begin{matrix} O_c & -T_{r-1} \\ T_{r-1} & -T_{r-2} \\\end{matrix}\right)\cdot
+when $T_r=O_c$, so
+  $$W_{c}^{r+1} = W_c^r\cdot W_c=
+\left(\begin{matrix} O_c & -T_{r-1} \\ T_{r-1} & -T_{r-2}\end{matrix}\right)\cdot
 \left(\begin{matrix} -E_{c} & -I_c \\ I_{c} & O_c \\\end{matrix}\right)=
 \left(\begin{matrix} -T_{r-1} & O_c \\ O_c & -T_{r-1} \\\end{matrix}
-\right).
-\]
+\right).$$
+The final statement follows from the definition of $r_0$.
+\end{proof}
+\begin{corollary}
+The period of sequence $(d_c(r))_{r\in\N}$ is $r_0+1$.
+\end{corollary}
+\begin{proof}
+We have already seen that the sequence is purely periodic; by definition
+	$d_c(r)=\dim\ker T_r$ for $r\geq 0$. Here $T_r$ is the upper left
+	$c\times c$ submatrix of $W_c^r$. We also saw that
+	$(W_c^r)_{r\in\N}$ forms a purely periodic sequence in 
+	Theorem \ref{thm:Wperiod}, that can in fact be
+	extended to a {\it bi-infinite} purely periodic
+	sequence $(W_c^r)_{r\in\Z}$, since $W_c$ is invertible by 
+	Lemma \ref{lem:Winv}.
+	This determines the bi-infinite sequence $(T_r)_{r\in\Z}$, for which
+	we have a degree two recursion given in Lemma \ref{lem_struc}; 
+	this implies that the minimal
+	period for $(d_c(r))_{r\in\N}$ is reached whenever two consecutive 
+	values repeat. Now $d_c(-1)=c$ as can be seen from the inverse of $W_c$
+	in Lemma \ref{lem:Winv}, so $d_c(-1)=d_c(r_0)=c$ and 
+	$d_c(0)=d_c(r_0+1)=0$,
+	and since $r_0+1$ is the smallest positive integer for which $d_c(r)=0$,
+	the period must be equal to $r_0+1$.
 \end{proof}
 
-In proving our Corollary \ref{cor:max} we have learned that the
-structure of the corresponding matrix power is particularly simple. 
-This fact will
-be instrumental in the relation between the period of
-$\left(W_{c}^{r}\right)_{r\in\N}$ and that of
-$\left(d_{c}(r)\right)_{r\in\N}$.
+\begin{theorem}[Observation 4]
+The period of $(d_{c}(r))_{r\in\N}$ ends as soon as
+	the maximal dimension appears.
+\end{theorem}
 
+%\begin{proof}
+%By Lemma \ref{cor:max} the power of $W$ has a block diagonal structure. By Lemma \ref{mirror} the sequence of dimensions
+%is shifted mirror image. Together with the fact that the sequence is almost palindromic from the previous theorem, we have our proof.
+%\end{proof}
 Note that conjugating any $2c\times 2c$ matrix $M=
 \left(\begin{smallmatrix} A & B \\ C & D \\\end{smallmatrix}\right)$ by
 $Z=\left(\begin{smallmatrix} O_c & I_c \\ I_c & O_c \\\end{smallmatrix}\right)$ 
 corresponds to rotating the four main sub-matrices:
-
-\[
+\begin{equation}\label{eq:rotate}
 Z\cdot M\cdot Z^{-1}=\left(\begin{matrix} O_c & I_c \\ I_c & O_c \\\end{matrix}\right)
 \cdot
 \left(\begin{matrix} A & B \\ C & D \\\end{matrix}\right)
 \cdot
 \left(\begin{matrix} O_c & I_c \\ I_c & O_c \\\end{matrix}\right)
 =
-\left(\begin{matrix} D & C \\ B & A \\\end{matrix}\right)
-\]
+\left(\begin{matrix} D & C \\ B & A \\\end{matrix}\right).\end{equation}
 This fact will be the linchpin in the proof of Observation 5.
 
-But first we will see that $W_{c}$ and its inverse are conjugates.
+But first we will see that a power of $W_{c}$ and its inverse are conjugate.
 \begin{lemma}
-  $W_{c}^r$ and $W_{c}^{-r}$ are conjugate, for all $r\geq 1$.
+  $W_{c}^r$ and $W_{c}^{-r}$ are conjugate, for all $r\in\Z$.
 \end{lemma}
 
 \begin{proof}
   Omitting the subscripts $c$, we conjugate $W$ by
-  $Z := \left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$,
-  which is its own inverse:
+  $Z$:
+% which is its own inverse:
   \[
-  \begin{aligned}
+% \begin{aligned}
   Z \cdot W \cdot Z^{-1}
-  & =
-  \left(
-  \begin{array}{cc}
-    O & I \\
-    I & O \\
-  \end{array}
-  \right)
-  \cdot
-  \left(
-  \begin{array}{cc}
-    -E & -I \\
-     I &  O \\
-  \end{array}
-  \right)
-  \cdot
-  \left(
-  \begin{array}{cc}
-    O & I \\
-    I & O \\
-  \end{array}
-  \right)\\
-  & =
-  \left(
-  \begin{array}{cc}
-     I &  O \\
-    -E & -I \\
-  \end{array}
-  \right)
-  \cdot
-  \left(
-  \begin{array}{cc}
-    O & I \\
-    I & O \\
-  \end{array}
-  \right) 
-   =
-  \left(
-  \begin{array}{cc}
-     O &  I \\
-    -I & -E \\
-  \end{array}
-  \right) 
-   =
-  W^{-1}
-  \end{aligned}
+  =
+	  \left(\begin{matrix}
+		  O & I \\ I & O\\
+	  \end{matrix}\right)
+	  \cdot
+	  \left(\begin{matrix}
+		  -E & -I \\ I & O\\
+	  \end{matrix}\right)
+	  \cdot
+	  \left(\begin{matrix}
+		  O & I \\ I & O\\
+	  \end{matrix}\right)
+	  =
+	  \left(\begin{matrix}
+		  O & I \\ -I & -E\\
+	  \end{matrix}\right)
+	  = W^{-1}.
+%  \left(
+%  \begin{array}{cc}
+%    O & I \\
+%    I & O \\
+%  \end{array}
+%  \right)
+%  \cdot
+%  \left(
+%  \begin{array}{cc}
+%    -E & I \\
+%    -I & O \\
+%  \end{array}
+%  \right)
+%  \cdot
+%  \left(
+%  \begin{array}{cc}
+%    O & I \\
+%    I & O \\
+%  \end{array}
+%  \right)\\
+%  & =
+%  \left(
+%  \begin{array}{cc}
+%    -I & O \\
+%    -E & I \\
+%  \end{array}
+%  \right)
+%  \cdot
+%  \left(
+%  \begin{array}{cc}
+%    O & I \\
+%    I & O \\
+%  \end{array}
+%  \right) 
+%   =
+%  \left(
+%  \begin{array}{cc}
+%    O & -I \\
+%    I & -E \\
+%  \end{array}
+%  \right) 
+%   =
+%  W^{-1}
+%  \end{aligned}
   \]
-from which the general result follows immediately by taking $r$-th powers.
+from which the result follows immediately by taking $r$-th powers.
 \end{proof}
 
-\begin{lemma}
-  If for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$
+\begin{lemma}\label{mirror}
+If $W_{c}^{r} = \left(\begin{matrix} Q & O \\ O & Q \\\end{matrix}\right)$
+for some $\in\N$ and some $c\times c$ matrix $Q$, then for all $i\in\N$:
   \[
-  W_{c}^{r+i} = \left(\begin{array}{cc} QT_{i} & -QT_{i-1} \\ QT_{i-1} & -QT_{i-2} \\\end{array}\right)
-  \]
-
-  and
-
-  \[
-  W_{c}^{r-i} = \left(\begin{array}{cc} -QT_{i-2} & QT_{i-1} \\ -QT_{i-1} & QT_{i} \\\end{array}\right)
+  W_{c}^{r+i} = \left(\begin{matrix}QT_{i} & -QT_{i-1} \\ QT_{i-1} & -QT_{i-2} \\\end{matrix}\right)
+	  \textrm{\ \ and\ \ }
+  W_{c}^{r-i} = \left(\begin{matrix} -QT_{i-2} & QT_{i-1} \\ -QT_{i-1} & QT_{i} \\\end{matrix}\right).
   \]
 \end{lemma}
 
 \begin{proof}
-  By direct calculation and the Structure Lemma we find for $W_{c}^{r+i}$
+Note that $Z\cdot W_c^{i}\cdot Z^{-1}=W_c^{-i}$ for all $i$
+by the previous lemma, and that
+$Z\cdot W_c^r\cdot Z^{-1}=W_c^r$ if $W_c^r=
+  \left(\begin{matrix} Q & O \\ O & Q \\\end{matrix}\right)$.
+  Hence
+  \[Z\cdot W_{c}^{r+i}\cdot Z^{-1}=Z\cdot W_{c}^{r}\cdot Z^{-1}\cdot Z\cdot W^{i}\cdot Z^{-1}=W_{c}^{r}\cdot W_{c}^{-i}=W_{c}^{r-i}.\]
+  By direct calculation and the Structure Lemma we find
   \[
-% W_{c}^{r+i}
-% =
+ W_{c}^{r+i}
+ =
   W_{c}^{r}W_{c}^{i}
   =
   \left(
-  \begin{array}{cc}
+\begin{matrix}
     Q & O \\
     O & Q \\
-  \end{array}
+  \end{matrix}
   \right)
   \left(
-  \begin{array}{cc}
-    T_{i}   & -T_{i-1}  \\
+  \begin{matrix}
+     T_{i} &  -T_{i-1}  \\
     T_{i-1} & -T_{i-2} \\
-  \end{array}
+  \end{matrix}
   \right)
   =
   \left(
-  \begin{array}{cc}
-    QT_{i}   & -QT_{i-1}  \\
+  \begin{matrix}
+     QT_{i} &  -QT_{i-1}  \\
     QT_{i-1} & -QT_{i-2} \\
-  \end{array}
-  \right)
+  \end{matrix}
+  \right),
   \]
-  Furthermore, with $Z=\left(\begin{smallmatrix} O & I \\ I & O \\\end{smallmatrix}\right)$
-  we have, by the preceding lemma,
-  \[Z\cdot W_{c}^{r-i}\cdot Z^{-1}=Z\cdot W_{c}^{r}\cdot Z^{-1}\cdot Z\cdot W^{-i}\cdot Z^{-1}=W_{c}^{r}\cdot W_{c}^{i}=W_{c}^{r+i}\]
-  which yields what we set out to prove.
+  which, combined with Equation \ref{eq:rotate}, yields what we set out to prove.
+\end{proof}
+Recall from the Structure Lemma the notation $T_r$ for upper left $c\times c$
+submatrix of $W_c^r$.
+\begin{corollary}\label{cor:palin} 
+If $W_c^r=\left(\begin{matrix}Q&O\\O&Q\end{matrix}\right)$ then for every $i$:
+	$$T_{r-1+i}=T_{r-1-i} \textrm{\ \ and\ \ }
+d_c(r-1+i)=d_c(r-1-i).$$ In particular, $d_c(r_0+i)=d_c(r_0-i)$.
+\end{corollary}
+\begin{proof}
+	By the preceding lemma we see that the upper left $c\times c$
+	submatrix of $W^{r+i}$, which is by definition $T_{r+i}$, equals
+	the lower right  $c\times c$ submatrix of $W^{r-i}$, which
+	equals $T_{r-i-2}$ by the Structure Lemma, and which is the upper
+	left submatrix of $W^{r-i-2}$ by definition. Hence 
+	$T_{r-1+(i+1)}=T_{r-1-(i+1)}$ for all $i$ for which both 
+	sides are defined. The second statement follows as $d_c(k)$
+	is the dimension of the kernel of $T_k$. 
+	The final statement follows from Corollary \ref{cor:max} and taking $r=r_0+1$.
 \end{proof}
 
-\begin{corollary}\label{mirror}
-  When for some $r\in\N$ we have $W_{c}^{r} = \left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$ then for all $i\in\N$ we have
-  $d_{c}(r+i) = d_{c}(r-2-i)$.
-\end{corollary}
+\begin{theorem}[Observation 5]
+  The the period of the sequence $\left(d_{c}(r)\right)_{r\in\N}$
+  is almost palindromic: the period consist of a palindrome followed by the value $c$.
+\end{theorem}
 
 \begin{proof}
-  By the preceding lemma we see that that the upper left sub-matrix of $W_{c}^{r+i}$ equals the lower right sub-matrix of $W_{c}^{r-i}$.
-
-  The structure lemma tells is that the lower right sub-matrix of $W_{c}^{r-i}$ equals the upper left sub-matrix of $W_{c}^{r-i-2}$.
+	By the last part of Corollary \ref{cor:palin} the values
+	preceding $d_c(r_0)=c$ which form the final part of the first
+	period, mirror the values following it.
 \end{proof}
-
-We now get to the relation between the order $p$ of $W$ and the period of
-$d_c$. Let $r_0$ be the smallest positive $r$ for which the maximal
-dimension of the kernel occurs (which exists, according to Lemma
-\ref{lem:max}); so $d_c(r_0)=c$.
+%  Let $d$ be such that $W^d$ has a upper left sub-matrix $O$.
+%
+%  A \emph{press vector} is a $2\times c$ vector with the last $c$ components zero, an \emph{unlit vector} is a $2\times c$ vector with the first $c$ components 0. Notice that for any press vector $v$
+%
+%  \[
+%    v\cdot W^d
+%  \]
+%
+%  is an unlit vector.
+%
+%  Choose $m,n\in\N$ such that $m + 1 + n = d$. We will show that for each press vector $v$ for which $v\cdot W^m$ is unlit, there exist a press vector $v'$ such that $v'\cdot W^n$ is unlit.
+%  This shows that $\dim\Ker T_{m} \leq \dim\Ker T_{n}$. Since the argument is symmetric in $m$ and $n$ we have $\dim\Ker T_{m} = \dim\Ker T_{n}$.
+%
+%	Let $v$ be a press vector such that $v\cdot W^{m}$ is unlit. In particular $v\cdot W^{m} = u$ with $u := (0,0,\ldots, 0)\oplus (u_{1}, u_{2}, \ldots, u_{c})$.
+%
+%  Define $p := u\cdot W$. We will show that $p$ is a press vector.
+%
+%  \[
+%    u\cdot W = \left(
+%    \begin{array}{cc}
+%      -E_{c} & I \\
+%      -I    & O \\
+%    \end{array}
+%    \right)
+%    \left(
+%    \begin{array}{c}
+%      O  \\
+%      u' \\
+%    \end{array}
+%    \right)
+%    =
+%    \left(
+%    \begin{array}{c}
+%      u' \\
+%      O  \\
+%    \end{array}
+%    \right)
+%  \]
+%
+%  Since for any press vector $w$ we have that $w\cdot W^{d} = O$, in particular we have
+%
+%  \[
+%  O = v\cdot W^{d} = v\cdot W^{n} W W^{m} = u\cdot W^{n} W = p\cdot W^{n}
+%  \]
+%
+%  which shows that for each press vector that $W^{m}$ unlits, there is a press vector that $W^{n}$ unlits.
+%\end{proof}
+Finally we clear up the relation between the order of $W$ and the period length $r_0+1$ of $d_c$. 
 \begin{lemma}\label{lem:half}
-  Either $p=r_0+1$ or $p=2(r_0+1)$.
+	Either $\ord W_c =r_0+1$ or $\ord W_c=2(r_0+1)$. 
 \end{lemma}
 
 \begin{proof}
-  Let us write $q=r_0+1$ in this proof.
+  Let us write $p=\ord W_c$ and $q=r_0+1$ in this proof.
 
-  If $p=q$ we are finished, so assume it is not. We will show that $p=2q$ in
-  that case.
+By the definition of $d_c$ its period length divides the order of $W_c$.
 
   By Corollary \ref{cor:max} we know that 
-  $W_{c}^{q}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
-  for a certain matrix $Q$, and by the preceding lemma, for all $i\geq 1$,
-  the lower right $c\times c$ sub-matrix of
-  $W_{c}^{q-i}$ equals the upper left $c\times c$ sub-matrix of $W_{c}^{q+i}$
-  for all $i$. In particular, with $i=q$ we obtain that
-  the upper left sub-matrix of $W_{c}^{q+q}$ is the lower right sub-matrix of
-  $W_{c}^{q-q} = W_{c}^{0} = I_{c}$, the $c\times c$ identity matrix.
-  Now
+  $W^{q}=\left(\begin{smallmatrix} Q & O \\ O & Q \\\end{smallmatrix}\right)$
+	  for a certain matrix $Q$, and by Lemma \ref{mirror}
+	  $W_c^{2q}=W_c^0=I_{2c}$.
+  Then
   \[
-  W_{c}^{2q}
+  I_{2c}=W_{c}^{2q}
   =
-  \left(
-  \begin{array}{cc}
-    Q & O \\
-    O & Q \\
-  \end{array}
-  \right)^{2}
+  \left(\begin{matrix} Q & O \\ O & Q \\ \end{matrix} \right)^{2}
   =
-  \left(
-  \begin{array}{cc}
-    Q^{2} & O \\
-    O & Q^{2} \\
-  \end{array}
-  \right)
+  \left(\begin{matrix} Q^{2} & O \\ O & Q^{2} \\ \end{matrix} \right)
   \]
-  so $Q^{2}=I_{c}$ and $W^{2q}=I_{2c}$
-  
-  Hence the order of $W_{c}$, and therefore the period of $(W_{c}^{r})_{r\in\N}$, is $2q$.
+  so $Q^{2}=I_c$ and the order $p$ of $W$ equals $q$ if $Q=I_c$
+and equals $2q$ otherwise.
 \end{proof}
 
-\begin{theorem}[Observation 5]\label{theorem:palindromic}
-  The sequence $\left(d_{c}(r)\right)_{r\in\N}$
-  is almost palindromic.
-\end{theorem}
-
-\begin{proof}
-  The upperleft $c\times c$ sub-matrix of $W^{r_{0}}$ is $O_{c}$. Hence, for any vector $p\oplus o$
-
-  \[
-    (p\oplus o)\cdot W = o\oplus y
-  \]
-
-  With $y$ arbitrary.
-
-  Choose $s,t\in\N$ such that $s + 1 + t = r_{0}$. We will show that for each vector $p\oplus o$ for which $(p\oplus o)\cdot W^s = o\oplus y$, there exist a press vector $p'\oplus o$ such that $(p'\oplus o)\cdot W^t = o\oplus y'$, with $y$ and $y'$ arbitrary.
-  This shows that $\dim\Ker T_{s} \leq \dim\Ker T_{t}$. Since the argument is symmetric in $m$ and $n$ we have $\dim\Ker T_{s} = \dim\Ker T_{t}$.
-
-	Choose $p\oplus o$ such that $(p\oplus o)\cdot W^{s} = o\oplus u$. Define $v := (o\oplus u)\cdot W$. We will show that $v$ can be decomposed as $p'\oplus o$.
-
-  \[
-    v\cdot W = (o\oplus u)\left(
-    \begin{array}{cc}
-      -E_{c} & I \\
-      -I    & O \\
-    \end{array}
-    \right)
-    =(-u\oplus o)
-  \]
-  
-  Define $p' := -u$. Since for any vector $w$ we have that $w\cdot W_{c}^{r_0} = o\oplus y$ with $y$ arbitrary, in particular we have
-
-  \[
-  o\oplus y = (p\oplus o)\cdot W^{r_{0}} = (p\oplus o)\cdot W^{s} W W^{t} = (o\oplus u)\cdot W W^{t} = (p'\oplus o)\cdot W^{t}
-  \]
-
-  which shows that for each press vector in the kernel of $W^{s}$, there is a press vector in the kernel of $W^{t}$.
-\end{proof}
-
-Now everything is in play to prove Observation 4.
-
-\begin{theorem}[Observation 4]
-	The period of $(d_{c}(r))_{r\in\N}$ starts after the maximal dimension.
-\end{theorem}
-
-\begin{proof}
-  By lemma \ref{lem:half} the period of $(W_{c}^r)_{r\in\N}$ is either $r_{0}+1$ or $2(r_{0}+1)$. If the period is $r_{0}+1$ we are done.
-
-  So assume the period of $(W_{c}^r)_{r\in\N}$ is $2(r_{0}+1)$. From the proof of theorem \ref{theorem:palindromic} we have for $i,j\in\N$ such
-  that $i+1+j=r_{0}$ that $d_{c}(i) = d_{c}(j) = d_{c}(r_{0}-1-i)$.
-
-  Notice that $d_{c}(r_{0}-1-i) = d_{c}(r_{0}+1-2-i)$. Since by lemma \ref{cor:max} $W_{c}^{r_{0}+1}$ has a block diagonal structure, by corollary 
-  \ref{mirror} $d_{c}(r_{0}+1-2-i) = d_{c}(r_{0}+1+i)$.
-
-  This chain of equalities shows that $d_{c}(i) = d_{c}(r_{0}+1+i)$ for all $i\in\N$. Which shows that the period of $(d_{c}(r))_{r\in\N}$
-  starts after the maximal dimension.
-\end{proof}

@@ -4,14 +4,14 @@ the chasing operation in terms of matrix multiplication.
 This will enable us to prove our observations in the Introduction.
 
 Using the square $c\times c$ matrix $E_c$ from the previous
-section, we define the $2c\times 2c$ matrix $W_{c}$ with entries $0$, $1$, $-1$ from
-$\Z/n\Z$ by
+section, we define the $2c\times 2c$ matrix $W_{c}$ with entries
+$0, 1, -1$ from $\Z/n\Z$ by
 \[
 W_{c} := \left(
-\begin{array}{cc}
+\begin{matrix}
   -E_{c} & -I_{c} \\
-   I_{c} &  O_{c} \\
-\end{array}
+  I_{c} & O_{c} \\
+\end{matrix}
 \right)
 \]
 where $O_c$ and $I_c$ are the $c\times c$ zero and
@@ -32,9 +32,9 @@ effect on the second row.
 Suppose we now multiply this result by $W_c$ again:
 $$(e\oplus -p)\cdot W_c=(eE_c-pI_c)\oplus (-eI_c-pO_c)=(eE_c-p)\oplus -e.$$
 The resulting vector also has an obvious interpretation:
-the first half, $eE_c-p$, is precisely the effect on
+the first half, $eE_c+p$, is precisely the effect on
 the second row of chasing the first row, while the
-second half, $e$, is the effect of this on the third row.
+second half, $-e$, is the effect of this on the third row.
 
 Repeating this we find the following result.
 
@@ -98,31 +98,31 @@ that equals the number of vectors in the kernel of $T_{c, r}$.
 The first interesting fact we prove is that $W_{c}\in\Mat_{r,c}(\znz)$
 is invertible.
 
-\begin{lemma}
+\begin{lemma}\label{lem:Winv}
   $W_{c}$ is invertible for all $c\in\N$.
 \end{lemma}
 
 \begin{proof}
   \[
   \left(
-  \begin{array}{cc}
+  \begin{matrix}
     -E_c & -I_c \\
-     I_c &  O_c \\
-  \end{array}
+    I_c & O_c \\
+  \end{matrix}
   \right)
   \cdot
   \left(
-  \begin{array}{cc}
-     O_c &  I_c  \\
+  \begin{matrix}
+    O_c & I_c  \\
     -I_c & -E_c \\
-  \end{array}
+  \end{matrix}
   \right)
   =
   \left(
-  \begin{array}{cc}
+  \begin{matrix}
     I_c & O_c \\
     O_c & I_c \\
-  \end{array}
+  \end{matrix}
   \right)
   \]
 \end{proof}
@@ -134,8 +134,8 @@ which is by definition the smallest
 positive integer $k$ such that $W_c^k=I_c$.
 
 \begin{theorem}\label{thm:Wperiod}
-The sequence of matrices $\left(W_{c}^{r}\right)_{r\in\N}$ is purely periodic, with
-period length $\ord(W_c)$.
+The sequence %of matrices 
+$\left(W_{c}^{r}\right)_{r\in\N}$ is purely periodic.
 \end{theorem}
 
 \begin{proof}
@@ -143,9 +143,9 @@ period length $\ord(W_c)$.
   $\Z/n\Z$. So the sequence $\left(W_{c}^{r}\right)_{r\in\N}$ must
   become periodic. By the preceding lemma $W_{c}$ is invertible so the
   sequence is periodic from the start. If the period starts with $W_c$, it
-  must end with $I_c$; on the other hand, if for some $j>0$ but smaller than
-  the period length we have $W_c^j=I_c$ then the sequence would repeat from
-there on, a contradiction with the definition of period.
+  must end with $I_c$; on the other hand, if $W_c^j=I_c$ for some $j>0$ 
+  but smaller than the period length, then the sequence would repeat 
+  already from there on, a contradiction with the definition of period.
 \end{proof}
 %
 As mentioned in \cite{leach17} there is a relation between the images of chasing
@@ -163,14 +163,14 @@ $T_{c,r}$ in Corollary \ref{cor:numbers}.
   W_{c}^{r}
   =
   \left(
-  \begin{array}{cc}
-    T_{r}   & -T_{r-1} \\
-    T_{r-1} & -T_{r-2} \\
-  \end{array}
+  \begin{matrix}
+     T_{r} &  -T_{r-1} \\
+    T_{r-1} & -T_{r-2}   \\
+  \end{matrix}
   \right),
   \]
   where the $c\times c$-matrices $T_j$ over $\Z/n\Z$ are defined for
-$j\geq -1$ by the recursion $T_{-1}=O_c$, $T_0=I_c$ and $T_{j+1} := -T_{j}\cdot E_{c} - T_{j-1}.$
+$j\geq -1$ by the recursion $T_{-1}=O_c$, $T_0=I_c$ and $T_{j+1} := -T_j\cdot E_c - T_{j-1}.$
 \end{lemma}
 
 \begin{proof}
@@ -181,35 +181,34 @@ The result now follows by induction on the exponent $j$:
   \[
   \begin{aligned}
   W_{c}^{j+1}
-  & = W_{c}^{j} \cdot W_{c}
+  & = W_{c}^j \cdot W_{c} 
   =
   \left(
-  \begin{array}{cc}
-    T_{j}   & -T_{j-1} \\
+  \begin{matrix}
+     T_{j} &  -T_{j-1}  \\
     T_{j-1} & -T_{j-2} \\
-  \end{array}
+  \end{matrix}
   \right)
   \cdot
   \left(
-  \begin{array}{cc}
-    -E_{c} & -I_{c} \\
-     I_{c} &  O_{c} \\
-  \end{array}
-  \right)\\
+  \begin{matrix}
+    -E_c & -I_c \\
+    I_c & O_c \\
+  \end{matrix}
+  \right)= \\
   & =
   \left(
-  \begin{array}{cc}
-    -T_{j}  \cdot E_{c} - T_{j-1} & -T_{j}   \\
-    -T_{j-1}\cdot E_{c} - T_{j-2} & -T_{j-1} \\
-  \end{array}
+  \begin{matrix}
+    -T_j \cdot E_c - T_{j-1} & -T_{j}   \\
+-T_{j-1}\cdot E_c - T_{j-2}  & -T_{j-1} \\
+  \end{matrix}
   \right) 
-  =
   \left(
-  \begin{array}{cc}
-     T_{j+1} & -T_{j}   \\
-     T_{j}   & -T_{j-1} \\
-  \end{array}
-  \right) \\
+  \begin{matrix}
+     T_{j+1} &  -T_{j} \\
+    T_{j} & -T_{j-1} \\
+  \end{matrix}
+  \right).
   \end{aligned}
   \]
 \end{proof}

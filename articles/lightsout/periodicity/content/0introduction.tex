@@ -33,20 +33,21 @@ in the case of rectangular boards of up to 15 columns and
 original Lights Out game (with 5 columns and 5 rows).
 
 Each entry $d=d(r, c)$ signifies the dimension of a vector
-space over $\FF_2$ (the 2 coming from the number of states $n$)
+space over $\FF_2$ (the 2 coming from the number of states, $n$)
 containing a number of vectors ($2^d$) corresponding to
 the number of different solutions for any solvable initial board
-of size $r\times c$.
-Moreover, the number of different states for an $r\times c$ board
-that are solvable equals $2^{r\cdot c-d}$, as we will soon see.
+configuration of size $r\times c$.
+Moreover, the number of different initial configurations for 
+an $r\times c$ board
+that are solvable, equals $2^{r\cdot c-d}$, as we will soon see.
 Thus, the number $d(5,5)=2$ in the table indicates that for
-the original Lights Out game $2^{5\cdot 5-2}=2^{23}$ (out of the $2^{25}$)
+the original Lights Out game $2^{5\cdot 5-2}=2^{23}$ out of the $2^{25}$
 possible initial configurations are solvable,
 and for each of these there will be $2^2=4$ different ways
 to solve it.
 Note that zeroes in the table occur precisely when 
-every configuration of lights on the $r\times c$ board can be
-turned off, in a unique way.
+\em{every} configuration of lights on the $r\times c$ board can be
+turned off, each in a \em{unique} way.
 
 The main new results in this paper concern the regular
 patterns in this table and similar versions for larger $n$,
@@ -111,27 +112,27 @@ $r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10 &11 &12 &13 &14 &15 &$\ell$
 \end{table}
 
 \begin{itemize}
-\item{\bf Observation 1.}
-The sequence $d_c$ is purely periodic. %, for every $c\geq 0$.
-\item{\bf Observation 2.}
-There exists a number of rows $r$ where $d_c$ attains the maximal value $c$:
-$\exists r\geq 1:\ d_c(r)=c$; by $r_0$ we will denote the
-smallest such positive $r$.
-\item{\bf Observation 3.}
+\item{\bf Observation 1} Periodicity of columns:\\
+For every $c\geq 0$ the sequence $d_c$ is purely periodic. %, for every $c\geq 0$.
+\item{\bf Observation 2} In each column the maximum value is attained:
+$$\forall c\geq 0\ \exists r\geq 0: d_c(r)=c.$$
+%There exists a number of rows $r$ where $d_c$ is maximal:
+%$\exists r\geq 1:\ d_c(r)=c$; by $r_0$ we will denote the
+%smallest such positive $r$.
+By $r_0$ we will denote the {\em smallest} such $r$.
+\item{\bf Observation 3} Columns repeat after $r_0+1$ entries:\\
 The period length $\ell$ of $d_c$ equals $r_0+1$.
-\item{\bf Observation 4.}
-The sum of two consecutive kernel dimensions 
-is less than or equal to the maximal dimension:
-$$\forall r\geq0:\ d_c(r)+d_c(r+1)\leq c.$$
-\item{\bf Observation 5.}
-The period of $d_c$ is almost palindromic:
-$$d_c(0), d_c(1), \ldots, d_c(r_0-1)$$
+\item{\bf Observation 4} Sums of two consecutive kernel dimensions are restricted:\\
+$$\forall c\ \forall r\geq 0:\ d_c(r)+d_c(r+1)\leq c.$$
+\item{\bf Observation 5} Each period is almost palindromic:\\
+%The period of $d_c$ is almost palindromic:
+For all $c$: $d_c(0), d_c(1), \ldots, d_c(r_0-1)$
 is a palindrome of length $r_0$, and $d_c(r_0)=c$ completes the period.
 \end{itemize}
 \noindent
-Looking, for example, at
-the column of the table with $c=5$, which contains
-the standard $5\times 5$ lay out, it begins like this:
+Looking, for example, at the initial part of
+the column with $c=5$, which contains an entry for
+the standard $5\times 5$ lay out, we find:
 $$0,1,1,3,0,2,0,4,1,1,0,4,0,1,1,4,0,2,0,3,1,1,0,5,\ldots$$
 and repeats from the beginning after the first `$5$' occurs, which
 happens for $r_0=23$. The length of the period, $r_0+1$,
@@ -139,12 +140,12 @@ is listed in the final column of the table.
 The sequence up until the value 5 is palindromic 
 (it reads the same from left to right as from right to left).
 
-The fact that in a column consecutive entries sum to at most the
+The fact that in a column consecutive entries sum to less than the
 maximal dimension is Observation 4. It implies
 that the penultimate value in the period (the last value of the
 palindrome) is always 0, as must be the first.
 
-\subsection{Prior work}
+\subsection*{Prior work}
 The variants of Lights Out have a considerable history of
 being studied by mathematicians. In \cite{anderson98}, and before that in
 \cite{pelletier87}, methods from linear algebra are used to solve Lights
@@ -170,15 +171,16 @@ solution to the vector-matrix equation $p\cdot A=-s=s$.
 
 Solving this equation by hand is hardly feasible, but the equation does give
 insight into the solvability question: it turns out that the rank
-of $A$ is 23, so the kernel has dimension 2. Hence, for example,
+of $A$ is 23, so the kernel has dimension 2. Hence,
 $2^{23}$ out of the $2^{25}$ possible state configurations are solvable,
 and for each of these there will be $2^2=4$ different solutions $p$.
 
 A more practical solution is given in \cite{martin01}, where a technique
 known as gathering or \emph{chasing the lights} is introduced.
 Since the order in which buttons are pressed is of no importance,
-we may choose to do so row by row of the board (starting from the top), from
-left to right. To turn the lights in a given configuration $s$ off,
+we may choose to do so row by row of the board, starting from the top,
+and for ech row from left to right. 
+To turn the lights in a given configuration $s$ off,
 one might start by turning off the lights in the first row by
 pressing those buttons in the second row directly below lit lights
 of the first row. 
@@ -205,13 +207,18 @@ In the end only some buttons in the fifth (or bottom) row will
 be on. We have chased the lit buttons in the first row down to the
 last row.
 
-
-To turn off any remaining lights in the last row, we attempt to
-create a light pattern $t$ on the empty board by only pressing buttons
-in the first row, with the property that chasing that pattern results
-in exactly the same light pattern in the last row. Creating and chasing
-$t$  after chasing $s$ would then result in duplicating the bottom
-row, which means it will also become unlit.
+It will be possible to turn off the lit lights in the bottom row
+if it is possible to create a light pattern $t$ by only pressing buttons
+on the first row of an empty board, with the property that chasing $t$
+results in the same pattern of lit lights on the bottom row.
+%in the first row, with the property that chasing that pattern results
+%in exactly the same light pattern in the last row. 
+%To turn off any remaining lights in the last row, we attempt to
+%create a light pattern $t$ on the empty board by only pressing buttons
+%in the first row, with the property that chasing that pattern results
+%in exactly the same light pattern in the last row. Creating and chasing
+%$t$  after chasing $s$ would then result in duplicating the bottom
+%row, which means it will also become unlit.
 
 The task for any person who (like the first author) would
 like to be able to turn a given light pattern off (when
@@ -220,8 +227,8 @@ patterns that can be created on the first row, and to combine those
 in his or her head to the bottom row pattern obtained by chasing
 the initial configuration.
 
-In \cite{leach17} this method chasing the lights is extended to general
-rectangular board shapes.  It is shown there, as we will explain further
+In \cite{leach17} this method of chasing the lights is extended to general
+rectangular boards.  It is shown there, as we will explain further
 in Section
 \ref{sec:algebra}, that for analyzing an $r \times c$ Lights Out
 board one is interested in the upper left $c \times c$ sub-matrix of
@@ -236,9 +243,10 @@ that is given in Table \ref{tab:n2}.
 In Section \ref{sec:def}  we will describe chasing and the matrices involved
 in detail, because this is the context in which we made
 the above observations about the `kernel dimensions for
-Lights Out on a rectangular board'. As we saw above for the $5\times 5$
-board, we are interested in the dimension of 
-the null-space (or kernel) of some matrix.
+Lights Out on a rectangular board'. 
+%As we saw above for the $5\times 5$
+%board, we are interested in the dimension of 
+%the null-space (or kernel) of some matrix.
 
 In Section \ref{sec:prime} we will prove the observations we made,
 not just for 2 colours, but any {\it prime} number of colours.

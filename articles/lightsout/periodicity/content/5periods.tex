@@ -1,0 +1,153 @@
+\section{Periods}
+Finally, in this section, we explain how the periods in our tables were
+computed. Neither computing the powers of $W_c$ directly, nor using
+the recursion for $T_{c,r}$ will be sufficiently efficient to determine
+the periods we want; however, using Theorem \ref{thm:Wperiod} and Lemma
+\ref{lem:half} we will be able to determine the length of the period
+(but not the values in it) if we can compute the order of the matrix $W_c$.
+We make use of the fact that $W_c$ is a symplectic matrix.
+\begin{definition}
+For a commutative ring $R$ and a positive integer $c$,
+the {\it symplectic group} $\Sp(2c, R)$ is the multiplicative group of
+$(2c)\times (2c)$ matrices $M$ over $R$ satisfying
+$$M\cdot J\cdot M^{\trans}=J,$$
+where $J$ is the matrix with four $c\times c$ blocks
+%$$J=\left(\begin{smallmatrix} O_c & I_c \\ -I_c & O_c \\\end{smallmatrix}\right).$$
+$$J=\left(\begin{matrix} O_c & I_c \\ -I_c & O_c \\\end{matrix}\right).$$
+\end{definition}
+The order of $\Sp(2c, \FF_p)$
+can be found in many textbooks; for symplectic matrices over
+$\znz$ generally, it took some effort to find a reference to the following
+formula. It appears in \cite{newman72}, p.~136.
+\begin{theorem}\label{thm:newman}
+The order of the group of $2c\times 2c$ symplectic matrices over $\znz$
+equals
+$$G(c,n)=n^{2c^2+c}\cdot\prod_{p\vert c\atop {p\ {\rm prime}}}\cdot\prod_{k=1}^c \left(1-\frac{1}{p^{2k}}\right).$$
+\end{theorem}
+Clearly, the order of $W_c$ over $\znz$ is a divisor of the group
+order given by the theorem. The group order $G(c,n)$  grows quickly with $c$,
+and the order of $W_c$ is usually much smaller. Fortunately, the
+group order is highly composite, as a product of reasonably small
+primes. From the prime factorization of the group order $G(c, n)$ we
+compute the order of $W_c$ by a standard technique: for each maximal prime 
+power $p^m$ of $G(c, n)$ determine the true power of $p$ dividing the order of 
+$W_c$ by using (fast) $p$-powering of $W_c$ to compute the powers $1, p, p^2, \ldots p^m$ of $W_c^{G(c,n)/p^m}$ until the result is the identity matrix.
+\begin{example}
+As an example, let us look at $n=6$ and $c=16$; then $G(c,n)$ is a 411 decimal
+digit number with prime factorization
+$$2^{319} \cdot 3^{278} \cdot 5^{18} \cdot 7^{10} \cdot 11^9
+ \cdot 13^7 \cdot 17^6 \cdot 19^2 \cdot 23^2 \cdot 29^2 \cdot 31^4 \cdot 37 \cdot 41^5 \cdot 43^2 \cdot 61^3 \cdot 67 \cdot 73^3 \cdot 89 \cdot$$
+$$113\cdot 127^2 \cdot 151 \cdot 193^2 \cdot 241 \cdot 257^2 \cdot 271 \cdot 331 \cdot 547^2 \cdot 661 \cdot 683 \cdot 757 \cdot 1093^2 \cdot 1181 \cdot$$
+$$ 2731 \cdot 3851 \cdot 4561 \cdot 6481 \cdot 8191 \cdot 16493 \cdot 65537 \cdot 398581 \cdot 797161 \cdot 21523361,$$
+while it turns out that the order of $W_{16}$ is 
+%18: $$5230176588=2^2 \cdot 3^3 \cdot 7 \cdot 13 \cdot 19 \cdot 37 \cdot 757.$$
+$$4035630=2 \cdot 3 \cdot 5 \cdot 17 \cdot 41 \cdot 193.$$
+In this case it is just doable to compute the numbers that make up
+the full period (which turns out to be half the order of $W_{16}$;
+compare Lemma \ref{lem:half}).
+
+For $q=6$ and $c=18$ computing the complete period is not feasible
+in reasonable time, but the length is easily established.
+\end{example}
+Finally, just to show that this is easily done, we give
+show Table \ref{tab:n30}, for 30 colours.
+
+%\tiny\rm
+
+\begin{table}\label{tab:n30}
+  \begin{center}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|ccccccccccc|c|}
+      \hline
+$r\ \backslash\ c$:&0 &1 &2 &3 &4 &5 &6 &7 &8 &9 &10  &$\ell$ \\
+      \hline
+      \hline
+
+0& 1&1&1&1&1&1&1&1&1&1&1&1\\ 
+%1& 1&1&30&1&1&30&1&1&30&1&1&30&1&1&30&1&3\\
+1& 1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1&3\\
+%2& 1&30&3&60&5&90&1&60&3&150&1&180&1&30&15&60&60\\
+2& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5$& $5$& $2\cdot 3^2\cdot 5$&1& $2^2\cdot 3\cdot 5$& $3$& $2\cdot 3\cdot 5^2$&1&60\\
+%3& 1&1&60&1&9&120&1&1&60&9&1&120&25&1&540&390\\
+3& 1&1& $2^2\cdot 3\cdot 5$&1& $3^2$& $2^3\cdot 3\cdot 5$&1&1& $2^2\cdot 3\cdot 5$& $3^2$&1&390\\
+%4& 1&1&5&9&3600&5&1&9&5&3600&1&45&1&1&90000&9&60\\
+4& 1&1& $5$& $3^2$& $2^4\cdot 3^2\cdot 5^2$& $5$&1& $3^2$& $5$& $2^4\cdot 3^2\cdot 5^2$&1&60\\
+%5& 1&30&90&120&5&2700&1&240&810&150&1&10800&25&30&450&240&4680\\
+5& 1& $2\cdot 3\cdot 5$& $2\cdot 3^2\cdot 5$& $2^3\cdot 3\cdot 5$& $5$& $2^2\cdot 3^3\cdot 5^2$&1& $2^4\cdot 3\cdot 5$& $2\cdot 3^4\cdot 5$& $2\cdot 3\cdot 5^2$&1&4680\\
+%6& 1&1&1&1&1&1&1&1&64&1&1&1&27&27&1&1&50778\\
+6& 1&1&1&1&1&1&1&1& $2^6$&1&1&50778\\
+%7& 1&1&60&1&9&240&1&1&60&9&1&1920&25&1&540&1&488280\\
+7& 1&1& $2^2\cdot 3\cdot 5$&1& $3^2$& $2^4\cdot 3\cdot 5$&1&1& $2^2\cdot 3\cdot 5$& $3^2$&1&488280\\
+%8& 1&30&3&60&5&810&64&60&81&150&1&1620&1&1920&15&60&1260\\
+8& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5$& $5$& $2\cdot 3^4\cdot 5$& $2^6$& $2^2\cdot 3\cdot 5$& $3^4$& $2\cdot 3\cdot 5^2$&1&1260\\
+%9& 1&1&150&9&3600&150&1&9&150&57600&1&1350&1&1&1687500000&9&2460\\
+9& 1&1& $2\cdot 3\cdot 5^2$& $3^2$& $2^4\cdot 3^2\cdot 5^2$& $2\cdot 3\cdot 5^2$&1& $3^2$& $2\cdot 3\cdot 5^2$& $2^8\cdot 3^2\cdot 5^2$&1&2460\\
+%10& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&2953742\\
+10& 1&1&1&1&1&1&1&1&1&1&1&2953742\\
+%11& 1&30&180&120&45&10800&1&1920&1620&1350&1&1080000&15625&30&656100&3840&9360\\
+11& 1& $2\cdot 3\cdot 5$& $2^2\cdot 3^2\cdot 5$& $2^3\cdot 3\cdot 5$& $3^2\cdot 5$& $2^4\cdot 3^3\cdot 5^2$&1& $2^7\cdot 3\cdot 5$& $2^2\cdot 3^4\cdot 5$& $2\cdot 3^3\cdot 5^2$&1&9360\\
+%12& 1&1&1&25&1&25&27&25&1&1&1&15625&11390625&729&1&25&3276\\
+12& 1&1&1& $5^2$&1& $5^2$& $3^3$& $5^2$&1&1&1&3276\\
+%13& 1&1&30&1&1&30&27&1&1920&1&1&30&729&729&30&1&50778\\
+13& 1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$& $3^3$&1& $2^7\cdot 3\cdot 5$&1&1&50778\\
+%14& 1&30&15&540&90000&450&1&540&15&1687500000&1&656100&1&30&546750000&540&5100\\
+14& 1& $2\cdot 3\cdot 5$& $3\cdot 5$& $2^2\cdot 3^3\cdot 5$& $2^4\cdot 3^2\cdot 5^4$& $2\cdot 3^2\cdot 5^2$&1& $2^2\cdot 3^3\cdot 5$& $3\cdot 5$& $2^5\cdot 3^3\cdot 5^9$&1&5100\\
+%15& 1&1&60&1&9&240&1&1&60&9&1&3840&25&1&540&1&7820129394480\\
+15& 1&1& $2^2\cdot 3\cdot 5$&1& $3^2$& $2^4\cdot 3\cdot 5$&1&1& $2^2\cdot 3\cdot 5$& $3^2$&1&7820129394480\\
+%16& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&256&1&188660621641830\\
+16& 1&1&1&1&1&1&1&1&1&1&1&188660621641830\\
+%17& 1&30&90&120&5&24300&64&240&65610&150&1&97200&25&122880&450&240&3046680\\
+17& 1& $2\cdot 3\cdot 5$& $2\cdot 3^2\cdot 5$& $2^3\cdot 3\cdot 5$& $5$& $2^2\cdot 3^5\cdot 5^2$& $2^6$& $2^4\cdot 3\cdot 5$& $2\cdot 3^8\cdot 5$& $2\cdot 3\cdot 5^2$&1&3046680\\
+%18& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&67205154067506\\
+18& 1&1&1&1&1&1&1&1&1&1&1&67205154067506\\
+%19& 1&1&300&9&32400&600&1&9&300&518400&1&5400&25&1&30375000000&9&31980\\
+19& 1&1& $2^2\cdot 3\cdot 5^2$& $3^2$& $2^4\cdot 3^4\cdot 5^2$& $2^3\cdot 3\cdot 5^2$&1& $3^2$& $2^2\cdot 3\cdot 5^2$& $2^8\cdot 3^4\cdot 5^2$&1&31980\\
+%20& 1&30&3&60&5&90&1&60&192&150&1&180&27&810&15&60&507780\\
+20& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5$& $5$& $2\cdot 3^2\cdot 5$&1& $2^2\cdot 3\cdot 5$& $2^6\cdot 3$& $2\cdot 3\cdot 5^2$&1&507780\\
+%21& 1&1&30&1&1&30&1&1&30&1&1&30&1&1&30&1&97473486\\
+21& 1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1&97473486\\
+%22& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&102144181728362994267\\
+22& 1&1&1&1&1&1&1&1&1&1&1&102144181728362994267\\
+%23& 1&30&180&120&45&21600&1&1920&1620&1350&1&17280000&15625&30&656100&491520&5859360\\
+23& 1& $2\cdot 3\cdot 5$& $2^2\cdot 3^2\cdot 5$& $2^3\cdot 3\cdot 5$& $3^2\cdot 5$& $2^5\cdot 3^3\cdot 5^2$&1& $2^7\cdot 3\cdot 5$& $2^2\cdot 3^4\cdot 5$& $2\cdot 3^3\cdot 5^2$&1&5859360\\
+%24& 1&1&5&9&3600&5&1&9&5&3600&1&45&1&1&11250000&9&107218620300\\
+24& 1&1& $5$& $3^2$& $2^4\cdot 3^2\cdot 5^2$& $5$&1& $3^2$& $5$& $2^4\cdot 3^2\cdot 5^2$&1&107218620300\\
+%25& 1&1&30&25&1&750&27&25&30&1&1&468750&11390625&729&30&25&1025388\\
+25& 1&1& $2\cdot 3\cdot 5$& $5^2$&1& $2\cdot 3\cdot 5^3$& $3^3$& $5^2$& $2\cdot 3\cdot 5$&1&1&1025388\\
+%26& 1&30&3&60&5&810&64&60&81&150&1&1620&1&1920&15&60&1425781980\\
+26& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5$& $5$& $2\cdot 3^4\cdot 5$& $2^6$& $2^2\cdot 3\cdot 5$& $3^4$& $2\cdot 3\cdot 5^2$&1&1425781980\\
+%27& 1&1&60&1&9&120&27&1&3840&9&1&120&18225&729&540&37067940\\
+27& 1&1& $2^2\cdot 3\cdot 5$&1& $3^2$& $2^3\cdot 3\cdot 5$& $3^3$&1& $2^8\cdot 3\cdot 5$& $3^2$&1&37067940\\
+%28& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&5667407040183716027780\\
+28& 1&1&1&1&1&1&1&1&1&1&1&5667407040183716027780\\
+%29& 1&30&450&1080&90000&13500&1&2160&4050&27000000000&1&39366000&25&30&10251562500000&2160&16309800\\
+29& 1& $2\cdot 3\cdot 5$& $2\cdot 3^2\cdot 5^2$& $2^3\cdot 3^3\cdot 5$& $2^4\cdot 3^2\cdot 5^4$& $2^2\cdot 3^3\cdot 5^3$&1& $2^4\cdot 3^3\cdot 5$& $2\cdot 3^4\cdot 5^2$& $2^9\cdot 3^3\cdot 5^9$&1&16309800\\
+%30& 1&1&1&1&1&1&125&1&1&1&1024&1&1&125&1&1&463255047212958\\
+30& 1&1&1&1&1&1& $5^3$&1&1&1& $2^{10}$&463255047212958\\
+%31& 1&1&60&1&9&240&1&1&60&9&1&3840&25&1&540&1&230298610404133796691884640\\
+31& 1&1& $2^2\cdot 3\cdot 5$&1& $3^2$& $2^4\cdot 3\cdot 5$&1&1& $2^2\cdot 3\cdot 5$& $3^2$&1&230298610404133796691884640\\
+%32& 1&30&3&60&5&90&1&60&3&150&1&180&1&30&15&60&46166987460\\
+32& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5$& $5$& $2\cdot 3^2\cdot 5$&1& $2^2\cdot 3\cdot 5$& $3$& $2\cdot 3\cdot 5^2$&1&46166987460\\
+%33& 1&1&30&1&1&30&1&1&30&1&1&30&1&1&7680&1&16242442664326079162520\\
+%WB%33& 1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2^9\cdot 3\cdot 5$&1&16242442664326079162520\\
+%34& 1&1&5&9&3600&5&1&9&320&3600&1&45&27&27&90000&9&37067940\\
+%WB%34& 1&1& $5$& $3^2$& $2^4\cdot 3^2\cdot 5^2$& $5$&1& $3^2$& $2^6\cdot 5$& $2^4\cdot 3^2\cdot 5^2$&1& $3^2\cdot 5$& $3^3$& $3^3$& $2^4\cdot 3^2\cdot 5^4$& $3^2$&37067940\\
+%35& 1&30&180&120&45&97200&64&1920&131220&1350&1&9720000&15625&122880&656100&3840&6093360\\
+%WB%35& 1& $2\cdot 3\cdot 5$& $2^2\cdot 3^2\cdot 5$& $2^3\cdot 3\cdot 5$& $3^2\cdot 5$& $2^4\cdot 3^5\cdot 5^2$& $2^6$& $2^7\cdot 3\cdot 5$& $2^2\cdot 3^8\cdot 5$& $2\cdot 3^3\cdot 5^2$&1& $2^6\cdot 3^5\cdot 5^4$& $5^6$& $2^{13}\cdot 3\cdot 5$& $2^2\cdot 3^8\cdot 5^2$& $2^8\cdot 3\cdot 5$&6093360\\
+%36& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1376974978484213352203369046\\
+%WB%36& 1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1&1376974978484213352203369046\\
+%37& 1&1&30&1&1&30&1&1&30&1&1&30&1&1&30&1&347249031066803502\\
+%WB%37& 1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&1& $2\cdot 3\cdot 5$&1&347249031066803502\\
+%38& 1&30&3&1500&5&2250&27&1500&3&150&1&2812500&11390625&21870&15&1500&5126940\\
+%WB%38& 1& $2\cdot 3\cdot 5$& $3$& $2^2\cdot 3\cdot 5^3$& $5$& $2\cdot 3^2\cdot 5^3$& $3^3$& $2^2\cdot 3\cdot 5^3$& $3$& $2\cdot 3\cdot 5^2$&1& $2^2\cdot 3^2\cdot 5^7$& $3^6\cdot 5^6$& $2\cdot 3^7\cdot 5$& $3\cdot 5$& $2^2\cdot 3\cdot 5^3$&5126940\\
+%39& 1&1&300&9&32400&1200&1&729&300&518400&1&86400&25&1&30375000000&729&20019480\\
+%WB%39& 1&1& $2^2\cdot 3\cdot 5^2$& $3^2$& $2^4\cdot 3^4\cdot 5^2$& $2^4\cdot 3\cdot 5^2$&1& $3^6$& $2^2\cdot 3\cdot 5^2$& $2^8\cdot 3^4\cdot 5^2$&1& $2^7\cdot 3^3\cdot 5^2$& $5^2$&1& $2^6\cdot 3^5\cdot 5^9$& $3^6$&20019480\\
+%40& 1&1&1&1&1&1&1&1&1&81&1&1&1&1&1&1&999023539800\\
+%WB%40& 1&1&1&1&1&1&1&1&1& $3^4$&1&1&1&1&1&1&999023539800\\
+      \hline
+    \end{tabular}
+    \end{adjustbox}
+  \end{center}
+  \caption{Size of kernels and period $\ell$ for $n=30$}
+\end{table}
+
